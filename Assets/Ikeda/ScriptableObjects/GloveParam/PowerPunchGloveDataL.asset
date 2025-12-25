@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 922a382e4e2f0c24ba8221f7ef1b2fee, type: 3}
+  m_Name: PowerPunchGloveDataL
+  m_EditorClassIdentifier: 
+  m_gloveName: Glove
+  m_gloveID: 0
+  m_curveData: {fileID: 11400000, guid: b30015fa2e0a2ef4c83c52ad63ad3977, type: 2}
+  m_normalAttackParam:
+    m_type: 0
+    m_stretchArmParams:
+      m_extendSpeed: 4
+      m_retractSpeed: 2
+      m_coilFrequency: 0
+      m_coilAmplitude: 0
+      m_hitWaitTime: 0.5
+      m_swayAmplitude: 0.3
+      m_swaySpeed: 2
+      m_maxDistance: 100
+      m_usePlayerForward: 1
+      m_forwardForceDistance: 6
+      m_useWorldForwardAsReference: 1
+    gloveWeight: 1
+    m_coolTime: 0.5
+    m_attackMultiplier: 1.2
+  m_specialAttackParam:
+    m_type: 1
+    m_stretchArmParams:
+      m_extendSpeed: 6
+      m_retractSpeed: 3
+      m_coilFrequency: 0
+      m_coilAmplitude: 0
+      m_hitWaitTime: 0.5
+      m_swayAmplitude: 0.3
+      m_swaySpeed: 2
+      m_maxDistance: 6
+      m_usePlayerForward: 1
+      m_forwardForceDistance: 6
+      m_useWorldForwardAsReference: 1
+    gloveWeight: 1
+    m_coolTime: 0.5
+    m_attackMultiplier: 1.2
+  m_grabParam:
+    m_type: 2
+    m_stretchArmParams:
+      m_extendSpeed: 6
+      m_retractSpeed: 3
+      m_coilFrequency: 0
+      m_coilAmplitude: 0
+      m_hitWaitTime: 0.5
+      m_swayAmplitude: 0.3
+      m_swaySpeed: 2
+      m_maxDistance: 6
+      m_usePlayerForward: 1
+      m_forwardForceDistance: 6
+      m_useWorldForwardAsReference: 1
+    gloveWeight: 1
+    m_coolTime: 0.5
+    m_attackMultiplier: 1.2

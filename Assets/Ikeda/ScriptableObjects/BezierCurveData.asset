@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c7fc75658c1c9c4c95db4649c56389d, type: 3}
+  m_Name: BezierCurveData
+  m_EditorClassIdentifier: 
+  points:
+  - {x: -0.5791408, y: 0, z: -0.15106964}
+  - {x: -1.9945543, y: 0, z: -2.1804261}
+  tangents:
+  - {x: -0.13976288, y: 0, z: -0.51416355}
+  - {x: 2.223818, y: 0, z: 0.1847148}
