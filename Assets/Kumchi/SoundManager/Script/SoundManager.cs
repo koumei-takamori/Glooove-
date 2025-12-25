@@ -78,7 +78,6 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
     {
         base.Awake();
     }
-
     /// <summary>
     /// バックグラウンドミュージック（BGM）とサウンドエフェクト（SE）のソースをセットアップし、
     /// 利用可能なサウンドデータをロードすることで、オーディオシステムを初期化します。
@@ -138,7 +137,7 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
         }
 
         // テスト再生（必要に応じて削除してください）
-        // PlayBGM("PlayBGM", true);
+        PlayBGM("PlayBGM", true);
     }
     /// <summary>
     /// 現在のマスター音量と個別の音量設定に基づいて、オーディオソースの音量を更新します。
@@ -154,9 +153,6 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
         {
             source.volume = masterVolume * seVolume;
         }
-
-        if(bgmSource.isPlaying) { Debug.Log("Play"); }
-        else { Debug.Log("NotPlay"); }
     }
     /// <summary>
     /// 指定された名前のサウンドエフェクトを再生します。
@@ -199,8 +195,6 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
     /// それ以外の場合は<see langword="false"/>に設定します。</param>
     public void PlayBGM(string bgmName, bool loop = false)
     {
-        Debug.Log("BGM" + bgmName);
-
         var data = bgmList.Find(x => x.name == bgmName);
         if (data == null)
         {

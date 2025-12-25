@@ -6,12 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Kumchi/Scene/KumaPlayScene.unity
+    guid: 7227c61ae6d50cb4f846651105a2c863
+  - enabled: 1
     path: Assets/Takamori/Scenes/TitleScene.unity
     guid: f1d526f40ebbb3d4b8433bd8607b7963
-  - enabled: 1
-    path: Assets/Takamori/Scenes/TSelectScene.unity
-    guid: b697724f374af6e4c932995e0cbc0b97
-  - enabled: 1
-    path: Assets/Takamori/Scenes/PlayScene.unity
-    guid: 362169b25c02e7d49a5af3e34fc149a8
   m_configObjects: {}

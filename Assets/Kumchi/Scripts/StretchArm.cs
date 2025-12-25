@@ -11,24 +11,41 @@ using UnityEngine;
 
 public class StretchArm : GloveBase
 {
-    // グローブリスト(読込)
-    [SerializeField] private GloveListData gloveListData;
-
     [Header("Transforms")]
     [SerializeField] private Transform rootBone;
     [SerializeField] private Transform start;  // フォールバック／回転用
     [SerializeField] private Transform target; // シリアライズされたフォールバック。Use() でプレイヤーのターゲットに差し替えられます
 
-    private BezierCurveData curveData;
+    [Header("Bezier")]
+    [SerializeField] private BezierCurveData curveData;
 
-    [Header("挙動パラメーター")]
-    [SerializeField]
-    private StretchArmParams actionParams;
+    [Header("伸縮速度")]
+    [SerializeField] private float extendSpeed = 6f;
+    [SerializeField] private float retractSpeed = 3f;
 
-    [Header("12-19 試遊会用グローブ")]
-    [SerializeField]
-    private string gloveName = "test";
+    [Header("挙動パラメータ")]
+    [SerializeField] private float coilFrequency = 0f;
+    [SerializeField] private float coilAmplitude = 0f;
+    [SerializeField] private float hitWaitTime = 0.5f;
 
+    [Header("ゆらぎ")]
+    [SerializeField] private float swayAmplitude = 0.3f;
+    [SerializeField] private float swaySpeed = 2.0f;
+
+    [Header("共通")]
+    [SerializeField] private float maxDistance = 6f;       // 最大伸長距離（開始点から）
+    [SerializeField] private float arriveEps = 0.01f;      // 到達許容誤差 (t ベース)
+
+    [Header("動作オプション")]
+    [SerializeField] private bool usePlayerForward = true; // true のとき腕の前方をプレイヤーの向きに合わせる
+    [SerializeField] private float forwardForceDistance = 6f; // usePlayerForward の場合に優先的に使いたい長さ（0 = target 距離を尊重）
+
+    [Header("曲線基準")]
+    [SerializeField] private bool useWorldForwardAsReference = true; // true: 常に世界 +Z を基準に曲がりを固定する（これを推奨）
+                                                                     // (false にすると start の回転を基準にする従来動作に近くなる)
+
+    [Header("伸縮時の腕のねじれの大きさ")]
+    [SerializeField] private float twistAmount = 0f; // 伸びるときに腕がねじれる量（度数法）
 
     private List<Transform> bones = new List<Transform>();
     private float t = 0f;             // 0: たたまれた(戻った)状態, 1: 完全に伸びた状態
@@ -52,19 +69,15 @@ public class StretchArm : GloveBase
     // 曲線形状の基準回転up（PhaseStart 時点でキャプチャまたは固定）
     private Quaternion referenceRotation;
     private Vector3 referenceUp;
-
-    // グローブ
-    private GameObject gloveGameObject;
-    // グローブスクリプト
-    private GloveObject gloveObjectScript;
-
-    // グローブが追従するTransform
-    private Transform endBoneTransform;
-
-
-
-
-
+    // 初期のボーンの状態を記憶（ローカル位置・回転のスナップショット）
+    private struct BoneState
+    {
+        public Vector3 localPosition;
+        public Quaternion localRotation;
+        public Vector3 worldPosition;
+        public Quaternion worldRotation;
+    }
+    private List<BoneState> initialBoneStates = new List<BoneState>();
     protected override void Awake()
     {
         base.Awake();
@@ -72,22 +85,31 @@ public class StretchArm : GloveBase
 
     protected override void Start()
     {
-        // base.Start();
+        base.Start();
 
         bones.Clear();
         if (rootBone != null) GetAllBones(rootBone);
 
         if (rootBone != null)
         {
-            this.transform.localScale *= 0.4f;
+            rootBone.localScale *= 0.5f;
             rootBone.rotation = Quaternion.LookRotation(Vector3.down);
             initialRotation = rootBone.rotation;
         }
-
-        // グローブ生成
-        GenerateGlove();
-
-        base.Start();
+        // ボーンの初期状態を保存（"コピー" を保存することが重要）
+        initialBoneStates.Clear();
+        foreach (var bone in bones)
+        {
+            BoneState st = new BoneState
+            {
+                localPosition = bone.localPosition,
+                localRotation = bone.localRotation,
+                worldPosition = bone.position,
+                worldRotation = bone.rotation
+            };
+            initialBoneStates.Add(st);
+        }
+        PhaseRetract();
     }
 
     private void GetAllBones(Transform current)
@@ -95,108 +117,12 @@ public class StretchArm : GloveBase
         bones.Add(current);
         for (int i = 0; i < current.childCount; i++)
             GetAllBones(current.GetChild(i));
-
-        // 最奥ボーンを保存
-        if (current.childCount == 0)
-            endBoneTransform = current;
     }
 
     protected override void Update()
     {
         base.Update();
-
-        // グローブ追従
-        if (gloveGameObject != null && endBoneTransform != null)
-        {
-            gloveGameObject.transform.position = endBoneTransform.position;
-            gloveGameObject.transform.rotation = endBoneTransform.rotation * gloveObjectScript.GloveRotation;
-        }
     }
-
-    void GenerateGlove()
-    {
-        gloveListData = Resources.Load<GloveListData>("DataList/GloveListData");
-
-        if (gloveListData == null)
-        {
-            Debug.LogError("GloveListDataが取得できませんでした。Resources/DataList/GloveListData" + gameObject);
-            return;
-        }
-
-        if (gloveListData.GloveCount <= 0)
-        {
-            Debug.LogError("GloveListDataにグローブが登録されていません。" + gameObject);
-            return;
-        }
-
-        // Prefab取得
-        GameObject glovePrefab = gloveListData.GetGloveByName(gloveName);
-
-        if (glovePrefab == null)
-        {
-            Debug.LogError("指定されたグローブが見つかりません。" + gameObject);
-            return;
-        }
-
-        // 最奥ボーン取得
-        Transform deepestChild = GetDeepestChild(this.transform);
-
-        // 通常のグローブを生成
-        gloveGameObject = Instantiate(glovePrefab);
-        gloveGameObject.GetComponent<GloveObject>().Initialize(this.gameObject);
-
-        // このオブジェクトの子にする
-        gloveGameObject.transform.SetParent(this.transform, false);
-
-        // グローブデータを取得する
-        GloveParamData = gloveGameObject.GetComponent<GloveObject>().ParameterData;
-
-        if (GloveParamData == null)
-        {
-            Debug.LogError("GloveParamDataが取得できませんでした。" + gameObject);
-            return;
-        }
-
-        // 生成されたグローブからどのような曲線挙動をするか取得する
-        curveData = gloveGameObject.GetComponent<GloveObject>().ParameterData.CurveData;
-
-        // グローブスクリプト取得
-        gloveObjectScript = gloveGameObject.GetComponent<GloveObject>();
-
-        if (gloveObjectScript == null)
-        {
-            Debug.LogError("GloveObjectScriptが取得できませんでした。" + gameObject);
-            return;
-        }
-    }
-
-
-    /// <summary>
-    /// 指定した Transform 配下で、一番深い（最奥）の Transform を取得する
-    /// </summary>
-    private Transform GetDeepestChild(Transform root)
-    {
-        Transform deepest = root;
-        int maxDepth = 0;
-
-        void Traverse(Transform current, int depth)
-        {
-            if (depth > maxDepth)
-            {
-                maxDepth = depth;
-                deepest = current;
-            }
-
-            for (int i = 0; i < current.childCount; i++)
-            {
-                Traverse(current.GetChild(i), depth + 1);
-            }
-        }
-
-        Traverse(root, 0);
-        return deepest;
-    }
-
 
     protected override void RegisterActions()
     {
@@ -212,17 +138,11 @@ public class StretchArm : GloveBase
     {
         if (!base.Use(playerController, type)) return false;
 
-        // パラメーター取得
-        actionParams = gloveGameObject.GetComponent<GloveObject>().ParameterData.GetStretchArmParamsByType(type);
-
         m_playerController = playerController;
 
         var ptarget = m_playerController.Target;
         if (ptarget != null && ptarget.transform != null)
             target = ptarget.transform;
-
-        // グローブに攻撃を行っている　を伝える
-        gloveGameObject.GetComponent<GloveObject>().IsAttacking = true;
 
         return true;
     }
@@ -231,7 +151,7 @@ public class StretchArm : GloveBase
     private bool PhaseStart()
     {
 
-        if (bones.Count < 2 || rootBone == null)
+        if (curveData == null || bones.Count < 2 || rootBone == null)
         {
             t = 0f;
             return true;
@@ -251,12 +171,12 @@ public class StretchArm : GloveBase
         Vector3 dir = (targetWorld - bezierP0);
         float dist = dir.magnitude;
         if (dist > Mathf.Epsilon)
-            bezierP2 = (dist > actionParams.MaxDistance) ? bezierP0 + dir.normalized * actionParams.MaxDistance : targetWorld;
+            bezierP2 = (dist > maxDistance) ? bezierP0 + dir.normalized * maxDistance : targetWorld;
         else
             bezierP2 = targetWorld;
 
         // --- referenceRotation / referenceUp の決定（ここが今回の肝） ---
-        if (actionParams.UseWorldForwardAsReference)
+        if (useWorldForwardAsReference)
         {
             // 強制的に「世界の +Z 」基準で曲線形を決める（プレイヤー回転に依存しない）
             referenceRotation = Quaternion.LookRotation(Vector3.forward, Vector3.up); // same as Quaternion.identity with typical axes
@@ -291,30 +211,24 @@ public class StretchArm : GloveBase
 
         t = 0f;
         waitTimer = 0f;
-        //Debug.Log("PhaseStart");
-        //Debug.Log(referenceRotation);
-        //Debug.Log(cachedT0);
-        //Debug.Log(cachedT1);
-        //Debug.Log(bezierP0);
-        //Debug.Log(bezierP1);
-        //Debug.Log(bezierP2);
+
         return true;
     }
 
     // --- Phase 2: 伸びる ---
     private bool PhaseTravel()
     {
-        t = Mathf.MoveTowards(t, 1f, Time.deltaTime * actionParams.ExtendSpeed);
+        t = Mathf.MoveTowards(t, 1f, Time.deltaTime * extendSpeed);
 
         if (rootBone != null)
             rootBone.rotation = Quaternion.Slerp(initialRotation, targetRotation, t);
 
         UpdateBonesByT(t);
 
-        if (Mathf.Abs(t - 1f) < /*arriveEps*/ 0.01f)
+        if (Mathf.Abs(t - 1f) < arriveEps)
         {
             waitTimer += Time.deltaTime;
-            if (waitTimer >= actionParams.HitWaitTime)
+            if (waitTimer >= hitWaitTime)
             {
                 return true;
             }
@@ -325,19 +239,19 @@ public class StretchArm : GloveBase
     // --- Phase 3: 戻る ---
     private bool PhaseRetract()
     {
-        // グローブに攻撃終了　を伝える
-        gloveGameObject.GetComponent<GloveObject>().IsAttacking = false;
+        t = Mathf.MoveTowards(t, 0f, Time.deltaTime * retractSpeed);
 
-        t = Mathf.MoveTowards(t, 0f, Time.deltaTime * actionParams.RetractSpeed);
-
-        if (rootBone != null)
-            rootBone.rotation = Quaternion.Slerp(targetRotation, initialRotation, 1f - t);
-
+        if (rootBone != null) rootBone.rotation = Quaternion.Slerp(targetRotation, initialRotation, 1f - t);
         UpdateBonesByT(t);
-
         if (t <= 0f + Mathf.Epsilon)
         {
             t = 0f;
+            for (int i = 0; i < bones.Count; i++)
+            {
+                // ここでローカルのスナップショットを使って確実に戻す
+                bones[i].localPosition = initialBoneStates[i].localPosition;
+                bones[i].localRotation = initialBoneStates[i].localRotation;
+            }
             return true;
         }
         return false;
@@ -412,10 +326,7 @@ public class StretchArm : GloveBase
         float corrT1Yaw = Mathf.Atan2(correctedT1.x, correctedT1.z) * Mathf.Rad2Deg;
         float appliedT1 = Mathf.DeltaAngle(origT1Yaw, corrT1Yaw);
 
-        Debug.Log($"[角度ログ] playerYawDeg={playerYawDeg:F1} appliedYawDeg={appliedYawDeg:F1} (deg)");
-        Debug.Log($"[角度ログ] cachedT0 yaw={origT0Yaw:F1} -> correctedT0 yaw={corrT0Yaw:F1}, applied={appliedT0:F1}");
-        Debug.Log($"[角度ログ] cachedT1 yaw={origT1Yaw:F1} -> correctedT1 yaw={corrT1Yaw:F1}, applied={appliedT1:F1}");
-        Debug.Log($"[角度ログ] mirrorX={mirrorX:F1}");
+
 
         // ここで correctedT0/1 を使って p1 を作る（以降は既存処理）
         Vector3 p1_start = bezierP0 + correctedT0;
@@ -449,33 +360,48 @@ public class StretchArm : GloveBase
             if (i != 0)
             {
                 float centerFalloff = Mathf.Sin(u * Mathf.PI);
-                float sway = Mathf.Sin(Time.time * actionParams.SwaySpeed) * actionParams.SwayAmplitude * centerFalloff * currentT;
+                float sway = Mathf.Sin(Time.time * swaySpeed) * swayAmplitude * centerFalloff * currentT;
                 pos += Vector3.down * sway;
             }
 
-            float wave =
-                Mathf.Sin(u * Mathf.PI * actionParams.CoilFrequency)
-                * actionParams.CoilAmplitude
-                * (1f - currentT);
-
+            float wave = Mathf.Sin(u * Mathf.PI * coilFrequency) * coilAmplitude * (1f - currentT);
             pos += right * wave;
 
+            // 位置は従来通り絶対値でOK
             bones[i].position = pos;
 
             if (i > 0)
             {
                 Vector3 forward = bones[i].position - bones[i - 1].position;
+
                 if (forward.sqrMagnitude > 0.0001f)
                 {
-                    Quaternion targetRot = Quaternion.LookRotation(forward, upForFrame);
-                    targetRot *= Quaternion.Euler(90f, 0f, 0f);
-                    bones[i].rotation = targetRot;
+                    // LookRotation は 方向補正 のみ
+                    Quaternion dirRot = Quaternion.LookRotation(forward, upForFrame);
+                    dirRot *= Quaternion.Euler(90f, 0f, 0f);
+
+                    // 前フレームの回転をベースに積算する
+                    Quaternion finalRot = dirRot;
+
+                    // twist は “前フレームの回転” に足す
+                    if (bones[i].childCount > 0)
+                    {
+                        Vector3 axisWorld = (bones[i + 1].position - bones[i].position).normalized;
+                        float angle = (twistAmount - i * twistAmount / 10.0f) * Time.deltaTime;
+                        Quaternion twist = Quaternion.AngleAxis(angle, axisWorld);
+
+                        // 積算の正しい形
+                        finalRot = twist * bones[i].rotation;
+                    }
+
+                    // 最後に 1 回だけ反映
+                    bones[i].rotation = finalRot;
                 }
             }
         }
 
         // rootBone の Y スケール補間
-        float minScaleY = 0.01f;
+        float minScaleY = 0.25f;
         float maxScaleY = 1.0f;
         Vector3 localScale = rootBone.localScale;
         localScale.y = Mathf.Lerp(minScaleY, maxScaleY, currentT);
