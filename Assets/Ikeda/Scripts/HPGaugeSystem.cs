@@ -96,7 +96,5 @@ public class HPGaugeSystem : MonoBehaviour
 
         // 赤ゲージをアニメーションさせて追従
         diffHPGauge.UpdateDiffGauge(HP);
-
-        Debug.Log($"HPGaugeSystem: {FighterName}が{damage}のダメージを受けた。残りHP: {HP}");
     }
 }

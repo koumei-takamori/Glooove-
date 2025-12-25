@@ -22,6 +22,8 @@ namespace Nakashi
             /// ダッシュのクールタイム管理
             /// </summary>
             private readonly ArmPlayerCoolDown m_dashCoolDown;
+
+            private readonly ArmPlayerCoolDown m_jumpCoolDown;
             
             /// <summary>
             /// コンストラクタ
@@ -31,6 +33,7 @@ namespace Nakashi
             {
                 m_controller = controller;
                 m_dashCoolDown = new ArmPlayerCoolDown(m_controller.GetPlayerData().GetDashCoolTime());
+                m_jumpCoolDown = new ArmPlayerCoolDown(m_controller.GetPlayerData().GetJumpCoolTime());
             }
 
             /// <summary>
@@ -39,6 +42,7 @@ namespace Nakashi
             public void Update()
             {
                 m_dashCoolDown.Update(Time.deltaTime);
+                m_jumpCoolDown.Update(Time.deltaTime);
             }
 
             /// <summary>
@@ -58,6 +62,14 @@ namespace Nakashi
                 m_dashCoolDown.Reset();
             }
 
+            public bool CanJump()
+            {
+                return m_jumpCoolDown.IsReady();
+            }
+            public void StartJump()
+            {
+                m_jumpCoolDown.Reset();
+            }
            
         }
     }

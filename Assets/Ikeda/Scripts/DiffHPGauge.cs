@@ -41,8 +41,6 @@ namespace Ikeda
         public DiffHPGauge(RectMask2D mask)
         {
             m_mask = mask;
-            Debug.Log(m_mask.padding.z);
-
         }
 
         /// <summary>

@@ -27,6 +27,8 @@ namespace Nakashi
             private Rigidbody m_rb;
             private Transform m_transform;
             private Collider m_collider;
+            // アニメーター
+            private Animator m_animator;
 
             // 速度
             private Vector3 m_velocity = Vector3.zero;
@@ -61,15 +63,16 @@ namespace Nakashi
             private bool m_canControll = true;
 
             // グローブの固定位置
-            private Vector3 m_leftglovePosition = new Vector3(.15f, 1.15f, -0.025f);
-            private Vector3 m_rightglovePosition = new Vector3(-.15f, 1.15f, -0.025f);
+            private Vector3 m_leftglovePosition = new Vector3(-1, 0, 0);
+            private Vector3 m_rightglovePosition = new Vector3(1, 0, 0);
 
-            private void Start()
+            private void Start() 
             {
                 // リジットボディ、トランスフォーム取得
                 m_rb = this.GetComponent<Rigidbody>();
                 m_transform = this.GetComponent<Transform>();
                 m_collider = this.GetComponent<Collider>();
+                m_animator = this.GetComponent<Animator>();
 
                 // プレイヤーのステータスクラス
                 m_status = new ArmPlayerStatus(this);
@@ -89,9 +92,12 @@ namespace Nakashi
                 //DebugStringSystem.Instance.AddVariable("Velocity", () => m_velocity);
                 //DebugStringSystem.Instance.AddVariable("RightEuler", () => m_rightEuler);
                 //DebugStringSystem.Instance.AddVariable("LeftEuler", () => m_leftEuler);
+
+                // かかる重力値の変更のため、Gravityの使用をいったんなくす。
+                m_rb.useGravity = false; 
             }
 
-
+           
             /// <summary>
             /// 通常更新
             /// </summary>
@@ -100,6 +106,8 @@ namespace Nakashi
             {
                 //m_rightEuler = Nakashi.Framework.AxisSystem.Instance.GetRightQuaternion().eulerAngles;
                 //m_leftEuler = Nakashi.Framework.AxisSystem.Instance.GetLeftQuaternion().eulerAngles;
+                // ジャンプ判定の測定
+                CheckJumpNow();
 
                 // ステートマシンの更新
                 m_stateMachine.Update();
@@ -110,6 +118,8 @@ namespace Nakashi
                 m_coolTime.Update();
                 // ステータスの更新
                 m_status.Update();
+
+                Debug.Log("ジャンプ" + m_status.GetSetJump);
             }
 
             /// <summary>
@@ -122,12 +132,14 @@ namespace Nakashi
                 // プレイヤーの移動更新を行う
                 //m_playerMove.FixedUpdate(m_rightEuler, m_leftEuler);
                 // UnityのEditor上のみのデバッグ処理
-#if UNITY_EDITOR
+                #if UNITY_EDITOR
                 m_playerMove.DebugUpdate();
-#endif
+                #endif
 
                 // ターゲットの方向を向く
                 LookAtTarget();
+                //重力をかける
+                SetLocalGravity();
             }
 
             /// <summary>
@@ -135,14 +147,16 @@ namespace Nakashi
             /// </summary>
             private void ChangeStateOnKey()
             {
-                if (IsGround() && (
+                if(IsGround() && (
                     //Nakashi.Framework.VibrationSystem.Instance.GetNPad().GetButtonDown(nn.hid.NpadButton.L) || 
-                    Input.GetKeyDown(KeyCode.Space)))
+                    Input.GetKeyDown(KeyCode.Space) &&
+                    m_coolTime.CanJump()))
                 {
                     m_stateMachine.ChangeState(m_stateMachine.GetJump());
+                    m_coolTime.StartJump();
                     return;
                 }
-                if ((/*Nakashi.Framework.VibrationSystem.Instance.GetNPad().GetButtonDown(nn.hid.NpadButton.R) || */
+                if((/*Nakashi.Framework.VibrationSystem.Instance.GetNPad().GetButtonDown(nn.hid.NpadButton.R) || */
                     Input.GetKeyDown(KeyCode.LeftShift)) &&
                     m_coolTime.CanDash())
                 {
@@ -150,19 +164,31 @@ namespace Nakashi
                     m_coolTime.StartDash();
                     return;
                 }
-
+                
                 // 追加: 攻撃状態に変更
                 if (Input.GetKeyDown(KeyCode.H))
                 {
-                    m_stateMachine.ChangeState(m_stateMachine.GetLeftAttack());
+                    
+                    m_stateMachine.ChangeState(m_stateMachine.GetRightAttack());
                     Debug.Log("Hおされた");
                 }
                 if (Input.GetKeyDown(KeyCode.G))
                 {
-                    m_stateMachine.ChangeState(m_stateMachine.GetRightAttack());
+                   
+                    m_stateMachine.ChangeState(m_stateMachine.GetLeftAttack());
                     Debug.Log("Gおされた");
                 }
 
+                
+             
+            }
+
+            /// <summary>
+            /// 重力値の変更をセットするための関数
+            /// </summary>
+            private void SetLocalGravity()
+            {
+                m_rb.AddForce(m_playerData.GetGravityScale(), ForceMode.Acceleration);
             }
 
             /// <summary>
@@ -195,7 +221,7 @@ namespace Nakashi
             /// <param name="upGauge"></param>
             public void SpecialGaugeUp(float upGauge)
             {
-                if (m_currentGauge >= m_playerData.GetMaxSpecialGauge()) { return; }
+                if(m_currentGauge >= m_playerData.GetMaxSpecialGauge()) { return; }
                 m_currentGauge += upGauge;
             }
 
@@ -205,7 +231,7 @@ namespace Nakashi
             /// <param name="downGauge"></param>
             public void UseSpecialGauge(float downGauge)
             {
-                if (m_currentGauge - downGauge < 0) { return; }
+                if(m_currentGauge - downGauge < 0) { return; }
                 m_currentGauge -= downGauge;
             }
 
@@ -227,8 +253,6 @@ namespace Nakashi
                     1f / parentScale.y,
                     1f / parentScale.z
                 );
-
-
 
                 // 左グローブ生成
                 GameObject leftglove = Instantiate(m_status.GetGloveData.LeftGlove);
@@ -264,9 +288,19 @@ namespace Nakashi
                 m_gloveData = gloveData;
             }
 
+            /// <summary>
+            /// ジャンプ中か調べる
+            /// </summary>
+            private void CheckJumpNow()
+            {
+                if (IsGround()) { m_status.GetSetJump = false; m_animator.SetBool("Is_JumpEnd", true); }
+                else { m_status.GetSetJump = true; m_animator.SetBool("Is_JumpEnd", false); }
+            }
+
             public Rigidbody GetRigidbody() => m_rb;
             public Transform GetTransform() => m_transform;
             public Collider GetCollider() => m_collider;
+            public Animator GetAnimator() => m_animator;
             public ArmPlayerStateMachine GetStateMachine() => m_stateMachine;
             public ArmPlayerData GetPlayerData() => m_playerData;
             public ArmPlayerStatus GetPlayerStatus() => m_status;

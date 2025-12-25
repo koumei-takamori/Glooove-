@@ -51,7 +51,7 @@ PrefabInstance:
     - target: {fileID: -5064700815444657217, guid: a81da34050aac9942a4251c22ebdfda2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4e448c30abc80a247bbdf84817549540, type: 2}
+      objectReference: {fileID: 2100000, guid: 464695e428c144a44b5a04ffadadeceb, type: 2}
     - target: {fileID: 919132149155446097, guid: a81da34050aac9942a4251c22ebdfda2, type: 3}
       propertyPath: m_Name
       value: balance_LongArmRight
@@ -97,7 +97,7 @@ PrefabInstance:
       addedObject: {fileID: 4803484084327439166}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a81da34050aac9942a4251c22ebdfda2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -3843163005766916493}
+      addedObject: {fileID: -5468721648623772742}
   m_SourcePrefab: {fileID: 100100000, guid: a81da34050aac9942a4251c22ebdfda2, type: 3}
 --- !u!4 &1265586581254863164 stripped
 Transform:
@@ -139,7 +139,7 @@ MonoBehaviour:
   forwardForceDistance: 6
   useWorldForwardAsReference: 1
   twistAmount: 60
---- !u!114 &-3843163005766916493
+--- !u!114 &-5468721648623772742
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

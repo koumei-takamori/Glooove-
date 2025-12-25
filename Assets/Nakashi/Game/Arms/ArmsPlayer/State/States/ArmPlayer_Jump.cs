@@ -32,19 +32,25 @@ namespace Nakashi
             /// </summary>
             public void Enter()
             {
+     
+
                 // AddForceで上方向に
                 m_controller.GetRigidbody().AddForce(
                     new Vector3
-                    (m_controller.GetSetVelocity.x * 30,
+                    (0.0f,
                     m_controller.GetPlayerData().GetJumpForce(),
-                    m_controller.GetSetVelocity.z * 30));
+                    0.0f),
+                    ForceMode.Impulse);
+
+                // アニメーションをジャンプに切り替える
+                m_controller.GetAnimator().SetTrigger("Jump");
             }
             /// <summary>
             /// 退出時
             /// </summary>
             public void Exit()
             {
-
+                
             }
             /// <summary>
             /// 更新時

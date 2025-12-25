@@ -15,8 +15,12 @@ MonoBehaviour:
   m_walkSpeed: 80
   m_dashSpeed: 300
   m_jumpForce: 400
-  m_rayDistance: 1.6
+  m_rayDistance: 0.2
   m_dashCoolTime: 1
   m_maxHp: 0
   m_attackPower: 0
   m_defensePower: 0
+  m_maxSpecialGauge: 0
+  m_blowOffTime: 0
+  m_blowOffPower: 0
+  m_gravityScale: {x: 0, y: -30, z: 0}
