@@ -5,6 +5,8 @@
 // <概要>		　　プレイヤーコントローラー
 // <著作権>         Copyright (c) 2025 NakashimaYuto. All rights reserved.
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace Nakashi
@@ -59,8 +61,8 @@ namespace Nakashi
             private bool m_canControll = true;
 
             // グローブの固定位置
-            private Vector3 m_leftglovePosition = new Vector3(-1, 0, 0);
-            private Vector3 m_rightglovePosition = new Vector3(1, 0, 0);
+            private Vector3 m_leftglovePosition = new Vector3(.15f, 1.15f, -0.025f);
+            private Vector3 m_rightglovePosition = new Vector3(-.15f, 1.15f, -0.025f);
 
             private void Start()
             {
@@ -152,13 +154,13 @@ namespace Nakashi
                 // 追加: 攻撃状態に変更
                 if (Input.GetKeyDown(KeyCode.H))
                 {
-                    m_stateMachine.ChangeState(m_stateMachine.GetRightAttack());
+                    m_stateMachine.ChangeState(m_stateMachine.GetLeftAttack());
                     Debug.Log("Hおされた");
                 }
                 if (Input.GetKeyDown(KeyCode.G))
                 {
+                    m_stateMachine.ChangeState(m_stateMachine.GetRightAttack());
                     Debug.Log("Gおされた");
-                    m_stateMachine.ChangeState(m_stateMachine.GetLeftAttack());
                 }
 
             }
@@ -225,6 +227,8 @@ namespace Nakashi
                     1f / parentScale.y,
                     1f / parentScale.z
                 );
+
+
 
                 // 左グローブ生成
                 GameObject leftglove = Instantiate(m_status.GetGloveData.LeftGlove);

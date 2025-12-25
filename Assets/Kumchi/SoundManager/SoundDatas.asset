@@ -13,16 +13,8 @@ MonoBehaviour:
   m_Name: SoundDatas
   m_EditorClassIdentifier: 
   BGMDatas:
-  - name: Title
-    clip: {fileID: 8300000, guid: 2596e951fc0bd064e8b212a9687060f5, type: 3}
-  - name: Select
-    clip: {fileID: 8300000, guid: 594b34ad77896534db11f14b26947b39, type: 3}
-  - name: Play
-    clip: {fileID: 8300000, guid: a1e9d5e272604104c91b776af5df66ea, type: 3}
-  - name: Result
-    clip: {fileID: 8300000, guid: 87048dec355e4d54da51a88e4ee9aed1, type: 3}
+  - name: PlayBGM
+    clip: {fileID: 8300000, guid: edb9d4ed98c5c2846823859e07223370, type: 3}
   SEDatas:
   - name: Damage
-    clip: {fileID: 8300000, guid: f6906b2ba1c9c4f499d9d2cfc72af084, type: 3}
-  - name: Attack
-    clip: {fileID: 8300000, guid: a3b019bfbc79c9e4da0d96132e97bdb8, type: 3}
+    clip: {fileID: 8300000, guid: a551ade3baf1a624f95f46b7516a7016, type: 3}

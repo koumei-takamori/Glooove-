@@ -1,0 +1,639 @@
+fileFormatVersion: 2
+guid: 83cc58bf03fc32b4fa80865e7ce933b1
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 1
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: junp(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balance_character_boneRNfosterParent1
+      parentName: junp(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:polyToCurve1
+      parentName: junp(Clone)
+      position: {x: -0.07862919, y: 0.46878904, z: 0.26947892}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:polyToCurve2
+      parentName: junp(Clone)
+      position: {x: 0.26516804, y: 0.46878904, z: 0.26947892}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:nurbsCircle1
+      parentName: junp(Clone)
+      position: {x: 0.010767516, y: 0.73437476, z: 0.044496827}
+      rotation: {x: 0, y: 0.16791458, z: -0, w: 0.9858016}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:null1
+      parentName: Balnce_character_newedition:nurbsCircle1
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:nurbsCircle3
+      parentName: junp(Clone)
+      position: {x: 0.20475192, y: 0.051161718, z: -0.22685783}
+      rotation: {x: -0.14220586, y: 0, z: -0, w: 0.9898371}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:ikHandle2
+      parentName: Balnce_character_newedition:nurbsCircle3
+      position: {x: 0.0017385483, y: 0.0018641471, z: -0.09539771}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:nurbsCircle2
+      parentName: junp(Clone)
+      position: {x: -0.13188957, y: 0.026357986, z: 0.33644804}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:ikHandle1
+      parentName: Balnce_character_newedition:nurbsCircle2
+      position: {x: -0.0047621154, y: 0.0018641137, z: -0.09539771}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:glasses
+      parentName: junp(Clone)
+      position: {x: 0.0034998553, y: 1.4035426, z: -0.036564637}
+      rotation: {x: -0.047323145, y: 0.9943727, z: -0.06464417, w: 0.06931513}
+      scale: {x: 0.5056657, y: 0.5056657, z: 0.5056657}
+    - name: Balnce_character_newedition:Balnce_character_newedition:polySurface60
+      parentName: Balnce_character_newedition:Balnce_character_newedition:glasses
+      position: {x: -0.00000042915343, y: -3.7223914, z: -0.12871735}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:polySurface65
+      parentName: Balnce_character_newedition:Balnce_character_newedition:glasses
+      position: {x: -0.00000042915343, y: -3.7223914, z: -0.12871735}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:polySurface66
+      parentName: Balnce_character_newedition:Balnce_character_newedition:glasses
+      position: {x: -0.00000042915343, y: -3.7012947, z: -0.108902164}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:hat
+      parentName: junp(Clone)
+      position: {x: 0.001224385, y: 1.3949019, z: -0.03403786}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.99158746, y: 0.99158746, z: 0.99158746}
+    - name: Balnce_character_newedition:Balnce_character_newedition:hat2
+      parentName: Balnce_character_newedition:Balnce_character_newedition:hat
+      position: {x: 0.000000005066395, y: 0, z: -0.0029906535}
+      rotation: {x: -0.093393594, y: 0.004544122, z: 0.048385203, w: 0.9944425}
+      scale: {x: 1.0684102, y: 1.0684102, z: 1.0684102}
+    - name: Balnce_character_newedition:Balnce_character_newedition:polySurface549
+      parentName: Balnce_character_newedition:Balnce_character_newedition:hat2
+      position: {x: 0.042742595, y: -0.7451047, z: -0.07300016}
+      rotation: {x: 0.047073867, y: -0.18293591, z: 0.0073976284, w: 0.98196936}
+      scale: {x: 0.3944896, y: 0.36864215, z: 0.3462742}
+    - name: Balnce_character_newedition:Balnce_character_newedition:pTorus3
+      parentName: Balnce_character_newedition:Balnce_character_newedition:hat2
+      position: {x: -0.020222628, y: -0.020360107, z: 0.12295782}
+      rotation: {x: 0.69248956, y: -0.05437257, z: 0.053281054, w: 0.7174002}
+      scale: {x: 0.7440698, y: 0.7440698, z: 0.7440698}
+    - name: Balnce_character_newedition:Balnce_character_newedition:group50_polySurface549
+      parentName: Balnce_character_newedition:Balnce_character_newedition:hat2
+      position: {x: 0.002230937, y: -1.5476953, z: 0.0447605}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:hair
+      parentName: junp(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:sweep18
+      parentName: Balnce_character_newedition:Balnce_character_newedition:hair
+      position: {x: -0, y: -0.003776009, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:sweep7
+      parentName: Balnce_character_newedition:Balnce_character_newedition:hair
+      position: {x: 0.004329592, y: -0.0015481138, z: -0.0062956735}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0900311, y: 1.2662879, z: 1.0900311}
+    - name: Balnce_character_newedition:Balnce_character_newedition:sweep16
+      parentName: Balnce_character_newedition:Balnce_character_newedition:hair
+      position: {x: 0.0028205612, y: -0.008704408, z: -0.015493505}
+      rotation: {x: 0.00057912304, y: 0.10250492, z: -0.08146337, w: 0.99139106}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:sweep17
+      parentName: Balnce_character_newedition:Balnce_character_newedition:hair
+      position: {x: -0, y: -0.003776009, z: -0.008482647}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:sweep2
+      parentName: Balnce_character_newedition:Balnce_character_newedition:hair
+      position: {x: 0.14642583, y: 0.016032951, z: -0.072471835}
+      rotation: {x: 0.03292049, y: -0.121370554, z: 0.040793013, w: 0.9912222}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:sweep3
+      parentName: Balnce_character_newedition:Balnce_character_newedition:hair
+      position: {x: 0.0018925334, y: 0, z: -0.0142461}
+      rotation: {x: 0, y: 0, z: 0.10598659, w: 0.9943676}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:sweep1
+      parentName: Balnce_character_newedition:Balnce_character_newedition:hair
+      position: {x: 0.17019008, y: -0.17503248, z: -0.02023332}
+      rotation: {x: 0, y: 0, z: 0.05714982, w: 0.99836564}
+      scale: {x: 1.137722, y: 1.137722, z: 1.137722}
+    - name: Balnce_character_newedition:Balnce_character_newedition:sweep25
+      parentName: Balnce_character_newedition:Balnce_character_newedition:hair
+      position: {x: 0.014362306, y: -0.011393958, z: 0.001735971}
+      rotation: {x: -0.015067019, y: -0.020220986, z: -0.08876291, w: 0.99573356}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:sweep26
+      parentName: Balnce_character_newedition:Balnce_character_newedition:hair
+      position: {x: 0.00047502117, y: 0.004384604, z: 0.020333175}
+      rotation: {x: 0.008530535, y: -0.057283375, z: -0.06200135, w: 0.99639434}
+      scale: {x: 1.0792845, y: 1.0792845, z: 1.0792845}
+    - name: Balnce_character_newedition:Balnce_character_newedition:group45_group42_sweep21
+      parentName: Balnce_character_newedition:Balnce_character_newedition:hair
+      position: {x: -0, y: -0.003776009, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:sweep10
+      parentName: Balnce_character_newedition:Balnce_character_newedition:hair
+      position: {x: -0.110154495, y: -0.8573309, z: -0.0036565398}
+      rotation: {x: 0.15825376, y: 0.26885733, z: -0.18451993, w: 0.932}
+      scale: {x: 1.4691162, y: 1.4691162, z: 1.4691162}
+    - name: Balnce_character_newedition:Balnce_character_newedition:sweep24
+      parentName: Balnce_character_newedition:Balnce_character_newedition:hair
+      position: {x: 0.001552391, y: -0.568996, z: 0.048145752}
+      rotation: {x: 0.109173335, y: 0.34642115, z: -0.12217211, w: 0.92365986}
+      scale: {x: 1.3200268, y: 1.3200268, z: 1.3200268}
+    - name: Balnce_character_newedition:Balnce_character_newedition:sweep11
+      parentName: Balnce_character_newedition:Balnce_character_newedition:hair
+      position: {x: -0.06834099, y: -1.0947582, z: 0.013198013}
+      rotation: {x: 0.05026741, y: 0.081699446, z: -0.11163745, w: 0.98910844}
+      scale: {x: 1.5416552, y: 1.5416552, z: 1.5416552}
+    - name: Balnce_character_newedition:Balnce_character_newedition:sweep23
+      parentName: Balnce_character_newedition:Balnce_character_newedition:hair
+      position: {x: 0.011940727, y: 0.07355462, z: 0.00010297894}
+      rotation: {x: 0.0036999455, y: 0.022889825, z: 0.09938575, w: 0.9947788}
+      scale: {x: 0.9196131, y: 0.9196131, z: 0.9196131}
+    - name: Balnce_character_newedition:Balnce_character_newedition:sweep20
+      parentName: Balnce_character_newedition:Balnce_character_newedition:hair
+      position: {x: -0, y: -0.003776009, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:sweep21
+      parentName: Balnce_character_newedition:Balnce_character_newedition:hair
+      position: {x: -0, y: -0.003776009, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:pCylinder2
+      parentName: Balnce_character_newedition:Balnce_character_newedition:hair
+      position: {x: -0.060232922, y: 1.3339763, z: -0.057022665}
+      rotation: {x: -0.64920944, y: 0.35830173, z: 0.41100234, w: 0.53030574}
+      scale: {x: 2.0835466, y: 0.97658676, z: 2.0835466}
+    - name: Balnce_character_newedition:Balnce_character_newedition:sweep22
+      parentName: Balnce_character_newedition:Balnce_character_newedition:hair
+      position: {x: 0.07896156, y: -0.043030366, z: 0.037512768}
+      rotation: {x: -0.017425295, y: -0.0050244196, z: -0.011382287, w: 0.99977076}
+      scale: {x: 1.3520378, y: 1.0372128, z: 1.3520378}
+    - name: Balnce_character_newedition:Balnce_character_newedition:eyes
+      parentName: junp(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:polySurface568
+      parentName: Balnce_character_newedition:Balnce_character_newedition:eyes
+      position: {x: -0, y: -0.04021281, z: -0.0093417}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:polySurface567
+      parentName: Balnce_character_newedition:Balnce_character_newedition:eyes
+      position: {x: -0, y: -0.0006858997, z: 0.0006507365}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:face
+      parentName: junp(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:polySurface554
+      parentName: Balnce_character_newedition:Balnce_character_newedition:face
+      position: {x: -0, y: -0.0021812462, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:eyelashes1
+      parentName: Balnce_character_newedition:Balnce_character_newedition:face
+      position: {x: 2.719755e-11, y: -0.039699998, z: -0.009289375}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:polySurface537
+      parentName: Balnce_character_newedition:Balnce_character_newedition:face
+      position: {x: -0, y: -0.039699998, z: -0.00966428}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:polySurface565
+      parentName: Balnce_character_newedition:Balnce_character_newedition:face
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:body
+      parentName: junp(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:acs
+      parentName: junp(Clone)
+      position: {x: -0, y: 0.008157267, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.92693317, y: 0.92693317, z: 0.92693317}
+    - name: Balnce_character_newedition:Balnce_character_newedition:arm
+      parentName: junp(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:group38
+      parentName: Balnce_character_newedition:Balnce_character_newedition:arm
+      position: {x: 4.1908236e-33, y: -0.03, z: -0.002689039}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: -1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:pSphere4
+      parentName: Balnce_character_newedition:Balnce_character_newedition:group38
+      position: {x: -0.13677317, y: 1.1918155, z: -0.022746976}
+      rotation: {x: 0, y: 0, z: -0.8002239, w: 0.59970134}
+      scale: {x: 5.84069, y: 5.84069, z: 5.84069}
+    - name: Balnce_character_newedition:Balnce_character_newedition:group37
+      parentName: Balnce_character_newedition:Balnce_character_newedition:arm
+      position: {x: -0.42159522, y: 1.1500046, z: -0.03367503}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:pSphere4
+      parentName: Balnce_character_newedition:Balnce_character_newedition:group37
+      position: {x: 0.28482205, y: 0.011810913, z: 0.008239014}
+      rotation: {x: 0, y: 0, z: -0.8002239, w: 0.59970134}
+      scale: {x: 5.84069, y: 5.84069, z: 5.84069}
+    - name: Balnce_character_newedition:Balnce_character_newedition:tops
+      parentName: junp(Clone)
+      position: {x: -0, y: 1.0407994, z: -0.004833455}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:polySurface561
+      parentName: Balnce_character_newedition:Balnce_character_newedition:tops
+      position: {x: -0, y: -1.0407994, z: 0.004833455}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:polySurface563
+      parentName: Balnce_character_newedition:Balnce_character_newedition:tops
+      position: {x: -0, y: -1.0407994, z: 0.004833455}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:pants
+      parentName: junp(Clone)
+      position: {x: -0.000000017976488, y: 0.5155501, z: -0.017161677}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:polySurface569
+      parentName: Balnce_character_newedition:Balnce_character_newedition:pants
+      position: {x: 0.000000017976488, y: -0.5155501, z: 0.017161677}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:polySurface570
+      parentName: Balnce_character_newedition:Balnce_character_newedition:pants
+      position: {x: 0.000000017976488, y: -0.5155501, z: 0.017161677}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:polySurface571
+      parentName: Balnce_character_newedition:Balnce_character_newedition:pants
+      position: {x: 0.000000017976488, y: -0.5155501, z: 0.017161677}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:polySurface572
+      parentName: Balnce_character_newedition:Balnce_character_newedition:pants
+      position: {x: 0.000000017976488, y: -0.5155501, z: 0.017161677}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:pSphere5
+      parentName: Balnce_character_newedition:Balnce_character_newedition:pants
+      position: {x: -0.021443738, y: 0.36400992, z: 0.12762743}
+      rotation: {x: 0.24977887, y: -0.03633046, z: -0.011323121, w: 0.96755487}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:belt
+      parentName: Balnce_character_newedition:Balnce_character_newedition:pants
+      position: {x: 0.13089557, y: -0.6515022, z: -0.03335243}
+      rotation: {x: 0.018072464, y: -0.045551255, z: 0.06517568, w: 0.99666977}
+      scale: {x: 1.1071241, y: 1.1071241, z: 1.1071241}
+    - name: Balnce_character_newedition:Balnce_character_newedition:pTorus1
+      parentName: Balnce_character_newedition:Balnce_character_newedition:belt
+      position: {x: -1.5124335e-10, y: 0.8521947, z: 0.12557627}
+      rotation: {x: 0.75591433, y: 0.08164982, z: -0.069756135, w: 0.64580256}
+      scale: {x: 1.7753989, y: 1.7753989, z: 1.7753989}
+    - name: Balnce_character_newedition:Balnce_character_newedition:polySurface72
+      parentName: Balnce_character_newedition:Balnce_character_newedition:belt
+      position: {x: -7.268358e-17, y: -0.0367603, z: -0.06407725}
+      rotation: {x: 0.07831366, y: -0, z: -0, w: 0.9969288}
+      scale: {x: 0.9412778, y: 0.9412778, z: 0.82623273}
+    - name: Balnce_character_newedition:Balnce_character_newedition:polySurface71
+      parentName: Balnce_character_newedition:Balnce_character_newedition:belt
+      position: {x: 0.00016884727, y: -0.053594377, z: -0.059133597}
+      rotation: {x: 0.07831366, y: -0, z: -0, w: 0.9969288}
+      scale: {x: 0.9412778, y: 0.9412778, z: 0.82623273}
+    - name: Balnce_character_newedition:Balnce_character_newedition:polySurface73
+      parentName: Balnce_character_newedition:Balnce_character_newedition:belt
+      position: {x: -0, y: -0.07597993, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:sweep32
+      parentName: Balnce_character_newedition:Balnce_character_newedition:belt
+      position: {x: 0.009250319, y: 0.1211363, z: 0.0024216985}
+      rotation: {x: -0.03619124, y: -0.40568748, z: -0.093231596, w: 0.9085239}
+      scale: {x: 0.90324116, y: 0.90324116, z: 0.90324116}
+    - name: Balnce_character_newedition:Balnce_character_newedition:sweep34
+      parentName: Balnce_character_newedition:Balnce_character_newedition:belt
+      position: {x: -0.0967335, y: 0.13860163, z: 0.05071109}
+      rotation: {x: -0.018072464, y: 0.045551255, z: -0.06517568, w: 0.99666977}
+      scale: {x: 0.90324116, y: 0.90324116, z: 0.90324116}
+    - name: Balnce_character_newedition:Balnce_character_newedition:sweep33
+      parentName: Balnce_character_newedition:Balnce_character_newedition:belt
+      position: {x: 0.016822167, y: 0.15149114, z: -0.15907726}
+      rotation: {x: -0.16913739, y: 0.9809762, z: 0.094780214, w: 0.00974164}
+      scale: {x: 0.90324116, y: 0.90324116, z: 0.90324116}
+    - name: Balnce_character_newedition:Balnce_character_newedition:shoes
+      parentName: junp(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1.15522, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:polySurface485
+      parentName: Balnce_character_newedition:Balnce_character_newedition:shoes
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:polySurface488
+      parentName: Balnce_character_newedition:Balnce_character_newedition:shoes
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:polySurface244
+      parentName: Balnce_character_newedition:Balnce_character_newedition:shoes
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:arms
+      parentName: junp(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:MASH7_ReproMesh2
+      parentName: Balnce_character_newedition:Balnce_character_newedition:arms
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:Balnce_character_newedition:MASH7_ReproMesh3
+      parentName: Balnce_character_newedition:Balnce_character_newedition:arms
+      position: {x: -0.89232796, y: 0, z: -0.0010582352}
+      rotation: {x: 1, y: 3.7493994e-33, z: -6.123234e-17, w: 6.123234e-17}
+      scale: {x: -1, y: -1, z: -1}
+    - name: Balnce_character_newedition:waist
+      parentName: junp(Clone)
+      position: {x: -0.000000007450581, y: 0.8437848, z: 0.04460187}
+      rotation: {x: 0.000000017995132, y: -0.000000013372408, z: -0.7071068, w: 0.7071068}
+      scale: {x: 1.000002, y: 1.0000019, z: 0.99999994}
+    - name: Balnce_character_newedition:thigh_L
+      parentName: Balnce_character_newedition:waist
+      position: {x: 0.009221073, y: -0.074916564, z: 0}
+      rotation: {x: -0.008045177, y: 0.68547094, z: 0.72656316, w: 0.046593778}
+      scale: {x: 1.0000015, y: 1.0000005, z: 1.0000027}
+    - name: Balnce_character_newedition:knee_L
+      parentName: Balnce_character_newedition:thigh_L
+      position: {x: -0.36231995, y: -0.0058983504, z: 3.33555e-18}
+      rotation: {x: -0.99754477, y: -0.07003209, z: -0.000000065658234, w: -0.000000029802319}
+      scale: {x: 1.0000027, y: 1.0000043, z: 1.000004}
+    - name: Balnce_character_newedition:knee_L
+      parentName: Balnce_character_newedition:knee_L
+      position: {x: -0.34672165, y: -1.5376589e-16, z: -1.8797076e-32}
+      rotation: {x: 0.5212765, y: 0.03941269, z: 0.015207805, w: 0.8523416}
+      scale: {x: 1.0000014, y: 1.0000014, z: 1.000001}
+    - name: Balnce_character_newedition:feet_L
+      parentName: Balnce_character_newedition:knee_L
+      position: {x: -0.10311434, y: -0.010368179, z: -9.104528e-19}
+      rotation: {x: 0.69263726, y: 0.7212862, z: -0.000000045770157, w: 0.00000002161843}
+      scale: {x: 1.0000004, y: 1.0000007, z: 1.000001}
+    - name: Balnce_character_newedition:thigh_R
+      parentName: Balnce_character_newedition:waist
+      position: {x: 0.009221554, y: 0.07491658, z: 0}
+      rotation: {x: 0.07959251, y: -0.6810113, z: 0.7264423, w: 0.04658607}
+      scale: {x: 1.0000025, y: 1.000002, z: 1.0000035}
+    - name: Balnce_character_newedition:knee_R
+      parentName: Balnce_character_newedition:thigh_R
+      position: {x: -0.35199103, y: -0.08609579, z: 3.33555e-18}
+      rotation: {x: 0.9975448, y: 0.070032164, z: 0.000000040978193, w: -0.000000029802322}
+      scale: {x: 1.0000018, y: 1.0000044, z: 1.0000032}
+    - name: Balnce_character_newedition:knee_R
+      parentName: Balnce_character_newedition:knee_R
+      position: {x: -0.3466199, y: -0.00838629, z: -2.1644651e-10}
+      rotation: {x: -0.52268076, y: 0.011954674, z: -0.039426614, w: 0.8515325}
+      scale: {x: 1.0000004, y: 1.0000006, z: 1.0000013}
+    - name: Balnce_character_newedition:feet_R
+      parentName: Balnce_character_newedition:knee_R
+      position: {x: -0.1036154, y: 0.0019864533, z: 1.2724709e-10}
+      rotation: {x: -0.6926372, y: -0.7212863, z: -0.00000004187714, w: -0.00000007999412}
+      scale: {x: 1.0000015, y: 1.000001, z: 1.0000014}
+    - name: Balnce_character_newedition:spine3
+      parentName: Balnce_character_newedition:waist
+      position: {x: -0.121623285, y: 0, z: 0}
+      rotation: {x: -0.00000000623478, y: -0.00000000326876, z: 2.0289716e-16, w: 1}
+      scale: {x: 1.0000029, y: 1.000003, z: 1}
+    - name: Balnce_character_newedition:spine2
+      parentName: Balnce_character_newedition:spine3
+      position: {x: -0.10065375, y: 0, z: 0}
+      rotation: {x: -0.00000001594542, y: 0.00000001594542, z: -2.542564e-16, w: 1}
+      scale: {x: 1.0000036, y: 1.0000036, z: 1}
+    - name: Balnce_character_newedition:spine1
+      parentName: Balnce_character_newedition:spine2
+      position: {x: -0.072694376, y: 0, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000029, y: 1.000003, z: 1}
+    - name: Balnce_character_newedition:neck
+      parentName: Balnce_character_newedition:spine1
+      position: {x: -0.06570453, y: 0, z: 0}
+      rotation: {x: -0.0000000029622096, y: -0.000000058881582, z: 1.7849993e-15, w: 1}
+      scale: {x: 1.0000086, y: 1.0000088, z: 1}
+    - name: Balnce_character_newedition:head
+      parentName: Balnce_character_newedition:neck
+      position: {x: -0.0852761, y: 0, z: 0}
+      rotation: {x: -0, y: -0, z: -6.617444e-23, w: 1}
+      scale: {x: 1.0000072, y: 1.0000072, z: 1}
+    - name: Balnce_character_newedition:top
+      parentName: Balnce_character_newedition:head
+      position: {x: -0.12302126, y: 0, z: 0}
+      rotation: {x: -0.000000009074512, y: -0.000000007685742, z: 0.7071068, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:shoulder_L
+      parentName: Balnce_character_newedition:spine1
+      position: {x: -0.023685323, y: -0.06955948, z: 0}
+      rotation: {x: -0.000000011351031, y: -0.000000033900754, z: 0.70231324, w: 0.7118681}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000002}
+    - name: Balnce_character_newedition:shoulder_top_L
+      parentName: Balnce_character_newedition:shoulder_L
+      position: {x: -0.103459135, y: 5.4706237e-16, z: 0}
+      rotation: {x: 0.000000023890651, y: 0.000000035822513, z: 0.0067563346, w: 0.99997723}
+      scale: {x: 0.99999994, y: 0.99999994, z: 1.0000005}
+    - name: Balnce_character_newedition:ffd1Lattice
+      parentName: Balnce_character_newedition:shoulder_top_L
+      position: {x: -0.3127714, y: -0.008788528, z: -0.00017637253}
+      rotation: {x: 0, y: -0, z: -0.006756294, w: 0.9999772}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:ffd1Base
+      parentName: Balnce_character_newedition:shoulder_top_L
+      position: {x: -0.3127714, y: -0.008788526, z: -0.00017637253}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 57.075146, y: 16.36621, z: 16.414867}
+    - name: Balnce_character_newedition:arm1_L
+      parentName: Balnce_character_newedition:shoulder_top_L
+      position: {x: -0.17534354, y: -0.0011572744, z: 0}
+      rotation: {x: -0.00000003201421, y: 0.000000011641537, z: 4.6566062e-10, w: 1}
+      scale: {x: 1, y: 1.0000001, z: 1}
+    - name: Balnce_character_newedition:arm2_L
+      parentName: Balnce_character_newedition:arm1_L
+      position: {x: -0.210117, y: -2.842171e-16, z: 0}
+      rotation: {x: -0.000000014551908, y: 0.000000011641533, z: 7.9255424e-17, w: 1}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+    - name: Balnce_character_newedition:arm3_L
+      parentName: Balnce_character_newedition:arm2_L
+      position: {x: -0.19528499, y: 0, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000005, y: 1.0000005, z: 1}
+    - name: Balnce_character_newedition:shoulder_R
+      parentName: Balnce_character_newedition:spine1
+      position: {x: -0.023686018, y: 0.069559485, z: 0}
+      rotation: {x: -0.000000033748396, y: -0.000000011198681, z: 0.7023133, w: 0.71186805}
+      scale: {x: 0.9999997, y: 0.99999994, z: 1.0000004}
+    - name: Balnce_character_newedition:shoulder_top_R
+      parentName: Balnce_character_newedition:shoulder_R
+      position: {x: 0.103421435, y: 0.0027977147, z: 0}
+      rotation: {x: 0.000000007696468, y: 0.000000008807501, z: 0.006756245, w: 0.9999772}
+      scale: {x: 1.0000001, y: 0.99999994, z: 1.0000001}
+    - name: Balnce_character_newedition:ffd1Base1
+      parentName: Balnce_character_newedition:shoulder_top_R
+      position: {x: 0.312771, y: -0.00879, z: -0.000176373}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 57.075146, y: 16.36621, z: 16.414867}
+    - name: Balnce_character_newedition:ffd1Lattice1
+      parentName: Balnce_character_newedition:shoulder_top_R
+      position: {x: 0.3429923, y: -0.008791274, z: -0.00017637253}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Balnce_character_newedition:arm1_R
+      parentName: Balnce_character_newedition:shoulder_top_R
+      position: {x: 0.17534299, y: -0.00116, z: 0}
+      rotation: {x: 0.00000001053671, y: -0, z: 4.656614e-10, w: 1}
+      scale: {x: 0.99999994, y: 1.0000001, z: 1}
+    - name: Balnce_character_newedition:arm2_R
+      parentName: Balnce_character_newedition:arm1_R
+      position: {x: 0.210117, y: -1.4210854e-16, z: 0}
+      rotation: {x: 0.0000000052683498, y: -0.000000036878493, z: 1.1657339e-15, w: 1}
+      scale: {x: 0.99999994, y: 0.9999996, z: 1}
+    - name: Balnce_character_newedition:arm3_R
+      parentName: Balnce_character_newedition:arm2_R
+      position: {x: 0.19528499, y: 1.4210854e-16, z: 0}
+      rotation: {x: -0, y: -0, z: 2.6469773e-23, w: 1}
+      scale: {x: 0.99999994, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

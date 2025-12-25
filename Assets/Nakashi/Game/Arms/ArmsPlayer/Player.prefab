@@ -258,7 +258,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerData: {fileID: 11400000, guid: dc380e6dd534599469758832acf108eb, type: 2}
+  m_status: {fileID: 0}
   m_target: {fileID: 0}
+  m_gloveData:
+    m_leftGlove: {fileID: 0}
+    m_rightGlove: {fileID: 0}
 --- !u!54 &6223977701160842988
 Rigidbody:
   m_ObjectHideFlags: 0

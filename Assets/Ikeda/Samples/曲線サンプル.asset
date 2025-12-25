@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c6ca104162c9f9409b1c73758e31e54, type: 3}
+  m_Name: "\u66F2\u7DDA\u30B5\u30F3\u30D7\u30EB"
+  m_EditorClassIdentifier: 
+  points:
+  - {x: 2.9148054, y: 0, z: -0.11165619}
+  - {x: 1.4, y: 0, z: 0}
+  tangents:
+  - {x: -1.0408067, y: 0, z: 1.2138444}
+  - {x: 0.0918498, y: 0, z: 0.5050697}
