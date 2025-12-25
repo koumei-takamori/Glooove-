@@ -928,6 +928,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3287179107448924508, guid: 869630ae325b4d84e89a0da672a650ab, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 83ca560969346df458fa7158cbed14b0, type: 2}
     - target: {fileID: 3684046987073618298, guid: 869630ae325b4d84e89a0da672a650ab, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -1263,8 +1267,8 @@ MonoBehaviour:
   m_status: {fileID: 0}
   m_target: {fileID: 2106247991692143861}
   m_gloveData:
-    m_leftGlove: {fileID: 8053524986387638989, guid: 9e807510b8f0fca4ca833127656ccd3b, type: 3}
-    m_rightGlove: {fileID: 1887399391440748178, guid: 784e6f9a5f77d394b883ed2ba38ceaef, type: 3}
+    m_leftGlove: {fileID: 1887399391440748178, guid: 784e6f9a5f77d394b883ed2ba38ceaef, type: 3}
+    m_rightGlove: {fileID: 8053524986387638989, guid: 9e807510b8f0fca4ca833127656ccd3b, type: 3}
 --- !u!1001 &1938197890
 PrefabInstance:
   m_ObjectHideFlags: 0

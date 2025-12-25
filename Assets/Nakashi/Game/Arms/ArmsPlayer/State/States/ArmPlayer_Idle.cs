@@ -60,13 +60,13 @@ namespace Nakashi
             /// </summary>
             private void ChangeState()
             {
-                if (m_controller.IsGround() && (
-                    //Nakashi.Framework.VibrationSystem.Instance.GetNPad().GetButtonDown(nn.hid.NpadButton.L) || 
-                    Input.GetKeyDown(KeyCode.Space)))
-                {
-                    m_controller.GetStateMachine().ChangeState(m_controller.GetStateMachine().GetJump());
-                    return;
-                }
+                //if (m_controller.IsGround() && (
+                //    //Nakashi.Framework.VibrationSystem.Instance.GetNPad().GetButtonDown(nn.hid.NpadButton.L) || 
+                //    Input.GetKeyDown(KeyCode.Space)))
+                //{
+                //    m_controller.GetStateMachine().ChangeState(m_controller.GetStateMachine().GetJump());
+                //    return;
+                //}
             }
 
             /// <summary>

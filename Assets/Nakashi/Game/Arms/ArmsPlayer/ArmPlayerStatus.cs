@@ -30,12 +30,20 @@ namespace Nakashi
             private Condition m_condition;
 
             // 現在のHP
-            float m_hp;
+            private float m_hp;
 
             // 無敵判定用
-            bool m_isInvincible;
-       
+            private bool m_isInvincible = false;
             public bool GetSetInvincible { get { return m_isInvincible; } set { m_isInvincible = value; } }
+            // パリィ判定用
+            private bool m_isParry = false;
+            public bool GetSetParry { get { return m_isParry; }set {m_isParry = value; } }
+            // コントロール可否
+            private bool m_isControll;
+            public bool GetSetControll { get { return m_isControll; } set { m_isControll = value; } }
+            // ジャンプ中かどうかの判定用
+            private bool m_isJump = false;
+            public bool GetSetJump { get { return m_isJump; } set { m_isJump = value; } }
 
             /// <summary>
             /// コンストラクタ

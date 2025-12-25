@@ -92,7 +92,6 @@ public class StretchArm : GloveBase
 
         if (rootBone != null)
         {
-            rootBone.localScale *= 0.5f;
             rootBone.rotation = Quaternion.LookRotation(Vector3.down);
             initialRotation = rootBone.rotation;
         }

@@ -31,10 +31,19 @@ namespace Nakashi
             /// </summary>
             public void Enter()
             {
-                // AddForceでvelocityのかかっている方向へ
-                m_controller.GetRigidbody().AddForce(
-                    m_controller.GetSetVelocity * m_controller.GetPlayerData().GetDashSpeed()
-                    );
+                // ダッシュのトリガーをオンにする
+                m_controller.GetAnimator().SetTrigger("Dash");
+
+                Vector3 inputDir = m_controller.GetSetVelocity;
+                // 入力がない場合の前ダッシュ
+                if(inputDir.sqrMagnitude < 0.01f)
+                {
+                    inputDir = m_controller.GetTransform().forward;
+                }
+                Vector3 dashDir = inputDir.normalized;
+
+                m_controller.GetRigidbody().AddForce(dashDir * m_controller.GetPlayerData().GetDashSpeed(),
+                    ForceMode.Impulse);
             }
             /// <summary>
             /// 退出時

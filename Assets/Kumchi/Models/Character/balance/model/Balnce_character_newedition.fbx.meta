@@ -16,16 +16,15 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
-      human bone 'LeftLowerLeg' not found\n"
+    rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    importConstraints: 1
-    animationCompression: 3
+    importConstraints: 0
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -58,7 +57,7 @@ ModelImporter:
     skinWeightsMode: 0
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
-    optimizeBones: 0
+    optimizeBones: 1
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
@@ -79,383 +78,11 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
-  importAnimation: 0
+  importAnimation: 1
   humanDescription:
     serializedVersion: 3
-    human:
-    - boneName: hair
-      humanName: Hips
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: sweep10
-      humanName: LeftUpperLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: group45_group42_sweep21
-      humanName: RightUpperLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: sweep26
-      humanName: Spine
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    skeleton:
-    - name: Balnce_character_newedition(Clone)
-      parentName: 
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: glasses
-      parentName: Balnce_character_newedition(Clone)
-      position: {x: 0.0034998553, y: 1.4035426, z: -0.036564637}
-      rotation: {x: -0.047323145, y: 0.9943727, z: -0.06464417, w: 0.06931513}
-      scale: {x: 0.5056657, y: 0.5056657, z: 0.5056657}
-    - name: polySurface60
-      parentName: glasses
-      position: {x: -0.00000042915343, y: -0.0020456547, z: 0.15153882}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: polySurface65
-      parentName: glasses
-      position: {x: -0.00000042915343, y: -3.7223914, z: -0.12871733}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: polySurface66
-      parentName: glasses
-      position: {x: -0.0000004196167, y: 0.002326416, z: 0.14355168}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: hat
-      parentName: Balnce_character_newedition(Clone)
-      position: {x: 0.001224385, y: 1.3949019, z: -0.03403786}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 0.99158746, y: 0.99158746, z: 0.99158746}
-    - name: hat2
-      parentName: hat
-      position: {x: 0.000000005072573, y: -4.831136e-10, z: -0.0029906535}
-      rotation: {x: -0.093393594, y: 0.004544122, z: 0.048385203, w: 0.9944425}
-      scale: {x: 1.0684102, y: 1.0684102, z: 1.0684102}
-    - name: polySurface549
-      parentName: hat2
-      position: {x: -0.038410485, y: -0.02040542, z: 0.114654265}
-      rotation: {x: 0.047073867, y: -0.18293591, z: 0.0073976284, w: 0.98196936}
-      scale: {x: 0.3944896, y: 0.36864215, z: 0.3462742}
-    - name: pTorus3
-      parentName: hat2
-      position: {x: -0.020222628, y: -0.020360079, z: 0.12295779}
-      rotation: {x: 0.69248956, y: -0.05437257, z: 0.053281054, w: 0.7174002}
-      scale: {x: 0.7440698, y: 0.7440698, z: 0.7440698}
-    - name: group50_polySurface549
-      parentName: hat2
-      position: {x: 0.002230937, y: -0.0043246574, z: -0.013419547}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: hair
-      parentName: Balnce_character_newedition(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: sweep18
-      parentName: hair
-      position: {x: -0, y: -0.003776009, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: sweep7
-      parentName: hair
-      position: {x: 0.07350306, y: 1.3852003, z: -0.00924801}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1.0900311, y: 1.2662879, z: 1.0900311}
-    - name: sweep16
-      parentName: hair
-      position: {x: 0.055196088, y: 1.3795831, z: 0.05578554}
-      rotation: {x: 0.00057912304, y: 0.10250492, z: -0.08146337, w: 0.99139106}
-      scale: {x: 1, y: 1, z: 1}
-    - name: sweep17
-      parentName: hair
-      position: {x: 0.065135494, y: 1.3661304, z: 0.03643804}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: sweep2
-      parentName: hair
-      position: {x: 0.14642583, y: 0.016032951, z: -0.072471835}
-      rotation: {x: 0.03292049, y: -0.121370554, z: 0.040793013, w: 0.9912222}
-      scale: {x: 1, y: 1, z: 1}
-    - name: sweep3
-      parentName: hair
-      position: {x: 0.0061667464, y: 1.3765434, z: 0.07981932}
-      rotation: {x: 0, y: 0, z: 0.10598659, w: 0.9943676}
-      scale: {x: 1, y: 1, z: 1}
-    - name: sweep1
-      parentName: hair
-      position: {x: 0.17019008, y: -0.17503248, z: -0.02023332}
-      rotation: {x: 0, y: 0, z: 0.05714982, w: 0.99836564}
-      scale: {x: 1.137722, y: 1.137722, z: 1.137722}
-    - name: sweep25
-      parentName: hair
-      position: {x: 0.04110294, y: 1.4537246, z: 0.11018256}
-      rotation: {x: -0.015067019, y: -0.020220986, z: -0.08876291, w: 0.99573356}
-      scale: {x: 1, y: 1, z: 1}
-    - name: sweep26
-      parentName: hair
-      position: {x: -0.071008086, y: 1.3787801, z: 0.011875873}
-      rotation: {x: 0.008530535, y: -0.057283375, z: -0.06200135, w: 0.99639434}
-      scale: {x: 1.0792845, y: 1.0792845, z: 1.0792845}
-    - name: group45_group42_sweep21
-      parentName: hair
-      position: {x: 0.0012505603, y: 1.3102176, z: -0.049947742}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: sweep10
-      parentName: hair
-      position: {x: -0.10458909, y: 1.2869127, z: -0.08461248}
-      rotation: {x: 0.15825376, y: 0.26885733, z: -0.18451993, w: 0.932}
-      scale: {x: 1.4691162, y: 1.4691162, z: 1.4691162}
-    - name: sweep24
-      parentName: hair
-      position: {x: -0.101939596, y: 1.3585894, z: -0.07291141}
-      rotation: {x: 0.109173335, y: 0.34642115, z: -0.12217211, w: 0.92365986}
-      scale: {x: 1.3200268, y: 1.3200268, z: 1.3200268}
-    - name: sweep11
-      parentName: hair
-      position: {x: -0.09348278, y: 1.2794228, z: -0.092407905}
-      rotation: {x: 0.05026741, y: 0.081699446, z: -0.11163745, w: 0.98910844}
-      scale: {x: 1.5416552, y: 1.5416552, z: 1.5416552}
-    - name: sweep23
-      parentName: hair
-      position: {x: -0.08069877, y: 1.2715907, z: -0.06448579}
-      rotation: {x: 0.0036999455, y: 0.022889825, z: 0.09938575, w: 0.9947788}
-      scale: {x: 0.9196131, y: 0.9196131, z: 0.9196131}
-    - name: sweep20
-      parentName: hair
-      position: {x: -0, y: -0.003776009, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: sweep21
-      parentName: hair
-      position: {x: -0, y: -0.003776009, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: pCylinder2
-      parentName: hair
-      position: {x: -0.060232922, y: 1.3263301, z: -0.057022665}
-      rotation: {x: -0.64920944, y: 0.35830173, z: 0.41100234, w: 0.53030574}
-      scale: {x: 2.0835466, y: 0.97658676, z: 2.0835466}
-    - name: sweep22
-      parentName: hair
-      position: {x: -0.06724603, y: 1.2961545, z: -0.055507924}
-      rotation: {x: -0.017425295, y: -0.0050244196, z: -0.011382287, w: 0.99977076}
-      scale: {x: 1.3520378, y: 1.0372128, z: 1.3520378}
-    - name: eyes
-      parentName: Balnce_character_newedition(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: polySurface568
-      parentName: eyes
-      position: {x: -0, y: -0.04021281, z: -0.0093417}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: polySurface567
-      parentName: eyes
-      position: {x: -0, y: 1.3386351, z: 0.054849595}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: face
-      parentName: Balnce_character_newedition(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: polySurface554
-      parentName: face
-      position: {x: -0, y: 1.3517886, z: 0.07966492}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: eyelashes1
-      parentName: face
-      position: {x: 2.719755e-11, y: 1.3397614, z: 0.06020087}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: polySurface537
-      parentName: face
-      position: {x: 2.719755e-11, y: 1.3137387, z: 0.077601895}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: polySurface565
-      parentName: face
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: body
-      parentName: Balnce_character_newedition(Clone)
-      position: {x: -0, y: 0.6697023, z: -0.019219084}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: acs
-      parentName: Balnce_character_newedition(Clone)
-      position: {x: 0.000031700132, y: 1.1781362, z: -0.0067380425}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 0.92693317, y: 0.92693317, z: 0.92693317}
-    - name: arm
-      parentName: Balnce_character_newedition(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: group38
-      parentName: arm
-      position: {x: 4.1908236e-33, y: -0.03, z: -0.002689039}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: -1, y: 1, z: 1}
-    - name: pSphere4
-      parentName: group38
-      position: {x: -0.13677317, y: 1.1918155, z: -0.022746976}
-      rotation: {x: 0, y: 0, z: -0.8002239, w: 0.59970134}
-      scale: {x: 5.84069, y: 5.84069, z: 5.84069}
-    - name: group37
-      parentName: arm
-      position: {x: -0.42159522, y: 1.1500046, z: -0.03367503}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: pSphere4
-      parentName: group37
-      position: {x: 0.28482208, y: 0.011810913, z: 0.008239014}
-      rotation: {x: 0, y: 0, z: -0.8002239, w: 0.59970134}
-      scale: {x: 5.84069, y: 5.84069, z: 5.84069}
-    - name: tops
-      parentName: Balnce_character_newedition(Clone)
-      position: {x: -0, y: 1.0407994, z: -0.004833455}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: polySurface561
-      parentName: tops
-      position: {x: -0, y: -1.0407994, z: 0.004833455}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: polySurface563
-      parentName: tops
-      position: {x: -0, y: -1.0407994, z: 0.004833455}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: pants
-      parentName: Balnce_character_newedition(Clone)
-      position: {x: -0.000000017976488, y: 0.5155501, z: -0.017161677}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: polySurface569
-      parentName: pants
-      position: {x: 0.000000017976488, y: -0.5155501, z: 0.017161677}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: polySurface570
-      parentName: pants
-      position: {x: 0.000000017976488, y: -0.5155501, z: 0.017161677}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: polySurface571
-      parentName: pants
-      position: {x: 0.000000017976488, y: -0.5155501, z: 0.017161677}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: polySurface572
-      parentName: pants
-      position: {x: 0.000000017976488, y: -0.5155501, z: 0.017161677}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: pSphere5
-      parentName: pants
-      position: {x: -0.021443738, y: 0.36400992, z: 0.13153744}
-      rotation: {x: 0.24977887, y: -0.03633046, z: -0.011323121, w: 0.96755487}
-      scale: {x: 1, y: 1, z: 1}
-    - name: belt
-      parentName: pants
-      position: {x: 0.13089557, y: -0.6515022, z: -0.03335243}
-      rotation: {x: 0.018072464, y: -0.045551255, z: 0.06517568, w: 0.99666977}
-      scale: {x: 1.1071241, y: 1.1071241, z: 1.1071241}
-    - name: pTorus1
-      parentName: belt
-      position: {x: 0.0000000029715044, y: 0.8521947, z: 0.12557621}
-      rotation: {x: 0.75591433, y: 0.08164982, z: -0.069756135, w: 0.64580256}
-      scale: {x: 1.7753989, y: 1.7753989, z: 1.7753989}
-    - name: polySurface72
-      parentName: belt
-      position: {x: -7.268358e-17, y: 0.86772513, z: 0.015347869}
-      rotation: {x: 0.07831366, y: -0, z: -0, w: 0.9969288}
-      scale: {x: 0.9412778, y: 0.9412778, z: 0.82623273}
-    - name: polySurface71
-      parentName: belt
-      position: {x: -0.04609004, y: 0.8505242, z: 0.1255128}
-      rotation: {x: 0.07831366, y: -0, z: -0, w: 0.9969288}
-      scale: {x: 0.9412778, y: 0.9412778, z: 0.82623273}
-    - name: polySurface73
-      parentName: belt
-      position: {x: -0.04402735, y: 0.8521814, z: 0.116324306}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: sweep32
-      parentName: belt
-      position: {x: 0.0734961, y: 0.8447324, z: 0.10782071}
-      rotation: {x: -0.03619124, y: -0.40568748, z: -0.093231596, w: 0.9085239}
-      scale: {x: 0.90324116, y: 0.90324116, z: 0.90324116}
-    - name: sweep34
-      parentName: belt
-      position: {x: -0.0967335, y: 0.13860163, z: 0.05071109}
-      rotation: {x: -0.018072464, y: 0.045551255, z: -0.06517568, w: 0.99666977}
-      scale: {x: 0.90324116, y: 0.90324116, z: 0.90324116}
-    - name: sweep33
-      parentName: belt
-      position: {x: 0.0768448, y: 0.87460494, z: -0.05469656}
-      rotation: {x: -0.16913739, y: 0.9809762, z: 0.094780214, w: 0.00974164}
-      scale: {x: 0.90324116, y: 0.90324116, z: 0.90324116}
-    - name: shoes
-      parentName: Balnce_character_newedition(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1.15522, y: 1, z: 1}
-    - name: polySurface485
-      parentName: shoes
-      position: {x: 0.0000002491174, y: 0.12956654, z: 0.042154178}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: polySurface488
-      parentName: shoes
-      position: {x: 0.0000002491174, y: 0.078214064, z: 0.042638052}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: polySurface244
-      parentName: shoes
-      position: {x: -0, y: 0.12501764, z: 0.03479519}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: arms
-      parentName: Balnce_character_newedition(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: MASH7_ReproMesh2
-      parentName: arms
-      position: {x: 0.44616398, y: 1.1771387, z: -0.00017637253}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: MASH7_ReproMesh3
-      parentName: arms
-      position: {x: -0.44616398, y: 1.1771387, z: -0.00017637253}
-      rotation: {x: 6.123234e-17, y: 1, z: -6.123234e-17, w: -6.123234e-17}
-      scale: {x: 1, y: 1, z: -1}
+    human: []
+    skeleton: []
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -466,11 +93,11 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 1
+    hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 3
+  animationType: 2
   humanoidOversampling: 1
   avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1

@@ -92,6 +92,8 @@ namespace Nakashi
                 Vector3 force = moveDir * speed * Time.deltaTime;
                 force.y = 0;
                 rb.AddForce(force, ForceMode.VelocityChange);
+
+                WalkingAnimation();
             }
 
             /// <summary>
@@ -136,7 +138,7 @@ namespace Nakashi
                 Vector3 back = -forward;
                 Vector3 left = -right;
 
-                // キーボードのWASD ↑←↓→に対応した移動
+                // キーボードのWASD ↑←↓→に対応した移動 アニメーション
                 if (Input.GetKey(KeyCode.W)||Input.GetKey(KeyCode.UpArrow))
                 {
                     m_controller.GetSetVelocity += forward;
@@ -148,11 +150,13 @@ namespace Nakashi
                 if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
                 {
                     m_controller.GetSetVelocity += back;
+
                 }
                 if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
                 {
                     m_controller.GetSetVelocity += right;
                 }
+
                 m_controller.GetSetVelocity.Normalize();
 
                 Rigidbody rb = m_controller.GetRigidbody();
@@ -165,11 +169,42 @@ namespace Nakashi
                 force.y = 0;
                 rb.AddForce(force, ForceMode.VelocityChange);
 
+                WalkingAnimation();
 
+            }
+
+            /// <summary>
+            /// 移動アニメーション
+            /// </summary>
+            private void WalkingAnimation()
+            {
+                Rigidbody rb = m_controller.GetRigidbody();
+                Vector3 vel = rb.velocity;
+                vel.y = 0.0f;
+
+                // 歩き状態のEnable
+                //if(vel.sqrMagnitude < 0.001f)
+                //{
+                //    m_controller.GetAnimator().SetFloat("WalkSpeedX", 0.0f , 0.1f, Time.deltaTime);
+                //    m_controller.GetAnimator().SetFloat("WalkSpeedZ", 0.0f, 0.1f, Time.deltaTime);
+                //    return;
+                //}
+
+                Vector3 dir = vel.normalized;
+
+                Transform trans = m_controller.transform;
+
+                float moveX = Vector3.Dot(dir, trans.right);
+                float moveZ = Vector3.Dot(dir , trans.forward);
+
+                m_controller.GetAnimator().SetFloat("WalkSpeedX", moveX , 0.1f, Time.deltaTime);
+                m_controller.GetAnimator().SetFloat("WalkSpeedZ", moveZ , 0.1f, Time.deltaTime);
             }
 
         }
     }
+
+
 }
 
 
