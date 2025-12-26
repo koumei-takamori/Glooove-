@@ -490,6 +490,7 @@ GameObject:
   - component: {fileID: 9185339702189986462}
   - component: {fileID: 8379776442981341848}
   - component: {fileID: 6762165048753891087}
+  - component: {fileID: 4412505057514038337}
   m_Layer: 0
   m_Name: Speed_character
   m_TagString: Untagged
@@ -609,6 +610,22 @@ MonoBehaviour:
     m_rightGlove: {fileID: 7029374996118867784, guid: 6dfa2e118aa39be4889e585976ba08e4, type: 3}
   m_leftglovePosition: {fileID: 7491057490403296450}
   m_rightglovePosition: {fileID: 2622324162221552855}
+--- !u!114 &4412505057514038337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097316108917939466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d2c83a79fb4c9e499a85914fed3ce0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_normalRArm: {fileID: 4889256529910602662}
+  m_normalLArm: {fileID: 2653536299745370332}
+  m_attackRArmParent: {fileID: 8264312616357676141}
+  m_attackLArmParent: {fileID: 5732929845108768455}
 --- !u!1 &1110395087832978669
 GameObject:
   m_ObjectHideFlags: 0
