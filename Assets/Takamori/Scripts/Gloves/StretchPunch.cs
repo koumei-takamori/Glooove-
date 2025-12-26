@@ -70,7 +70,7 @@ public class StretchPunchGlove : GloveBase
     public override bool Use(ArmPlayerController playerController, GloveActionType type)
     {
         // クールダウン等の共通処理
-        if (!base.Use(playerController,type)) return false;
+        if (!base.Use(playerController, type)) return false;
 
         // プレイヤーを取得
         m_playerController = playerController;

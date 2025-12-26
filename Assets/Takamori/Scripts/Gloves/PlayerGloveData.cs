@@ -8,10 +8,7 @@
  *  制作日 : 2025/08/06
  *
  *********************************************************/
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR;
 
 /// <summary>
 /// プレイヤーが使うグローブ情報

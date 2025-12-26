@@ -17,8 +17,7 @@ using UnityEngine;
 /// </summary>
 public abstract class GloveBase : MonoBehaviour
 {
-    // グローブの情報（Inspector からアサイン）
-    [Header("データ"), SerializeField]
+    // グローブの情報
     private GloveData m_gloveData;
 
     // 攻撃別アクション関数リスト
@@ -37,6 +36,8 @@ public abstract class GloveBase : MonoBehaviour
     private Vector3 m_glovePosition;
 
     // プロパティ
+    public GloveData GloveParamData { get { return m_gloveData; } set { m_gloveData = value; } }
+
     public Vector3 GlovePosition { get { return m_glovePosition; } set { m_glovePosition = value; } }
 
     // 攻撃中フラグを取得
