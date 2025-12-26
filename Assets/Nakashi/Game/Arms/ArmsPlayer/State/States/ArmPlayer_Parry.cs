@@ -31,10 +31,13 @@ namespace Nakashi
             /// </summary>
             public void Enter()
             {
+                // アニメーション変更
+                m_controller.GetAnimator().SetBool("Parry", true);
                 // パリィ判定をオンにする
                 m_controller.GetPlayerStatus().GetSetParry = true;
                 // 動けなくする
                 m_controller.GetPlayerStatus().GetSetControll = true;
+                
             }
 
             /// <summary>
@@ -45,6 +48,8 @@ namespace Nakashi
                 // パリィ判定をオフにする
                 m_controller.GetPlayerStatus().GetSetParry = false;
                 m_controller.GetPlayerStatus().GetSetControll = false;
+                // アニメーション変更
+                m_controller.GetAnimator().SetBool("Parry", false);
             }
 
             /// <summary>
