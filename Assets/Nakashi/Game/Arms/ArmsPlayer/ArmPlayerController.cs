@@ -63,6 +63,8 @@ namespace Nakashi
             [SerializeField] private Transform m_leftglovePosition;
             [SerializeField] private Transform m_rightglovePosition;
 
+            [SerializeField] Animator m_barrier;
+
             private void Start()
             {
                 // リジットボディ、トランスフォーム取得
@@ -315,6 +317,8 @@ namespace Nakashi
             public PlayerGloveData GloveData { get { return m_gloveData; } }
             public GloveBase LeftGlove { get { return m_leftglove; } }
             public GloveBase RigthGlove { get { return m_rightglove; } }
+
+            public Animator GetBarrier { get { return m_barrier; } }
 
         }
     }
