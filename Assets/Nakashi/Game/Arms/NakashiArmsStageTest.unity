@@ -122,10 +122,10 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &62416690 stripped
+--- !u!4 &450575812 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 6342273494596077751, guid: 95041629299b304408806d6835a387f4, type: 3}
-  m_PrefabInstance: {fileID: 6352438702369731556}
+  m_CorrespondingSourceObject: {fileID: 2622324162221552855, guid: 46c811cc9eaf624449980eefc27fdd02, type: 3}
+  m_PrefabInstance: {fileID: 8569785531183455763}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &545502056
 GameObject:
@@ -180,6 +180,8 @@ MonoBehaviour:
   m_gloveData:
     m_leftGlove: {fileID: 8053524986387638989, guid: 9e807510b8f0fca4ca833127656ccd3b, type: 3}
     m_rightGlove: {fileID: 1887399391440748178, guid: 784e6f9a5f77d394b883ed2ba38ceaef, type: 3}
+  m_leftglovePosition: {fileID: 0}
+  m_rightglovePosition: {fileID: 0}
 --- !u!65 &545502059
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -502,6 +504,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_controller: {fileID: 884755740}
+--- !u!4 &1156822179 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 320216833517832112, guid: 46c811cc9eaf624449980eefc27fdd02, type: 3}
+  m_PrefabInstance: {fileID: 8569785531183455763}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1325582507 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7491057490403296450, guid: 46c811cc9eaf624449980eefc27fdd02, type: 3}
+  m_PrefabInstance: {fileID: 8569785531183455763}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1381119061
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -664,7 +676,7 @@ PrefabInstance:
     - target: {fileID: 4418195489635981182, guid: 0245a648f4e962e499c0e062edd9605c, type: 3}
       propertyPath: m_owner
       value: 
-      objectReference: {fileID: 62416690}
+      objectReference: {fileID: 1156822179}
     - target: {fileID: 4418195489635981182, guid: 0245a648f4e962e499c0e062edd9605c, type: 3}
       propertyPath: m_target
       value: 
@@ -1115,12 +1127,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1097316108917939466, guid: 46c811cc9eaf624449980eefc27fdd02, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6762165048753891087, guid: 46c811cc9eaf624449980eefc27fdd02, type: 3}
       propertyPath: m_target
       value: 
       objectReference: {fileID: 759031060}
+    - target: {fileID: 6762165048753891087, guid: 46c811cc9eaf624449980eefc27fdd02, type: 3}
+      propertyPath: m_leftglovePosition
+      value: 
+      objectReference: {fileID: 1325582507}
+    - target: {fileID: 6762165048753891087, guid: 46c811cc9eaf624449980eefc27fdd02, type: 3}
+      propertyPath: m_rightglovePosition
+      value: 
+      objectReference: {fileID: 450575812}
     - target: {fileID: 6762165048753891087, guid: 46c811cc9eaf624449980eefc27fdd02, type: 3}
       propertyPath: m_gloveData.m_leftGlove
       value: 
@@ -1140,7 +1160,7 @@ PrefabInstance:
     - target: {fileID: 8379776442981341848, guid: 46c811cc9eaf624449980eefc27fdd02, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 83ca560969346df458fa7158cbed14b0, type: 2}
+      objectReference: {fileID: 9100000, guid: 2930ddd035e7f0a4c83cccdece4a0ffc, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
