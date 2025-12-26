@@ -178,9 +178,6 @@ namespace Nakashi
                     m_stateMachine.ChangeState(m_stateMachine.GetLeftAttack());
                     Debug.Log("Gおされた");
                 }
-
-
-
             }
 
             /// <summary>

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 44758c827af8ae6409a1f27bdc924eef
+guid: fcfc2b6a360d072479ee1b5d552d3090
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: serect_wait
-      takeName: serect_wait
-      internalID: -9222629168164192207
+      name: win
+      takeName: win
+      internalID: -6683392220820474592
       firstFrame: 0
-      lastFrame: 119
+      lastFrame: 60
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

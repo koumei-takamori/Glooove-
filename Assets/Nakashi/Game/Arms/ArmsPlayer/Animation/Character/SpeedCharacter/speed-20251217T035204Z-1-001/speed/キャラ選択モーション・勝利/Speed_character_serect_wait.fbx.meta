@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 44758c827af8ae6409a1f27bdc924eef
+guid: da41e32202c75024daf32397a7853aab
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -37,7 +37,7 @@ ModelImporter:
       takeName: serect_wait
       internalID: -9222629168164192207
       firstFrame: 0
-      lastFrame: 119
+      lastFrame: 100
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

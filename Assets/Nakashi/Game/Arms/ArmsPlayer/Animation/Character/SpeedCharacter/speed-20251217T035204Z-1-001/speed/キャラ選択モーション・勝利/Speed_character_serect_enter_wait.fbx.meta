@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 44758c827af8ae6409a1f27bdc924eef
+guid: c11be02aa184d474ea0d6e07b413b3f6
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: serect_wait
-      takeName: serect_wait
-      internalID: -9222629168164192207
-      firstFrame: 0
-      lastFrame: 119
+      name: serect_enter_wait
+      takeName: serect_enter_wait
+      internalID: 28074110043868405
+      firstFrame: 90
+      lastFrame: 200
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -60,7 +60,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 90
     isReadable: 0
   meshes:
     lODScreenPercentages: []
