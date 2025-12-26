@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4818406286580312567}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stomach4_2_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6978929273802801324}
   - component: {fileID: 2537885153788883988}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:TailToe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5642863745727782990}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: polyToCurve4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4477284968103340887}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: arm_top_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,7 +198,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 173382016581311822}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: shoulder_joint_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +230,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8352777464366650092}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:Carl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,7 +267,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 275921808168305214}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stomach1_3_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -299,7 +299,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1280291910842412707}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stomach3_4_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,7 +331,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4229098554191493110}
   - component: {fileID: 2135497742700936994}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tank_character_Win
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -390,7 +390,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 670900651331522041}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: waist
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -425,7 +425,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5888575457667250742}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: polyToCurve3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -458,7 +458,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3768622534283674336}
   - component: {fileID: 2017007378069522192}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:Tail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -555,7 +555,7 @@ GameObject:
   m_Component:
   - component: {fileID: 816281829400329968}
   - component: {fileID: 4519912842712450564}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:Bone1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -650,7 +650,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8306068397750514139}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: spine1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -684,7 +684,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6680378814256945358}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: arm3_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -716,7 +716,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5378079931342032356}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:Upper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -749,7 +749,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2343953174249624637}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stomach4_4_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -780,7 +780,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7710447016708729901}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: polyToCurve1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -812,7 +812,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8939907453836047443}
   - component: {fileID: 8743226918695491811}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -917,7 +917,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5015935003849054294}
   - component: {fileID: 1379599671143628070}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:UnderWear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1033,7 +1033,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2135828565696333326}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:Cloth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1078,7 +1078,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7292564560605279803}
   - component: {fileID: 4469170850006757771}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1180,7 +1180,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6631018568296747844}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ear_joint_1_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1212,7 +1212,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6469789631234761438}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: box_lid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1244,7 +1244,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8232978579382920952}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stomach4_1_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1277,7 +1277,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8927724077446468114}
   - component: {fileID: 498753211023902702}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:sweep5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1369,7 +1369,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9075077011839013879}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1400,7 +1400,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4741815511480711022}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:Tail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1435,7 +1435,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2145414914818483149}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stomach2_2_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1468,7 +1468,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6784511344700561123}
   - component: {fileID: 8891789601415515831}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:Badge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1560,7 +1560,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8155556004357715744}
   - component: {fileID: 2702109289456774906}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:Navel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1653,7 +1653,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7872798054179157195}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:Tank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1687,7 +1687,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8473759665404528799}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: polyToCurve2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1718,7 +1718,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5905324243495697682}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ear_joint_2_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1749,7 +1749,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3580949305884119525}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stomach3_3_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1781,7 +1781,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3287782990487359982}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: thighs_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1814,7 +1814,7 @@ GameObject:
   m_Component:
   - component: {fileID: 785734453372041025}
   - component: {fileID: 3252079601280716027}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:Knit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1913,7 +1913,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5283089481086013015}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: teil1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1945,7 +1945,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 727175903949484983}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stomach3_1_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1977,7 +1977,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8376407832906159200}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stomach5_2_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2009,7 +2009,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8560697003776259901}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stomach1_1_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2041,7 +2041,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 136332737931728901}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: arm_top_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2072,7 +2072,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 777037747145341024}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stomach3_1_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2104,7 +2104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1669333049843840961}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stomach5_3_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2136,7 +2136,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 281215315029032741}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: knee_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2169,7 +2169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6256279813152110270}
   - component: {fileID: 6635386128264240609}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:Knee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2267,7 +2267,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2121565145288470695}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: teil3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2298,7 +2298,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4311326783747601112}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ikHandle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2330,7 +2330,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7872447831208830093}
   - component: {fileID: 7836648187838797858}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:Nose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2419,7 +2419,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5907616769619100359}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ikHandle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2450,7 +2450,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9185379550114795500}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tongue2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2482,7 +2482,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1275239069319822689}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ear_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2515,7 +2515,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3493143049678207708}
   - component: {fileID: 7036053574352803905}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:sweep4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2606,7 +2606,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2265518122403952205}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stomach4_3_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2638,7 +2638,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6293543407137498756}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stomach1_4_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2670,7 +2670,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8830679871564332767}
   - component: {fileID: 7776057569748387515}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:Bone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2762,7 +2762,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1291785686910591203}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: thighs_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2794,7 +2794,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1087337500427856879}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: hat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2826,7 +2826,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2768374526300649347}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stomach5_1_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2859,7 +2859,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4194240503502205643}
   - component: {fileID: 954365099121405428}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:LeftFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2956,7 +2956,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4940444373384278636}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stomach2_3_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2988,7 +2988,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 591888913345149254}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stomach2_4_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3020,7 +3020,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8380335231114931934}
   - component: {fileID: 3831579262853448854}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:Pupil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3111,7 +3111,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3191809197434779920}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: arm1_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3143,7 +3143,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3659047567432834445}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stomach4_4_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3174,7 +3174,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7655707976315924526}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stomach3_3_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3206,7 +3206,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5356875605832831730}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tongue3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3238,7 +3238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3732714097950139530}
   - component: {fileID: 9557087769021082}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:Badge1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3330,7 +3330,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9123580771720230171}
   - component: {fileID: 6039792580634613634}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:TailPop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3423,7 +3423,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7122643391103632022}
   - component: {fileID: 6639325299517964975}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:sweep2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3515,7 +3515,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1209021247209394257}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3548,7 +3548,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2790809109128226931}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3581,7 +3581,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4037965999979923677}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3614,7 +3614,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6312729493624298282}
   - component: {fileID: 6801111180790055666}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:sweep1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3705,7 +3705,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5594007822283296890}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ear_joint_2_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3736,7 +3736,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3232175162207124473}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: null1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3769,7 +3769,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2601578683710499885}
   - component: {fileID: 5681739534461679731}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:ForeTail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3860,7 +3860,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7614163268774386566}
   - component: {fileID: 3162608832169030926}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:sweep3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3952,7 +3952,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8724166229323190079}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3991,7 +3991,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2002380959369498065}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: arm2_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4023,7 +4023,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 284676693311401495}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stomach2_2_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4056,7 +4056,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4159453169431551679}
   - component: {fileID: 8597789627159858419}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:Eyelid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4146,7 +4146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6777282319452996573}
   - component: {fileID: 8951205607922387387}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:TankTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4268,7 +4268,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6750564156778023100}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stomach3_4_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4300,7 +4300,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2409185721974705801}
   - component: {fileID: 6571778065402121144}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4435,7 +4435,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6137849294195823861}
   - component: {fileID: 7259762679760418282}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:RightFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4530,7 +4530,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3743593822878985501}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stomach2_1_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4563,7 +4563,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6929911410131982726}
   - component: {fileID: 5771731378257100464}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:Pants
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4675,7 +4675,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4689968968739422225}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stomach4_2_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4707,7 +4707,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1865167204443893824}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: joint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4738,7 +4738,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3685914356453255281}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stomach4_1_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4770,7 +4770,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9195697005644757013}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ear_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4802,7 +4802,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5810856145073111040}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: spine2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4834,7 +4834,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7100451828768275837}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: shoulder_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4866,7 +4866,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1198842579388149073}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: spine3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4906,7 +4906,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2535197485556502218}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stomach2_3_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4938,7 +4938,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8477185546804423005}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stomach2_4_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4969,7 +4969,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1121102323703776201}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5005,7 +5005,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7449399780011575111}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: nurbsCircle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5037,7 +5037,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1261466578806880313}
   - component: {fileID: 8151144491711395383}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:Shoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5142,7 +5142,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5892530453704340122}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stomach3_2_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5174,7 +5174,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5736252194608923003}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: feet_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5205,7 +5205,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5632228245554264750}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: arm3_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5238,7 +5238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5976943119163559987}
   - component: {fileID: 6252578333523537538}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5345,7 +5345,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2402655571213679488}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: arm2_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5377,7 +5377,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8481824472301737761}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stomach3_2_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5409,7 +5409,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5282596182213291004}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: arm1_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5441,7 +5441,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4271829319911461840}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: knee_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5474,7 +5474,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 698220851022177918}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stomach1_2_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5507,7 +5507,7 @@ GameObject:
   m_Component:
   - component: {fileID: 251352590406736276}
   - component: {fileID: 8147755433522826707}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:Tongue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5597,7 +5597,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4392824894161762667}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stomach2_1_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5630,7 +5630,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1682737644290881456}
   - component: {fileID: 3244335110259389951}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:Iris
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5721,7 +5721,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6002600937961942805}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5755,7 +5755,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3929996085035907647}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: shoulder_joint_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5787,7 +5787,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2547990334313267709}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: shoulder_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5819,7 +5819,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8892853700779552026}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: arm4_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5851,7 +5851,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 176214472573924553}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stomach4_3_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5884,7 +5884,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5367019281183260687}
   - component: {fileID: 7551771432759283993}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:sweep6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5976,7 +5976,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4230408660547398187}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stomach5_4_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6008,7 +6008,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1583739062246394031}
   - component: {fileID: 7632909450803678764}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:Sox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6110,7 +6110,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5030518178437333846}
   - component: {fileID: 3914092698392091355}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:Seams
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6236,7 +6236,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5942110186692214548}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: teil2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6269,7 +6269,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7401961207222272760}
   - component: {fileID: 3499660896018436356}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:NeckWear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6365,7 +6365,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7702882209718868898}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: feet_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6396,7 +6396,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1043143381882181256}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: arm4_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6428,7 +6428,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6811242495577350458}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tongue1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6461,7 +6461,7 @@ GameObject:
   m_Component:
   - component: {fileID: 746605929420285416}
   - component: {fileID: 3134721511604470191}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tank_2:Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6554,7 +6554,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4238574512438114753}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ear_joint_1_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
