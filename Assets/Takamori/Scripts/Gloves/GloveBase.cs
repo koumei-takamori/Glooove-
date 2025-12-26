@@ -45,6 +45,7 @@ public abstract class GloveBase : MonoBehaviour
     {
         if (m_isActiveDict.ContainsKey(type))
         {
+            Debug.Log($"IsActionActive: type={type} isActive={m_isActiveDict[type]}");
             return m_isActiveDict[type];
         }
         return false;
