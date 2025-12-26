@@ -261,7 +261,7 @@ namespace Nakashi
                 leftglove.transform.localRotation = Quaternion.identity;
 
                 // 親のスケールに応じて補正
-                leftglove.transform.localScale = inverseParentScale;
+                //leftglove.transform.localScale = inverseParentScale;
 
                 // Script取得
                 m_leftglove = leftglove.GetComponent<GloveBase>();
@@ -274,7 +274,7 @@ namespace Nakashi
                 rightglove.transform.localRotation = Quaternion.identity;
 
                 // 同じく補正
-                rightglove.transform.localScale = inverseParentScale;
+                //rightglove.transform.localScale = inverseParentScale;
 
                 // Script取得
                 m_rightglove = rightglove.GetComponent<GloveBase>();
