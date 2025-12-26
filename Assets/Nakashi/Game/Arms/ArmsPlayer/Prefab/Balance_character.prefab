@@ -303,8 +303,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 3.22, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1967076474648344582}
   - {fileID: 1519972939614237398}
@@ -393,8 +393,8 @@ MonoBehaviour:
   m_gloveData:
     m_leftGlove: {fileID: 1887399391440748178, guid: 784e6f9a5f77d394b883ed2ba38ceaef, type: 3}
     m_rightGlove: {fileID: 8053524986387638989, guid: 9e807510b8f0fca4ca833127656ccd3b, type: 3}
-  m_leftglovePosition: {fileID: 1259515943188259880, guid: 784e6f9a5f77d394b883ed2ba38ceaef, type: 3}
-  m_rightglovePosition: {fileID: 7244056368107122807, guid: 9e807510b8f0fca4ca833127656ccd3b, type: 3}
+  m_leftglovePosition: {fileID: 2123464468293837061}
+  m_rightglovePosition: {fileID: 6533828347153024117}
 --- !u!95 &6758732689864369052
 Animator:
   serializedVersion: 5
@@ -428,10 +428,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d2c83a79fb4c9e499a85914fed3ce0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_normalRArm: {fileID: 0}
-  m_normalLArm: {fileID: 0}
-  m_attackRArmParent: {fileID: 0}
-  m_attackLArmParent: {fileID: 0}
+  m_normalRArm: {fileID: 1945038633005967867}
+  m_normalLArm: {fileID: 7299363910960720088}
+  m_attackRArmParent: {fileID: 7943864489589538725}
+  m_attackLArmParent: {fileID: 9173337267366404864}
 --- !u!1 &508876580303140039
 GameObject:
   m_ObjectHideFlags: 0

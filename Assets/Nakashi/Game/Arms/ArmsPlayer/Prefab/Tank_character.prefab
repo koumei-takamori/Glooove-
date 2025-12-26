@@ -4236,6 +4236,7 @@ GameObject:
   - component: {fileID: 2365137193626916596}
   - component: {fileID: 1760086957155910415}
   - component: {fileID: 3083048255118984790}
+  - component: {fileID: 6212059158294460863}
   m_Layer: 0
   m_Name: Tank_character
   m_TagString: Untagged
@@ -4253,8 +4254,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2.97, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3813171358710027321}
   - {fileID: 3448414526189828640}
@@ -4331,6 +4332,8 @@ MonoBehaviour:
   m_gloveData:
     m_leftGlove: {fileID: 1227623267937651256, guid: f1cee2616f5f30643a93076d44aea504, type: 3}
     m_rightGlove: {fileID: 691803366053499799, guid: 4ea2a6e6c1a395447bba053ad79d5382, type: 3}
+  m_leftglovePosition: {fileID: 650504807617184078}
+  m_rightglovePosition: {fileID: 8483955250083329194}
 --- !u!95 &3083048255118984790
 Animator:
   serializedVersion: 5
@@ -4352,6 +4355,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6212059158294460863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6003184569924588045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d2c83a79fb4c9e499a85914fed3ce0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_normalRArm: {fileID: 1909199903109251334}
+  m_normalLArm: {fileID: 1909199903109251334}
+  m_attackRArmParent: {fileID: 1140470807052083629}
+  m_attackLArmParent: {fileID: 6903567207838213433}
 --- !u!1 &6103459817292300827
 GameObject:
   m_ObjectHideFlags: 0
