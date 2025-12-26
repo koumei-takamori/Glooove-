@@ -54,6 +54,7 @@ namespace Nakashi
                 m_controller = controller;
                 m_hp = m_controller.GetPlayerData().GetMaxHP();
                 m_gloveData = m_controller.GloveData;
+                m_isControll = false;
             }
 
             /// <summary>

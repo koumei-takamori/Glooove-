@@ -25,6 +25,8 @@ namespace Nakashi
             private ArmPlayer_LeftAttack m_leftattack;
             private ArmPlayer_RightAttack m_rightattack;
 
+            private ArmPlayer_Parry m_parry;
+
 
             // 現在のステートの状態取得
             public INakashiPlayerState GetCurrentState() => m_currentState;
@@ -38,6 +40,8 @@ namespace Nakashi
             public ArmPlayer_LeftAttack GetLeftAttack() => m_leftattack;
             public ArmPlayer_RightAttack GetRightAttack() => m_rightattack;
 
+            public ArmPlayer_Parry GetParry() => m_parry;
+
             /// <summary>
             /// コンストラクタ
             /// </summary>
@@ -50,6 +54,8 @@ namespace Nakashi
                 // 追加
                 m_leftattack = new ArmPlayer_LeftAttack(controller);
                 m_rightattack = new ArmPlayer_RightAttack(controller);
+
+                m_parry = new ArmPlayer_Parry(controller);
             }
 
             /// <summary>

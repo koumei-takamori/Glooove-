@@ -49,6 +49,9 @@ namespace Nakashi
             /// <param name="leftEuler">左オイラー角</param>
             public void FixedUpdate(Vector3 rightEuler , Vector3 leftEuler)
             {
+
+                if (m_controller.GetPlayerStatus().GetSetControll == true) { return; }
+
                 // 所属コントローラーの速度を0にする
                 m_controller.GetSetVelocity = Vector3.zero;
 
@@ -126,6 +129,8 @@ namespace Nakashi
             /// </summary>
             public void DebugUpdate()
             {
+                if(m_controller.GetPlayerStatus().GetSetControll == true) { return; }
+
                 // 所属コントローラーのVelocityを0にする
                 m_controller.GetSetVelocity = Vector3.zero;
 

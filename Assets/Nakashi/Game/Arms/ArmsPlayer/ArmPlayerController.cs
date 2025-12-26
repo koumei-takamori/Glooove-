@@ -59,9 +59,6 @@ namespace Nakashi
             // 追加 : 右グローブ
             private GloveBase m_rightglove;
 
-            // 追加：キャラクターの操作可能フラグ
-            private bool m_canControll = true;
-
             // グローブの固定位置
             [SerializeField] private Transform m_leftglovePosition;
             [SerializeField] private Transform m_rightglovePosition;
@@ -177,6 +174,12 @@ namespace Nakashi
 
                     m_stateMachine.ChangeState(m_stateMachine.GetLeftAttack());
                     Debug.Log("Gおされた");
+                }
+
+                // パリィ状態        ↓↓この、Pかえるだけだと無理です。ごめ。ArmPlayer_ParryのほうのRelaseButtonも変えてね。
+                if(Input.GetKeyDown(KeyCode.P))
+                {
+                    m_stateMachine.ChangeState(m_stateMachine.GetParry());
                 }
             }
 
@@ -312,7 +315,6 @@ namespace Nakashi
             public PlayerGloveData GloveData { get { return m_gloveData; } }
             public GloveBase LeftGlove { get { return m_leftglove; } }
             public GloveBase RigthGlove { get { return m_rightglove; } }
-            public bool CanContoroll { get { return m_canControll; } set { m_canControll = value; } }
 
         }
     }
