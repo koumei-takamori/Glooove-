@@ -1158,6 +1158,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Balance_character
       objectReference: {fileID: 0}
+    - target: {fileID: 459727562826264231, guid: 2d10cfc1a0e577b4ebd34df2ce09d234, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 948737130505925661, guid: 2d10cfc1a0e577b4ebd34df2ce09d234, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
