@@ -26,9 +26,9 @@ public class ArmChanger : MonoBehaviour
     private ArmPlayerController m_armPlayerController;
 
     // ‰E˜r‚ªL‚Ñ‚Ä‚¢‚é‚©
-    private bool m_isRArmExtend = false;
+    [SerializeField] private bool m_isRArmExtend = false;
     // ¶˜r‚ªL‚Ñ‚Ä‚¢‚é‚©
-    private bool m_isLArmExtend = false;
+    [SerializeField] private bool m_isLArmExtend = false;
 
 
     // Start is called before the first frame update
@@ -43,28 +43,32 @@ public class ArmChanger : MonoBehaviour
     void Update()
     {
         // ¶˜rUŒ‚ƒXƒe[ƒg‚È‚ç
-        if (m_armPlayerController.LeftGlove.IsActionActive(GloveActionType.NORMAL_ATTACK))
+        if (m_isLArmExtend)
         {
             m_attackLArmParent.SetActive(true);
             m_normalLArm.SetActive(false);
+            Debug.Log("¶˜rUŒ‚");
         }
         else
         {
             m_attackLArmParent.SetActive(false);
             m_normalLArm.SetActive(true);
+            //Debug.Log("¶˜r’Êí");
         }
 
 
         // ‰E˜rUŒ‚ƒXƒe[ƒg‚È‚ç
-        if (m_armPlayerController.RigthGlove.IsActionActive(GloveActionType.NORMAL_ATTACK))
+        if (m_isRArmExtend || m_armPlayerController.RigthGlove.IsActionActive(GloveActionType.NORMAL_ATTACK))
         {
             m_attackRArmParent.SetActive(true);
             m_normalRArm.SetActive(false);
+            Debug.Log("‰E˜rUŒ‚");
         }
         else
         {
             m_attackRArmParent.SetActive(false);
             m_normalRArm.SetActive(true);
+            //Debug.Log("‰E˜r’Êí");
         }
 
         //Debug.Log($"‰E{m_isRArmExtend}F¶{m_isLArmExtend}");

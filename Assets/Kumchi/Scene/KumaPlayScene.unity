@@ -603,6 +603,14 @@ PrefabInstance:
       propertyPath: m_rightglovePosition
       value: 
       objectReference: {fileID: 294461472}
+    - target: {fileID: 6762165048753891087, guid: 46c811cc9eaf624449980eefc27fdd02, type: 3}
+      propertyPath: m_gloveData.m_leftGlove
+      value: 
+      objectReference: {fileID: 8642429196564862009, guid: 63d786ed11aae6d489bbe326d47abbe3, type: 3}
+    - target: {fileID: 6762165048753891087, guid: 46c811cc9eaf624449980eefc27fdd02, type: 3}
+      propertyPath: m_gloveData.m_rightGlove
+      value: 
+      objectReference: {fileID: 7029374996118867784, guid: 6dfa2e118aa39be4889e585976ba08e4, type: 3}
     - target: {fileID: 8379776442981341848, guid: 46c811cc9eaf624449980eefc27fdd02, type: 3}
       propertyPath: m_Controller
       value: 
@@ -891,6 +899,8 @@ MonoBehaviour:
   m_normalLArm: {fileID: 1758007249}
   m_attackRArmParent: {fileID: 1857304777}
   m_attackLArmParent: {fileID: 238671988}
+  m_isRArmExtend: 0
+  m_isLArmExtend: 0
 --- !u!1 &1758007249 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2653536299745370332, guid: 46c811cc9eaf624449980eefc27fdd02, type: 3}

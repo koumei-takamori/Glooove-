@@ -34,7 +34,8 @@ namespace Player
         /// </summary>
         public void Enter()
         {
-            m_controller.RigthGlove.Use(m_controller,GloveActionType.NORMAL_ATTACK);
+            m_controller.GetAnimator().SetBool("Is_AttackR", true);
+            m_controller.RigthGlove.Use(m_controller, GloveActionType.NORMAL_ATTACK);
         }
 
         /// <summary>
@@ -42,6 +43,8 @@ namespace Player
         /// </summary>
         public void Exit()
         {
+
+            m_controller.GetAnimator().SetBool("Is_AttackR", false);
 
         }
         /// <summary>
