@@ -37,6 +37,8 @@ namespace Nakashi
                 m_controller.GetPlayerStatus().GetSetParry = true;
                 // 動けなくする
                 m_controller.GetPlayerStatus().GetSetControll = true;
+                // Enableの変更
+                m_controller.GetBarrier.SetBool("Reflect",true);
                 
             }
 
@@ -50,6 +52,8 @@ namespace Nakashi
                 m_controller.GetPlayerStatus().GetSetControll = false;
                 // アニメーション変更
                 m_controller.GetAnimator().SetBool("Parry", false);
+                // Enableの変更
+                m_controller.GetBarrier.SetBool("Reflect", false);
             }
 
             /// <summary>
