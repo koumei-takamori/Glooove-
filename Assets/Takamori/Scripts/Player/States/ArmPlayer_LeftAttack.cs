@@ -1,10 +1,10 @@
 /**********************************************************
  *
  *  ArmPlayer_LeftAttack.cs
- *  ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ”»æ’ƒçŠ¶æ…‹
+ *  ƒvƒŒƒCƒ„[‚ÌUŒ‚ó‘Ô
  *
- *  åˆ¶ä½œè€… : é«™æ£® ç…Œæ˜
- *  åˆ¶ä½œæ—¥ : 2025/11/12
+ *  §ìÒ : ûüX àŠ–¾
+ *  §ì“ú : 2025/11/12
  *
  *********************************************************/
 using UnityEngine;
@@ -15,14 +15,14 @@ namespace Player
 {
     public class ArmPlayer_LeftAttack : INakashiPlayerState
     {
-        // æ‰€å±ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼
+        // Š‘®ƒRƒ“ƒgƒ[ƒ‰[
         private ArmPlayerController m_controller;
 
-        // è…•ã‚’ä¼¸ã°ã—ãŸã‹
+        // ˜r‚ğL‚Î‚µ‚½‚©
         private bool m_isExtend = false;
 
         /// <summary>
-        /// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+        /// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
         /// </summary>
         /// <param name="controller"></param>
         public ArmPlayer_LeftAttack(ArmPlayerController controller)
@@ -31,24 +31,25 @@ namespace Player
 
         }
         /// <summary>
-        /// å…¥å‡ºæ™‚
+        /// “üo
         /// </summary>
         public void Enter()
         {
             m_controller.GetAnimator().SetBool("Is_AttackL", true);
             m_controller.LeftGlove.Use(m_controller, GloveActionType.NORMAL_ATTACK);
+            m_isExtend = true;
         }
 
         /// <summary>
-        /// é€€å‡ºæ™‚
+        /// ‘Şo
         /// </summary>
         public void Exit()
         {
             m_controller.GetAnimator().SetBool("Is_AttackL", false);
-
+            m_isExtend = false;
         }
         /// <summary>
-        /// æ›´æ–°æ™‚
+        /// XV
         /// </summary>
         public void Update()
         {
@@ -56,7 +57,7 @@ namespace Player
         }
 
         /// <summary>
-        /// ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´ç”¨é–¢æ•°
+        /// ƒXƒe[ƒg•ÏX—pŠÖ”
         /// </summary>
         private void ChangeState()
         {
@@ -70,14 +71,14 @@ namespace Player
         }
 
         /// <summary>
-        /// ç‰©ç†æ¼”ç®—ã¨ã®æ›´æ–°å‡¦ç†
+        /// •¨—‰‰Z‚Æ‚ÌXVˆ—
         /// </summary>
         public void FixedUpdate()
         {
 
         }
         /// <summary>
-        /// è…•ã‚’ä¼¸ã°ã—ãŸã‹ã‚’å–å¾—
+        /// ˜r‚ğL‚Î‚µ‚½‚©‚ğæ“¾
         /// </summary>
         /// <returns></returns>
         public bool IsExtend() => m_isExtend;
