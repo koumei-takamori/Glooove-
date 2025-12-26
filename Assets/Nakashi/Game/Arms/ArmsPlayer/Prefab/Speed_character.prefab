@@ -578,7 +578,7 @@ Animator:
   m_GameObject: {fileID: 1097316108917939466}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 83ca560969346df458fa7158cbed14b0, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2930ddd035e7f0a4c83cccdece4a0ffc, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -607,6 +607,8 @@ MonoBehaviour:
   m_gloveData:
     m_leftGlove: {fileID: 8642429196564862009, guid: 63d786ed11aae6d489bbe326d47abbe3, type: 3}
     m_rightGlove: {fileID: 7029374996118867784, guid: 6dfa2e118aa39be4889e585976ba08e4, type: 3}
+  m_leftglovePosition: {fileID: 7491057490403296450}
+  m_rightglovePosition: {fileID: 2622324162221552855}
 --- !u!1 &1110395087832978669
 GameObject:
   m_ObjectHideFlags: 0
