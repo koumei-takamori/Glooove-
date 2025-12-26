@@ -18,6 +18,9 @@ namespace Player
         // 所属コントローラー
         private ArmPlayerController m_controller;
 
+        // 腕を伸ばしたか
+        private bool m_isExtend = false;
+
         /// <summary>
         /// コンストラクタ
         /// </summary>
@@ -33,7 +36,8 @@ namespace Player
         public void Enter()
         {
             m_controller.GetAnimator().SetBool("Is_AttackL", true);
-            m_controller.LeftGlove.Use(m_controller,GloveActionType.NORMAL_ATTACK);
+            m_controller.LeftGlove.Use(m_controller, GloveActionType.NORMAL_ATTACK);
+            m_isExtend = true;
         }
 
         /// <summary>
@@ -42,6 +46,7 @@ namespace Player
         public void Exit()
         {
             m_controller.GetAnimator().SetBool("Is_AttackL", false);
+            m_isExtend = false;
         }
         /// <summary>
         /// 更新時
@@ -72,6 +77,12 @@ namespace Player
         {
 
         }
+        /// <summary>
+        /// 腕を伸ばしたかを取得
+        /// </summary>
+        /// <returns></returns>
+        public bool IsExtend() => m_isExtend;
+
     }
 }
 

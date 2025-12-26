@@ -16,24 +16,58 @@ public class ArmChanger : MonoBehaviour
     private GameObject m_normalRArm;
     [SerializeField]
     private GameObject m_normalLArm;
-    // 腕の攻撃用のモデル
+    // 腕の攻撃用のモデルの親オブジェクト
     [SerializeField]
-    private GameObject m_attackRArm;
+    private GameObject m_attackRArmParent;
     [SerializeField]
-    private GameObject m_attackLArm;
-    // ステートマシン
-    private ArmPlayerStateMachine m_stateMachine;
+    private GameObject m_attackLArmParent;
+
+    // 腕コントローラー
+    private ArmPlayerController m_armPlayerController;
+
+    // 右腕が伸びているか
+    private bool m_isRArmExtend = false;
+    // 左腕が伸びているか
+    private bool m_isLArmExtend = false;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        // 腕コントローラーを取得
+        m_armPlayerController = GetComponent<ArmPlayerController>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        // 左腕攻撃ステートなら
+        if (m_armPlayerController.LeftGlove.IsActionActive(GloveActionType.NORMAL_ATTACK))
+        {
+            m_attackLArmParent.SetActive(true);
+            m_normalLArm.SetActive(false);
+        }
+        else
+        {
+            m_attackLArmParent.SetActive(false);
+            m_normalLArm.SetActive(true);
+        }
+
+
+        // 右腕攻撃ステートなら
+        if (m_armPlayerController.RigthGlove.IsActionActive(GloveActionType.NORMAL_ATTACK))
+        {
+            m_attackRArmParent.SetActive(true);
+            m_normalRArm.SetActive(false);
+        }
+        else
+        {
+            m_attackRArmParent.SetActive(false);
+            m_normalRArm.SetActive(true);
+        }
+
+        //Debug.Log($"右{m_isRArmExtend}：左{m_isLArmExtend}");
 
     }
 }

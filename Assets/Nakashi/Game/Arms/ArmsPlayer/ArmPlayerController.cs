@@ -119,7 +119,7 @@ namespace Nakashi
                 // ステータスの更新
                 m_status.Update();
 
-                Debug.Log("ジャンプ" + m_status.GetSetJump);
+                //Debug.Log("ジャンプ" + m_status.GetSetJump);
             }
 
             /// <summary>

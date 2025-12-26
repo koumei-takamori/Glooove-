@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: speed_LongArmLeft
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8391037ea856b504982dd6bd161d8984, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4486052535118793725, guid: 8391037ea856b504982dd6bd161d8984, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
