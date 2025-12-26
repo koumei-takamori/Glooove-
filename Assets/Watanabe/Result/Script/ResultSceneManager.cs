@@ -50,12 +50,12 @@ public class ResultSceneManager : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        //もらったキャラクターIDを表示画像管理のスクリプトのIDを渡す
-        m_winnerCharancterImg.CharacterId = m_winnerCharacterId;
+        ////もらったキャラクターIDを表示画像管理のスクリプトのIDを渡す
+        //m_winnerCharancterImg.CharacterId = m_winnerCharacterId;
 
 
-        //キャラクターの表示変更
-        m_winnerCharancterImg.ChangeImage();
+        ////キャラクターの表示変更
+        //m_winnerCharancterImg.ChangeImage();
 
     }
 
