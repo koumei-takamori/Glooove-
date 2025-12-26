@@ -3,8 +3,8 @@
 // HPGaugeSystem.cs
 // 池田桜輔
 // 2025/09/18
-// HPGaugeGroup.prefabにアタッチ
-// HPゲージの名称設定　名前を統括する
+// HPGaugeGroup.prefab にアタッチ
+// HPゲージ全体の管理クラス
 //
 // -----------------------------------------------------------
 
@@ -18,38 +18,39 @@ public class HPGaugeSystem : MonoBehaviour
     // ↓[定数]
     // UI要素の名前
     const string FIGHTER_NAME_TEXT_BOX = "NameTextBox";
-    const string HP_GAUGE_MASK = "HPGauge/CurrentHPMask";
-    const string DIFF_GAUGE_MASK = "HPGauge/DiffHPMask";
+    const string CURRENT_HP_IMAGE = "HPGauge/CurrentHPBar";
+    const string DIFF_HP_IMAGE = "HPGauge/DiffHPBar";
 
     // ↓[変数]
+
     // キャラクターのHP
-    public int HP { private get; set; } = (int)HPGaugeMaskConst.MAX_HP;
+    public int HP { get; private set; } = (int)HPGaugeMaskConst.MAX_HP;
 
     // キャラクターの名前
     public string FighterName { private get; set; }
 
     // UI要素
-    private TextMeshProUGUI fighterNameText;    // 名前テキスト
-    private RectMask2D hpGaugeUIMask;           // HPゲージのマスク                        (緑色のバー)
-    private RectMask2D diffHPMask;              // ダメージを受けたときのHPゲージのマスク  (赤色のバー)
+    private TextMeshProUGUI fighterNameText;
+    private Image currentHPImage;   // 緑ゲージ
+    private Image diffHPImage;      // 赤ゲージ
 
-    // HPゲージ関連
-    private CurrentHPGauge currentHPGauge; // 現在のHPゲージ
-    private DiffHPGauge diffHPGauge;       // ダメージを受けたときのHPゲージ
+    // ゲージ制御
+    private CurrentHPGauge currentHPGauge;
+    private DiffHPGauge diffHPGauge;
 
+    // ---------------------------
     // ↓[関数]
 
     /// <summary>
-    /// 初期化処理
+    /// 初期化
     /// </summary>
     private void Start()
     {
-        // UI要素の取得
-        FindUIElesments();
+        FindUIElements();
     }
 
     /// <summary>
-    /// 更新処理
+    /// 毎フレーム更新
     /// </summary>
     private void Update()
     {
@@ -57,44 +58,45 @@ public class HPGaugeSystem : MonoBehaviour
     }
 
     /// <summary>
-    /// UI要素の取得
+    /// UI要素取得
     /// </summary>
-    private void FindUIElesments()
+    private void FindUIElements()
     {
-        // 名前テキストを取得(子オブジェクト)
-        fighterNameText = transform.Find(FIGHTER_NAME_TEXT_BOX).GetComponent<TextMeshProUGUI>();
+        // 名前テキスト
+        fighterNameText = transform.Find(FIGHTER_NAME_TEXT_BOX)
+                                   .GetComponent<TextMeshProUGUI>();
 
-        // HPゲージのマスクを取得(子オブジェクト)
-        hpGaugeUIMask = transform.Find(HP_GAUGE_MASK).GetComponent<RectMask2D>();
+        // HPゲージImage取得
+        currentHPImage = transform.Find(CURRENT_HP_IMAGE)
+                                  .GetComponent<Image>();
 
-        // ダメージゲージのマスクを取得(子オブジェクト)
-        diffHPMask = transform.Find(DIFF_GAUGE_MASK).GetComponent<RectMask2D>();
+        diffHPImage = transform.Find(DIFF_HP_IMAGE)
+                               .GetComponent<Image>();
 
-        if (fighterNameText == null || hpGaugeUIMask == null || diffHPMask == null)
+        if (fighterNameText == null || currentHPImage == null || diffHPImage == null)
         {
             Debug.LogError("HPGaugeSystem: UI要素の取得に失敗しました。");
             return;
         }
 
-        // HPゲージ関連の初期化
-        currentHPGauge = new CurrentHPGauge(hpGaugeUIMask, HP);
-        diffHPGauge = new DiffHPGauge(diffHPMask);
+        // ゲージ初期化
+        currentHPGauge = new CurrentHPGauge(currentHPImage, HP);
+        diffHPGauge = new DiffHPGauge(diffHPImage);
     }
 
     /// <summary>
-    /// ダメージを受けたときの処理
-    /// HPを減少させ、ゲージを更新する
+    /// ダメージ処理
     /// </summary>
     /// <param name="damage">ダメージ量</param>
     public void Damage(int damage)
     {
-        // HP減少（0未満にならないよう制限）
+        // HP減少（0未満防止）
         HP = Mathf.Max(0, HP - damage);
 
-        // 緑ゲージを即時反映
+        // 緑ゲージ即時反映
         currentHPGauge.UpdateCurrentGauge(HP);
 
-        // 赤ゲージをアニメーションさせて追従
+        // 赤ゲージ追従アニメーション
         diffHPGauge.UpdateDiffGauge(HP);
     }
 }
