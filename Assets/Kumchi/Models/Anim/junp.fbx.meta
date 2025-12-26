@@ -16,7 +16,9 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
+    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tFound
+      duplicate transform 'Balnce_character_newedition:knee_L' for human bone 'LeftFoot'
+      and 'LeftLowerLeg'\n"
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 

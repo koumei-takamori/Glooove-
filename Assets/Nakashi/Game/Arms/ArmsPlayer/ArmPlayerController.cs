@@ -63,10 +63,10 @@ namespace Nakashi
             private bool m_canControll = true;
 
             // グローブの固定位置
-            private Vector3 m_leftglovePosition = new Vector3(-1, 0, 0);
-            private Vector3 m_rightglovePosition = new Vector3(1, 0, 0);
+            [SerializeField] private Transform m_leftglovePosition;
+            [SerializeField] private Transform m_rightglovePosition;
 
-            private void Start() 
+            private void Start()
             {
                 // リジットボディ、トランスフォーム取得
                 m_rb = this.GetComponent<Rigidbody>();
@@ -94,10 +94,10 @@ namespace Nakashi
                 //DebugStringSystem.Instance.AddVariable("LeftEuler", () => m_leftEuler);
 
                 // かかる重力値の変更のため、Gravityの使用をいったんなくす。
-                m_rb.useGravity = false; 
+                m_rb.useGravity = false;
             }
 
-           
+
             /// <summary>
             /// 通常更新
             /// </summary>
@@ -132,9 +132,9 @@ namespace Nakashi
                 // プレイヤーの移動更新を行う
                 //m_playerMove.FixedUpdate(m_rightEuler, m_leftEuler);
                 // UnityのEditor上のみのデバッグ処理
-                #if UNITY_EDITOR
+#if UNITY_EDITOR
                 m_playerMove.DebugUpdate();
-                #endif
+#endif
 
                 // ターゲットの方向を向く
                 LookAtTarget();
@@ -147,7 +147,7 @@ namespace Nakashi
             /// </summary>
             private void ChangeStateOnKey()
             {
-                if(IsGround() && (
+                if (IsGround() && (
                     //Nakashi.Framework.VibrationSystem.Instance.GetNPad().GetButtonDown(nn.hid.NpadButton.L) || 
                     Input.GetKeyDown(KeyCode.Space) &&
                     m_coolTime.CanJump()))
@@ -156,7 +156,7 @@ namespace Nakashi
                     m_coolTime.StartJump();
                     return;
                 }
-                if((/*Nakashi.Framework.VibrationSystem.Instance.GetNPad().GetButtonDown(nn.hid.NpadButton.R) || */
+                if ((/*Nakashi.Framework.VibrationSystem.Instance.GetNPad().GetButtonDown(nn.hid.NpadButton.R) || */
                     Input.GetKeyDown(KeyCode.LeftShift)) &&
                     m_coolTime.CanDash())
                 {
@@ -164,23 +164,23 @@ namespace Nakashi
                     m_coolTime.StartDash();
                     return;
                 }
-                
+
                 // 追加: 攻撃状態に変更
                 if (Input.GetKeyDown(KeyCode.H))
                 {
-                    
+
                     m_stateMachine.ChangeState(m_stateMachine.GetRightAttack());
                     Debug.Log("Hおされた");
                 }
                 if (Input.GetKeyDown(KeyCode.G))
                 {
-                   
+
                     m_stateMachine.ChangeState(m_stateMachine.GetLeftAttack());
                     Debug.Log("Gおされた");
                 }
 
-                
-             
+
+
             }
 
             /// <summary>
@@ -221,7 +221,7 @@ namespace Nakashi
             /// <param name="upGauge"></param>
             public void SpecialGaugeUp(float upGauge)
             {
-                if(m_currentGauge >= m_playerData.GetMaxSpecialGauge()) { return; }
+                if (m_currentGauge >= m_playerData.GetMaxSpecialGauge()) { return; }
                 m_currentGauge += upGauge;
             }
 
@@ -231,7 +231,7 @@ namespace Nakashi
             /// <param name="downGauge"></param>
             public void UseSpecialGauge(float downGauge)
             {
-                if(m_currentGauge - downGauge < 0) { return; }
+                if (m_currentGauge - downGauge < 0) { return; }
                 m_currentGauge -= downGauge;
             }
 
@@ -256,8 +256,8 @@ namespace Nakashi
 
                 // 左グローブ生成
                 GameObject leftglove = Instantiate(m_status.GetGloveData.LeftGlove);
-                leftglove.transform.SetParent(transform, false);
-                leftglove.transform.localPosition = m_leftglovePosition;
+                leftglove.transform.SetParent(m_leftglovePosition, false);
+                leftglove.transform.localPosition = m_leftglovePosition.localPosition;
                 leftglove.transform.localRotation = Quaternion.identity;
 
                 // 親のスケールに応じて補正
@@ -265,12 +265,12 @@ namespace Nakashi
 
                 // Script取得
                 m_leftglove = leftglove.GetComponent<GloveBase>();
-                m_leftglove.GlovePosition = m_leftglovePosition;
+                m_leftglove.GlovePosition = m_leftglovePosition.localPosition;
 
                 // 右グローブ生成
                 GameObject rightglove = Instantiate(m_status.GetGloveData.RightGlove);
-                rightglove.transform.SetParent(transform, false);
-                rightglove.transform.localPosition = m_rightglovePosition;
+                rightglove.transform.SetParent(m_rightglovePosition, false);
+                rightglove.transform.localPosition = m_rightglovePosition.localPosition;
                 rightglove.transform.localRotation = Quaternion.identity;
 
                 // 同じく補正
@@ -278,7 +278,7 @@ namespace Nakashi
 
                 // Script取得
                 m_rightglove = rightglove.GetComponent<GloveBase>();
-                m_rightglove.GlovePosition = m_rightglovePosition;
+                m_rightglove.GlovePosition = m_rightglovePosition.localPosition;
             }
 
 
