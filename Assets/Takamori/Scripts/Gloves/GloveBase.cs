@@ -40,6 +40,16 @@ public abstract class GloveBase : MonoBehaviour
 
     public Vector3 GlovePosition { get { return m_glovePosition; } set { m_glovePosition = value; } }
 
+    // 攻撃中フラグを取得
+    public bool IsActionActive(GloveActionType type)
+    {
+        if (m_isActiveDict.ContainsKey(type))
+        {
+            return m_isActiveDict[type];
+        }
+        return false;
+    }
+
     /*--------------------------------------------------------------------------------
     || 実行前処理
     --------------------------------------------------------------------------------*/

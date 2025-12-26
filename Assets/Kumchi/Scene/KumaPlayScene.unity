@@ -195,6 +195,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4889256529910602662, guid: 46c811cc9eaf624449980eefc27fdd02, type: 3}
   m_PrefabInstance: {fileID: 689161189}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &238671988 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5732929845108768455, guid: 46c811cc9eaf624449980eefc27fdd02, type: 3}
+  m_PrefabInstance: {fileID: 689161189}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &294461472 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2622324162221552855, guid: 46c811cc9eaf624449980eefc27fdd02, type: 3}
@@ -587,6 +592,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2117301087}
     - target: {fileID: 6762165048753891087, guid: 46c811cc9eaf624449980eefc27fdd02, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6762165048753891087, guid: 46c811cc9eaf624449980eefc27fdd02, type: 3}
       propertyPath: m_leftglovePosition
       value: 
       objectReference: {fileID: 1001872006}
@@ -880,11 +889,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_normalRArm: {fileID: 176829020}
   m_normalLArm: {fileID: 1758007249}
-  m_attackRArm: {fileID: 7029374996118867784, guid: 6dfa2e118aa39be4889e585976ba08e4, type: 3}
-  m_attackLArm: {fileID: 8642429196564862009, guid: 63d786ed11aae6d489bbe326d47abbe3, type: 3}
+  m_attackRArmParent: {fileID: 1857304777}
+  m_attackLArmParent: {fileID: 238671988}
 --- !u!1 &1758007249 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2653536299745370332, guid: 46c811cc9eaf624449980eefc27fdd02, type: 3}
+  m_PrefabInstance: {fileID: 689161189}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1857304777 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8264312616357676141, guid: 46c811cc9eaf624449980eefc27fdd02, type: 3}
   m_PrefabInstance: {fileID: 689161189}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1938197890
