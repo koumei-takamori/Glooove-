@@ -3,8 +3,9 @@
 // DiffHPGauge.cs
 // 池田桜輔
 // 2025/09/19
-// ダメージを受けたときのHP差分ゲージ（赤）
-// Image.fillAmount を使用してサイズ非依存で表現する
+// ダメージを受けたときのHPゲージのマスク
+// どれくらいダメージを受けたかを表示するための赤いゲージ
+// マスク範囲を加速度的に変更することでanimation
 //
 // -------------------------------------------------------------
 
@@ -17,20 +18,18 @@ namespace Ikeda
     {
         // ↓[変数]
 
-        // 赤ゲージの Image
-        private Image m_image;
+        // ゲージのマスク
+        RectMask2D m_mask;
 
-        // 目標のHP割合（0.0 ～ 1.0）
-        private float m_targetFill = 1f;
-
-        // 現在のHP割合
-        private float m_currentFill = 1f;
+        // 目標のHP値
+        float m_targetHPvalue = HPGaugeMaskConst.MAX_HP;
 
         // アニメーション中かどうか
-        private bool m_isAnimating = false;
+        bool m_isAnimating = false;
 
         // 現在の速度
-        private float m_speed = 0f;
+        float m_speed = 0f;
+
 
         // ---------------------------
         // ↓[関数]
@@ -38,69 +37,67 @@ namespace Ikeda
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="image">赤ゲージのImage</param>
-        public DiffHPGauge(Image image)
+        /// <param name="mask">対象のマスク</param>
+        public DiffHPGauge(RectMask2D mask)
         {
-            m_image = image;
-
-            // 初期状態は満タン
-            m_image.type = Image.Type.Filled;
-            m_image.fillMethod = Image.FillMethod.Horizontal;
-            m_image.fillOrigin = (int)Image.OriginHorizontal.Left;
-            m_image.fillAmount = 1f;
+            m_mask = mask;
         }
 
         /// <summary>
-        /// HPが減少したときに呼び出す
+        /// 赤ゲージを更新する
+        /// HPが減少した際に呼び出し、目標値を設定する
         /// </summary>
-        /// <param name="hp">現在HP</param>
-        public void UpdateDiffGauge(float hp)
+        /// <param name="newHPvalue">新しいHP量</param>
+        public void UpdateDiffGauge(float newHPvalue)
         {
-            // HPを割合（0～1）に変換
-            float rate = Mathf.Clamp01(hp / HPGaugeMaskConst.MAX_HP);
-
-            // 目標値が同じなら何もしない
-            if (Mathf.Approximately(m_targetFill, rate)) return;
-
-            m_targetFill = rate;
+            if (Mathf.Approximately(m_targetHPvalue, newHPvalue)) return;
+            m_targetHPvalue = newHPvalue;
             m_isAnimating = true;
         }
 
         /// <summary>
-        /// 毎フレーム更新
+        /// フレームごとの更新処理
+        /// アニメーション中のみ更新を実行する
         /// </summary>
         public void Update()
         {
             if (!m_isAnimating) return;
-
             UpdateAnimation();
         }
 
         /// <summary>
-        /// アニメーション処理
+        /// アニメーション更新処理
+        /// 赤ゲージを加速度的に移動させてHP差分を表現する
         /// </summary>
         private void UpdateAnimation()
         {
-            // 加速度的に速度を増加
+            // 目標位置を算出
+            float percent = Mathf.Clamp01(m_targetHPvalue / HPGaugeMaskConst.MAX_HP);
+            float targetRight = Mathf.Lerp(HPGaugeMaskConst.MASK_MIN, HPGaugeMaskConst.MASK_MAX, percent);
+
+            // 現在位置
+            var padding = m_mask.padding;
+            float currentRight = padding.z; // RectMask2D の right は z
+
+            // 加速度で速度を増加（上限あり）
             m_speed += HPGaugeMaskConst.SPEED_ACC * Time.deltaTime;
             m_speed = Mathf.Min(m_speed, HPGaugeMaskConst.MAX_DECREASE_SPEED);
 
-            // fillAmount を目標値へ近づける
-            m_currentFill = Mathf.MoveTowards(
-                m_currentFill,
-                m_targetFill,
-                m_speed * Time.deltaTime
-            );
+            // 移動方向
+            float dir = Mathf.Sign(targetRight - currentRight);
+            currentRight += dir * m_speed * Time.deltaTime;
 
-            // Image に反映
-            m_image.fillAmount = m_currentFill;
-
-            // 目標到達で停止
-            if (Mathf.Approximately(m_currentFill, m_targetFill))
+            // 目標を超えたら停止
+            if ((dir > 0 && currentRight >= targetRight) || (dir < 0 && currentRight <= targetRight))
             {
+                currentRight = targetRight;
                 m_isAnimating = false;
                 m_speed = 0f;
             }
+
+            // 適用
+            padding.z = currentRight; // right を更新
+            m_mask.padding = padding;
         }
     }
 }
