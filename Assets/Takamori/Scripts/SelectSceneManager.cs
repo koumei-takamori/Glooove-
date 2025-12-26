@@ -60,14 +60,14 @@ public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
     /// </summary>
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            m_fade.FadeOutWithCallback(() =>
-            {
-                // ゲームスタート処理
-                GameStart();
-            });
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    m_fade.FadeOutWithCallback(() =>
+        //    {
+        //        // ゲームスタート処理
+        //        GameStart();
+        //    });
+        //}
     }
 
     /*--------------------------------------------------------------------------------

@@ -32,7 +32,6 @@ namespace Player
         /// </summary>
         public void Enter()
         {
-            m_controller.GetAnimator().SetBool("Is_AttackL", true);
             m_controller.LeftGlove.Use(m_controller,GloveActionType.NORMAL_ATTACK);
         }
 
@@ -41,7 +40,7 @@ namespace Player
         /// </summary>
         public void Exit()
         {
-            m_controller.GetAnimator().SetBool("Is_AttackL", false);
+
         }
         /// <summary>
         /// çXêVéû
