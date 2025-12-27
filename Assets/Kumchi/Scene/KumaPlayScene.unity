@@ -706,10 +706,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aff479cab5d599a439cc26769a53d987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1024862772 stripped
+--- !u!4 &1107654164 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 2004500828078124965, guid: 46c811cc9eaf624449980eefc27fdd02, type: 3}
-  m_PrefabInstance: {fileID: 689161189}
+  m_CorrespondingSourceObject: {fileID: 7721352808688291797, guid: 95041629299b304408806d6835a387f4, type: 3}
+  m_PrefabInstance: {fileID: 360423336}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1406271983 stripped
 MonoBehaviour:
@@ -1327,7 +1327,7 @@ PrefabInstance:
     - target: {fileID: 4418195489635981182, guid: 0245a648f4e962e499c0e062edd9605c, type: 3}
       propertyPath: m_owner
       value: 
-      objectReference: {fileID: 1024862772}
+      objectReference: {fileID: 1107654164}
     - target: {fileID: 4418195489635981182, guid: 0245a648f4e962e499c0e062edd9605c, type: 3}
       propertyPath: m_target
       value: 
