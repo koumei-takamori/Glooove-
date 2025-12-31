@@ -1,0 +1,35 @@
+マージ時にやってほしいこと
+
+　ResultSceneMangerのスクリプトにステージIDとキャラクターIDと１Pか２Pどちらが勝ったかをシーン切り替え時にセットしてほしい
+
+キャラクターID
+　バランス　＝０
+  スピード　＝１
+  タンク　　＝２
+
+ステージID
+　ストリートステージ　　　　＝０
+  ライブステージ　　　　　　＝１
+  ジャンクフードステージ　　＝２
+
+
+説明書
+　TimeLine
+   CinemachinTrackでカメラの移動タイミングの調整
+   UIAnimationでUIの全体（HierarchyのCanvas→ResultText）の調整
+　CharacterAnimationSignalでキャラクターのアニメーション再生のタイミングの調整　（今はフェードが終わるぐらいのタイミングで再生している）
+　　　
+
+
+
+
+　背景のステージの調整方法
+　　Stageの子オブジェクトのそれぞれのステージを移動させる
+　キャラクターの位置の調整方法
+　　Camera→PlayerCamera→のVCame_CenterとVCame_RightのVirtualCameraのBodyのFollowOffsetで変更できるただ回転とかがおかしくなるかも
+　
+
+
+バグ
+　タンクだけ勝利アニメーションするとなぜか前に出てくる　マジで謎
+
