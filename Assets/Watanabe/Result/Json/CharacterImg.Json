@@ -1,7 +1,0 @@
-{
-  "characters": [
-    { "id": 0, "path": "Result/UI/Character/balance" },
-    { "id": 1, "path": "Result/UI/Character/power" },
-    { "id": 2, "path": "Result/UI/Character/speed" }
-  ]
-}
