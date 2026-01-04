@@ -10,6 +10,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static SelectPlayer;
 using static StateMachine<SelectPlayer>;
 
 /// <summary>
@@ -17,49 +18,56 @@ using static StateMachine<SelectPlayer>;
 /// </summary>
 public class GloveSelectState : StateBase
 {
-    /*--------------------------------------------------------------------------------
-　　|| ステートに入った時の処理
-　　--------------------------------------------------------------------------------*/
-    /// <summary>
-    /// ステートに入った時の処理
-    /// </summary>
+    // 現在操作しているグローブ
+    private SelectPlayer.GloveSide currentSide = SelectPlayer.GloveSide.Left;
+
     public override void OnEnter()
     {
+        currentSide = 0; // 最初は右
         Debug.Log("グローブ選択開始");
     }
 
-    /*--------------------------------------------------------------------------------
-　　|| 更新処理
-　　--------------------------------------------------------------------------------*/
-    /// <summary>
-    /// 更新処理
-    /// </summary>
     public override void OnUpdate()
     {
-        int dir = Owner.GetVerticalOnce();
-        if (dir != 0)
+        // -------- 左右キー：操作対象切り替え --------
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            Owner.AddGloveIndex(dir);
+            currentSide = GloveSide.Left;
+            Owner.CurrentGloveSide = currentSide;
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            currentSide = GloveSide.Right;
+            Owner.CurrentGloveSide = currentSide;
         }
 
-        // 決定 → Readyへ
+
+        // -------- 上下キー：グローブ変更 --------
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            Owner.AddGloveIndex(currentSide, 1);
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            Owner.AddGloveIndex(currentSide, -1);
+        }
+
+        // -------- 決定 --------
         if (Owner.IsDecide())
         {
-            // ステートへ遷移
             m_stateMashine.ChangeState(
                 (int)SelectPlayer.SelectPlayerState.Ready
             );
         }
+
+        Debug.Log("操作中：" + (currentSide == 0 ? "右" : "左"));
+        Debug.Log("左グローブ：" + Owner.GetGloveIndex(SelectPlayer.GloveSide.Left));
+        Debug.Log("右グローブ：" + Owner.GetGloveIndex(SelectPlayer.GloveSide.Right));
     }
 
-    /*--------------------------------------------------------------------------------
-　　|| ステートに出た時の処理
-　　--------------------------------------------------------------------------------*/
-    /// <summary>
-    /// ステートに出た時の処理
-    /// </summary>
     public override void OnExit()
     {
-        Debug.Log(Owner.GetGloveIndex() + "グローブ選択完了");
+        Debug.Log("左グローブ決定：" + Owner.GetGloveIndex(SelectPlayer.GloveSide.Left));
+        Debug.Log("右グローブ決定：" + Owner.GetGloveIndex(SelectPlayer.GloveSide.Right));
     }
 }

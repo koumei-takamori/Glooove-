@@ -7,6 +7,8 @@
  *  制作日 : 2025/12/21
  *
  *********************************************************/
+using Nakashi.Player;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -24,6 +26,15 @@ public class SelectPlayer : MonoBehaviour
         Ready = 2       // 準備確認状態
     }
 
+    /// <summary>
+    /// グローブの左右
+    /// </summary>
+    public enum GloveSide
+    {
+        Left = 0,
+        Right = 1,
+    }
+
     // ステートマシン
     private StateMachine<SelectPlayer> m_stateMachine;
 
@@ -35,19 +46,24 @@ public class SelectPlayer : MonoBehaviour
     private int m_charaIndex;
     private const int CHARA_MAX = 4;
 
+    // 現在操作中のグローブ
+    private GloveSide m_currentGloveSide = GloveSide.Left;
+
     // 選択中グローブIndex
-    private int m_gloveIndex;
+    private Dictionary<GloveSide, int> m_gloveIndex;
     private const int GLOVE_MAX = 3;
+
 
     // 決定フラグ
     private bool m_isReady;
 
+    // プロパティ
+    public int PlayerID {  get { return m_playerID; } }
 
-    // 入力クールタイム
-    private float m_inputCoolTime = 0.2f;
-    private float m_inputTimer = 0.0f;
-    // 前フレームの入力
-    private float m_prevHorizontal;
+    public int CharaIndex {  get { return m_charaIndex; } }
+    public GloveSide CurrentGloveSide { get { return m_currentGloveSide; } set { m_currentGloveSide = value; } }
+
+    public int GetGloveIndex(GloveSide side) {  return m_gloveIndex[side]; }
 
     /*--------------------------------------------------------------------------------
 　　|| 実行前初期化処理
@@ -58,7 +74,12 @@ public class SelectPlayer : MonoBehaviour
     private void Awake()
     {
         m_charaIndex = 0;
-        m_gloveIndex = 0;
+
+        m_gloveIndex = new Dictionary<GloveSide, int>();
+
+        m_gloveIndex[GloveSide.Left] = 0;
+        m_gloveIndex[GloveSide.Right] = 0;
+
         m_isReady = false;
     }
 
@@ -90,11 +111,6 @@ public class SelectPlayer : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        // 入力のインターバルを作成
-        m_inputTimer -= Time.deltaTime;
-        // 前回入力を保存
-        m_prevHorizontal = Input.GetAxisRaw("Horizontal");
-
         // ステート更新
         m_stateMachine.OnUpdate();
     }
@@ -102,51 +118,6 @@ public class SelectPlayer : MonoBehaviour
     /*--------------------------------------------------------------------------------
 　　|| 入力関連
 　　--------------------------------------------------------------------------------*/
-    /// <summary>
-    /// 横入力取得（キャラ選択用）
-    /// </summary>
-    public int GetHorizontalOnce()
-    {
-        if (m_inputTimer > 0.0f) return 0;
-
-        float h = Input.GetAxisRaw("Horizontal");
-
-        if (h > 0.5f)
-        {
-            m_inputTimer = m_inputCoolTime;
-            return 1;
-        }
-        else if (h < -0.5f)
-        {
-            m_inputTimer = m_inputCoolTime;
-            return -1;
-        }
-
-        return 0;
-    }
-
-    /// <summary>
-    /// 縦入力（1回のみ）
-    /// </summary>
-    public int GetVerticalOnce()
-    {
-        if (m_inputTimer > 0) return 0;
-
-        float v = Input.GetAxisRaw("Vertical");
-        if (v > 0.5f)
-        {
-            m_inputTimer = m_inputCoolTime;
-            return 1;
-        }
-        else if (v < -0.5f)
-        {
-            m_inputTimer = m_inputCoolTime;
-            return -1;
-        }
-        return 0;
-    }
-
-
     /// <summary>
     /// 決定入力
     /// </summary>
@@ -175,33 +146,17 @@ public class SelectPlayer : MonoBehaviour
         m_charaIndex = Mathf.Clamp(m_charaIndex, 0, CHARA_MAX - 1);
     }
 
-    /// <summary>
-    /// 選択中キャラIndex取得
-    /// </summary>
-    public int GetCharaIndex()
-    {
-        return m_charaIndex;
-    }
-
-
     /*--------------------------------------------------------------------------------
 　　|| グローブ選択関連
 　　--------------------------------------------------------------------------------*/
     /// <summary>
     /// グローブIndexを変更
     /// </summary>
-    public void AddGloveIndex(int value)
+    public void AddGloveIndex(GloveSide gloveSide, int value)
     {
-        m_gloveIndex += value;
-    }
-
-    /// <summary>
-    /// 選択中グローブIndex取得
-    /// </summary>
-    public int GetGloveIndex()
-    {
-        return m_gloveIndex;
-    }
+        m_gloveIndex[gloveSide] =
+            (m_gloveIndex[gloveSide] + value + GLOVE_MAX) % GLOVE_MAX;
+    }  
 
     /// <summary>
     /// 準備完了設定
