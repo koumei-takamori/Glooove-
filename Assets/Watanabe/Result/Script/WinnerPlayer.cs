@@ -40,7 +40,6 @@ public class WinnerPlayer : MonoBehaviour
     //UIの文字の変更
     public void ChangeTextUI()
     {
-        Debug.Log(m_textMeshPro);
 
         if (m_textMeshPro == null) { return; }
 
@@ -48,7 +47,7 @@ public class WinnerPlayer : MonoBehaviour
         //１・２以外なら
         if (m_winnerPlayer != 1 && m_winnerPlayer != 2) { return; }
 
-
+        //表示文字の変更
         m_textMeshPro.text = $"{m_winnerPlayer}P";
 
 

@@ -44,7 +44,7 @@ public class ResultSceneManager : MonoBehaviour
     void Awake()
     {
         //デバック
-        m_winnerCharacterId = 1;
+        m_winnerCharacterId = 2;
         m_stageId = 2;
         m_winnerPlayerId = 1;
     }
