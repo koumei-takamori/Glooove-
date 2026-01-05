@@ -32,6 +32,8 @@ public class ResultSceneManager : MonoBehaviour
     private int m_winnerPlayerId;
     //ステージID
     private int m_stageId;
+    //シーン切り替えの有効無効
+    private bool m_isChangeScene;
 
     /*--------------------------------------------------------------------------------
 　　|| 実行前処理
@@ -53,8 +55,10 @@ public class ResultSceneManager : MonoBehaviour
     /// <summary>
     /// 初期化処理
     /// </summary>
-    private void Start()
+    void Start()
     {
+
+
         //表示キャラクターの設定・変更
         m_character.winnerId = m_winnerCharacterId;
         m_character.ChangeCharacter();
@@ -66,6 +70,7 @@ public class ResultSceneManager : MonoBehaviour
         m_winnerPlayer.winnerPlayer = m_winnerPlayerId;
         m_winnerPlayer.ChangeTextUI();
 
+        m_isChangeScene = false;
     }
 
     /*--------------------------------------------------------------------------------
@@ -74,8 +79,20 @@ public class ResultSceneManager : MonoBehaviour
     /// <summary>
     /// 更新処理
     /// </summary>
-    private void Update()
+     void Update()
     {
+        //シーン切り替え
+        ChangeScene();
+    }
+
+    //シーン切り替え
+    private void ChangeScene()
+    {
+        if (!m_isChangeScene)
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             m_fade.FadeOutWithCallback(() =>
@@ -85,6 +102,15 @@ public class ResultSceneManager : MonoBehaviour
             });
 
         }
+    }
+
+    /// <summary>
+    /// リザルトアニメーション終了時に呼び出す関数　シグナルで
+    /// </summary>
+    public void AnimationEnd()
+    {
+        
+        m_isChangeScene = true;
     }
 
     //勝利プレイヤーのゲットセット　１Pか２Pか
