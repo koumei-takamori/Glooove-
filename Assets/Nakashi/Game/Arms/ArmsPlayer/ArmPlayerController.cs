@@ -54,16 +54,31 @@ namespace Nakashi
             [SerializeField]
             private PlayerGloveData m_gloveData;
 
+            // 追加：プレイヤーのグローブ情報取得する
+            public PlayerGloveData GetPlayerGloveData() => m_gloveData;
+
+
             // 追加 : 左グローブ
             private GloveBase m_leftglove;
             // 追加 : 右グローブ
             private GloveBase m_rightglove;
+
+
+            public StretchArm[] GetStretchArms() => new StretchArm[2] 
+            {
+                m_leftglove.GetComponent<StretchArm>(), m_rightglove.GetComponent<StretchArm>() 
+            };
+
 
             // グローブの固定位置
             [SerializeField] private Transform m_leftglovePosition;
             [SerializeField] private Transform m_rightglovePosition;
 
             [SerializeField] Animator m_barrier;
+
+            // 追加 : 回避行動検知
+            DodgeChecker dodgeChecker;
+
 
             private void Start()
             {
@@ -94,6 +109,22 @@ namespace Nakashi
 
                 // かかる重力値の変更のため、Gravityの使用をいったんなくす。
                 m_rb.useGravity = false;
+
+
+
+                // --- 追加: 回避行動検知用のスクリプト取得 ---
+
+                // DodgeChecker の GameObject を取得
+                GameObject dodgeCheckerObj = GameObject.Find("DodgeChecker");
+
+                if (dodgeCheckerObj == null)
+                {
+                    Debug.LogError("DodgeChecker GameObject が見つかりません。 ikeda/Prefab/DodgeChecker をhierarchyの一番下に入れてください。");
+                    return;
+                }
+
+                // DodgeChecker コンポーネントを取得
+                dodgeChecker = dodgeCheckerObj.GetComponent<DodgeChecker>();
             }
 
 
@@ -159,6 +190,9 @@ namespace Nakashi
                     Input.GetKeyDown(KeyCode.LeftShift)) &&
                     m_coolTime.CanDash())
                 {
+                    // 相手のグローブに回避行動を行ったことを通知
+                    dodgeChecker.IsDodgeCheckerAction(this, m_transform.position);
+
                     m_stateMachine.ChangeState(m_stateMachine.GetDash());
                     m_coolTime.StartDash();
                     return;

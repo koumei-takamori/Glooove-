@@ -16,6 +16,27 @@ public class StretchArm : GloveBase
     [SerializeField] private Transform start;  // フォールバック／回転用
     [SerializeField] private Transform target; // シリアライズされたフォールバック。Use() でプレイヤーのターゲットに差し替えられます
 
+
+    // 回避地点
+    public Vector3 enemyDodgePosition = Vector3.zero;
+    public bool hasEnemyDodgePoint = false;
+
+    /// <summary>
+    /// 回避開始地点を設定（位置をコピー）
+    /// </summary>
+    public void SetEnemyDodgePoint(Vector3 position)
+    {
+        if (hasEnemyDodgePoint)
+        {
+            Debug.LogWarning("StretchArm:SetEnemyDodgePoint: すでに回避ポイントが設定されています");
+            return;
+        }
+
+        enemyDodgePosition = position;
+        hasEnemyDodgePoint = true;
+    }
+
+
     [Header("Bezier")]
     [SerializeField] private BezierCurveData curveData;
 
@@ -123,6 +144,7 @@ public class StretchArm : GloveBase
         base.Update();
     }
 
+
     protected override void RegisterActions()
     {
         m_actionsDict[GloveActionType.NORMAL_ATTACK] = new List<Func<bool>>
@@ -138,6 +160,10 @@ public class StretchArm : GloveBase
         if (!base.Use(playerController, type)) return false;
 
         m_playerController = playerController;
+
+        // 相手の回避ポイントをリセット
+        hasEnemyDodgePoint = false;
+        enemyDodgePosition = Vector3.zero;
 
         var ptarget = m_playerController.Target;
         if (ptarget != null && ptarget.transform != null)
@@ -163,9 +189,27 @@ public class StretchArm : GloveBase
         Vector3 handWorld = (transform.parent != null) ? transform.parent.TransformPoint(m_handPositionLocal) : m_handPositionLocal;
         bezierP0 = handWorld;
 
+        //Vector3 targetWorld = bezierP0;
+        //if (target != null) targetWorld = target.position;
+        //else if (start != null) targetWorld = start.position;
+
         Vector3 targetWorld = bezierP0;
-        if (target != null) targetWorld = target.position;
-        else if (start != null) targetWorld = start.position;
+
+
+        // 回避地点（固定）を最優先
+        if (hasEnemyDodgePoint)
+        {
+            targetWorld = enemyDodgePosition;
+        }
+        else if (target != null)
+        {
+            targetWorld = target.position;
+        }
+        else if (start != null)
+        {
+            targetWorld = start.position;
+        }
+
 
         Vector3 dir = (targetWorld - bezierP0);
         float dist = dir.magnitude;
@@ -251,6 +295,11 @@ public class StretchArm : GloveBase
                 bones[i].localPosition = initialBoneStates[i].localPosition;
                 bones[i].localRotation = initialBoneStates[i].localRotation;
             }
+
+                    // 相手の回避ポイントをリセット
+        hasEnemyDodgePoint = false;
+        enemyDodgePosition = Vector3.zero;
+
             return true;
         }
         return false;
@@ -268,6 +317,46 @@ public class StretchArm : GloveBase
 
         // p0 を毎フレーム計算
         bezierP0 = (transform.parent != null) ? transform.parent.TransformPoint(m_handPositionLocal) : m_handPositionLocal;
+
+
+    // =================================================
+    // 追従先座標の決定
+    // 優先度：EnemyDodgePoint → target → start
+    // =================================================
+    Vector3 followPos = Vector3.zero;
+    bool hasFollowPos = false;
+
+    if (hasEnemyDodgePoint)
+    {
+        // 回避開始時の位置（固定）
+        followPos = enemyDodgePosition;
+        hasFollowPos = true;
+    }
+    else if (target != null)
+    {
+        followPos = target.position;
+        hasFollowPos = true;
+    }
+    else if (start != null)
+    {
+        followPos = start.position;
+        hasFollowPos = true;
+    }
+
+    // bezierP2 を毎フレーム更新する
+    if (hasFollowPos)
+    {
+        Vector3 dir = followPos - bezierP0;
+        float dist = dir.magnitude;
+
+        if (dist > Mathf.Epsilon)
+        {
+            // 最大距離制限を維持
+            bezierP2 = (dist > maxDistance)
+                ? bezierP0 + dir.normalized * maxDistance
+                : followPos;
+        }
+    }
 
         // --- player の forward を XZ 平面に投影して符号付きヨー角を得る ---
         Vector3 playerForward = Vector3.forward;
