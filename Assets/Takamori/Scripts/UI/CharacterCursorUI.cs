@@ -35,7 +35,7 @@ public class CharacterCursorUI : MonoBehaviour
     private void Update()
     {
         // キャラのindexを取得
-        int index = m_player.GetCharaIndex();
+        int index = m_player.CharaIndex;
 
         // カーソルを対象アイコンの位置へ
         m_cursor.position = m_charaIcons[index].position;

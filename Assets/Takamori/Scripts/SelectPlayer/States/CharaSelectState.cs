@@ -36,21 +36,27 @@ public class CharaSelectState : StateBase
     /// </summary>
     public override void OnUpdate()
     {
-        // 横入力でキャラ変更
-        int dir = Owner.GetHorizontalOnce();
-        if (dir != 0)
+        // ↑キー：次のキャラ
+        if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            Owner.AddCharaIndex(dir);
+            Owner.AddCharaIndex(1);
+        }
+
+        // ↓キー：前のキャラ
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            Owner.AddCharaIndex(-1);
         }
 
         // 決定 → グローブ選択へ
-        if (Owner.IsDecide())
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            // グローブ選択ステートへ遷移
             m_stateMashine.ChangeState(
                 (int)SelectPlayer.SelectPlayerState.GloveSelect
             );
         }
+
+        Debug.Log("選択中キャラ：" + Owner.CharaIndex);
     }
 
     /*--------------------------------------------------------------------------------
@@ -61,6 +67,6 @@ public class CharaSelectState : StateBase
     /// </summary>
     public override void OnExit()
     {
-        Debug.Log(Owner.GetCharaIndex() + "キャラ選択完了");
+        Debug.Log(Owner.CharaIndex + "キャラ選択完了");
     }
 }
