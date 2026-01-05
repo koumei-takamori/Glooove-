@@ -58,9 +58,15 @@ namespace Nakashi
             public PlayerGloveData GetPlayerGloveData() => m_gloveData;
 
 
-            // 追加 : 左グローブ
+            //// 追加 : 左グローブ
+            //private GloveBase m_leftglove;
+            //// 追加 : 右グローブ
+            //private GloveBase m_rightglove;
+
+            [SerializeField]
             private GloveBase m_leftglove;
             // 追加 : 右グローブ
+            [SerializeField]
             private GloveBase m_rightglove;
 
 
