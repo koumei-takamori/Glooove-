@@ -1,3 +1,10 @@
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// <製作者>			NakashimaYuto
+// <製作開始日>		2025/11/18
+// <file>			LightMove.h
+// <概要>		　　ライトの動き
+// <著作権>         Copyright (c) 2025 NakashimaYuto. All rights reserved.
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
