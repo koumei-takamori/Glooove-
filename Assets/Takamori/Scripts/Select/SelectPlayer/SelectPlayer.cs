@@ -26,15 +26,6 @@ public class SelectPlayer : MonoBehaviour
         Ready = 2       // 準備確認状態
     }
 
-    /// <summary>
-    /// グローブの左右
-    /// </summary>
-    public enum GloveSide
-    {
-        Left = 0,
-        Right = 1,
-    }
-
     // ステートマシン
     private StateMachine<SelectPlayer> m_stateMachine;
 

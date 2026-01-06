@@ -20,19 +20,20 @@ public class PlayerJoinManager : MonoBehaviour
     [SerializeField]
     private InputActionAsset m_joinInputActionasset = default;
 
-    // プレイヤーがゲームにJoinするためのInputAction
-    private InputAction m_playerJoinInputAction = default;
-
     // PlayerInputがアタッチされているプレイヤーオブジェクト
-    [SerializeField] 
+    [SerializeField]
     private PlayerInput m_playerPrefab = default;
 
     // 最大参加人数
-    [SerializeField] 
+    [SerializeField]
     private int m_maxPlayerCount = default;
+
+    // プレイヤーがゲームにJoinするためのInputAction
+    private InputAction m_playerJoinInputAction = default;
 
     // Join済みのデバイス情報
     private InputDevice[] m_joinedDevices = default;
+
     // 現在のプレイヤー数
     private int m_currentPlayerCount = 0;
 

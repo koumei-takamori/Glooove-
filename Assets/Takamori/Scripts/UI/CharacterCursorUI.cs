@@ -27,6 +27,9 @@ public class CharacterCursorUI : MonoBehaviour
     [SerializeField] 
     private RectTransform[] m_charaIcons;
 
+    // 選択中のキャラモデルの制御
+    SelectCharaController m_charaController;　
+
     // 操作可能フラグ
     private bool m_canControll = false;
 
@@ -42,6 +45,9 @@ public class CharacterCursorUI : MonoBehaviour
     /// </summary>
     private void Update()
     {
+        // 操作不能なら処理しない
+        if(!m_canControll) { return; }
+
         // キャラのindexを取得
         int index = m_player.CharaIndex;
 

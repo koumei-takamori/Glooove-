@@ -25,18 +25,12 @@ public class GloveSlotUIManager : MonoBehaviour
     [SerializeField] private GloveSlotUI m_leftSlot;
     [SerializeField] private GloveSlotUI m_rightSlot;
 
-    // プロパティ
-    public SelectPlayer Player { get { return m_player; } set { m_player = value; } }
+    // 操作可能フラグ
+    private bool m_canControll = false;
 
-    /*--------------------------------------------------------------------------------
-　　|| 初期化処理
-　　--------------------------------------------------------------------------------*/
-    /// <summary>
-    /// 初期化処理
-    /// </summary>
-    private void Start()
-    {
-    }
+    // プロパティ
+    public SelectPlayer Player { get { return m_player; } }
+    public bool CanControll { get { return m_canControll; } set { m_canControll = value; } }
 
     /*--------------------------------------------------------------------------------
 　　|| 更新処理
@@ -46,8 +40,11 @@ public class GloveSlotUIManager : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        m_leftSlot.SetIndex(m_player.GetGloveIndex(SelectPlayer.GloveSide.Left));
-        m_rightSlot.SetIndex(m_player.GetGloveIndex(SelectPlayer.GloveSide.Right));
+        // 操作不能なら処理しない
+        if (!m_canControll) { return; }
+
+        m_leftSlot.SetIndex(m_player.GetGloveIndex(GloveSide.Left));
+        m_rightSlot.SetIndex(m_player.GetGloveIndex(GloveSide.Right));
 
         // UI更新処理
         UpdateSlot();
@@ -61,9 +58,24 @@ public class GloveSlotUIManager : MonoBehaviour
     /// </summary>
     private void UpdateSlot()
     {
+        // 操作不能なら処理しない
+        if (!m_canControll) { return; }
+
         GloveSide activeSide = m_player.CurrentGloveSide;
 
         m_leftSlot.SetActive(activeSide == GloveSide.Left);
         m_rightSlot.SetActive(activeSide == GloveSide.Right);
+    }
+
+    /*--------------------------------------------------------------------------------
+　　|| UIとPlayerを結び付ける
+　　--------------------------------------------------------------------------------*/
+    /// <summary>
+    /// UIとPlayerを結び付ける
+    /// </summary>
+    public void Bind(SelectPlayer player)
+    {
+        m_player = player;
+        m_canControll = true;
     }
 }
