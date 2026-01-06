@@ -7,6 +7,7 @@
  *  §ì“ú : 2025/11/27
  *
  *********************************************************/
+using Nakashi.Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +27,12 @@ public class PlayerGenerator : MonoBehaviour
     // ¶¬î•ñ
     private PlayerGenerationInfo[] m_playerGenertionInfos = default;
 
+    private void Start()
+    {
+        // —á‚¦‚Î‚±‚±‚Å¶¬
+        CreateCharacter();
+    }
+
     /// <summary>
     /// ¶¬î•ñ‚Ìæ“¾
     /// Awake‚ÌŒãAStart‚Ì‘O‚Åİ’è
@@ -34,8 +41,6 @@ public class PlayerGenerator : MonoBehaviour
     public void SetGenerationInfo(PlayerGenerationInfo[] playerGenerationInfo)
     {
         m_playerGenertionInfos = playerGenerationInfo;
-        // —á‚¦‚Î‚±‚±‚Å¶¬
-        CreateCharacter();
     }
 
     /// <summary>
@@ -45,6 +50,8 @@ public class PlayerGenerator : MonoBehaviour
     {
         for (int i = 0; i < m_playerGenertionInfos.Length; i++)
         {
+            if (m_playerGenertionInfos[i] == null) break;
+
             GameObject character = default;
 
             switch (m_playerGenertionInfos[i].SelectedCharacter)
@@ -68,8 +75,10 @@ public class PlayerGenerator : MonoBehaviour
             pairWithDevice: m_playerGenertionInfos[i].PairWithDevice
             );
 
-            // “o˜^
-            PlayerRegistry.Instance.RegisterPlayer(player.gameObject);
+            var arms = player.GetComponent<ArmPlayerController>().GetStretchArms();
+
+            arms[(int)GloveSide.Left].ArmGloveType = m_playerGenertionInfos[i].GloveSet.Left;
+            arms[(int)GloveSide.Right].ArmGloveType = m_playerGenertionInfos[i].GloveSet.Right;
         }
     }
 }

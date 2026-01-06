@@ -85,15 +85,12 @@ namespace Nakashi
             // 追加 : 回避行動検知
             DodgeChecker dodgeChecker;
 
+
             private void Awake()
             {
                 // プレイヤー登録
                 PlayerRegistry.Instance.RegisterPlayer(this.gameObject);
-            }
 
-
-            private void Start()
-            {
                 // リジットボディ、トランスフォーム取得
                 m_rb = this.GetComponent<Rigidbody>();
                 m_transform = this.GetComponent<Transform>();
@@ -142,6 +139,12 @@ namespace Nakashi
                 PlayerRegistry.Instance.RegisterPlayer(this.gameObject);
 
                 IsInitialized = true;
+            }
+
+
+            private void Start()
+            {
+
             }
 
 
