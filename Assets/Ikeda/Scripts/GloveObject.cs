@@ -65,7 +65,7 @@ public class GloveObject : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") || collision.gameObject != owner)
         {
             // 相手のステートをダメージに変更
-
+            int i = 0;
 
             // 効果音を再生
         }

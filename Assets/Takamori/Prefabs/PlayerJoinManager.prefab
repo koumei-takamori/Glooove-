@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8086541881413640577
+--- !u!1 &2785770094526591552
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 39281962831497501}
-  - component: {fileID: 716462823927721266}
-  - component: {fileID: 3377334404177619288}
+  - component: {fileID: 2071894748262350992}
+  - component: {fileID: 4337531428501213166}
+  - component: {fileID: 5150094431879479206}
   m_Layer: 0
-  m_Name: PlayerEntryManager
+  m_Name: PlayerJoinManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &39281962831497501
+--- !u!4 &2071894748262350992
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8086541881413640577}
+  m_GameObject: {fileID: 2785770094526591552}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 480, y: 810, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &716462823927721266
+--- !u!114 &4337531428501213166
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8086541881413640577}
+  m_GameObject: {fileID: 2785770094526591552}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 621567455fd1c4ceb811cc8a00b6a1a5, type: 3}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_NotificationBehavior: 0
   m_MaxPlayerCount: -1
   m_AllowJoining: 1
-  m_JoinBehavior: 0
+  m_JoinBehavior: 2
   m_PlayerJoinedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -61,7 +61,7 @@ MonoBehaviour:
       m_Name: 
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 87fe9967-5a9a-4c3e-a472-a883daa14038
+      m_Id: 69206f11-99bc-48b0-8f42-c753c8045d44
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -77,15 +77,18 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!114 &3377334404177619288
+--- !u!114 &5150094431879479206
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8086541881413640577}
+  m_GameObject: {fileID: 2785770094526591552}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57401537cbc4c4b498b05ba559e8f3d2, type: 3}
+  m_Script: {fileID: 11500000, guid: 04183b5a6e2472c448dd3be421c14ffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_joinInputActionasset: {fileID: -944628639613478452, guid: ce428db0c156de84899cd69e7716c12a, type: 3}
+  m_playerPrefab: {fileID: 0}
+  m_maxPlayerCount: 2

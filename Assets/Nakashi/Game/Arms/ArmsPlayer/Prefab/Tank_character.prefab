@@ -4237,6 +4237,7 @@ GameObject:
   - component: {fileID: 1760086957155910415}
   - component: {fileID: 3083048255118984790}
   - component: {fileID: 6212059158294460863}
+  - component: {fileID: 3410726280876522272}
   m_Layer: 0
   m_Name: Tank_character
   m_TagString: Untagged
@@ -4333,6 +4334,8 @@ MonoBehaviour:
   m_gloveData:
     m_leftGlove: {fileID: 1227623267937651256, guid: f1cee2616f5f30643a93076d44aea504, type: 3}
     m_rightGlove: {fileID: 691803366053499799, guid: 4ea2a6e6c1a395447bba053ad79d5382, type: 3}
+  m_leftglove: {fileID: 0}
+  m_rightglove: {fileID: 0}
   m_leftglovePosition: {fileID: 650504807617184078}
   m_rightglovePosition: {fileID: 8483955250083329194}
   m_barrier: {fileID: 6123524049283556778}
@@ -4373,6 +4376,36 @@ MonoBehaviour:
   m_normalLArm: {fileID: 1909199903109251334}
   m_attackRArmParent: {fileID: 1140470807052083629}
   m_attackLArmParent: {fileID: 6903567207838213433}
+--- !u!114 &3410726280876522272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6003184569924588045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: 0}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: 
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &6103459817292300827
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,5 @@
+using Nakashi.Player;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TimeUpState : IUIState
@@ -52,6 +54,17 @@ public class TimeUpState : IUIState
 
         // アニメーションを再生
         animator.Play("TimeUp");
+
+        // プレイヤーを操作不能にする
+        List<GameObject> players = PlayerRegistry.Instance.GetAllPlayers();
+        foreach (GameObject player in players)
+        {
+            ArmPlayerStatus status = player.GetComponent<ArmPlayerController>().GetPlayerStatus();
+            status.CanStart = false;
+            status.GetSetControll = true;
+
+            Debug.Log("KOState: プレイヤーの操作を無効化 " + player.name);
+        }
 
     }
 

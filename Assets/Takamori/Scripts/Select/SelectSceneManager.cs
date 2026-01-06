@@ -7,9 +7,9 @@
  *  制作日 : 2025/10/16
  *
  *********************************************************/
+using System.Collections.Generic;
 using UnityEngine;
-
-
+using UnityEngine.InputSystem;
 
 
 /// <summary>
@@ -17,19 +17,9 @@ using UnityEngine;
 /// </summary>
 public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager> 
 {
-    // グローブの配列
-    [SerializeField]
-    private GameObject[] m_gloves;
-
-    // キャラクターの配列
-    [SerializeField]
-    private GameObject[] m_characters;
-
     // フェード管理
     [SerializeField]
     private UIFade m_fade;
-
-    // 二人分の選択データ
 
     /*--------------------------------------------------------------------------------
 　　|| 実行前初期化処理
@@ -60,14 +50,14 @@ public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
     /// </summary>
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    m_fade.FadeOutWithCallback(() =>
-        //    {
-        //        // ゲームスタート処理
-        //        GameStart();
-        //    });
-        //}
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            m_fade.FadeOutWithCallback(() =>
+            {
+                // ゲームスタート処理
+                GameStart();
+            });
+        }
     }
 
     /*--------------------------------------------------------------------------------
@@ -79,7 +69,7 @@ public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
     private async void GameStart()
     {
         // awaitしてシーンロード処理とPlayerManagerを取得
-        var target = await SceneLoader.Load<PlaySceneManager>("PlayScene");
+        var target = await SceneLoader.Load<PlayerGenerator>("TStreetPlayScene");
 
         // ターゲットを取得
         if (target == null)
@@ -87,6 +77,8 @@ public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
             Debug.LogError("PlayerManager がシーン内に見つかりませんでした。");
             return;
         }
-    }
 
+        // 生成情報を格納
+        target.SetGenerationInfo(SelectPlayerManager.Instance.PlayerGenerationInfos);
+    }
 }

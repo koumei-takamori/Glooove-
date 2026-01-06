@@ -1,3 +1,5 @@
+using Nakashi.Player;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class KOState : IUIState
@@ -50,9 +52,19 @@ public class KOState : IUIState
         // KOUIをアクティブ(表示)にする
         KOUI.SetActive(true);
 
-        // アニメーションを再生
-        //animator.Play("KO");
+        //アニメーションを再生
+        animator.Play("KO");
 
+        // プレイヤーを操作不能にする
+        List<GameObject> players = PlayerRegistry.Instance.GetAllPlayers();
+        foreach (GameObject player in players)
+        {
+            ArmPlayerStatus status = player.GetComponent<ArmPlayerController>().GetPlayerStatus();
+            status.CanStart = false;
+            status.GetSetControll = true;
+
+            Debug.Log("KOState: プレイヤーの操作を無効化 " + player.name);
+        }
     }
 
 

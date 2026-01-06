@@ -1,15 +1,16 @@
 {
-    "name": "EntryActions",
+    "version": 1,
+    "name": "JoinInput",
     "maps": [
         {
-            "name": "EntryActions",
-            "id": "0327ea47-2dbd-4baf-8653-6a84fe09fd61",
+            "name": "Join",
+            "id": "f0a81ce6-3b90-46c2-9434-b05c00354342",
             "actions": [
                 {
-                    "name": "Entry",
+                    "name": "JoinAction",
                     "type": "Button",
-                    "id": "6205b91f-eaab-4197-9b76-a658c2ac3488",
-                    "expectedControlType": "Button",
+                    "id": "3519773b-3ea5-4df0-9f96-b4d21c63935f",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -18,12 +19,12 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "42025724-07a9-4023-ba06-9a311d962d95",
-                    "path": "<Keyboard>/space",
+                    "id": "4b426131-4820-4ca6-8342-4803c0a4cf6b",
+                    "path": "*/{Submit}",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Entry",
+                    "action": "JoinAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
