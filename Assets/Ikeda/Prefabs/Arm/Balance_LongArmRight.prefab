@@ -109,24 +109,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b777e50826cf0d64db94f7bdb055257c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_gloveData: {fileID: 11400000, guid: e54bedaf43f2d5d42aef887fdab0f16c, type: 2}
+  gloveListData: {fileID: 11400000, guid: 71e3a24a31e7f474c94fff98db432377, type: 2}
   rootBone: {fileID: 7233618533994818915}
   start: {fileID: 0}
   target: {fileID: 0}
-  curveData: {fileID: 11400000, guid: 01b82db8eafd3584eae74d27ce127d03, type: 2}
-  extendSpeed: 6
-  retractSpeed: 3
-  coilFrequency: 0
-  coilAmplitude: 0
-  hitWaitTime: 0.5
-  swayAmplitude: 0.3
-  swaySpeed: 2
-  maxDistance: 6
-  arriveEps: 0.01
-  usePlayerForward: 1
-  forwardForceDistance: 6
-  useWorldForwardAsReference: 1
-  twistAmount: 0
+  actionParams:
+    m_extendSpeed: 6
+    m_retractSpeed: 3
+    m_coilFrequency: 0
+    m_coilAmplitude: 0
+    m_hitWaitTime: 0.5
+    m_swayAmplitude: 0.3
+    m_swaySpeed: 2
+    m_maxDistance: 6
+    m_usePlayerForward: 1
+    m_forwardForceDistance: 6
+    m_useWorldForwardAsReference: 1
+  gloveName: NormalGlove_R
 --- !u!4 &7233618533994818915 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8255929167227481760, guid: a81da34050aac9942a4251c22ebdfda2, type: 3}
