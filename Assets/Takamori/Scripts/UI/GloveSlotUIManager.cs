@@ -4,7 +4,7 @@
  *  左右のグローブ選択用スロットUIを管理する
  *
  *  制作者 : 髙森 煌明
- *  制作日 : 2025/12/21
+ *  制作日 : 2025/01/03
  *
  *********************************************************/
 using System.Collections;
@@ -17,13 +17,16 @@ using static SelectPlayer;
 /// </summary>
 public class GloveSlotUIManager : MonoBehaviour
 {
-    // セレクトのプレイヤー
+    // プレイヤー
     [SerializeField]
     private SelectPlayer m_player;
 
     // 左右のグローブ選択のUI
     [SerializeField] private GloveSlotUI m_leftSlot;
     [SerializeField] private GloveSlotUI m_rightSlot;
+
+    // プロパティ
+    public SelectPlayer Player { get { return m_player; } set { m_player = value; } }
 
     /*--------------------------------------------------------------------------------
 　　|| 初期化処理
@@ -47,7 +50,7 @@ public class GloveSlotUIManager : MonoBehaviour
         m_rightSlot.SetIndex(m_player.GetGloveIndex(SelectPlayer.GloveSide.Right));
 
         // UI更新処理
-        UpdateActiveSlot();
+        UpdateSlot();
     }
 
     /*--------------------------------------------------------------------------------
@@ -56,7 +59,7 @@ public class GloveSlotUIManager : MonoBehaviour
     /// <summary>
     /// UI更新処理
     /// </summary>
-    private void UpdateActiveSlot()
+    private void UpdateSlot()
     {
         GloveSide activeSide = m_player.CurrentGloveSide;
 

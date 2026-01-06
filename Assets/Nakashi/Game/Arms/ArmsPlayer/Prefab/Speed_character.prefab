@@ -491,6 +491,7 @@ GameObject:
   - component: {fileID: 8379776442981341848}
   - component: {fileID: 6762165048753891087}
   - component: {fileID: 4412505057514038337}
+  - component: {fileID: -5419921097441122207}
   m_Layer: 0
   m_Name: Speed_character
   m_TagString: Untagged
@@ -609,6 +610,8 @@ MonoBehaviour:
   m_gloveData:
     m_leftGlove: {fileID: 8642429196564862009, guid: 63d786ed11aae6d489bbe326d47abbe3, type: 3}
     m_rightGlove: {fileID: 7029374996118867784, guid: 6dfa2e118aa39be4889e585976ba08e4, type: 3}
+  m_leftglove: {fileID: 0}
+  m_rightglove: {fileID: 0}
   m_leftglovePosition: {fileID: 7491057490403296450}
   m_rightglovePosition: {fileID: 2622324162221552855}
   m_barrier: {fileID: 4196792296900571066}
@@ -628,6 +631,36 @@ MonoBehaviour:
   m_normalLArm: {fileID: 2653536299745370332}
   m_attackRArmParent: {fileID: 8264312616357676141}
   m_attackLArmParent: {fileID: 5732929845108768455}
+--- !u!114 &-5419921097441122207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097316108917939466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: 0}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: 
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1110395087832978669
 GameObject:
   m_ObjectHideFlags: 0

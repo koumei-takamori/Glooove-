@@ -7,6 +7,7 @@
  *  制作日 : 2025/12/21
  *
  *********************************************************/
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -22,9 +23,16 @@ public class CharacterCursorUI : MonoBehaviour
     [SerializeField] 
     private RectTransform m_cursor;
 
-    [Header("キャラアイコン")]
+    // キャラアイコンの位置
     [SerializeField] 
     private RectTransform[] m_charaIcons;
+
+    // 操作可能フラグ
+    private bool m_canControll = false;
+
+    // プロパティ
+    public　SelectPlayer　Player { get { return m_player; } }
+    public　bool　CanControll { get { return m_canControll; } set { m_canControll = value; } }　
 
     /*--------------------------------------------------------------------------------
 　　|| 更新処理
@@ -39,5 +47,17 @@ public class CharacterCursorUI : MonoBehaviour
 
         // カーソルを対象アイコンの位置へ
         m_cursor.position = m_charaIcons[index].position;
+    }
+
+    /*--------------------------------------------------------------------------------
+　　|| UIとPlayerを結び付ける
+　　--------------------------------------------------------------------------------*/
+    /// <summary>
+    /// UIとPlayerを結び付ける
+    /// </summary>
+    public void Bind(SelectPlayer player)
+    {
+        m_player = player;
+        m_canControll = true;
     }
 }

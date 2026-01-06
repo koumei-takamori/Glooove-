@@ -58,7 +58,7 @@ public class SelectPlayer : MonoBehaviour
     private bool m_isReady;
 
     // プロパティ
-    public int PlayerID {  get { return m_playerID; } }
+    public int PlayerID {  get { return m_playerID; } set { m_playerID = value; } }
 
     public int CharaIndex {  get { return m_charaIndex; } }
     public GloveSide CurrentGloveSide { get { return m_currentGloveSide; } set { m_currentGloveSide = value; } }
