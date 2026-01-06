@@ -7,8 +7,6 @@
 // -------------------------------------------
 
 using Nakashi.Player;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -29,37 +27,24 @@ public class DodgeChecker : MonoBehaviour
     {
         // プレイヤーの情報を取得
         for (int i = 0; i < 2; i++)
-            {
+        {
             GameObject playerObj = GameObject.FindGameObjectsWithTag("Player")[i];
-            if(playerObj == null)
+            if (playerObj == null)
             {
                 Debug.LogError("DodgeChecker : Player[" + i + "]を取得できませんでした。　Playerに[Player]Tagをつけ忘れてる可能性があります。");
                 continue;
             }
             dodgePlayerDatas[i].playerController = playerObj.GetComponent<ArmPlayerController>();
-            if(dodgePlayerDatas[i].playerController == null)
+            if (dodgePlayerDatas[i].playerController == null)
             {
                 Debug.LogError("DodgeChecker : Player[" + i + "]のArmPlayerControllerを取得できませんでした");
             }
         }
 
 
-
         // プレイヤーからグローブの情報を抽出
-        
-
         for (int i = 0; i < 2; i++)
         {
-            // prefabを取得しちゃうパターン
-            // gloveData = dodgePlayerDatas[i].playerController.GetPlayerGloveData();
-            //if (gloveData == null)
-            //{
-            //    Debug.LogError("DodgeChecker : Player[" + i + "]を取得できませんでした" );
-            //    continue;
-            //}
-            //dodgePlayerDatas[i].Larm = gloveData.LeftGlove .GetComponent<StretchArm>();
-            //dodgePlayerDatas[i].Rarm = gloveData.RightGlove.GetComponent<StretchArm>();
-
             // ArmPlayerControllerから直接取得
             dodgePlayerDatas[i].arms = dodgePlayerDatas[i].playerController.GetStretchArms();
 
@@ -96,8 +81,6 @@ public class DodgeChecker : MonoBehaviour
                 arm.SetEnemyDodgePoint(dodgePoint);
             }
         }
-
-        Debug.Log("回避行動を通知 " + dodgePoint);
     }
 
 }
