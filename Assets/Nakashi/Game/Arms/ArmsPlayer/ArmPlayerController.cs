@@ -5,8 +5,6 @@
 // <概要>		　　プレイヤーコントローラー
 // <著作権>         Copyright (c) 2025 NakashimaYuto. All rights reserved.
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-using System;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace Nakashi
@@ -70,9 +68,9 @@ namespace Nakashi
             private GloveBase m_rightglove;
 
 
-            public StretchArm[] GetStretchArms() => new StretchArm[2] 
+            public StretchArm[] GetStretchArms() => new StretchArm[2]
             {
-                m_leftglove.GetComponent<StretchArm>(), m_rightglove.GetComponent<StretchArm>() 
+                m_leftglove.GetComponent<StretchArm>(), m_rightglove.GetComponent<StretchArm>()
             };
 
 
@@ -131,6 +129,9 @@ namespace Nakashi
 
                 // DodgeChecker コンポーネントを取得
                 dodgeChecker = dodgeCheckerObj.GetComponent<DodgeChecker>();
+
+                // 全てが問題なく成功した場合はPlayerRegistryに登録
+                PlayerRegistry.Instance.RegisterPlayer(this.gameObject);
             }
 
 
@@ -219,7 +220,7 @@ namespace Nakashi
                 }
 
                 // パリィ状態        ↓↓この、Pかえるだけだと無理です。ごめ。ArmPlayer_ParryのほうのRelaseButtonも変えてね。
-                if(Input.GetKeyDown(KeyCode.P))
+                if (Input.GetKeyDown(KeyCode.P))
                 {
                     m_stateMachine.ChangeState(m_stateMachine.GetParry());
                 }
