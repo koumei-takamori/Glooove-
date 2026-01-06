@@ -18,6 +18,8 @@ public class TitleSceneManager : MonoBehaviour
     [SerializeField]
     private UIFade m_fade;
 
+    private bool m_fadeInFlag;
+
     /*--------------------------------------------------------------------------------
 　　|| 実行前処理
 　　--------------------------------------------------------------------------------*/
@@ -36,6 +38,7 @@ public class TitleSceneManager : MonoBehaviour
     /// </summary>
     private void Start()
     {
+        m_fadeInFlag = false;
     }
 
     /*--------------------------------------------------------------------------------
@@ -46,8 +49,19 @@ public class TitleSceneManager : MonoBehaviour
     /// </summary>
     private void Update()
     {
+        if(!m_fadeInFlag) {
+            m_fade.FadeInWithCallback(() =>
+            {
+                SoundManager.Instance.PlaySE("First");
+                SoundManager.Instance.PlayBGM("TitleBGM");
+                m_fadeInFlag=true;
+            });
+        }
+
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            SoundManager.Instance.PlaySE("PushButton");
             m_fade.FadeOutWithCallback(() =>
             {
                 // セレクトシーンに移行
