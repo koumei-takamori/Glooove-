@@ -19,7 +19,7 @@ using static StateMachine<SelectPlayer>;
 public class GloveSelectState : StateBase
 {
     // 現在操作しているグローブ
-    private SelectPlayer.GloveSide currentSide = SelectPlayer.GloveSide.Left;
+    private GloveSide currentSide = GloveSide.Left;
 
     public override void OnEnter()
     {
@@ -61,13 +61,13 @@ public class GloveSelectState : StateBase
         }
 
         Debug.Log("操作中：" + (currentSide == 0 ? "右" : "左"));
-        Debug.Log("左グローブ：" + Owner.GetGloveIndex(SelectPlayer.GloveSide.Left));
-        Debug.Log("右グローブ：" + Owner.GetGloveIndex(SelectPlayer.GloveSide.Right));
+        Debug.Log("左グローブ：" + Owner.GetGloveIndex(GloveSide.Left));
+        Debug.Log("右グローブ：" + Owner.GetGloveIndex(GloveSide.Right));
     }
 
     public override void OnExit()
     {
-        Debug.Log("左グローブ決定：" + Owner.GetGloveIndex(SelectPlayer.GloveSide.Left));
-        Debug.Log("右グローブ決定：" + Owner.GetGloveIndex(SelectPlayer.GloveSide.Right));
+        Debug.Log("左グローブ決定：" + Owner.GetGloveIndex(GloveSide.Left));
+        Debug.Log("右グローブ決定：" + Owner.GetGloveIndex(GloveSide.Right));
     }
 }
