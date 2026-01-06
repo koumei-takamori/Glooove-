@@ -62,6 +62,7 @@ public class StartCallState : IUIState
         foreach (GameObject player in players)
         {
             ArmPlayerStatus status = player.GetComponent<ArmPlayerController>().GetPlayerStatus();
+            status.CanStart = false;
             status.GetSetControll = true;
 
             Debug.Log("StartCallState: プレイヤーの操作を無効化 " + player.name);
@@ -86,6 +87,7 @@ public class StartCallState : IUIState
         foreach (GameObject player in players)
         {
             ArmPlayerStatus status = player.GetComponent<ArmPlayerController>().GetPlayerStatus();
+            status.CanStart = true;
             status.GetSetControll = false;
 
             Debug.Log("StartCallState: プレイヤーの操作を有効化 " + player.name);
