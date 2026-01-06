@@ -7,7 +7,7 @@
             "id": "f0a81ce6-3b90-46c2-9434-b05c00354342",
             "actions": [
                 {
-                    "name": "JoinAction",
+                    "name": "Join",
                     "type": "Button",
                     "id": "3519773b-3ea5-4df0-9f96-b4d21c63935f",
                     "expectedControlType": "",
@@ -20,11 +20,11 @@
                 {
                     "name": "",
                     "id": "4b426131-4820-4ca6-8342-4803c0a4cf6b",
-                    "path": "*/{Submit}",
+                    "path": "<Keyboard>/enter",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "JoinAction",
+                    "action": "Join",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
