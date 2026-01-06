@@ -18,3 +18,5 @@ MonoBehaviour:
   SEDatas:
   - name: Damage
     clip: {fileID: 8300000, guid: a551ade3baf1a624f95f46b7516a7016, type: 3}
+  - name: PushButton
+    clip: {fileID: 8300000, guid: b163dc5b09785ae42b65a66310679b18, type: 3}
