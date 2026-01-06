@@ -17,6 +17,8 @@ namespace Nakashi
             [SerializeField] private ArmPlayerData m_playerData;
             // プレイヤーステータス
             [SerializeField] private ArmPlayerStatus m_status;
+            // カメラの基準
+            [SerializeField] private Transform m_cameraPivot;
 
             // ステートマシン
             private ArmPlayerStateMachine m_stateMachine;
@@ -375,6 +377,8 @@ namespace Nakashi
             // 追加：　生成完了通知用のプロパティ
             public bool IsInitialized { get; private set; } = false;
 
+            // カメラの基準点
+            public Transform CameraPivot { get { return m_cameraPivot; } }
         }
     }
 

@@ -15,8 +15,8 @@ using UnityEngine;
 [System.Serializable]
 public struct GloveListEntry
 {
-    // グローブ名
-    public string gloveName;
+    // グローブの種類
+    public GloveType gloveType;
     // グローブオブジェクト
     public GameObject gloveObject;
 }
@@ -42,11 +42,11 @@ public class GloveListData : ScriptableObject
     // ------------
     // メソッド
     // ------------
-    public GameObject GetGloveByName(string name)
+    public GameObject GetGlove(GloveType type)
     {
         foreach (var entry in gloveEntries)
         {
-            if (entry.gloveName == name)
+            if (entry.gloveType == type)
             {
                 return entry.gloveObject;
             }

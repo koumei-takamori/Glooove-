@@ -111,32 +111,28 @@ public class CameraContoller : MonoBehaviour
         //ステートマシーンの初期化
         m_stateMachine.Initialize(m_stateMachine.GetIdelState);
 
-    //初期カメラ状態の設定  AWakeでやる　やらないと起動時の挙動が変化する為
-        //通常カメラの設定
-        var normalCamera = GetCamera(CameraType.NORMAL);
-        normalCamera.m_Follow = m_owner;
-        normalCamera.m_LookAt = m_targetGroup.transform;
+        ////初期カメラ状態の設定  AWakeでやる　やらないと起動時の挙動が変化する為
+        ////通常カメラの設定
+        //var normalCamera = GetCamera(CameraType.NORMAL);
+        //normalCamera.m_Follow = m_owner;
+        //normalCamera.m_LookAt = m_targetGroup.transform;
         
 
 
-        //つかみカメラの設定
-        var grapCamera = GetCamera(CameraType.GRAP);
+        ////つかみカメラの設定
+        //var grapCamera = GetCamera(CameraType.GRAP);
         
-        grapCamera.m_LookAt = m_targetGroup.transform;
-        //grapCamera.m_LookAt = m_owner;
+        //grapCamera.m_LookAt = m_targetGroup.transform;
+        ////grapCamera.m_LookAt = m_owner;
 
 
 
-        //カメラの優先度の設定
-        normalCamera.Priority = 10;
-        grapCamera.Priority = 0; // 無効にする
+        ////カメラの優先度の設定
+        //normalCamera.Priority = 10;
+        //grapCamera.Priority = 0; // 無効にする
 
-        //カメラの位置の設定
-        normalCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = m_status.GetEye;
-      
-
-
-
+        ////カメラの位置の設定
+        //normalCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = m_status.GetEye;
     }
 
 
@@ -321,13 +317,40 @@ public class CameraContoller : MonoBehaviour
 
     }
 
+    // 追加：AwakeだとPlayerを動的に生成するとカメラが設定できない
+    public void InitCameraTargets()
+    {
+        //初期カメラ状態の設定  AWakeでやる　やらないと起動時の挙動が変化する為
+        //通常カメラの設定
+        var normalCamera = GetCamera(CameraType.NORMAL);
+        normalCamera.m_Follow = m_owner;
+        normalCamera.m_LookAt = m_targetGroup.transform;
+
+
+
+        //つかみカメラの設定
+        var grapCamera = GetCamera(CameraType.GRAP);
+
+        grapCamera.m_LookAt = m_targetGroup.transform;
+        //grapCamera.m_LookAt = m_owner;
+
+
+
+        //カメラの優先度の設定
+        normalCamera.Priority = 10;
+        grapCamera.Priority = 0; // 無効にする
+
+        //カメラの位置の設定
+        normalCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = m_status.GetEye;
+    }
+
 
     //カメラのトランスフォームの取得
     public Transform GetTransform { get { return m_transform; } }
     //所有者の取得
-    public Transform GetOwner { get { return m_owner; } }
+    public Transform Owner { get { return m_owner; } set { m_owner = value; } }
     //ターゲットの取得
-    public Transform GetTarget { get { return m_target; } }
+    public Transform Target { get { return m_target; } set { m_target = value; } }
     //ステートマシーン
     public CameraStateMachine GetStateMachine { get { return m_stateMachine; } }
     //ステータス

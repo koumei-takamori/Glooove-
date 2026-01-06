@@ -23,7 +23,7 @@ public class CameraIdelState : ICameraState
     public CameraIdelState(CameraContoller contoller)
     {
         m_contoller = contoller;
-        m_owner = m_contoller.GetOwner;
+        m_owner = m_contoller.Owner;
     }
 
     public void Enter()

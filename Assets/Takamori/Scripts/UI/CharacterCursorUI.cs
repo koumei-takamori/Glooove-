@@ -46,7 +46,7 @@ public class CharacterCursorUI : MonoBehaviour
     private void Update()
     {
         // ‘€ì•s”\‚È‚çˆ—‚µ‚È‚¢
-        if(!m_canControll) { return; }
+        if(!m_canControll) return;
 
         // ƒLƒƒƒ‰‚Ìindex‚ğæ“¾
         int index = m_player.CharaIndex;
