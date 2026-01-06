@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_gloveName: Glove
   m_gloveID: 0
-  m_curveData: {fileID: 11400000, guid: 01b82db8eafd3584eae74d27ce127d03, type: 2}
+  m_curveData: {fileID: 11400000, guid: a6276e9a7501bc04d9b1f226c4afb22d, type: 2}
   m_normalAttackParam:
     m_type: 0
     m_stretchArmParams:

@@ -56,7 +56,7 @@ public class InPlayState : IUIState
     public void Update()
     {
         // ステート更新時の処理
-        Debug.Log("InPlayState: Update");
+        //Debug.Log("InPlayState: Update");
     }
 
 

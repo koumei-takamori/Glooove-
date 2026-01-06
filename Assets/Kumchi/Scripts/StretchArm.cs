@@ -11,10 +11,28 @@ using UnityEngine;
 
 public class StretchArm : GloveBase
 {
+    // グローブリスト(読込)
+    [SerializeField] private GloveListData gloveListData;
+
     [Header("Transforms")]
     [SerializeField] private Transform rootBone;
     [SerializeField] private Transform start;  // フォールバック／回転用
     [SerializeField] private Transform target; // シリアライズされたフォールバック。Use() でプレイヤーのターゲットに差し替えられます
+
+    private BezierCurveData curveData;
+
+    [Header("挙動パラメーター")]
+    [SerializeField]
+    private StretchArmParams actionParams;
+
+    [Header("グローブのキー")]
+    [SerializeField]
+    private string gloveName = "test";
+
+    // グローブ
+    private GameObject gloveGameObject;
+    // グローブスクリプト
+    private GloveObject gloveObjectScript;
 
 
     // 回避地点
@@ -36,34 +54,30 @@ public class StretchArm : GloveBase
         hasEnemyDodgePoint = true;
     }
 
+    //[Header("伸縮速度")]
+    //[SerializeField] private float extendSpeed = 6f;
+    //[SerializeField] private float retractSpeed = 3f;
 
-    [Header("Bezier")]
-    [SerializeField] private BezierCurveData curveData;
+    //[Header("挙動パラメータ")]
+    //[SerializeField] private float coilFrequency = 0f;
+    //[SerializeField] private float coilAmplitude = 0f;
+    //[SerializeField] private float hitWaitTime = 0.5f;
 
-    [Header("伸縮速度")]
-    [SerializeField] private float extendSpeed = 6f;
-    [SerializeField] private float retractSpeed = 3f;
+    //[Header("ゆらぎ")]
+    //[SerializeField] private float swayAmplitude = 0.3f;
+    //[SerializeField] private float swaySpeed = 2.0f;
 
-    [Header("挙動パラメータ")]
-    [SerializeField] private float coilFrequency = 0f;
-    [SerializeField] private float coilAmplitude = 0f;
-    [SerializeField] private float hitWaitTime = 0.5f;
+    //[Header("共通")]
+    //[SerializeField] private float maxDistance = 6f;       // 最大伸長距離（開始点から）
+    //[SerializeField] private float arriveEps = 0.01f;      // 到達許容誤差 (t ベース)
 
-    [Header("ゆらぎ")]
-    [SerializeField] private float swayAmplitude = 0.3f;
-    [SerializeField] private float swaySpeed = 2.0f;
+    //[Header("動作オプション")]
+    //[SerializeField] private bool usePlayerForward = true; // true のとき腕の前方をプレイヤーの向きに合わせる
+    //[SerializeField] private float forwardForceDistance = 6f; // usePlayerForward の場合に優先的に使いたい長さ（0 = target 距離を尊重）
 
-    [Header("共通")]
-    [SerializeField] private float maxDistance = 6f;       // 最大伸長距離（開始点から）
-    [SerializeField] private float arriveEps = 0.01f;      // 到達許容誤差 (t ベース)
-
-    [Header("動作オプション")]
-    [SerializeField] private bool usePlayerForward = true; // true のとき腕の前方をプレイヤーの向きに合わせる
-    [SerializeField] private float forwardForceDistance = 6f; // usePlayerForward の場合に優先的に使いたい長さ（0 = target 距離を尊重）
-
-    [Header("曲線基準")]
-    [SerializeField] private bool useWorldForwardAsReference = true; // true: 常に世界 +Z を基準に曲がりを固定する（これを推奨）
-                                                                     // (false にすると start の回転を基準にする従来動作に近くなる)
+    //[Header("曲線基準")]
+    //[SerializeField] private bool useWorldForwardAsReference = true; // true: 常に世界 +Z を基準に曲がりを固定する（これを推奨）
+    //                                                                 // (false にすると start の回転を基準にする従来動作に近くなる)
 
     [Header("伸縮時の腕のねじれの大きさ")]
     [SerializeField] private float twistAmount = 0f; // 伸びるときに腕がねじれる量（度数法）
@@ -99,6 +113,9 @@ public class StretchArm : GloveBase
         public Quaternion worldRotation;
     }
     private List<BoneState> initialBoneStates = new List<BoneState>();
+
+
+
     protected override void Awake()
     {
         base.Awake();
@@ -137,6 +154,92 @@ public class StretchArm : GloveBase
         bones.Add(current);
         for (int i = 0; i < current.childCount; i++)
             GetAllBones(current.GetChild(i));
+    }
+
+    /// <summary>
+    /// グローブ生成
+    /// </summary>
+    void GenerateGlove()
+    {
+        gloveListData = Resources.Load<GloveListData>("DataList/GloveListData");
+
+        if (gloveListData == null)
+        {
+            Debug.LogError("GloveListDataが取得できませんでした。Resources/DataList/GloveListData" + gameObject);
+            return;
+        }
+
+        if (gloveListData.GloveCount <= 0)
+        {
+            Debug.LogError("GloveListDataにグローブが登録されていません。" + gameObject);
+            return;
+        }
+
+        // Prefab取得
+        GameObject glovePrefab = gloveListData.GetGloveByName(gloveName);
+
+        if (glovePrefab == null)
+        {
+            Debug.LogError("指定されたグローブが見つかりません。" + gameObject);
+            return;
+        }
+
+        // 最奥ボーン取得
+        Transform deepestChild = GetDeepestChild(this.transform);
+
+        // 通常のグローブを生成
+        gloveGameObject = Instantiate(glovePrefab);
+        gloveGameObject.GetComponent<GloveObject>().Initialize(this.gameObject);
+
+        // このオブジェクトの子にする
+        gloveGameObject.transform.SetParent(this.transform, false);
+
+        // グローブデータを取得する
+        GloveParamData = gloveGameObject.GetComponent<GloveObject>().ParameterData;
+
+        if (GloveParamData == null)
+        {
+            Debug.LogError("GloveParamDataが取得できませんでした。" + gameObject);
+            return;
+        }
+
+        // 生成されたグローブからどのような曲線挙動をするか取得する
+        curveData = gloveGameObject.GetComponent<GloveObject>().ParameterData.CurveData;
+
+        // グローブスクリプト取得
+        gloveObjectScript = gloveGameObject.GetComponent<GloveObject>();
+
+        if (gloveObjectScript == null)
+        {
+            Debug.LogError("GloveObjectScriptが取得できませんでした。" + gameObject);
+            return;
+        }
+    }
+
+    /// <summary>
+    /// 指定した Transform 配下で、一番深い（最奥）の Transform を取得する
+    /// </summary>
+    private Transform GetDeepestChild(Transform root)
+    {
+        Transform deepest = root;
+        int maxDepth = 0;
+
+        void Traverse(Transform current, int depth)
+        {
+            if (depth > maxDepth)
+            {
+                maxDepth = depth;
+                deepest = current;
+            }
+
+            for (int i = 0; i < current.childCount; i++)
+            {
+                Traverse(current.GetChild(i), depth + 1);
+            }
+        }
+
+        Traverse(root, 0);
+        return deepest;
     }
 
     protected override void Update()
@@ -214,12 +317,12 @@ public class StretchArm : GloveBase
         Vector3 dir = (targetWorld - bezierP0);
         float dist = dir.magnitude;
         if (dist > Mathf.Epsilon)
-            bezierP2 = (dist > maxDistance) ? bezierP0 + dir.normalized * maxDistance : targetWorld;
+            bezierP2 = (dist > actionParams.MaxDistance) ? bezierP0 + dir.normalized * actionParams.MaxDistance : targetWorld;
         else
             bezierP2 = targetWorld;
 
         // --- referenceRotation / referenceUp の決定（ここが今回の肝） ---
-        if (useWorldForwardAsReference)
+        if (actionParams.UseWorldForwardAsReference)
         {
             // 強制的に「世界の +Z 」基準で曲線形を決める（プレイヤー回転に依存しない）
             referenceRotation = Quaternion.LookRotation(Vector3.forward, Vector3.up); // same as Quaternion.identity with typical axes
@@ -261,17 +364,17 @@ public class StretchArm : GloveBase
     // --- Phase 2: 伸びる ---
     private bool PhaseTravel()
     {
-        t = Mathf.MoveTowards(t, 1f, Time.deltaTime * extendSpeed);
+        t = Mathf.MoveTowards(t, 1f, Time.deltaTime * actionParams.ExtendSpeed);
 
         if (rootBone != null)
             rootBone.rotation = Quaternion.Slerp(initialRotation, targetRotation, t);
 
         UpdateBonesByT(t);
 
-        if (Mathf.Abs(t - 1f) < arriveEps)
+        if (Mathf.Abs(t - 1f) < /*arriveEps*/0.01f)
         {
             waitTimer += Time.deltaTime;
-            if (waitTimer >= hitWaitTime)
+            if (waitTimer >= actionParams.HitWaitTime)
             {
                 return true;
             }
@@ -282,7 +385,7 @@ public class StretchArm : GloveBase
     // --- Phase 3: 戻る ---
     private bool PhaseRetract()
     {
-        t = Mathf.MoveTowards(t, 0f, Time.deltaTime * retractSpeed);
+        t = Mathf.MoveTowards(t, 0f, Time.deltaTime * actionParams.RetractSpeed);
 
         if (rootBone != null) rootBone.rotation = Quaternion.Slerp(targetRotation, initialRotation, 1f - t);
         UpdateBonesByT(t);
@@ -296,9 +399,9 @@ public class StretchArm : GloveBase
                 bones[i].localRotation = initialBoneStates[i].localRotation;
             }
 
-                    // 相手の回避ポイントをリセット
-        hasEnemyDodgePoint = false;
-        enemyDodgePosition = Vector3.zero;
+            // 相手の回避ポイントをリセット
+            hasEnemyDodgePoint = false;
+            enemyDodgePosition = Vector3.zero;
 
             return true;
         }
@@ -319,44 +422,44 @@ public class StretchArm : GloveBase
         bezierP0 = (transform.parent != null) ? transform.parent.TransformPoint(m_handPositionLocal) : m_handPositionLocal;
 
 
-    // =================================================
-    // 追従先座標の決定
-    // 優先度：EnemyDodgePoint → target → start
-    // =================================================
-    Vector3 followPos = Vector3.zero;
-    bool hasFollowPos = false;
+        // =================================================
+        // 追従先座標の決定
+        // 優先度：EnemyDodgePoint → target → start
+        // =================================================
+        Vector3 followPos = Vector3.zero;
+        bool hasFollowPos = false;
 
-    if (hasEnemyDodgePoint)
-    {
-        // 回避開始時の位置（固定）
-        followPos = enemyDodgePosition;
-        hasFollowPos = true;
-    }
-    else if (target != null)
-    {
-        followPos = target.position;
-        hasFollowPos = true;
-    }
-    else if (start != null)
-    {
-        followPos = start.position;
-        hasFollowPos = true;
-    }
-
-    // bezierP2 を毎フレーム更新する
-    if (hasFollowPos)
-    {
-        Vector3 dir = followPos - bezierP0;
-        float dist = dir.magnitude;
-
-        if (dist > Mathf.Epsilon)
+        if (hasEnemyDodgePoint)
         {
-            // 最大距離制限を維持
-            bezierP2 = (dist > maxDistance)
-                ? bezierP0 + dir.normalized * maxDistance
-                : followPos;
+            // 回避開始時の位置（固定）
+            followPos = enemyDodgePosition;
+            hasFollowPos = true;
         }
-    }
+        else if (target != null)
+        {
+            followPos = target.position;
+            hasFollowPos = true;
+        }
+        else if (start != null)
+        {
+            followPos = start.position;
+            hasFollowPos = true;
+        }
+
+        // bezierP2 を毎フレーム更新する
+        if (hasFollowPos)
+        {
+            Vector3 dir = followPos - bezierP0;
+            float dist = dir.magnitude;
+
+            if (dist > Mathf.Epsilon)
+            {
+                // 最大距離制限を維持
+                bezierP2 = (dist > actionParams.MaxDistance)
+                    ? bezierP0 + dir.normalized * actionParams.MaxDistance
+                    : followPos;
+            }
+        }
 
         // --- player の forward を XZ 平面に投影して符号付きヨー角を得る ---
         Vector3 playerForward = Vector3.forward;
@@ -448,11 +551,11 @@ public class StretchArm : GloveBase
             if (i != 0)
             {
                 float centerFalloff = Mathf.Sin(u * Mathf.PI);
-                float sway = Mathf.Sin(Time.time * swaySpeed) * swayAmplitude * centerFalloff * currentT;
+                float sway = Mathf.Sin(Time.time * actionParams.SwaySpeed) * actionParams.SwayAmplitude * centerFalloff * currentT;
                 pos += Vector3.down * sway;
             }
 
-            float wave = Mathf.Sin(u * Mathf.PI * coilFrequency) * coilAmplitude * (1f - currentT);
+            float wave = Mathf.Sin(u * Mathf.PI * actionParams.CoilFrequency) * actionParams.CoilAmplitude * (1f - currentT);
             pos += right * wave;
 
             // 位置は従来通り絶対値でOK

@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 922a382e4e2f0c24ba8221f7ef1b2fee, type: 3}
-  m_Name: NormalPunchGloveDataL
+  m_Name: BoomerangPunchGloveDataL
   m_EditorClassIdentifier: 
   m_gloveName: Glove
   m_gloveID: 0
-  m_curveData: {fileID: 11400000, guid: fecf409ab03028d4bbbbb32ec99a4272, type: 2}
+  m_curveData: {fileID: 11400000, guid: bf56990bebfd6c34f94593dbc37ad992, type: 2}
   m_normalAttackParam:
     m_type: 0
     m_stretchArmParams:
-      m_extendSpeed: 5
-      m_retractSpeed: 2.5
+      m_extendSpeed: 6
+      m_retractSpeed: 3
       m_coilFrequency: 0
       m_coilAmplitude: 0
       m_hitWaitTime: 0.5

@@ -114,21 +114,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b777e50826cf0d64db94f7bdb055257c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_gloveData: {fileID: 11400000, guid: c1a4c21194d796f4486cf83c1df6fef7, type: 2}
+  gloveListData: {fileID: 11400000, guid: 71e3a24a31e7f474c94fff98db432377, type: 2}
   rootBone: {fileID: 1265586581254863164}
   start: {fileID: 0}
   target: {fileID: 0}
-  curveData: {fileID: 11400000, guid: 1097098802d25cd4da0ec26823a36582, type: 2}
-  extendSpeed: 6
-  retractSpeed: 3
-  coilFrequency: 0
-  coilAmplitude: 0
-  hitWaitTime: 0.5
-  swayAmplitude: 0.3
-  swaySpeed: 2
-  maxDistance: 6
-  arriveEps: 0.01
-  usePlayerForward: 1
-  forwardForceDistance: 6
-  useWorldForwardAsReference: 1
-  twistAmount: 0
+  actionParams:
+    m_extendSpeed: 6
+    m_retractSpeed: 3
+    m_coilFrequency: 0
+    m_coilAmplitude: 0
+    m_hitWaitTime: 0.5
+    m_swayAmplitude: 0.3
+    m_swaySpeed: 2
+    m_maxDistance: 6
+    m_usePlayerForward: 1
+    m_forwardForceDistance: 6
+    m_useWorldForwardAsReference: 1
+  gloveName: NormalGlove_L

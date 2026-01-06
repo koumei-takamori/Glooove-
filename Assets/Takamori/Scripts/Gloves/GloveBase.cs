@@ -37,6 +37,7 @@ public abstract class GloveBase : MonoBehaviour
     private Vector3 m_glovePosition;
 
     // プロパティ
+    public GloveData GloveParamData { get { return m_gloveData; } set { m_gloveData = value; } }
     public Vector3 GlovePosition { get { return m_glovePosition; } set { m_glovePosition = value; } }
 
     // 攻撃中フラグを取得

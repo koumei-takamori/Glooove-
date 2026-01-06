@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c7fc75658c1c9c4c95db4649c56389d, type: 3}
-  m_Name: Boomerang_LeftBezierData
+  m_Name: Normal_L_Bezier
   m_EditorClassIdentifier: 
   points:
   - {x: 1, y: 0, z: 2.180426}
-  - {x: -1.6, y: 0, z: -1.2}
+  - {x: 0, y: 0, z: -1.2}
   - {x: -1.9945543, y: 0, z: -2.1804261}
   tangents:
   - {x: -5.56, y: 0, z: 0.462}
-  - {x: -0.349, y: 0, z: -1.285}
+  - {x: 1, y: 0, z: -1.285}
   - {x: 5.56, y: 0, z: 0.462}
