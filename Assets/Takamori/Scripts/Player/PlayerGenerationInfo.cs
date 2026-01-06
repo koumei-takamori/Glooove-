@@ -22,6 +22,25 @@ public enum CharacterType
 }
 
 /// <summary>
+/// グローブの左右
+/// </summary>
+public enum GloveSide 
+{
+    Left = 0,
+    Right = 1,
+}
+
+/// <summary>
+/// グローブの種類
+/// </summary>
+public enum GloveType
+{
+    Normal,
+    Boomerang,
+    Power,
+}
+
+/// <summary>
 /// プレイヤーの生成情報
 /// </summary>
 [System.Serializable]
