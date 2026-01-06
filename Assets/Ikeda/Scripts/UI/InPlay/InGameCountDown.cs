@@ -18,7 +18,7 @@ public class InGameCountDown : MonoBehaviour
     private TextMeshProUGUI countDownText = null;
 
     // カウントダウンの初期時間（秒）
-    float initialCountDownTime = 20f;
+    float initialCountDownTime = 99f;
 
     // 現在の残り時間（秒）
     float currentTime;

@@ -33,7 +33,8 @@ public class StretchArm : GloveBase
     private GameObject gloveGameObject;
     // グローブスクリプト
     private GloveObject gloveObjectScript;
-
+    // グローブ追従用Transform
+    private Transform endBoneTransform;
 
     // 回避地点
     public Vector3 enemyDodgePosition = Vector3.zero;
@@ -147,6 +148,7 @@ public class StretchArm : GloveBase
             initialBoneStates.Add(st);
         }
         PhaseRetract();
+        GenerateGlove();
     }
 
     private void GetAllBones(Transform current)
@@ -154,6 +156,10 @@ public class StretchArm : GloveBase
         bones.Add(current);
         for (int i = 0; i < current.childCount; i++)
             GetAllBones(current.GetChild(i));
+
+        // 最奥ボーンを保存
+        if (current.childCount == 0)
+            endBoneTransform = current;
     }
 
     /// <summary>
@@ -245,6 +251,12 @@ public class StretchArm : GloveBase
     protected override void Update()
     {
         base.Update();
+
+        if (gloveGameObject != null && endBoneTransform != null)
+        {
+            gloveGameObject.transform.position = endBoneTransform.position;
+            gloveGameObject.transform.rotation = endBoneTransform.rotation * gloveObjectScript.GloveRotation;
+        }
     }
 
 
