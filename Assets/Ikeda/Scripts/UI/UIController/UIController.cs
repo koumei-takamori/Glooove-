@@ -85,6 +85,10 @@ public class UIController : MonoBehaviour
                     break;
                 }
             }
+            else
+            {
+                Debug.Log("UIController: プレイヤー2人の初期化完了を待機中...");
+            }
 
             yield return null;
         }

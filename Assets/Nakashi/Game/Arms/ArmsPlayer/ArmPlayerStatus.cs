@@ -44,6 +44,8 @@ namespace Nakashi
             // ジャンプ中かどうかの判定用
             private bool m_isJump = false;
             public bool GetSetJump { get { return m_isJump; } set { m_isJump = value; } }
+            private bool m_isStart = false;
+            public bool CanStart { get { return m_isStart; } set { m_isStart = value; } }  
 
             /// <summary>
             /// コンストラクタ
