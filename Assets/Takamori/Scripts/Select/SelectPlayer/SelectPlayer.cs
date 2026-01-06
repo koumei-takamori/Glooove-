@@ -50,11 +50,11 @@ public class SelectPlayer : MonoBehaviour
 
     // プロパティ
     public int PlayerID {  get { return m_playerID; } set { m_playerID = value; } }
-
     public int CharaIndex {  get { return m_charaIndex; } }
     public GloveSide CurrentGloveSide { get { return m_currentGloveSide; } set { m_currentGloveSide = value; } }
-
     public int GetGloveIndex(GloveSide side) {  return m_gloveIndex[side]; }
+    public bool IsReady { get { return m_isReady; } }
+
 
     /*--------------------------------------------------------------------------------
 　　|| 実行前初期化処理
@@ -155,13 +155,5 @@ public class SelectPlayer : MonoBehaviour
     public void SetReady(bool ready)
     {
         m_isReady = ready;
-    }
-
-    /// <summary>
-    /// 準備完了か
-    /// </summary>
-    public bool IsReady()
-    {
-        return m_isReady;
     }
 }

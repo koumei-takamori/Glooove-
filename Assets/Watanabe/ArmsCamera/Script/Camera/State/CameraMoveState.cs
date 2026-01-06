@@ -31,9 +31,6 @@ public class CameraMoveState : ICameraState
         m_delay = m_contoller.GetStatus.GetMoveDelay;
         //移動スピード
         m_speed = m_contoller.GetStatus.GetMoveSpeed;
-
-        
-
     }
     
     public void Enter()

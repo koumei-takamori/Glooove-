@@ -28,6 +28,7 @@ public class PlayerGenerator : MonoBehaviour
 
     /// <summary>
     /// ¶¬î•ñ‚Ìæ“¾
+    /// Awake‚ÌŒãAStart‚Ì‘O‚Åİ’è
     /// </summary>
     /// <param name="playerGenerationInfo"></param>
     public void SetGenerationInfo(PlayerGenerationInfo[] playerGenerationInfo)

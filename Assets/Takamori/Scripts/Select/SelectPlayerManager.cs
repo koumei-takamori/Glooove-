@@ -66,6 +66,9 @@ public class SelectPlayerManager : SingletonMonoBehaviour<SelectPlayerManager>
         // PlayerIDを設定
         selectPlayer.PlayerID = playerInput.playerIndex;
 
+        // 選択したグローブを生成用に構造体に格納
+        GloveSet gloves = new GloveSet(GloveType.Normal,GloveType.Normal);
+
         // プレイヤーを追加
         m_players.Add(selectPlayer);
         // UIと紐づけ
@@ -73,6 +76,11 @@ public class SelectPlayerManager : SingletonMonoBehaviour<SelectPlayerManager>
 
         // インゲームのプレイヤーの生成情報を格納
         m_playerGenerationInfos[playerInput.playerIndex] =
-            new PlayerGenerationInfo(playerInput.devices[0], CharacterType.Balance);
+            new PlayerGenerationInfo(
+                selectPlayer.PlayerID,
+                playerInput.devices[0], 
+                CharacterType.Balance,
+                gloves
+            );
     }
 }

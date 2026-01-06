@@ -27,7 +27,7 @@ public class StretchArm : GloveBase
 
     [Header("グローブのキー")]
     [SerializeField]
-    private string gloveName = "test";
+    private GloveType gloveType = GloveType.Normal;
 
     // グローブ
     private GameObject gloveGameObject;
@@ -182,7 +182,7 @@ public class StretchArm : GloveBase
         }
 
         // Prefab取得
-        GameObject glovePrefab = gloveListData.GetGloveByName(gloveName);
+        GameObject glovePrefab = gloveListData.GetGlove(gloveType);
 
         if (glovePrefab == null)
         {
