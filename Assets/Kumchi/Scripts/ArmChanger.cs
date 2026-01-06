@@ -5,8 +5,6 @@
 */
 
 using Nakashi.Player;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ArmChanger : MonoBehaviour
@@ -47,6 +45,7 @@ public class ArmChanger : MonoBehaviour
         {
             m_attackLArmParent.SetActive(true);
             m_normalLArm.SetActive(false);
+            Debug.Log("ç∂òrçUåÇíÜ");
         }
         else
         {
@@ -60,6 +59,7 @@ public class ArmChanger : MonoBehaviour
         {
             m_attackRArmParent.SetActive(true);
             m_normalRArm.SetActive(false);
+            Debug.Log("âEòrçUåÇíÜ");
         }
         else
         {
