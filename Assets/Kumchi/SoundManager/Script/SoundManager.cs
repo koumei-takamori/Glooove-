@@ -137,7 +137,7 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
         }
 
         // テスト再生（必要に応じて削除してください）
-        PlayBGM("PlayBGM", true);
+        //PlayBGM("PlayBGM", true);
     }
     /// <summary>
     /// 現在のマスター音量と個別の音量設定に基づいて、オーディオソースの音量を更新します。
