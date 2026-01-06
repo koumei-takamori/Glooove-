@@ -83,6 +83,12 @@ namespace Nakashi
             // 追加 : 回避行動検知
             DodgeChecker dodgeChecker;
 
+            private void Awake()
+            {
+                // プレイヤー登録
+                PlayerRegistry.Instance.RegisterPlayer(this.gameObject);
+            }
+
 
             private void Start()
             {
@@ -132,6 +138,8 @@ namespace Nakashi
 
                 // 全てが問題なく成功した場合はPlayerRegistryに登録
                 PlayerRegistry.Instance.RegisterPlayer(this.gameObject);
+
+                IsInitialized = true;
             }
 
 
@@ -360,6 +368,9 @@ namespace Nakashi
             public GloveBase RigthGlove { get { return m_rightglove; } }
 
             public Animator GetBarrier { get { return m_barrier; } }
+
+            // 追加：　生成完了通知用のプロパティ
+            public bool IsInitialized { get; private set; } = false;
 
         }
     }

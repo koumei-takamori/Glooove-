@@ -1,3 +1,5 @@
+using Nakashi.Player;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class StartCallState : IUIState
@@ -13,6 +15,9 @@ public class StartCallState : IUIState
 
     // アニメーター
     private Animator animator;
+
+    // 全プレイヤーのゲームオブジェクト
+    private List<GameObject> players;
 
     /// <summary>
     /// コンストラクタ
@@ -42,6 +47,8 @@ public class StartCallState : IUIState
 
     public void Enter()
     {
+        players = PlayerRegistry.Instance.GetAllPlayers();
+
         // ステート開始時の処理
         Debug.Log("StartCallState: Enter");
 
@@ -50,13 +57,22 @@ public class StartCallState : IUIState
 
         // アニメーションを再生
         animator.Play("GameStartMotion");
+
+        // 全プレイヤーの操作を無効化
+        foreach (GameObject player in players)
+        {
+            ArmPlayerStatus status = player.GetComponent<ArmPlayerController>().GetPlayerStatus();
+            status.GetSetControll = true;
+
+            Debug.Log("StartCallState: プレイヤーの操作を無効化 " + player.name);
+        }
     }
 
 
     public void Update()
     {
         // ステート更新時の処理
-        Debug.Log("StartCallState: Update");
+        //Debug.Log("StartCallState: Update");
         // ここにステート更新時の処理を追加
     }
 
@@ -65,6 +81,15 @@ public class StartCallState : IUIState
     {
         // ステート終了時の処理
         Debug.Log("StartCallState: Exit");
+
+        // 全プレイヤーの操作を有効化
+        foreach (GameObject player in players)
+        {
+            ArmPlayerStatus status = player.GetComponent<ArmPlayerController>().GetPlayerStatus();
+            status.GetSetControll = false;
+
+            Debug.Log("StartCallState: プレイヤーの操作を有効化 " + player.name);
+        }
 
         // startCallUIをアクティブ(表示)にする
         startCallUI.SetActive(false);

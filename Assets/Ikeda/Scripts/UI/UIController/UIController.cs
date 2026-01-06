@@ -1,3 +1,5 @@
+using Nakashi.Player;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,12 +14,12 @@ public class UIController : MonoBehaviour
     /// <summary>
     /// 初期化
     /// </summary>
-    private void Awake()
+    private void Start()
     {
         CreateStates();
 
-        // 初期ステートを設定
-        ChangeState(PlayUIType.StartCall);
+        // いきなり State 切り替えない
+        StartCoroutine(WaitPlayersAndStartCall());
     }
 
     /// <summary>
@@ -56,12 +58,47 @@ public class UIController : MonoBehaviour
     }
 
 
+    private IEnumerator WaitPlayersAndStartCall()
+    {
+        yield return null;
+
+        while (true)
+        {
+            var players = PlayerRegistry.Instance.GetAllPlayers();
+
+            if (players.Count >= 2)
+            {
+                bool allReady = true;
+
+                foreach (var player in players)
+                {
+                    if (!player.TryGetComponent(out ArmPlayerController controller) ||
+                        !controller.IsInitialized)
+                    {
+                        allReady = false;
+                        break;
+                    }
+                }
+
+                if (allReady)
+                {
+                    break;
+                }
+            }
+
+            yield return null;
+        }
+
+        Debug.Log("UIController: プレイヤー2人 & Start完了を確認");
+
+        ChangeState(PlayUIType.StartCall);
+    }
+
+
+
     private void Update()
     {
         currentState?.Update();
     }
 
-    // ----------------------------------------------
-    // 
-    // ----------------------------------------------
 }
