@@ -192,6 +192,9 @@ namespace Nakashi
             /// </summary>
             private void ChangeStateOnKey()
             {
+                // スタートフラグ中は処理しない
+                if (!m_status.CanStart) { return; }
+
                 if (IsGround() && (
                     //Nakashi.Framework.VibrationSystem.Instance.GetNPad().GetButtonDown(nn.hid.NpadButton.L) || 
                     Input.GetKeyDown(KeyCode.Space) &&
