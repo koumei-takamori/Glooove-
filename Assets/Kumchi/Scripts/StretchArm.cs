@@ -40,6 +40,9 @@ public class StretchArm : GloveBase
     public Vector3 enemyDodgePosition = Vector3.zero;
     public bool hasEnemyDodgePoint = false;
 
+
+    public GloveType ArmGloveType { get { return gloveType; } set { gloveType = value; } } 
+
     /// <summary>
     /// 回避開始地点を設定（位置をコピー）
     /// </summary>

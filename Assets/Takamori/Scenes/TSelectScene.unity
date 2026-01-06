@@ -3885,7 +3885,6 @@ GameObject:
   m_Component:
   - component: {fileID: 755290941}
   - component: {fileID: 755290940}
-  - component: {fileID: 755290939}
   - component: {fileID: 755290938}
   - component: {fileID: 755290942}
   m_Layer: 0
@@ -3939,14 +3938,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!81 &755290939
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 755290937}
-  m_Enabled: 1
 --- !u!20 &755290940
 Camera:
   m_ObjectHideFlags: 0
@@ -9885,7 +9876,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1880943566}
   - component: {fileID: 1880943569}
-  - component: {fileID: 1880943568}
   - component: {fileID: 1880943567}
   - component: {fileID: 1880943570}
   m_Layer: 0
@@ -9957,14 +9947,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!81 &1880943568
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1880943565}
-  m_Enabled: 1
 --- !u!20 &1880943569
 Camera:
   m_ObjectHideFlags: 0
