@@ -227,9 +227,9 @@ RectTransform:
   - {fileID: 1459225198}
   - {fileID: 515068437}
   - {fileID: 750872294}
-  - {fileID: 900109045}
   - {fileID: 756171496}
   - {fileID: 354654279}
+  - {fileID: 900109045}
   - {fileID: 1991100044}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -250,6 +250,7 @@ GameObject:
   - component: {fileID: 354654278}
   - component: {fileID: 354654277}
   - component: {fileID: 354654276}
+  - component: {fileID: 354654280}
   m_Layer: 5
   m_Name: Black (1)
   m_TagString: Untagged
@@ -335,6 +336,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -594}
   m_SizeDelta: {x: 1920, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &354654280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354654275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16150051592f536499d3fa8302a96128, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  minScale: 0.9
+  maxScale: 1.1
 --- !u!1 &515068436
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,6 +750,7 @@ GameObject:
   - component: {fileID: 756171498}
   - component: {fileID: 756171497}
   - component: {fileID: 756171499}
+  - component: {fileID: 756171500}
   m_Layer: 5
   m_Name: Black
   m_TagString: Untagged
@@ -819,6 +836,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &756171500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756171495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16150051592f536499d3fa8302a96128, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  minScale: 0.9
+  maxScale: 1.1
 --- !u!1 &808694263
 GameObject:
   m_ObjectHideFlags: 0

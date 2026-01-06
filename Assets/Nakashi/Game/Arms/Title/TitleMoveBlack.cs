@@ -1,8 +1,8 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // <製作者>			NakashimaYuto
 // <製作開始日>		2026/01/06
-// <file>			TitleAlphaChangeTextMeshPro
-// <概要>		　　タイトルシーンのテキストメッシュプロのα値を変更するスクリプト
+// <file>			TitleMoveBlack
+// <概要>		　　タイトルシーンの黒いやつを動かす
 // <著作権>         Copyright (c) 2025 NakashimaYuto. All rights reserved.
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 using System.Collections;
@@ -10,19 +10,17 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class TitleAlphaChangeTextMeshPro : MonoBehaviour
+public class TitleMoveBlack : MonoBehaviour
 {
-    TMP_Text text;
-    Color baseColor;
+    RectTransform rect;
 
     [Header("速さ"), SerializeField] float speed = 2f;
-    [Header("α最小"), SerializeField] float minAlpha = 0.3f;
-    [Header("α最大"), SerializeField] float maxAlpha = 1f;
+    [Header("α最小"), SerializeField] float minScale = 0.9f;
+    [Header("α最大"), SerializeField] float maxScale = 1.1f;
     // Start is called before the first frame update
     void Start()
     {
-        text = GetComponent<TMP_Text>();
-        baseColor = text.color;
+        rect = GetComponent<RectTransform>();  
     }
 
     // Update is called once per frame
@@ -30,13 +28,12 @@ public class TitleAlphaChangeTextMeshPro : MonoBehaviour
     {
         float sin = Mathf.Sin(Time.time * speed);
         float t = (sin + 1f) * 0.5f;
-        float alpha = Mathf.Lerp(minAlpha, maxAlpha, t);
+        float scaleY = Mathf.Lerp(minScale, maxScale, t);
 
-        text.color = new Color(
-            baseColor.r,
-            baseColor.g,
-            baseColor.b,
-            alpha);
-        
+        rect.localScale = new Vector3(
+            rect.localScale.x,
+            scaleY,
+            rect.localScale.z);
+
     }
 }
