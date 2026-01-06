@@ -130,6 +130,8 @@ MonoBehaviour:
   rootBone: {fileID: 694550038488729544}
   start: {fileID: 0}
   target: {fileID: 0}
+  enemyDodgePosition: {x: 0, y: 0, z: 0}
+  hasEnemyDodgePoint: 0
   curveData: {fileID: 11400000, guid: 6ddaa75614a96db449533495acbae325, type: 2}
   extendSpeed: 6
   retractSpeed: 3
