@@ -206,6 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
+  uiController: {fileID: 0}
   armPlayerController: {fileID: 0}
   armPlayerData: {fileID: 0}
   hpGaugeCanvas3D: {fileID: 0}
@@ -854,6 +855,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
+  uiController: {fileID: 0}
   armPlayerController: {fileID: 0}
   armPlayerData: {fileID: 0}
   hpGaugeCanvas3D: {fileID: 0}

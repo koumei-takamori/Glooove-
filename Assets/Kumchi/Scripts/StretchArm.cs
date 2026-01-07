@@ -303,6 +303,9 @@ public class StretchArm : GloveBase
             return true;
         }
 
+        // 攻撃中フラグを立てる
+        gloveObjectScript.IsAttacking = true;
+
         // GlovePosition(local) を保存
         m_handPositionLocal = this.GlovePosition;
 
@@ -394,6 +397,8 @@ public class StretchArm : GloveBase
             waitTimer += Time.deltaTime;
             if (waitTimer >= actionParams.HitWaitTime)
             {
+                // 攻撃中フラグを下ろす
+                gloveObjectScript.IsAttacking = false;
                 return true;
             }
         }
