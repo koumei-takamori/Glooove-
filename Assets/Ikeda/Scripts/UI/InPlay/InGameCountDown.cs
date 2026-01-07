@@ -80,6 +80,8 @@ public class InGameCountDown : MonoBehaviour
 
     private void Update()
     {
+        return;
+
         // Žc‚èŽžŠÔ‚ª‚ ‚ê‚ÎŒ¸‚ç‚·
         if (currentTime > 0f)
         {
