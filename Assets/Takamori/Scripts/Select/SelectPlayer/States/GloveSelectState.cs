@@ -22,6 +22,10 @@ public class GloveSelectState : StateBase
     // 現在操作しているグローブ
     private GloveSide currentSide = GloveSide.Left;
 
+    // 入力用クールタイム
+    private float m_inputCooldown = 0.2f;
+    private float m_inputTimer = 0f;
+
     public override void OnEnter()
     {
         currentSide = 0; // 最初は右
@@ -30,27 +34,43 @@ public class GloveSelectState : StateBase
 
     public override void OnUpdate()
     {
+        // クールタイム減算
+        m_inputTimer -= Time.deltaTime;
+
+        // 連続入力を受け付けない
+        if (m_inputTimer > 0f) return;
+
         // -------- 左右キー：操作対象切り替え --------
-        if (Owner.InputReceiver.GetInputValue<float>(SelectPlayerActions.GloveSideSelect) > 0.8)
-        {
-            currentSide = GloveSide.Left;
-            Owner.CurrentGloveSide = currentSide;
-        }
-        else if (Owner.InputReceiver.GetInputValue<float>(SelectPlayerActions.GloveSideSelect) < 0.8)
+        float side = Owner.InputReceiver
+            .GetInputValue<float>(SelectPlayerActions.GloveSideSelect);
+
+        if (side > 0.8f && currentSide != GloveSide.Right)
         {
             currentSide = GloveSide.Right;
             Owner.CurrentGloveSide = currentSide;
+            m_inputTimer = m_inputCooldown;
+        }
+        else if (side < -0.8f && currentSide != GloveSide.Left)
+        {
+            currentSide = GloveSide.Left;
+            Owner.CurrentGloveSide = currentSide;
+            m_inputTimer = m_inputCooldown;
         }
 
 
         // -------- 上下キー：グローブ変更 --------
-        if (Owner.InputReceiver.GetInputValue<float>(SelectPlayerActions.GloveSelect) > 0.8)
+        float glove = Owner.InputReceiver
+           .GetInputValue<float>(SelectPlayerActions.GloveSelect);
+
+        if (glove > 0.8f)
         {
             Owner.AddGloveIndex(currentSide, 1);
+            m_inputTimer = m_inputCooldown;
         }
-        else if (Owner.InputReceiver.GetInputValue<float>(SelectPlayerActions.GloveSelect) < 0.8)
+        else if (glove < -0.8f)
         {
             Owner.AddGloveIndex(currentSide, -1);
+            m_inputTimer = m_inputCooldown;
         }
 
         // -------- 決定 --------
