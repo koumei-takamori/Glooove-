@@ -17,7 +17,9 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 public class PlaySceneManager : SingletonMonoBehaviour<PlaySceneManager>
 {
     // プレイヤー
+    [SerializeField]
     private ArmPlayerController m_1pPlayer;
+    [SerializeField]
     private ArmPlayerController m_2pPlayer;
 
     // カメラコントローラー1
@@ -54,11 +56,11 @@ public class PlaySceneManager : SingletonMonoBehaviour<PlaySceneManager>
     {
         // プレイヤーを取得
         m_1pPlayer = PlayerRegistry.Instance.GetPlayer(0).GetComponent<ArmPlayerController>();
-        // m_2pPlayer = PlayerRegistry.Instance.GetPlayer(1).GetComponent<ArmPlayerController>();
+        m_2pPlayer = PlayerRegistry.Instance.GetPlayer(1).GetComponent<ArmPlayerController>();
 
         // お互いをターゲット設定
-        m_1pPlayer.Target = m_transform;
-        // m_2pPlayer.Target = m_1pPlayer.transform;
+        m_1pPlayer.Target = m_2pPlayer.transform;
+        m_2pPlayer.Target = m_1pPlayer.transform;
 
         // プレイヤーのカメラの設定
         SetupPlayerCameras();
@@ -84,7 +86,7 @@ public class PlaySceneManager : SingletonMonoBehaviour<PlaySceneManager>
     {
         // Transform取得
         Transform player1 = m_1pPlayer.CameraPivot;
-        // Transform player2 = PlayerRegistry.Instance.GetPlayer(1).transform;
+        //Transform player2 = PlayerRegistry.Instance.GetPlayer(1).transform;
 
         // 1Pカメラ
         m_cameraContoroller1.Owner = player1;

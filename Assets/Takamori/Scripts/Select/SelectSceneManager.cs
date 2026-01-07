@@ -17,7 +17,6 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager> 
 {
-
     // インゲームのプレイヤーの生成情報
     private PlayerGenerationInfo[] m_playerGenerationInfos = default;
 
@@ -61,7 +60,8 @@ public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
         {
             m_fade.FadeOutWithCallback(() =>
             {
-                m_playerGenerationInfos = SelectPlayerManager.Instance.PlayerGenerationInfos;
+                // 生成情報を生成
+                CreateGenerationInfos();
                 // ゲームスタート処理
                 GameStart();
             });
@@ -113,4 +113,32 @@ public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
         return true;
     }
 
+    /*--------------------------------------------------------------------------------
+  　|| 生成情報を作成する
+    --------------------------------------------------------------------------------*/
+    /// <summary>
+    /// 生成情報を作成する
+    /// </summary>
+    private void CreateGenerationInfos()
+    {
+        var players = SelectPlayerManager.Instance.Players;
+
+        m_playerGenerationInfos = new PlayerGenerationInfo[players.Count];
+
+        foreach (var player in players)
+        {
+            // 選択したグローブを生成用に構造体に格納
+            GloveSet gloves = new GloveSet(
+                (GloveType)player.GetGloveIndex(GloveSide.Left),
+                (GloveType)player.GetGloveIndex(GloveSide.Right));
+
+            m_playerGenerationInfos[player.PlayerId] =
+                new PlayerGenerationInfo(
+                    player.PlayerId,
+                    player.InputDevice,
+                    (CharacterType)player.CharaIndex,
+                    gloves
+                );
+        }
+    }
 }

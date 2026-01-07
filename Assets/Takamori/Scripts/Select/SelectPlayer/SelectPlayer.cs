@@ -28,16 +28,20 @@ public class SelectPlayer : MonoBehaviour
         Ready = 2       // 準備確認状態
     }
 
+    // プレイヤーID
+    [SerializeField]
+    private int m_playerId;
+
+    // プレイヤーID
+    [SerializeField]
+    private InputDevice m_inputDevice;
+
     // ステートマシン
     private StateMachine<SelectPlayer> m_stateMachine;
 
     // 入力を取得するクラス
     [SerializeField]
     private　SelectPlayerInputReceiver m_inputReceiver;
-
-    // プレイヤーID
-    [SerializeField]
-    private int m_playerID;
 
     // 選択中キャラIndex
     private int m_charaIndex;
@@ -50,17 +54,17 @@ public class SelectPlayer : MonoBehaviour
     private Dictionary<GloveSide, int> m_gloveIndex;
     private const int GLOVE_MAX = 3;
 
-
     // 決定フラグ
     private bool m_isReady;
 
     // プロパティ
     public SelectPlayerInputReceiver InputReceiver {  get { return m_inputReceiver; } }
-    public int PlayerID {  get { return m_playerID; } set { m_playerID = value; } }
+    public int PlayerId {  get { return m_playerId; } set { m_playerId = value; } }
     public int CharaIndex {  get { return m_charaIndex; } }
     public GloveSide CurrentGloveSide { get { return m_currentGloveSide; } set { m_currentGloveSide = value; } }
     public int GetGloveIndex(GloveSide side) {  return m_gloveIndex[side]; }
     public bool IsReady { get { return m_isReady; } }
+    public InputDevice InputDevice { get { return m_inputDevice; } set { m_inputDevice = value; } }
 
 
     /*--------------------------------------------------------------------------------
