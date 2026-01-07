@@ -14,7 +14,7 @@ namespace Ikeda
         // ↓[固定値]
 
         // 最大HP量
-        public const float MAX_HP = 100f;
+        //public const float MAX_HP = 100f;
 
         // 赤ゲージの最大減少速度（fillAmount / 秒）
         public const float MAX_DECREASE_SPEED = 1.0f;

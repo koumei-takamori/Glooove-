@@ -50,7 +50,7 @@ public class StartCallState : IUIState
         players = PlayerRegistry.Instance.GetAllPlayers();
 
         // ステート開始時の処理
-        Debug.Log("StartCallState: Enter");
+        //Debug.Log("StartCallState: Enter");
 
         // startCallUIをアクティブ(表示)にする
         startCallUI.SetActive(true);
@@ -81,7 +81,7 @@ public class StartCallState : IUIState
     public void Exit()
     {
         // ステート終了時の処理
-        Debug.Log("StartCallState: Exit");
+        //Debug.Log("StartCallState: Exit");
 
         // 全プレイヤーの操作を有効化
         foreach (GameObject player in players)

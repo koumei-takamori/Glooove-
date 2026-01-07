@@ -24,7 +24,7 @@ public class HPGaugeSystem : MonoBehaviour
     // ↓[変数]
 
     // キャラクターのHP
-    public int HP { get; private set; } = (int)HPGaugeMaskConst.MAX_HP;
+    public int HP { get; set; }
 
     // キャラクターの名前
     public string FighterName { private get; set; }
@@ -47,6 +47,13 @@ public class HPGaugeSystem : MonoBehaviour
     private void Start()
     {
         FindUIElements();
+    }
+
+    public void InitializeHP(int maxHP)
+    {
+        HP = maxHP;
+        diffHPGauge.InitializeHP(maxHP);
+        currentHPGauge.InitializeHP(maxHP);
     }
 
     /// <summary>
