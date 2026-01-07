@@ -69,8 +69,6 @@ public class CharaSelectState : StateBase
                 (int)SelectPlayer.SelectPlayerState.GloveSelect
             );
         }
-
-        Debug.Log("‘I‘ğ’†ƒLƒƒƒ‰F" + Owner.CharaIndex);
     }
 
     /*--------------------------------------------------------------------------------

@@ -82,6 +82,8 @@ public class PlayerGenerator : MonoBehaviour
             armPlayer.GetStretchArms()[(int)GloveSide.Right].ArmGloveType = m_playerGenertionInfos[i].GloveSet.Right;
 
             armPlayer.PlayerId = m_playerGenertionInfos[i].PlayerId;
+
+            Debug.Log("プレイヤー" + player.playerIndex + ": デバイス"　 + player.devices[0]);
         }
     }
 }
