@@ -143,4 +143,16 @@ public class SelectPlayer : MonoBehaviour
     {
         m_isReady = ready;
     }
+
+    /// <summary>
+    /// グローブの種類を取得
+    /// </summary>
+    /// <param name="side">左右</param>
+    /// <returns></returns>
+    public GloveType GetGloveType(GloveSide side)
+    {
+        int index = GetGloveIndex(side);
+        return (GloveType)(index * 2 + (int)side);
+    }
+
 }

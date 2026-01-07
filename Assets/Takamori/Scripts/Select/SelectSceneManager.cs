@@ -10,6 +10,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.UI.GridLayoutGroup;
 
 
 /// <summary>
@@ -129,8 +130,8 @@ public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
         {
             // 選択したグローブを生成用に構造体に格納
             GloveSet gloves = new GloveSet(
-                (GloveType)player.GetGloveIndex(GloveSide.Left),
-                (GloveType)player.GetGloveIndex(GloveSide.Right));
+                player.GetGloveType(GloveSide.Left),
+                player.GetGloveType(GloveSide.Right));
 
             m_playerGenerationInfos[player.PlayerId] =
                 new PlayerGenerationInfo(
