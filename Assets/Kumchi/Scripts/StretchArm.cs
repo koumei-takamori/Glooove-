@@ -41,7 +41,7 @@ public class StretchArm : GloveBase
     public bool hasEnemyDodgePoint = false;
 
 
-    public GloveType ArmGloveType { get { return gloveType; } set { gloveType = value; } } 
+    public GloveType ArmGloveType { get { return gloveType; } set { gloveType = value; } }
 
     /// <summary>
     /// 回避開始地点を設定（位置をコピー）
@@ -150,8 +150,8 @@ public class StretchArm : GloveBase
             };
             initialBoneStates.Add(st);
         }
-        PhaseRetract();
         GenerateGlove();
+        PhaseRetract();
     }
 
     private void GetAllBones(Transform current)
@@ -278,6 +278,9 @@ public class StretchArm : GloveBase
         if (!base.Use(playerController, type)) return false;
 
         m_playerController = playerController;
+
+        // アクションパラメーターを取得
+        actionParams = gloveObjectScript.ParameterData.GetStretchArmParamsByType(type);
 
         // 相手の回避ポイントをリセット
         hasEnemyDodgePoint = false;
