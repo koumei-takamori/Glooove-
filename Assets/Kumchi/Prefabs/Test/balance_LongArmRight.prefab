@@ -146,7 +146,7 @@ MonoBehaviour:
     m_usePlayerForward: 1
     m_forwardForceDistance: 6
     m_useWorldForwardAsReference: 1
-  gloveName: NormalGlove_R
+  gloveType: 1
   enemyDodgePosition: {x: 0, y: 0, z: 0}
   hasEnemyDodgePoint: 0
   twistAmount: 60
