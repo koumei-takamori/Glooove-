@@ -43,7 +43,7 @@ public class InPlayState : IUIState
     public void Enter()
     {
         // ステート開始時の処理
-        Debug.Log("InPlayState: Enter");
+        //Debug.Log("InPlayState: Enter");
 
         // InPlayUIをアクティブ(表示)にする
         inPlayUI.SetActive(true);
@@ -63,7 +63,7 @@ public class InPlayState : IUIState
     public void Exit()
     {
         // ステート終了時の処理
-        Debug.Log("InPlayState: Exit");
+        //Debug.Log("InPlayState: Exit");
 
         // InPlayUIを非アクティブ(非表示)にする
         inPlayUI.SetActive(false);

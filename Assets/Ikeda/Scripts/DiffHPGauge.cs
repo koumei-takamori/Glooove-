@@ -32,6 +32,8 @@ namespace Ikeda
         // 現在の速度
         private float m_speed = 0f;
 
+        private int maxHP;
+
         // ---------------------------
         // ↓[関数]
 
@@ -50,6 +52,11 @@ namespace Ikeda
             m_image.fillAmount = 1f;
         }
 
+        public void InitializeHP(int maxHP)
+        {
+            maxHP = maxHP;
+        }
+
         /// <summary>
         /// HPが減少したときに呼び出す
         /// </summary>
@@ -57,7 +64,7 @@ namespace Ikeda
         public void UpdateDiffGauge(float hp)
         {
             // HPを割合（0～1）に変換
-            float rate = Mathf.Clamp01(hp / HPGaugeMaskConst.MAX_HP);
+            float rate = Mathf.Clamp01(hp / maxHP);
 
             // 目標値が同じなら何もしない
             if (Mathf.Approximately(m_targetFill, rate)) return;

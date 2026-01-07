@@ -24,6 +24,8 @@ namespace Ikeda
         // 現在のHP割合（0.0 ～ 1.0）
         private float m_currentFill = 1f;
 
+        private int maxHP;
+
         // ---------------------------
         // ↓[関数]
 
@@ -46,6 +48,11 @@ namespace Ikeda
             m_image.fillAmount = m_currentFill;
         }
 
+        public void InitializeHP(int max)
+        {
+            maxHP = max;
+        }
+
         /// <summary>
         /// 緑ゲージを即時更新する
         /// </summary>
@@ -53,7 +60,7 @@ namespace Ikeda
         public void UpdateCurrentGauge(float newHPvalue)
         {
             // HPを割合（0～1）へ変換
-            float rate = Mathf.Clamp01(newHPvalue / HPGaugeMaskConst.MAX_HP);
+            float rate = Mathf.Clamp01(newHPvalue / maxHP);
 
             // 変化がなければ何もしない
             if (Mathf.Approximately(m_currentFill, rate)) return;
