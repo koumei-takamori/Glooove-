@@ -27,7 +27,7 @@ public class StretchArm : GloveBase
 
     [Header("グローブのキー")]
     [SerializeField]
-    private GloveType gloveType = GloveType.Normal;
+    private GloveType gloveType = GloveType.Normal_L;
 
     // グローブ
     private GameObject gloveGameObject;
