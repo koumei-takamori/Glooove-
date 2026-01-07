@@ -4238,6 +4238,7 @@ GameObject:
   - component: {fileID: 3083048255118984790}
   - component: {fileID: 6212059158294460863}
   - component: {fileID: 3410726280876522272}
+  - component: {fileID: -2533740493787345021}
   m_Layer: 0
   m_Name: Tank_character
   m_TagString: Untagged
@@ -4328,8 +4329,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d925aca48c64294dbe5278a3e027be5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_playerId: -1
   m_playerData: {fileID: 11400000, guid: 9e1e5490e9d56c04f862c350acd139e8, type: 2}
   m_status: {fileID: 0}
+  m_cameraPivot: {fileID: 0}
   m_target: {fileID: 0}
   m_gloveData:
     m_leftGlove: {fileID: 1227623267937651256, guid: f1cee2616f5f30643a93076d44aea504, type: 3}
@@ -4339,6 +4342,7 @@ MonoBehaviour:
   m_leftglovePosition: {fileID: 650504807617184078}
   m_rightglovePosition: {fileID: 8483955250083329194}
   m_barrier: {fileID: 6123524049283556778}
+  m_playerInputReceiver: {fileID: 0}
 --- !u!95 &3083048255118984790
 Animator:
   serializedVersion: 5
@@ -4406,6 +4410,18 @@ MonoBehaviour:
   m_DefaultActionMap: 
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &-2533740493787345021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6003184569924588045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c07b64ffd96abd04daea2e5dacd28915, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6103459817292300827
 GameObject:
   m_ObjectHideFlags: 0

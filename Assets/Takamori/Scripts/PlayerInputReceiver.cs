@@ -35,8 +35,8 @@ public class PlayerInputReceiver : MonoBehaviour
     private static readonly string[] ACTION_NAME =
     {
         "Move",			// 移動
-		"Attack",		// 通常攻撃
-        "Dash"          // ダッシュ
+		//"Attack",		// 通常攻撃
+  //      "Dash"          // ダッシュ
 	};
 
     // 入力タイプ
