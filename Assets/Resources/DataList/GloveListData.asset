@@ -15,13 +15,13 @@ MonoBehaviour:
   gloveEntries:
   - gloveType: 0
     gloveObject: {fileID: 3240274960219625644, guid: 5703d238697a86d409eeb4fa7cb27a5b, type: 3}
-  - gloveType: 0
+  - gloveType: 1
     gloveObject: {fileID: 5175245526344368681, guid: 4bfb8396f54f5044e8062b791cf6f40d, type: 3}
-  - gloveType: 1
+  - gloveType: 2
     gloveObject: {fileID: 3951942170220240305, guid: f37a528167333d0479bd58ee316275a4, type: 3}
-  - gloveType: 1
+  - gloveType: 3
     gloveObject: {fileID: 3951942170220240305, guid: 8551d626081c89b4f92935383c266033, type: 3}
-  - gloveType: 2
+  - gloveType: 4
     gloveObject: {fileID: 6841390331534104286, guid: a85feca3dd1d7014cbebb6dadf388e03, type: 3}
-  - gloveType: 2
+  - gloveType: 5
     gloveObject: {fileID: 6841390331534104286, guid: d1195906e8c717e40be25b52973981ed, type: 3}
