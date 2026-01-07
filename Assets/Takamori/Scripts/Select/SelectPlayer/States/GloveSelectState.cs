@@ -11,6 +11,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static SelectPlayer;
+using static SelectPlayerInputReceiver;
 using static StateMachine<SelectPlayer>;
 
 /// <summary>
@@ -30,12 +31,12 @@ public class GloveSelectState : StateBase
     public override void OnUpdate()
     {
         // -------- 左右キー：操作対象切り替え --------
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Owner.InputReceiver.GetInputValue<float>(SelectPlayerActions.GloveSideSelect) > 0.8)
         {
             currentSide = GloveSide.Left;
             Owner.CurrentGloveSide = currentSide;
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        else if (Owner.InputReceiver.GetInputValue<float>(SelectPlayerActions.GloveSideSelect) < 0.8)
         {
             currentSide = GloveSide.Right;
             Owner.CurrentGloveSide = currentSide;
@@ -43,26 +44,22 @@ public class GloveSelectState : StateBase
 
 
         // -------- 上下キー：グローブ変更 --------
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Owner.InputReceiver.GetInputValue<float>(SelectPlayerActions.GloveSelect) > 0.8)
         {
             Owner.AddGloveIndex(currentSide, 1);
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        else if (Owner.InputReceiver.GetInputValue<float>(SelectPlayerActions.GloveSelect) < 0.8)
         {
             Owner.AddGloveIndex(currentSide, -1);
         }
 
         // -------- 決定 --------
-        if (Owner.IsDecide())
+        if (Owner.InputReceiver.GetInputButton(SelectPlayerActions.Decide, InputType.PRESSED))
         {
             m_stateMashine.ChangeState(
                 (int)SelectPlayer.SelectPlayerState.Ready
             );
         }
-
-        Debug.Log("操作中：" + (currentSide == 0 ? "右" : "左"));
-        Debug.Log("左グローブ：" + Owner.GetGloveIndex(GloveSide.Left));
-        Debug.Log("右グローブ：" + Owner.GetGloveIndex(GloveSide.Right));
     }
 
     public override void OnExit()
