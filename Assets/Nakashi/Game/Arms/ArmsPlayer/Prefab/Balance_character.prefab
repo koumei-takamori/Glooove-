@@ -287,6 +287,7 @@ GameObject:
   - component: {fileID: 6758732689864369052}
   - component: {fileID: 1315235966813806441}
   - component: {fileID: 5560402681031970739}
+  - component: {fileID: 715840645947637045}
   m_Layer: 0
   m_Name: Balance_character
   m_TagString: Untagged
@@ -390,6 +391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d925aca48c64294dbe5278a3e027be5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_playerId: -1
   m_playerData: {fileID: 11400000, guid: 1e031d0d96f597b4db3cdb40aaa1ef0f, type: 2}
   m_status: {fileID: 0}
   m_cameraPivot: {fileID: 7931721151052189827}
@@ -402,6 +404,7 @@ MonoBehaviour:
   m_leftglovePosition: {fileID: 6150064070107380615}
   m_rightglovePosition: {fileID: 8665895358232917709}
   m_barrier: {fileID: 3965433822197836280}
+  m_playerInputReceiver: {fileID: 0}
 --- !u!95 &6758732689864369052
 Animator:
   serializedVersion: 5
@@ -451,7 +454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: 0}
+  m_Actions: {fileID: -944628639613478452, guid: 4d17756ecef1b4d4daa4d63e8a56a7c8, type: 3}
   m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -466,9 +469,21 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 
+  m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &715840645947637045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459727562826264231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c07b64ffd96abd04daea2e5dacd28915, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &508876580303140039
 GameObject:
   m_ObjectHideFlags: 0

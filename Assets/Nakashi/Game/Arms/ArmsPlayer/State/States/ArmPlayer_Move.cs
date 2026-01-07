@@ -8,6 +8,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static PlayerInputReceiver;
+
 
 namespace Nakashi
 {
@@ -47,7 +49,7 @@ namespace Nakashi
             /// </summary>
             /// <param name="rightEuler">右オイラー角</param>
             /// <param name="leftEuler">左オイラー角</param>
-            public void FixedUpdate(Vector3 rightEuler , Vector3 leftEuler)
+            public void FixedUpdate(Vector3 rightEuler, Vector3 leftEuler)
             {
 
                 if (m_controller.GetPlayerStatus().GetSetControll == true) { return; }
@@ -129,7 +131,14 @@ namespace Nakashi
             /// </summary>
             public void DebugUpdate()
             {
-                if(m_controller.GetPlayerStatus().GetSetControll == true) { return; }
+                if (m_controller.GetPlayerStatus().GetSetControll == true) { return; }
+
+                // InputReceiverがnullの場合は処理しない
+                if (m_controller.InputReceiver == null)
+                {
+                    Debug.LogWarning("InputReceiver is null!  デバッグ移動が使用できません。");
+                    return;
+                }
 
                 // 所属コントローラーのVelocityを0にする
                 m_controller.GetSetVelocity = Vector3.zero;
@@ -143,26 +152,32 @@ namespace Nakashi
                 Vector3 back = -forward;
                 Vector3 left = -right;
 
-                // キーボードのWASD ↑←↓→に対応した移動 アニメーション
-                if (Input.GetKey(KeyCode.W)||Input.GetKey(KeyCode.UpArrow))
-                {
-                    m_controller.GetSetVelocity += forward;
-                }
-                if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-                {
-                    m_controller.GetSetVelocity += left;
-                }
-                if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-                {
-                    m_controller.GetSetVelocity += back;
+                // ★★★ 修正：PlayerInputReceiverから移動入力を取得 ★★★
+                Vector2 moveInput = m_controller.InputReceiver.GetInputValue<Vector2>(PlayerInputReceiver.Actions.MOVE);
 
-                }
-                if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+                // 移動入力に基づいて速度を設定
+                if (moveInput.y > 0.1f) // 前方（W or ↑）
                 {
-                    m_controller.GetSetVelocity += right;
+                    m_controller.GetSetVelocity += forward * moveInput.y;
+                }
+                if (moveInput.y < -0.1f) // 後方（S or ↓）
+                {
+                    m_controller.GetSetVelocity += back * Mathf.Abs(moveInput.y);
+                }
+                if (moveInput.x < -0.1f) // 左（A or ←）
+                {
+                    m_controller.GetSetVelocity += left * Mathf.Abs(moveInput.x);
+                }
+                if (moveInput.x > 0.1f) // 右（D or →）
+                {
+                    m_controller.GetSetVelocity += right * moveInput.x;
                 }
 
-                m_controller.GetSetVelocity.Normalize();
+                // 速度の正規化
+                if (m_controller.GetSetVelocity.sqrMagnitude > 0.01f)
+                {
+                    m_controller.GetSetVelocity.Normalize();
+                }
 
                 Rigidbody rb = m_controller.GetRigidbody();
                 Vector3 moveDir = m_controller.GetSetVelocity.normalized;
@@ -175,7 +190,6 @@ namespace Nakashi
                 rb.AddForce(force, ForceMode.VelocityChange);
 
                 WalkingAnimation();
-
             }
 
             /// <summary>
@@ -200,10 +214,10 @@ namespace Nakashi
                 Transform trans = m_controller.transform;
 
                 float moveX = Vector3.Dot(dir, trans.right);
-                float moveZ = Vector3.Dot(dir , trans.forward);
+                float moveZ = Vector3.Dot(dir, trans.forward);
 
-                m_controller.GetAnimator().SetFloat("WalkSpeedX", moveX , 0.1f, Time.deltaTime);
-                m_controller.GetAnimator().SetFloat("WalkSpeedZ", moveZ , 0.1f, Time.deltaTime);
+                m_controller.GetAnimator().SetFloat("WalkSpeedX", moveX, 0.1f, Time.deltaTime);
+                m_controller.GetAnimator().SetFloat("WalkSpeedZ", moveZ, 0.1f, Time.deltaTime);
             }
 
         }

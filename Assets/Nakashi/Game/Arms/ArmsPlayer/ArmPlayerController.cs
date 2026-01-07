@@ -89,6 +89,10 @@ namespace Nakashi
             // 追加 : 回避行動検知
             DodgeChecker dodgeChecker;
 
+            // 追加 : プレイヤーの入力を取得するクラス
+            [SerializeField] private PlayerInputReceiver m_playerInputReceiver;
+
+
 
             private void Awake()
             {
@@ -115,6 +119,14 @@ namespace Nakashi
 
                 // 追加: グローブの設定
                 GloveSetUp();
+
+                // 追加: 入力受け取りクラスの取得
+                m_playerInputReceiver = this.GetComponent<PlayerInputReceiver>();
+                if (m_playerInputReceiver == null)
+                {
+                    Debug.LogError("PlayerInputReceiver が見つかりません！同じGameObjectにアタッチしてください。");
+                }
+
 
                 //DebugStringSystem.Instance.AddVariable("Velocity", () => m_velocity);
                 //DebugStringSystem.Instance.AddVariable("RightEuler", () => m_rightEuler);
@@ -386,8 +398,11 @@ namespace Nakashi
 
             // カメラの基準点
             public Transform CameraPivot { get { return m_cameraPivot; } }
-            
+
             public int PlayerId { get { return m_playerId; } set { m_playerId = value; } }
+
+            // 追加：プレイヤーの入力を取得するクラス
+            public PlayerInputReceiver InputReceiver { get { return m_playerInputReceiver; } }
         }
     }
 
