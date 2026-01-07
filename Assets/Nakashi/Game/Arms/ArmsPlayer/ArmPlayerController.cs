@@ -245,13 +245,13 @@ namespace Nakashi
                 bool rightAttackInput = InputReceiver.GetInputButton(PlayerInputReceiver.Actions.R_ATTACK, PlayerInputReceiver.InputType.PRESSED);
 
                 // 追加: 攻撃状態に変更
-                if (leftAttackInput)
+                if (rightAttackInput)
                 {
 
                     m_stateMachine.ChangeState(m_stateMachine.GetRightAttack());
                     Debug.Log("Hおされた");
                 }
-                if (rightAttackInput)
+                if (leftAttackInput)
                 {
 
                     m_stateMachine.ChangeState(m_stateMachine.GetLeftAttack());
