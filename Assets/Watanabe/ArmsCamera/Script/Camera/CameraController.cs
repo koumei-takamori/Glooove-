@@ -78,11 +78,11 @@ public class CameraContoller : MonoBehaviour
 
         //‚PPƒJƒƒ‰‚Ìİ’è
         m_1PCamera.Follow = m_1PTransform;
-        //m_1PCamera.LookAt = m_targetGroupOb.transform;
+        m_1PCamera.LookAt = m_targetGroupOb.transform;
 
         //‚QPƒJƒƒ‰‚Ìİ’è
         m_2PCamera.Follow = m_2PTransform;
-        //m_2PCamera.LookAt = m_targetGroupOb.transform;
+        m_2PCamera.LookAt = m_targetGroupOb.transform;
 
         Debug.Log("1p" + m_1PTransform);
         Debug.Log("2p" + m_2PTransform);
