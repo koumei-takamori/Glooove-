@@ -23,8 +23,11 @@ public class PlayerInputReceiver : MonoBehaviour
     public enum Actions : uint
     {
         MOVE = 0,    //	移動
-        ATTACK,      //	攻撃
+        JUMP,        //	ジャンプ
+        L_ATTACK,      //	左攻撃
+        R_ATTACK,      //	右攻撃
         DASH,        //	ダッシュ
+        PARRY,       //  パリィ
 
         OVER_ID      //	最大数
     };
@@ -35,8 +38,12 @@ public class PlayerInputReceiver : MonoBehaviour
     private static readonly string[] ACTION_NAME =
     {
         "Move",			// 移動
-		//"Attack",		// 通常攻撃
-  //      "Dash"          // ダッシュ
+        "Jump",		// ジャンプ
+        "LAttack",    // 左攻撃
+        "RAttack",    // 右攻撃
+        "Dash",          // ダッシュ
+        "Parry"          // パリィ
+
 	};
 
     // 入力タイプ

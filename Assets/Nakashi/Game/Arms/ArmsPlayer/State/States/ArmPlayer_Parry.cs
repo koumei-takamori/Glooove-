@@ -38,8 +38,8 @@ namespace Nakashi
                 // 動けなくする
                 m_controller.GetPlayerStatus().GetSetControll = true;
                 // Enableの変更
-                m_controller.GetBarrier.SetBool("Reflect",true);
-                
+                m_controller.GetBarrier.SetBool("Reflect", true);
+
             }
 
             /// <summary>
@@ -78,8 +78,9 @@ namespace Nakashi
             /// </summary>
             private void ReleaseButton()
             {
+                bool parryInput = m_controller.InputReceiver.GetInputButton(PlayerInputReceiver.Actions.PARRY, PlayerInputReceiver.InputType.RELEASED);
                 // キーが離れたら、アイドリング状態に戻す。
-                if(Input.GetKeyUp(KeyCode.P)) { m_controller.GetStateMachine().ChangeState(m_controller.GetStateMachine().GetIdle()); }
+                if (parryInput) { m_controller.GetStateMachine().ChangeState(m_controller.GetStateMachine().GetIdle()); }
             }
         }
     }

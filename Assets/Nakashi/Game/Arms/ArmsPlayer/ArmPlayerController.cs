@@ -216,18 +216,20 @@ namespace Nakashi
                 // スタートフラグ中は処理しない
                 if (!m_status.CanStart) { return; }
 
-                if (IsGround() && (
-                    //Nakashi.Framework.VibrationSystem.Instance.GetNPad().GetButtonDown(nn.hid.NpadButton.L) || 
-                    Input.GetKeyDown(KeyCode.Space) &&
-                    m_coolTime.CanJump()))
+                // 追加:
+                // ジャンプ入力を取得
+                bool jumpInput = InputReceiver.GetInputButton(PlayerInputReceiver.Actions.JUMP, PlayerInputReceiver.InputType.PRESSED);
+                // ダッシュ入力を取得
+                bool dashInput = InputReceiver.GetInputButton(PlayerInputReceiver.Actions.DASH, PlayerInputReceiver.InputType.PRESSED);
+
+
+                if (IsGround() && (jumpInput && m_coolTime.CanJump()))
                 {
                     m_stateMachine.ChangeState(m_stateMachine.GetJump());
                     m_coolTime.StartJump();
                     return;
                 }
-                if ((/*Nakashi.Framework.VibrationSystem.Instance.GetNPad().GetButtonDown(nn.hid.NpadButton.R) || */
-                    Input.GetKeyDown(KeyCode.LeftShift)) &&
-                    m_coolTime.CanDash())
+                if (dashInput && m_coolTime.CanDash())
                 {
                     // 相手のグローブに回避行動を行ったことを通知
                     dodgeChecker.IsDodgeCheckerAction(this, m_transform.position);
@@ -236,23 +238,32 @@ namespace Nakashi
                     m_coolTime.StartDash();
                     return;
                 }
+                // 追加:
+                // 左攻撃入力を取得
+                bool leftAttackInput = InputReceiver.GetInputButton(PlayerInputReceiver.Actions.L_ATTACK, PlayerInputReceiver.InputType.PRESSED);
+                // 右攻撃入力を取得
+                bool rightAttackInput = InputReceiver.GetInputButton(PlayerInputReceiver.Actions.R_ATTACK, PlayerInputReceiver.InputType.PRESSED);
 
                 // 追加: 攻撃状態に変更
-                if (Input.GetKeyDown(KeyCode.H))
+                if (leftAttackInput)
                 {
 
                     m_stateMachine.ChangeState(m_stateMachine.GetRightAttack());
                     Debug.Log("Hおされた");
                 }
-                if (Input.GetKeyDown(KeyCode.G))
+                if (rightAttackInput)
                 {
 
                     m_stateMachine.ChangeState(m_stateMachine.GetLeftAttack());
                     Debug.Log("Gおされた");
                 }
 
+                // 追加:
+                // パリィ入力を取得
+                bool parryInput = InputReceiver.GetInputButton(PlayerInputReceiver.Actions.PARRY, PlayerInputReceiver.InputType.PRESSED);
+
                 // パリィ状態        ↓↓この、Pかえるだけだと無理です。ごめ。ArmPlayer_ParryのほうのRelaseButtonも変えてね。
-                if (Input.GetKeyDown(KeyCode.P))
+                if (parryInput)
                 {
                     m_stateMachine.ChangeState(m_stateMachine.GetParry());
                 }
