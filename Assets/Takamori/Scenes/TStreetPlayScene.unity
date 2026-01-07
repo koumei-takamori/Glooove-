@@ -803,6 +803,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b02981cabe4c24a9c07e9b88fc177a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_1pPlayer: {fileID: 0}
+  m_2pPlayer: {fileID: 0}
   m_cameraContoroller1: {fileID: 589761316}
   m_transform: {fileID: 1115131335}
 --- !u!1001 &997712181
@@ -1397,6 +1399,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4875675379712929618, guid: 6e4ee12ced7528e4298923977391b2c2, type: 3}
+      propertyPath: m_tank
+      value: 
+      objectReference: {fileID: 3585432954368449380, guid: 140fe63e2e16ac44bb8eb0e4d8812880, type: 3}
     - target: {fileID: 7663207414643896240, guid: 6e4ee12ced7528e4298923977391b2c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
