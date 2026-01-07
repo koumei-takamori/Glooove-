@@ -22,18 +22,9 @@ public class PlaySceneManager : SingletonMonoBehaviour<PlaySceneManager>
     [SerializeField]
     private ArmPlayerController m_2pPlayer;
 
-    // カメラコントローラー1
+    // カメラコントローラー
     [SerializeField]
-    private CameraContoller m_cameraContoroller1;
-
-    //// カメラコントローラー1
-    //[SerializeField]
-    //private CameraContoller m_cameraContoroller2;
-
-
-    // 仮のTarget（パンチング）
-    [SerializeField]
-    private　Transform m_transform;
+    private CameraContoller m_cameraContorller;
 
     /*--------------------------------------------------------------------------------
 　　|| 実行前初期化処理
@@ -59,8 +50,8 @@ public class PlaySceneManager : SingletonMonoBehaviour<PlaySceneManager>
         m_2pPlayer = PlayerRegistry.Instance.GetPlayer(1).GetComponent<ArmPlayerController>();
 
         // お互いをターゲット設定
-        m_1pPlayer.Target = m_2pPlayer.transform;
-        m_2pPlayer.Target = m_1pPlayer.transform;
+        m_1pPlayer.Target = m_2pPlayer.AttackPoint;
+        m_2pPlayer.Target = m_1pPlayer.AttackPoint;
 
         // プレイヤーのカメラの設定
         SetupPlayerCameras();
@@ -85,18 +76,13 @@ public class PlaySceneManager : SingletonMonoBehaviour<PlaySceneManager>
     private void SetupPlayerCameras()
     {
         // Transform取得
-        Transform player1 = m_1pPlayer.CameraPivot;
-        //Transform player2 = PlayerRegistry.Instance.GetPlayer(1).transform;
+        Transform player1 = PlayerRegistry.Instance.GetPlayer(0).transform;
+        Transform player2 = PlayerRegistry.Instance.GetPlayer(1).transform;
 
-        // 1Pカメラ
-        m_cameraContoroller1.Owner = player1;
-        m_cameraContoroller1.Target = m_1pPlayer.Target;
+        m_cameraContorller.Player1 = player1;
+        m_cameraContorller.Player2 = player2;
 
-        //// 2Pカメラ
-        //m_cameraContoroller2.Owner = player2;
-        //m_cameraContoroller2.Target = player1;
-
-        m_cameraContoroller1.InitCameraTargets();
+        m_cameraContorller.InitCameraTargets();
     }
 }
 
