@@ -493,6 +493,7 @@ GameObject:
   - component: {fileID: 4412505057514038337}
   - component: {fileID: -5419921097441122207}
   - component: {fileID: -3864883882902206222}
+  - component: {fileID: 9061328222148705539}
   m_Layer: 0
   m_Name: Speed_character
   m_TagString: Untagged
@@ -619,7 +620,7 @@ MonoBehaviour:
   m_rightglove: {fileID: 0}
   m_leftglovePosition: {fileID: 7491057490403296450}
   m_rightglovePosition: {fileID: 2622324162221552855}
-  m_barrier: {fileID: 0}
+  m_barrier: {fileID: 1051240041795997852}
   m_playerInputReceiver: {fileID: -3864883882902206222}
 --- !u!114 &4412505057514038337
 MonoBehaviour:
@@ -679,6 +680,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c07b64ffd96abd04daea2e5dacd28915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &9061328222148705539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097316108917939466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7494d9f6239087e4d892712efda4fb37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHP: 0
+  armPlayerController: {fileID: 0}
+  armPlayerData: {fileID: 0}
+  hpGaugeCanvas3D: {fileID: 0}
+  hpGaugeSystems:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1110395087832978669
 GameObject:
   m_ObjectHideFlags: 0

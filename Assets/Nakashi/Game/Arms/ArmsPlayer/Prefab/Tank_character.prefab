@@ -2247,6 +2247,7 @@ GameObject:
   - component: {fileID: 834911960255296049}
   - component: {fileID: 3848667229899230302}
   - component: {fileID: 6597039062093991137}
+  - component: {fileID: -8892726759706149095}
   m_Layer: 0
   m_Name: Tank_character
   m_TagString: Player
@@ -2372,7 +2373,7 @@ MonoBehaviour:
   m_rightglove: {fileID: 0}
   m_leftglovePosition: {fileID: 458566254030188455}
   m_rightglovePosition: {fileID: 6482006682971456558}
-  m_barrier: {fileID: 6123524049283556778, guid: 95041629299b304408806d6835a387f4, type: 3}
+  m_barrier: {fileID: 1154846329448713550}
   m_playerInputReceiver: {fileID: 6597039062093991137}
 --- !u!114 &834911960255296049
 MonoBehaviour:
@@ -2432,6 +2433,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c07b64ffd96abd04daea2e5dacd28915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-8892726759706149095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3585432954368449380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7494d9f6239087e4d892712efda4fb37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHP: 0
+  armPlayerController: {fileID: 0}
+  armPlayerData: {fileID: 0}
+  hpGaugeCanvas3D: {fileID: 0}
+  hpGaugeSystems:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &3625089764750016369
 GameObject:
   m_ObjectHideFlags: 0
