@@ -13,6 +13,10 @@ namespace Nakashi
     {
         public class ArmPlayerController : MonoBehaviour
         {
+            // プレイヤー 0:1p 1:2ps
+            [SerializeField]
+            private int m_playerId = -1;
+
             // プレイヤーのデータ
             [SerializeField] private ArmPlayerData m_playerData;
             // プレイヤーステータス
@@ -382,6 +386,8 @@ namespace Nakashi
 
             // カメラの基準点
             public Transform CameraPivot { get { return m_cameraPivot; } }
+            
+            public int PlayerId { get { return m_playerId; } set { m_playerId = value; } }
         }
     }
 

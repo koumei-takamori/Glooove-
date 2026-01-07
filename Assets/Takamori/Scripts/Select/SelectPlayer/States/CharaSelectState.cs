@@ -10,6 +10,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static SelectPlayerInputReceiver;
 using static StateMachine<SelectPlayer>;
 
 /// <summary>
@@ -36,20 +37,18 @@ public class CharaSelectState : StateBase
     /// </summary>
     public override void OnUpdate()
     {
-        // ↑キー：次のキャラ
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Owner.InputReceiver.GetInputValue<float>(SelectPlayerActions.CharaSelect) > 0.8)
         {
             Owner.AddCharaIndex(1);
         }
 
-        // ↓キー：前のキャラ
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Owner.InputReceiver.GetInputValue<float>(SelectPlayerActions.CharaSelect) < 0.8)
         {
             Owner.AddCharaIndex(-1);
         }
 
         // 決定 → グローブ選択へ
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Owner.InputReceiver.GetInputButton(SelectPlayerActions.Decide,InputType.PRESSED))
         {
             m_stateMashine.ChangeState(
                 (int)SelectPlayer.SelectPlayerState.GloveSelect

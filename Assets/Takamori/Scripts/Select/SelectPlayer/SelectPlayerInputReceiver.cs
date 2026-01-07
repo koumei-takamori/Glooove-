@@ -20,7 +20,7 @@ public class SelectPlayerInputReceiver : MonoBehaviour
     private static readonly string ACTION_MAP_NAME = "SelectPlayer";
 
     // アクション
-    public enum Actions : uint
+    public enum SelectPlayerActions : uint
     {
         CharaSelect = 0,    
         GloveSelect,      
@@ -31,7 +31,7 @@ public class SelectPlayerInputReceiver : MonoBehaviour
         OVER_ID
     };
     // アクションの最大数
-    public static readonly uint ACTION_COUNT = (int)Actions.OVER_ID;
+    public static readonly uint ACTION_COUNT = (int)SelectPlayerActions.OVER_ID;
 
     // アクション名（上記アクションのインデックスに依存）
     private static readonly string[] ACTION_NAME =
@@ -76,6 +76,7 @@ public class SelectPlayerInputReceiver : MonoBehaviour
 
         //	各アクションの取得
         m_actions = new InputAction[ACTION_COUNT];
+
         for (int i = 0; i < ACTION_COUNT; i++)
         {
             m_actions[i] = m_gameActionMap.FindAction(ACTION_NAME[i], true);
@@ -91,7 +92,7 @@ public class SelectPlayerInputReceiver : MonoBehaviour
     /// <param name="action">アクション</param>
     /// <param name="type">入力タイプ</param>
     /// <returns></returns>
-    public bool GetInputButton(Actions action, InputType type)
+    public bool GetInputButton(SelectPlayerActions action, InputType type)
     {
         switch (type)
         {
@@ -122,7 +123,7 @@ public class SelectPlayerInputReceiver : MonoBehaviour
     /// <typeparam name="T">取得したい型</typeparam>
     /// <param name="action">アクション</param>
     /// <returns></returns>
-    public T GetInputValue<T>(Actions action)
+    public T GetInputValue<T>(SelectPlayerActions action)
         where T : struct
     {
         return m_actions[(uint)action].ReadValue<T>();

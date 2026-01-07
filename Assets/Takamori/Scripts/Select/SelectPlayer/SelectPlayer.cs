@@ -10,10 +10,12 @@
 using Nakashi.Player;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// セレクトシーンのプレイヤー
 /// </summary>
+[RequireComponent(typeof(SelectPlayerInputReceiver))]
 public class SelectPlayer : MonoBehaviour
 {
     /// <summary>
@@ -28,6 +30,10 @@ public class SelectPlayer : MonoBehaviour
 
     // ステートマシン
     private StateMachine<SelectPlayer> m_stateMachine;
+
+    // 入力を取得するクラス
+    [SerializeField]
+    private　SelectPlayerInputReceiver m_inputReceiver;
 
     // プレイヤーID
     [SerializeField]
@@ -49,6 +55,7 @@ public class SelectPlayer : MonoBehaviour
     private bool m_isReady;
 
     // プロパティ
+    public SelectPlayerInputReceiver InputReceiver {  get { return m_inputReceiver; } }
     public int PlayerID {  get { return m_playerID; } set { m_playerID = value; } }
     public int CharaIndex {  get { return m_charaIndex; } }
     public GloveSide CurrentGloveSide { get { return m_currentGloveSide; } set { m_currentGloveSide = value; } }

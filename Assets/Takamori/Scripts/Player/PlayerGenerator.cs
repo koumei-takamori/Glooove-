@@ -10,6 +10,7 @@
 using Nakashi.Player;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.Intrinsics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.TextCore.Text;
@@ -75,10 +76,12 @@ public class PlayerGenerator : MonoBehaviour
             pairWithDevice: m_playerGenertionInfos[i].PairWithDevice
             );
 
-            var arms = player.GetComponent<ArmPlayerController>().GetStretchArms();
+            var armPlayer = player.GetComponent<ArmPlayerController>();
 
-            arms[(int)GloveSide.Left].ArmGloveType = m_playerGenertionInfos[i].GloveSet.Left;
-            arms[(int)GloveSide.Right].ArmGloveType = m_playerGenertionInfos[i].GloveSet.Right;
+            armPlayer.GetStretchArms()[(int)GloveSide.Left].ArmGloveType = m_playerGenertionInfos[i].GloveSet.Left;
+            armPlayer.GetStretchArms()[(int)GloveSide.Right].ArmGloveType = m_playerGenertionInfos[i].GloveSet.Right;
+
+            armPlayer.PlayerId = m_playerGenertionInfos[i].PlayerId;
         }
     }
 }
