@@ -113,28 +113,7 @@ public class SelectPlayer : MonoBehaviour
         m_stateMachine.OnUpdate();
     }
 
-    /*--------------------------------------------------------------------------------
-　　|| 入力関連
-　　--------------------------------------------------------------------------------*/
-    /// <summary>
-    /// 決定入力
-    /// </summary>
-    public bool IsDecide()
-    {
-        return Input.GetKeyDown(KeyCode.Space);
-    }
 
-    /// <summary>
-    /// キャンセル入力
-    /// </summary>
-    public bool IsCancel()
-    {
-        return Input.GetKeyDown(KeyCode.Backspace);
-    }
-
-    /*--------------------------------------------------------------------------------
-　　|| キャラ選択関連
-　　--------------------------------------------------------------------------------*/
     /// <summary>
     /// キャラIndexを変更
     /// </summary>
@@ -144,9 +123,6 @@ public class SelectPlayer : MonoBehaviour
         m_charaIndex = Mathf.Clamp(m_charaIndex, 0, CHARA_MAX - 1);
     }
 
-    /*--------------------------------------------------------------------------------
-　　|| グローブ選択関連
-　　--------------------------------------------------------------------------------*/
     /// <summary>
     /// グローブIndexを変更
     /// </summary>
