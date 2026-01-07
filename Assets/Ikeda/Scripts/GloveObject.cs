@@ -56,16 +56,25 @@ public class GloveObject : MonoBehaviour
     /// オブジェクトが当たった瞬間の処理
     /// </summary>
     /// <param name="collision">ヒット相手の衝突判定データ</param>
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collider)
     {
         // 攻撃中でなければ処理なし
         if (!isAttacking) return;
 
         // 相手プレイヤーかを判別
-        if (collision.gameObject.CompareTag("Player") || collision.gameObject != owner)
+        if (collider.gameObject.CompareTag("Player") && collider.gameObject != owner)
         {
-            // 相手のステートをダメージに変更
-            int i = 0;
+
+            // オーナーからダメージ量を実数で受け取る
+
+            // グローブのダメージ倍率を計算
+
+
+            // ダメージを与える
+            collider.gameObject.GetComponent<PlayerHP>().Damaged(10);
+
+            // フラグをリセット
+            isAttacking = false;
 
             // 効果音を再生
         }
