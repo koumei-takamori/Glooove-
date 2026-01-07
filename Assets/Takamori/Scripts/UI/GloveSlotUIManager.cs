@@ -41,7 +41,7 @@ public class GloveSlotUIManager : MonoBehaviour
     private void Update()
     {
         // 操作不能なら処理しない
-        if (!m_canControll) { return; }
+        if (!m_canControll) return;
 
         m_leftSlot.SetIndex(m_player.GetGloveIndex(GloveSide.Left));
         m_rightSlot.SetIndex(m_player.GetGloveIndex(GloveSide.Right));
@@ -59,7 +59,7 @@ public class GloveSlotUIManager : MonoBehaviour
     private void UpdateSlot()
     {
         // 操作不能なら処理しない
-        if (!m_canControll) { return; }
+        if (!m_canControll) return;
 
         GloveSide activeSide = m_player.CurrentGloveSide;
 

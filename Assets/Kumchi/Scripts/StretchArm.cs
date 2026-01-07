@@ -27,17 +27,21 @@ public class StretchArm : GloveBase
 
     [Header("グローブのキー")]
     [SerializeField]
-    private string gloveName = "test";
+    private GloveType gloveType = GloveType.Normal_L;
 
     // グローブ
     private GameObject gloveGameObject;
     // グローブスクリプト
     private GloveObject gloveObjectScript;
-
+    // グローブ追従用Transform
+    private Transform endBoneTransform;
 
     // 回避地点
     public Vector3 enemyDodgePosition = Vector3.zero;
     public bool hasEnemyDodgePoint = false;
+
+
+    public GloveType ArmGloveType { get { return gloveType; } set { gloveType = value; } }
 
     /// <summary>
     /// 回避開始地点を設定（位置をコピー）
@@ -146,6 +150,7 @@ public class StretchArm : GloveBase
             };
             initialBoneStates.Add(st);
         }
+        GenerateGlove();
         PhaseRetract();
     }
 
@@ -154,6 +159,10 @@ public class StretchArm : GloveBase
         bones.Add(current);
         for (int i = 0; i < current.childCount; i++)
             GetAllBones(current.GetChild(i));
+
+        // 最奥ボーンを保存
+        if (current.childCount == 0)
+            endBoneTransform = current;
     }
 
     /// <summary>
@@ -176,7 +185,7 @@ public class StretchArm : GloveBase
         }
 
         // Prefab取得
-        GameObject glovePrefab = gloveListData.GetGloveByName(gloveName);
+        GameObject glovePrefab = gloveListData.GetGlove(gloveType);
 
         if (glovePrefab == null)
         {
@@ -245,6 +254,12 @@ public class StretchArm : GloveBase
     protected override void Update()
     {
         base.Update();
+
+        if (gloveGameObject != null && endBoneTransform != null)
+        {
+            gloveGameObject.transform.position = endBoneTransform.position;
+            gloveGameObject.transform.rotation = endBoneTransform.rotation * gloveObjectScript.GloveRotation;
+        }
     }
 
 
@@ -263,6 +278,9 @@ public class StretchArm : GloveBase
         if (!base.Use(playerController, type)) return false;
 
         m_playerController = playerController;
+
+        // アクションパラメーターを取得
+        actionParams = gloveObjectScript.ParameterData.GetStretchArmParamsByType(type);
 
         // 相手の回避ポイントをリセット
         hasEnemyDodgePoint = false;

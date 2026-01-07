@@ -35,27 +35,53 @@ public enum GloveSide
 /// </summary>
 public enum GloveType
 {
-    Normal,
-    Boomerang,
-    Power,
+    Normal_L,
+    Normal_R,
+    Boomerang_L,
+    Boomerang_R,
+    Power_L,
+    Power_R
 }
 
 /// <summary>
-/// プレイヤーの生成情報
+/// 両腕のグローブ情報
 /// </summary>
 [System.Serializable]
+public struct GloveSet
+{
+    public GloveType Left;
+    public GloveType Right;
+
+    public GloveSet(GloveType left, GloveType right)
+    {
+        Left = left;
+        Right = right;
+    }
+}
+
+
+    /// <summary>
+    /// プレイヤーの生成情報
+    /// </summary>
+    [System.Serializable]
 public class PlayerGenerationInfo
 {
     // プレイヤーID
     public int PlayerId { get; private set; } = default;
     public InputDevice PairWithDevice { get; private set; } = default;
     public CharacterType SelectedCharacter { get; private set; } = default;
+    public GloveSet GloveSet { get; private set; } = default;
 
     public PlayerGenerationInfo(
+        int playerid,
         InputDevice pairWithDevice, 
-        CharacterType selectedCharacter)
+        CharacterType selectedCharacter,
+        GloveSet gloveSet
+    )
     {
+        PlayerId = playerid;
         PairWithDevice = pairWithDevice;
         SelectedCharacter = selectedCharacter;
+        GloveSet = gloveSet;
     }
 }

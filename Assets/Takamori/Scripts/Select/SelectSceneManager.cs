@@ -10,6 +10,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.UI.GridLayoutGroup;
 
 
 /// <summary>
@@ -17,6 +18,9 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager> 
 {
+    // インゲームのプレイヤーの生成情報
+    private PlayerGenerationInfo[] m_playerGenerationInfos = default;
+
     // フェード管理
     [SerializeField]
     private UIFade m_fade;
@@ -50,14 +54,19 @@ public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
     /// </summary>
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    m_fade.FadeOutWithCallback(() =>
-        //    {
-        //        // ゲームスタート処理
-        //        GameStart();
-        //    });
-        //}
+        // 全プレイヤーが準備完了出ないなら処理しない
+        if (!IsAllPlayerReady()) return;
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            m_fade.FadeOutWithCallback(() =>
+            {
+                // 生成情報を生成
+                CreateGenerationInfos();
+                // ゲームスタート処理
+                GameStart();
+            });
+        }
     }
 
     /*--------------------------------------------------------------------------------
@@ -74,11 +83,63 @@ public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
         // ターゲットを取得
         if (target == null)
         {
-            Debug.LogError("PlayerManager がシーン内に見つかりませんでした。");
+            Debug.LogError("TStreetPlayScene がシーン内に見つかりませんでした。");
             return;
         }
 
         // 生成情報を格納
-        target.SetGenerationInfo(SelectPlayerManager.Instance.PlayerGenerationInfos);
+        target.SetGenerationInfo(m_playerGenerationInfos);
+    }
+
+    /*--------------------------------------------------------------------------------
+　　|| 全プレイヤーが準備完了か
+　　--------------------------------------------------------------------------------*/
+    /// <summary>
+    /// 全プレイヤーが準備完了か
+    /// </summary>
+    private bool IsAllPlayerReady()
+    {
+        var players = SelectPlayerManager.Instance.Players;
+
+        // まだ誰もいない
+        if (players.Count == 0) return false;
+
+        foreach (var player in players)
+        {
+            if (!player.IsReady)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /*--------------------------------------------------------------------------------
+  　|| 生成情報を作成する
+    --------------------------------------------------------------------------------*/
+    /// <summary>
+    /// 生成情報を作成する
+    /// </summary>
+    private void CreateGenerationInfos()
+    {
+        var players = SelectPlayerManager.Instance.Players;
+
+        m_playerGenerationInfos = new PlayerGenerationInfo[players.Count];
+
+        foreach (var player in players)
+        {
+            // 選択したグローブを生成用に構造体に格納
+            GloveSet gloves = new GloveSet(
+                player.GetGloveType(GloveSide.Left),
+                player.GetGloveType(GloveSide.Right));
+
+            m_playerGenerationInfos[player.PlayerId] =
+                new PlayerGenerationInfo(
+                    player.PlayerId,
+                    player.InputDevice,
+                    (CharacterType)player.CharaIndex,
+                    gloves
+                );
+        }
     }
 }

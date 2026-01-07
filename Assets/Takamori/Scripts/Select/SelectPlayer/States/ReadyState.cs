@@ -10,6 +10,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static SelectPlayerInputReceiver;
 using static StateMachine<SelectPlayer>;
 
 /// <summary>
@@ -38,7 +39,7 @@ public class ReadySelectState : StateBase
     public override void OnUpdate()
     {
         // 戻る → グローブ選択
-        if (Input.GetKey(KeyCode.Backspace))
+        if (Owner.InputReceiver.GetInputButton(SelectPlayerActions.Cancel, InputType.PRESSED))
         {
             Owner.SetReady(false);
             m_stateMashine.ChangeState((int)SelectPlayer.SelectPlayerState.GloveSelect);

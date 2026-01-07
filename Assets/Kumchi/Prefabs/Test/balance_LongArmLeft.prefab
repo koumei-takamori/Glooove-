@@ -89,6 +89,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6110038813433990548, guid: a81da34050aac9942a4251c22ebdfda2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6110038813433990548, guid: a81da34050aac9942a4251c22ebdfda2, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
@@ -120,24 +124,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b777e50826cf0d64db94f7bdb055257c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_gloveData: {fileID: 11400000, guid: de22b347b239f5443a2a034dea6e8677, type: 2}
+  m_gloveData: {fileID: 0}
+  gloveListData: {fileID: 11400000, guid: 71e3a24a31e7f474c94fff98db432377, type: 2}
   rootBone: {fileID: 7233618533994818915}
-  start: {fileID: 0}
+  start: {fileID: 7233618533994818915}
   target: {fileID: 0}
-  curveData: {fileID: 11400000, guid: 6ddaa75614a96db449533495acbae325, type: 2}
-  extendSpeed: 6
-  retractSpeed: 3
-  coilFrequency: 0
-  coilAmplitude: 0
-  hitWaitTime: 0.5
-  swayAmplitude: 0.3
-  swaySpeed: 2
-  maxDistance: 60
-  arriveEps: 0.01
-  usePlayerForward: 1
-  forwardForceDistance: 6
-  useWorldForwardAsReference: 1
-  twistAmount: -60
+  actionParams:
+    m_extendSpeed: 6
+    m_retractSpeed: 3
+    m_coilFrequency: 0
+    m_coilAmplitude: 0
+    m_hitWaitTime: 0.5
+    m_swayAmplitude: 0.3
+    m_swaySpeed: 2
+    m_maxDistance: 6
+    m_usePlayerForward: 1
+    m_forwardForceDistance: 6
+    m_useWorldForwardAsReference: 1
+  gloveName: NormalGlove_L
+  enemyDodgePosition: {x: 0, y: 0, z: 0}
+  hasEnemyDodgePoint: 0
+  twistAmount: 60
 --- !u!114 &5414566444143968701
 MonoBehaviour:
   m_ObjectHideFlags: 0

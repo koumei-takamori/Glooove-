@@ -13,10 +13,16 @@ namespace Nakashi
     {
         public class ArmPlayerController : MonoBehaviour
         {
+            // プレイヤー 0:1p 1:2ps
+            [SerializeField]
+            private int m_playerId = -1;
+
             // プレイヤーのデータ
             [SerializeField] private ArmPlayerData m_playerData;
             // プレイヤーステータス
             [SerializeField] private ArmPlayerStatus m_status;
+            // カメラの基準
+            [SerializeField] private Transform m_cameraPivot;
 
             // ステートマシン
             private ArmPlayerStateMachine m_stateMachine;
@@ -83,15 +89,16 @@ namespace Nakashi
             // 追加 : 回避行動検知
             DodgeChecker dodgeChecker;
 
+            // 追加 : プレイヤーの入力を取得するクラス
+            [SerializeField] private PlayerInputReceiver m_playerInputReceiver;
+
+
+
             private void Awake()
             {
                 // プレイヤー登録
                 PlayerRegistry.Instance.RegisterPlayer(this.gameObject);
-            }
 
-
-            private void Start()
-            {
                 // リジットボディ、トランスフォーム取得
                 m_rb = this.GetComponent<Rigidbody>();
                 m_transform = this.GetComponent<Transform>();
@@ -112,6 +119,14 @@ namespace Nakashi
 
                 // 追加: グローブの設定
                 GloveSetUp();
+
+                // 追加: 入力受け取りクラスの取得
+                m_playerInputReceiver = this.GetComponent<PlayerInputReceiver>();
+                if (m_playerInputReceiver == null)
+                {
+                    Debug.LogError("PlayerInputReceiver が見つかりません！同じGameObjectにアタッチしてください。");
+                }
+
 
                 //DebugStringSystem.Instance.AddVariable("Velocity", () => m_velocity);
                 //DebugStringSystem.Instance.AddVariable("RightEuler", () => m_rightEuler);
@@ -140,6 +155,12 @@ namespace Nakashi
                 PlayerRegistry.Instance.RegisterPlayer(this.gameObject);
 
                 IsInitialized = true;
+            }
+
+
+            private void Start()
+            {
+
             }
 
 
@@ -375,6 +396,13 @@ namespace Nakashi
             // 追加：　生成完了通知用のプロパティ
             public bool IsInitialized { get; private set; } = false;
 
+            // カメラの基準点
+            public Transform CameraPivot { get { return m_cameraPivot; } }
+
+            public int PlayerId { get { return m_playerId; } set { m_playerId = value; } }
+
+            // 追加：プレイヤーの入力を取得するクラス
+            public PlayerInputReceiver InputReceiver { get { return m_playerInputReceiver; } }
         }
     }
 

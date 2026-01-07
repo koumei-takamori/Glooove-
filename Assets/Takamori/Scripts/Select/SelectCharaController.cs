@@ -7,27 +7,16 @@
  *  制作日 : 2025/12/21
  *
  *********************************************************/
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 /// <summary>
 /// 選択キャラ制御
 /// </summary>
+[RequireComponent(typeof(Animator))]
 public class SelectCharaController : MonoBehaviour
 {
-    // Player接続前の画像
-    [SerializeField]
-    private Image m_waitingJoinImage;
-
-    // 各キャラクター
-    [SerializeField]
-    private GameObject m_balance;
-    [SerializeField]
-    private GameObject m_speed;
-    [SerializeField]
-    private GameObject m_tank;
+    // アニメーター
+    private Animator m_animator;
 
     /*--------------------------------------------------------------------------------
 　　|| 実行前初期化処理
@@ -37,8 +26,29 @@ public class SelectCharaController : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-        m_balance.SetActive(false);
-        m_speed.SetActive(false);
-        m_tank.SetActive(false);
+        m_animator = GetComponent<Animator>();
+        this.gameObject.SetActive(false);
+    }
+
+    /*--------------------------------------------------------------------------------
+　　|| キャラ決定処理
+　　--------------------------------------------------------------------------------*/
+    /// <summary>
+    /// キャラ決定処理
+    /// </summary>
+    public void Decide()
+    {
+        m_animator.SetBool("Select",true);
+    }
+
+    /*--------------------------------------------------------------------------------
+　　|| キャラキャンセル処理
+　　--------------------------------------------------------------------------------*/
+    /// <summary>
+    /// キャラキャンセル処理
+    /// </summary>
+    public void Cancel()
+    {
+        m_animator.SetBool("Select", false);
     }
 }

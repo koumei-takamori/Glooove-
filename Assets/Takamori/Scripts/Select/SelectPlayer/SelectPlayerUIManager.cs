@@ -22,6 +22,9 @@ public class SelectPlayerUIManager : MonoBehaviour
     [SerializeField]
     private GloveSlotUIManager m_selectGlove;
 
+    [SerializeField]
+    SelectCharaManager m_selectChara;
+
     /*--------------------------------------------------------------------------------
 　　|| 実行前初期化処理
 　　--------------------------------------------------------------------------------*/
@@ -45,6 +48,7 @@ public class SelectPlayerUIManager : MonoBehaviour
         m_player = player;
         m_selectCursor.Bind(player);
         m_selectGlove.Bind(player);
+        m_selectChara.Bind(player);
     }
 
     /*--------------------------------------------------------------------------------
@@ -58,5 +62,6 @@ public class SelectPlayerUIManager : MonoBehaviour
     {
         m_selectCursor.CanControll = canControll;
         m_selectGlove.CanControll = canControll;
+        m_selectChara.CanControll = canControll;
     }
 }

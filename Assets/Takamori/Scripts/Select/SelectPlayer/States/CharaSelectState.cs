@@ -10,6 +10,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static SelectPlayerInputReceiver;
 using static StateMachine<SelectPlayer>;
 
 /// <summary>
@@ -17,6 +18,10 @@ using static StateMachine<SelectPlayer>;
 /// </summary>
 public class CharaSelectState : StateBase
 {
+    // 入力用クールタイム
+    private float m_inputCooldown = 0.2f;
+    private float m_inputTimer = 0f;
+
     /*--------------------------------------------------------------------------------
 　　|| ステートに入った時の処理
 　　--------------------------------------------------------------------------------*/
@@ -36,27 +41,34 @@ public class CharaSelectState : StateBase
     /// </summary>
     public override void OnUpdate()
     {
-        // ↑キー：次のキャラ
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        // クールタイム減算
+        m_inputTimer -= Time.deltaTime;
+
+        // 連続入力を受け付けない
+        if (m_inputTimer > 0f) return;
+
+        // 入力の値を取得
+        float value = Owner.InputReceiver.GetInputValue<float>(SelectPlayerActions.CharaSelect);
+
+        // 値に応じた処理
+        if (value > 0.8f)
         {
             Owner.AddCharaIndex(1);
+            m_inputTimer = m_inputCooldown;
         }
-
-        // ↓キー：前のキャラ
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        else if (value < -0.8f)
         {
             Owner.AddCharaIndex(-1);
+            m_inputTimer = m_inputCooldown;
         }
 
         // 決定 → グローブ選択へ
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Owner.InputReceiver.GetInputButton(SelectPlayerActions.Decide,InputType.PRESSED))
         {
             m_stateMashine.ChangeState(
                 (int)SelectPlayer.SelectPlayerState.GloveSelect
             );
         }
-
-        Debug.Log("選択中キャラ：" + Owner.CharaIndex);
     }
 
     /*--------------------------------------------------------------------------------

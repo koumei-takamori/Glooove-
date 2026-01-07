@@ -7,6 +7,8 @@ public class Move : MonoBehaviour
     Transform m_transform;
     [SerializeField]
     public float moveSpeed;
+    [SerializeField]
+    Transform target;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +19,10 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        Vector3 lookPos = target.position - transform.position;
+        lookPos.y = 0; // è„â∫Ç…åXÇØÇΩÇ≠Ç»Ç¢èÍçá
+        transform.rotation = Quaternion.LookRotation(lookPos);
 
         if (Input.GetKey(KeyCode.W))
         {

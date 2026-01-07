@@ -11,6 +11,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static SelectPlayer;
+using static SelectPlayerInputReceiver;
 using static StateMachine<SelectPlayer>;
 
 /// <summary>
@@ -21,6 +22,10 @@ public class GloveSelectState : StateBase
     // 現在操作しているグローブ
     private GloveSide currentSide = GloveSide.Left;
 
+    // 入力用クールタイム
+    private float m_inputCooldown = 0.2f;
+    private float m_inputTimer = 0f;
+
     public override void OnEnter()
     {
         currentSide = 0; // 最初は右
@@ -29,40 +34,52 @@ public class GloveSelectState : StateBase
 
     public override void OnUpdate()
     {
+        // クールタイム減算
+        m_inputTimer -= Time.deltaTime;
+
+        // 連続入力を受け付けない
+        if (m_inputTimer > 0f) return;
+
         // -------- 左右キー：操作対象切り替え --------
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            currentSide = GloveSide.Left;
-            Owner.CurrentGloveSide = currentSide;
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        float side = Owner.InputReceiver
+            .GetInputValue<float>(SelectPlayerActions.GloveSideSelect);
+
+        if (side > 0.8f && currentSide != GloveSide.Right)
         {
             currentSide = GloveSide.Right;
             Owner.CurrentGloveSide = currentSide;
+            m_inputTimer = m_inputCooldown;
+        }
+        else if (side < -0.8f && currentSide != GloveSide.Left)
+        {
+            currentSide = GloveSide.Left;
+            Owner.CurrentGloveSide = currentSide;
+            m_inputTimer = m_inputCooldown;
         }
 
 
         // -------- 上下キー：グローブ変更 --------
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        float glove = Owner.InputReceiver
+           .GetInputValue<float>(SelectPlayerActions.GloveSelect);
+
+        if (glove > 0.8f)
         {
             Owner.AddGloveIndex(currentSide, 1);
+            m_inputTimer = m_inputCooldown;
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        else if (glove < -0.8f)
         {
             Owner.AddGloveIndex(currentSide, -1);
+            m_inputTimer = m_inputCooldown;
         }
 
         // -------- 決定 --------
-        if (Owner.IsDecide())
+        if (Owner.InputReceiver.GetInputButton(SelectPlayerActions.Decide, InputType.PRESSED))
         {
             m_stateMashine.ChangeState(
                 (int)SelectPlayer.SelectPlayerState.Ready
             );
         }
-
-        Debug.Log("操作中：" + (currentSide == 0 ? "右" : "左"));
-        Debug.Log("左グローブ：" + Owner.GetGloveIndex(GloveSide.Left));
-        Debug.Log("右グローブ：" + Owner.GetGloveIndex(GloveSide.Right));
     }
 
     public override void OnExit()

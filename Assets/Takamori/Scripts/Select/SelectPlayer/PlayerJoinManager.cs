@@ -37,6 +37,9 @@ public class PlayerJoinManager : MonoBehaviour
     // 現在のプレイヤー数
     private int m_currentPlayerCount = 0;
 
+    // プロパティ
+    public InputDevice[] JoinedDevices {  get { return m_joinedDevices; } }
+
     /*--------------------------------------------------------------------------------
 　　|| 実行前初期化処理
 　　--------------------------------------------------------------------------------*/

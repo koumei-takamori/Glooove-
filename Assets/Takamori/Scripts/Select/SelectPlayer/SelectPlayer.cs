@@ -10,10 +10,12 @@
 using Nakashi.Player;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// セレクトシーンのプレイヤー
 /// </summary>
+[RequireComponent(typeof(SelectPlayerInputReceiver))]
 public class SelectPlayer : MonoBehaviour
 {
     /// <summary>
@@ -26,12 +28,20 @@ public class SelectPlayer : MonoBehaviour
         Ready = 2       // 準備確認状態
     }
 
-    // ステートマシン
-    private StateMachine<SelectPlayer> m_stateMachine;
+    // プレイヤーID
+    [SerializeField]
+    private int m_playerId;
 
     // プレイヤーID
     [SerializeField]
-    private int m_playerID;
+    private InputDevice m_inputDevice;
+
+    // ステートマシン
+    private StateMachine<SelectPlayer> m_stateMachine;
+
+    // 入力を取得するクラス
+    [SerializeField]
+    private　SelectPlayerInputReceiver m_inputReceiver;
 
     // 選択中キャラIndex
     private int m_charaIndex;
@@ -44,17 +54,18 @@ public class SelectPlayer : MonoBehaviour
     private Dictionary<GloveSide, int> m_gloveIndex;
     private const int GLOVE_MAX = 3;
 
-
     // 決定フラグ
     private bool m_isReady;
 
     // プロパティ
-    public int PlayerID {  get { return m_playerID; } set { m_playerID = value; } }
-
+    public SelectPlayerInputReceiver InputReceiver {  get { return m_inputReceiver; } }
+    public int PlayerId {  get { return m_playerId; } set { m_playerId = value; } }
     public int CharaIndex {  get { return m_charaIndex; } }
     public GloveSide CurrentGloveSide { get { return m_currentGloveSide; } set { m_currentGloveSide = value; } }
-
     public int GetGloveIndex(GloveSide side) {  return m_gloveIndex[side]; }
+    public bool IsReady { get { return m_isReady; } }
+    public InputDevice InputDevice { get { return m_inputDevice; } set { m_inputDevice = value; } }
+
 
     /*--------------------------------------------------------------------------------
 　　|| 実行前初期化処理
@@ -106,28 +117,7 @@ public class SelectPlayer : MonoBehaviour
         m_stateMachine.OnUpdate();
     }
 
-    /*--------------------------------------------------------------------------------
-　　|| 入力関連
-　　--------------------------------------------------------------------------------*/
-    /// <summary>
-    /// 決定入力
-    /// </summary>
-    public bool IsDecide()
-    {
-        return Input.GetKeyDown(KeyCode.Space);
-    }
 
-    /// <summary>
-    /// キャンセル入力
-    /// </summary>
-    public bool IsCancel()
-    {
-        return Input.GetKeyDown(KeyCode.Backspace);
-    }
-
-    /*--------------------------------------------------------------------------------
-　　|| キャラ選択関連
-　　--------------------------------------------------------------------------------*/
     /// <summary>
     /// キャラIndexを変更
     /// </summary>
@@ -137,9 +127,6 @@ public class SelectPlayer : MonoBehaviour
         m_charaIndex = Mathf.Clamp(m_charaIndex, 0, CHARA_MAX - 1);
     }
 
-    /*--------------------------------------------------------------------------------
-　　|| グローブ選択関連
-　　--------------------------------------------------------------------------------*/
     /// <summary>
     /// グローブIndexを変更
     /// </summary>
@@ -158,10 +145,14 @@ public class SelectPlayer : MonoBehaviour
     }
 
     /// <summary>
-    /// 準備完了か
+    /// グローブの種類を取得
     /// </summary>
-    public bool IsReady()
+    /// <param name="side">左右</param>
+    /// <returns></returns>
+    public GloveType GetGloveType(GloveSide side)
     {
-        return m_isReady;
+        int index = GetGloveIndex(side);
+        return (GloveType)(index * 2 + (int)side);
     }
+
 }

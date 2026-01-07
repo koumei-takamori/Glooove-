@@ -25,13 +25,8 @@ public class SelectPlayerManager : SingletonMonoBehaviour<SelectPlayerManager>
     [SerializeField]
     private List<SelectPlayerUIManager> m_playerUIs = new List<SelectPlayerUIManager>();
 
-    // インゲームのプレイヤーの生成情報
-    private PlayerGenerationInfo[] m_playerGenerationInfos = default;
-
-
     // プロパティ
     public List<SelectPlayer> Players { get { return m_players; } }
-    public PlayerGenerationInfo[] PlayerGenerationInfos { get { return m_playerGenerationInfos; } }
 
     /*--------------------------------------------------------------------------------
 　　|| 実行前初期化処理
@@ -42,7 +37,6 @@ public class SelectPlayerManager : SingletonMonoBehaviour<SelectPlayerManager>
     override protected void Awake()
     {
         base.Awake();
-        m_playerGenerationInfos = new PlayerGenerationInfo[m_maxPlayerCount];
     }
 
     /*--------------------------------------------------------------------------------
@@ -64,15 +58,13 @@ public class SelectPlayerManager : SingletonMonoBehaviour<SelectPlayerManager>
         }
 
         // PlayerIDを設定
-        selectPlayer.PlayerID = playerInput.playerIndex;
+        selectPlayer.PlayerId = playerInput.playerIndex;
+        // InputDeviceを設定
+        selectPlayer.InputDevice = playerInput.devices[0];
 
         // プレイヤーを追加
         m_players.Add(selectPlayer);
         // UIと紐づけ
         m_playerUIs[playerInput.playerIndex].Bind(selectPlayer);
-
-        // インゲームのプレイヤーの生成情報を格納
-        m_playerGenerationInfos[playerInput.playerIndex] =
-            new PlayerGenerationInfo(playerInput.devices[0], CharacterType.Balance);
     }
 }
