@@ -70,8 +70,6 @@ public class KOState : IUIState
 
     public void Update()
     {
-        // ステート更新時の処理
-        Debug.Log("KOState: Update");
     }
 
 

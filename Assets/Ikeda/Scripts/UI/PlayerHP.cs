@@ -23,6 +23,7 @@ public class PlayerHP : MonoBehaviour
 
     // ================= 変数 =================
     [SerializeField] private int currentHP;
+    [SerializeField] private UIController uiController;
 
     [SerializeField] private ArmPlayerController armPlayerController;
     [SerializeField] private ArmPlayerData armPlayerData;
@@ -100,6 +101,24 @@ public class PlayerHP : MonoBehaviour
         if (!TryGetHPGauge3D(out hpGaugeSystems[1]))
             return false;
 
+        // --- UIController ---
+        if (uiController == null)
+        {
+            GameObject uiControllerObj = GameObject.Find("UIController");
+            if (uiControllerObj == null)
+            {
+                Debug.LogError("UIController オブジェクトが存在しません");
+                return false;
+            }
+
+            uiController = uiControllerObj.GetComponent<UIController>();
+            if (uiController == null)
+            {
+                Debug.LogError("UIController コンポーネントの取得に失敗しました");
+                return false;
+            }
+        }
+
         return true;
     }
 
@@ -112,6 +131,7 @@ public class PlayerHP : MonoBehaviour
         hpGaugeSystems[1].InitializeHP(currentHP);
     }
 
+    // ---------------ダメージ処理---------------
     public void Damaged(int damage)
     {
         currentHP -= damage;
@@ -122,6 +142,16 @@ public class PlayerHP : MonoBehaviour
         if (currentHP <= 0)
         {
             Debug.Log("HP が 0 になりました");
+            uiController.ChangeState(PlayUIType.KO);
+        }
+    }
+
+    public void Update()
+    {
+        // デバッグ用：Hキーで10ダメージ
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Damaged(10);
         }
     }
 
