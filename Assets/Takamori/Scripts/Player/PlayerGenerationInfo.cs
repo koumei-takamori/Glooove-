@@ -35,9 +35,12 @@ public enum GloveSide
 /// </summary>
 public enum GloveType
 {
-    Normal,
-    Boomerang,
-    Power
+    Normal_L,
+    Normal_R,
+    Boomerang_L,
+    Boomerang_R,
+    Power_L,
+    Power_R
 }
 
 /// <summary>
