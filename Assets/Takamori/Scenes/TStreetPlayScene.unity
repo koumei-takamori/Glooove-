@@ -231,10 +231,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LiveStage
       objectReference: {fileID: 0}
-    - target: {fileID: 338385440747099478, guid: 3bd8fd43c54ee334ebd06b8cad1debe2, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1151232033626083308, guid: 3bd8fd43c54ee334ebd06b8cad1debe2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -276,7 +272,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 358034076034673348, guid: 3bd8fd43c54ee334ebd06b8cad1debe2, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3bd8fd43c54ee334ebd06b8cad1debe2, type: 3}
@@ -401,17 +398,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0245a648f4e962e499c0e062edd9605c, type: 3}
---- !u!114 &589761316 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4418195489635981182, guid: 0245a648f4e962e499c0e062edd9605c, type: 3}
-  m_PrefabInstance: {fileID: 589761315}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 985e6f9feb3dfd84fb2fcb5dc8bb917d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &627920909
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -730,7 +716,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 127
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -803,7 +789,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_1pPlayer: {fileID: 0}
   m_2pPlayer: {fileID: 0}
-  m_cameraContorller: {fileID: 589761316}
+  m_cameraContorller: {fileID: 1297748856}
 --- !u!1 &993978675
 GameObject:
   m_ObjectHideFlags: 0
@@ -938,7 +924,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 191
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -965,6 +951,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1297748856 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4418195489635981182, guid: 0245a648f4e962e499c0e062edd9605c, type: 3}
+  m_PrefabInstance: {fileID: 589761315}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 985e6f9feb3dfd84fb2fcb5dc8bb917d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1429049369
 GameObject:
   m_ObjectHideFlags: 0
