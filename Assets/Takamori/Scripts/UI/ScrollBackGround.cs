@@ -12,77 +12,94 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// 
+/// 背景をスクロールする
 /// </summary>
 public class ScrollBackGround : MonoBehaviour
 {
-    [SerializeField] private RectTransform[] m_tiles; // 4枚
-    [SerializeField] private float m_duration = 6f;
+    // 動かす背景
+    [SerializeField]
+    private RectTransform[] m_tiles;
 
-    private float m_tileW;
-    private float m_tileH;
+    // 移動時間
+    [SerializeField]
+    private float m_duration = 2.0f;
 
+    // タイルサイズ（斜め配置）
+    [SerializeField]
+    private float m_tileWidth = 3000.0f;
+
+    [SerializeField]
+    private float m_tileHeight = 750.0f;
+
+    /*--------------------------------------------------------------------------------
+     || 初期化処理
+    --------------------------------------------------------------------------------*/
     private void Start()
     {
-        m_tileW = m_tiles[0].rect.width;
-        m_tileH = m_tiles[0].rect.height;
-
-        for (int i = 0; i < m_tiles.Length; i++)
+        // 全タイル同時に移動開始
+        foreach (var tile in m_tiles)
         {
-            // 初期配置（斜め）
-            m_tiles[i].anchoredPosition =
-                new Vector2(m_tileW * i, -m_tileH * i);
-
-            StartMove(m_tiles[i]);
+            MoveLoop(tile);
         }
     }
 
-    private void StartMove(RectTransform tile)
+    /// <summary>
+    /// タイルを永遠にループ移動させる
+    /// </summary>
+    private void MoveLoop(RectTransform tile)
     {
-        Vector2 startPos = tile.anchoredPosition;
-        Vector2 endPos = startPos + new Vector2(m_tileW * 4, -m_tileH * 4);
+        tile.DOKill();
 
-        tile
-            .DOAnchorPos(endPos, m_duration)
+        // 1タイル分だけ移動
+        Vector2 endPos =
+            tile.anchoredPosition + new Vector2(-m_tileWidth, -m_tileHeight);
+
+        tile.DOAnchorPos(endPos, m_duration)
             .SetEase(Ease.Linear)
             .OnComplete(() =>
             {
-                // 一番左上へ戻す
-                RectTransform top = GetTopLeftTile();
+                // 画面外に出たら先頭の次へワープ
+                WarpToNext(tile);
 
-                tile.anchoredPosition =
-                    top.anchoredPosition - new Vector2(m_tileW, -m_tileH);
-
-                // 再スタート
-                StartMove(tile);
+                // 次の移動を開始（＝無限ループ）
+                MoveLoop(tile);
             });
     }
 
     /// <summary>
-    /// 一番左上にあるタイルを取得
+    /// 先頭タイルの「次の位置」へワープ
+    /// </summary>
+    private void WarpToNext(RectTransform tile)
+    {
+        RectTransform top = GetTopLeftTile();
+
+        tile.anchoredPosition =
+            top.anchoredPosition + new Vector2(m_tileWidth, m_tileHeight);
+    }
+
+    /// <summary>
+    /// 一番左上（進行方向の先頭）にあるタイルを取得
     /// </summary>
     private RectTransform GetTopLeftTile()
     {
-        RectTransform result = m_tiles[0];
-        float min = result.anchoredPosition.x - result.anchoredPosition.y;
+        RectTransform top = m_tiles[0];
 
-        foreach (var t in m_tiles)
+        for (int i = 1; i < m_tiles.Length; i++)
         {
-            float v = t.anchoredPosition.x - t.anchoredPosition.y;
-            if (v < min)
+            if (m_tiles[i].anchoredPosition.y > top.anchoredPosition.y)
             {
-                min = v;
-                result = t;
+                top = m_tiles[i];
             }
         }
-        return result;
+
+        return top;
     }
 
     private void OnDestroy()
     {
-        foreach (var t in m_tiles)
+        foreach (var tile in m_tiles)
         {
-            t.DOKill();
+            tile.DOKill();
         }
     }
 }
