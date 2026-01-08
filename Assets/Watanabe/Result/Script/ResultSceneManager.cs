@@ -92,18 +92,20 @@ public class ResultSceneManager : MonoBehaviour
     //シーン切り替え
     private void ChangeScene()
     {
-        if (!m_isChangeScene)
-        {
-            return;
-        }
+        //if (!m_isChangeScene)
+        //{
+        //    return;
+        //}
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            if (!m_isChangeScene) m_isChangeScene = true;
+            else return;
             m_fade.FadeOutWithCallback(() =>
-            {
-                // セレクトシーンに移行
-                SceneLoader.Load("TitleScene");
-            });
+                {
+                    // セレクトシーンに移行
+                    SceneLoader.Load("TitleScene");
+                });
 
         }
     }
