@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_walkSpeed: 60
   m_dashSpeed: 20
-  m_jumpForce: 20
+  m_jumpForce: 15
   m_rayDistance: 0.3
   m_dashCoolTime: 1
   m_jumpCoolTime: 1
