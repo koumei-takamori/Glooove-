@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e240e43f221d554fb4c5e287a1fc721, type: 3}
   m_Name: SpeedCharacterParam
   m_EditorClassIdentifier: 
-  m_walkSpeed: 60
-  m_dashSpeed: 20
-  m_jumpForce: 15
+  m_walkSpeed: 70
+  m_dashSpeed: 40
+  m_jumpForce: 40
   m_rayDistance: 0.3
   m_dashCoolTime: 1
   m_jumpCoolTime: 1
@@ -24,4 +24,4 @@ MonoBehaviour:
   m_maxSpecialGauge: 100
   m_blowOffTime: 1
   m_blowOffPower: 10
-  m_gravityScale: {x: 0, y: -25, z: 0}
+  m_gravityScale: {x: 0, y: -60, z: 0}

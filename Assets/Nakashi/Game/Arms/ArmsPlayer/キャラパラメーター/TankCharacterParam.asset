@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: TankCharacterParam
   m_EditorClassIdentifier: 
   m_walkSpeed: 30
-  m_dashSpeed: 20
+  m_dashSpeed: 10
   m_jumpForce: 20
   m_rayDistance: 0.3
   m_dashCoolTime: 1
   m_jumpCoolTime: 1
-  m_maxHp: 100
-  m_attackPower: 20
-  m_defensePower: 10
+  m_maxHp: 200
+  m_attackPower: 50
+  m_defensePower: 20
   m_maxSpecialGauge: 100
   m_blowOffTime: 1
   m_blowOffPower: 10
-  m_gravityScale: {x: 0, y: -25, z: 0}
+  m_gravityScale: {x: 0, y: -30, z: 0}
