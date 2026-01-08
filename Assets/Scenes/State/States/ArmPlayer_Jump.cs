@@ -32,8 +32,6 @@ namespace Nakashi
             /// </summary>
             public void Enter()
             {
-     
-
                 // AddForce‚Åã•ûŒü‚É
                 m_controller.GetRigidbody().AddForce(
                     new Vector3

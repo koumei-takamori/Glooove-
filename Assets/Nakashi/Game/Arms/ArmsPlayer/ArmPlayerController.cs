@@ -6,6 +6,7 @@
 // <著作権>         Copyright (c) 2025 NakashimaYuto. All rights reserved.
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 using UnityEngine;
+using UnityEngine.VFX;
 
 namespace Nakashi
 {
@@ -60,6 +61,10 @@ namespace Nakashi
 
             // 追加：プレイヤーのグローブ情報取得する
             public PlayerGloveData GetPlayerGloveData() => m_gloveData;
+
+            // 追加：前フレームとの接地判定見る用
+            private bool m_prevIsGround = true;
+            [SerializeField] private VisualEffect landingVFX;
 
 
             //// 追加 : 左グローブ
@@ -160,7 +165,8 @@ namespace Nakashi
 
             private void Start()
             {
-
+                // 開始時に、煙が出るのを防ぐため
+                landingVFX.Stop();
             }
 
 
@@ -206,6 +212,8 @@ namespace Nakashi
                 LookAtTarget();
                 //重力をかける
                 SetLocalGravity();
+                // 前フレームとの接地判定をみて、着地かどうか判断する
+                CheckLanding();
             }
 
             /// <summary>
@@ -381,6 +389,27 @@ namespace Nakashi
             {
                 if (IsGround()) { m_status.GetSetJump = false; m_animator.SetBool("Is_JumpEnd", true); }
                 else { m_status.GetSetJump = true; m_animator.SetBool("Is_JumpEnd", false); }
+            }
+
+            private void CheckLanding()
+            {
+                bool isGroundNow = IsGround();
+
+                if(!m_prevIsGround && isGroundNow)
+                {
+                    OnLanding();
+                }
+                m_prevIsGround = isGroundNow;
+            }
+
+            private void OnLanding()
+            {
+                Debug.Log("着地");
+                
+                if(landingVFX == null) { Debug.Log("接地VFXが入ってません"); return; }
+
+                landingVFX.Stop();
+                landingVFX.Play();
             }
 
             public Rigidbody GetRigidbody() => m_rb;
