@@ -29,6 +29,9 @@ public class StretchArm : GloveBase
     [SerializeField]
     private GloveType gloveType = GloveType.Normal_L;
 
+    [Header("どのプレイヤーに付いているのか")]
+    private ArmPlayerController ownerArmPlayerController;
+
     // グローブ
     private GameObject gloveGameObject;
     // グローブスクリプト
@@ -42,6 +45,7 @@ public class StretchArm : GloveBase
 
 
     public GloveType ArmGloveType { get { return gloveType; } set { gloveType = value; } }
+    public ArmPlayerController OwnerArmPlayerController { get { return ownerArmPlayerController; } set { ownerArmPlayerController = value; } }
 
     /// <summary>
     /// 回避開始地点を設定（位置をコピー）
@@ -227,6 +231,13 @@ public class StretchArm : GloveBase
             Debug.LogError("GloveObjectScriptが取得できませんでした。" + gameObject);
             return;
         }
+
+        // プレイヤーのデータをグローブに渡しておく
+        ArmPlayerData playerData = ownerArmPlayerController.GetPlayerData();
+        if (playerData != null)
+        {
+            gloveObjectScript.RegisterArmPlayerData(playerData);
+        }
     }
 
     /// <summary>
@@ -294,6 +305,9 @@ public class StretchArm : GloveBase
         if (ptarget != null && ptarget.transform != null)
             target = ptarget.transform;
 
+        // 攻撃を通知する
+        gloveObjectScript.OnPlayerAttack(type);
+
         return true;
     }
 
@@ -306,9 +320,6 @@ public class StretchArm : GloveBase
             t = 0f;
             return true;
         }
-
-        // 攻撃中フラグを立てる
-        gloveObjectScript.IsAttacking = true;
 
         // GlovePosition(local) を保存
         m_handPositionLocal = this.GlovePosition;
@@ -402,7 +413,8 @@ public class StretchArm : GloveBase
             if (waitTimer >= actionParams.HitWaitTime)
             {
                 // 攻撃中フラグを下ろす
-                gloveObjectScript.IsAttacking = false;
+                gloveObjectScript.OnPlayerAttackEnd();
+
                 return true;
             }
         }
