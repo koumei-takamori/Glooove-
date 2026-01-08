@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 1
   m_FogColor: {r: 0.6839622, g: 0.92312586, b: 1, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.005
+  m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -270,6 +270,7 @@ GameObject:
   - component: {fileID: 1429049371}
   - component: {fileID: 1429049370}
   - component: {fileID: 1429049372}
+  - component: {fileID: 1429049373}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -347,13 +348,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1429049369}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.84412074, y: 0.49916807, z: -0.07399163, w: 0.18115373}
+  m_LocalRotation: {x: -0, y: 0.17855941, z: -0, w: 0.98392916}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 22.315, y: 176.534, z: 118.12}
+  m_LocalEulerAnglesHint: {x: 0, y: 20.572, z: 0}
 --- !u!114 &1429049372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,6 +378,23 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!114 &1429049373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429049369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1edd672ce513cf84599381f138f02645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 90
+  startX: 0
+  endX: 60
+  startFogDensity: 0.03
+  endFogDensity: 0.001
 --- !u!1001 &1603264001
 PrefabInstance:
   m_ObjectHideFlags: 0
