@@ -6,6 +6,7 @@
 // <著作権>         Copyright (c) 2025 NakashimaYuto. All rights reserved.
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 using UnityEngine;
+using UnityEngine.VFX;
 
 namespace Nakashi
 {
@@ -60,6 +61,10 @@ namespace Nakashi
 
             // 追加：プレイヤーのグローブ情報取得する
             public PlayerGloveData GetPlayerGloveData() => m_gloveData;
+
+            // 追加：前フレームとの接地判定見る用
+            private bool m_prevIsGround = true;
+            [SerializeField] private VisualEffect landingVFX;
 
 
             //// 追加 : 左グローブ
@@ -251,6 +256,8 @@ namespace Nakashi
                 LookAtTarget();
                 //重力をかける
                 SetLocalGravity();
+                // 前フレームとの接地判定をみて、着地かどうか判断する
+                CheckLanding();
             }
 
             /// <summary>
