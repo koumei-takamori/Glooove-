@@ -7,8 +7,6 @@
  *  制作日 : 2025/12/26
  *
  *********************************************************/
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ResultSceneManager : MonoBehaviour
@@ -16,7 +14,7 @@ public class ResultSceneManager : MonoBehaviour
     [SerializeField]
     private UIFade m_fade;
 
-    [SerializeField,Header("勝ったキャラクター")]
+    [SerializeField, Header("勝ったキャラクター")]
     private WinnerCharacter m_character;
 
     [SerializeField, Header("使用したステージ")]
@@ -32,6 +30,9 @@ public class ResultSceneManager : MonoBehaviour
     private int m_winnerPlayerId;
     //ステージID
     private int m_stageId;
+    // 追加：グローブ
+    private GloveSet m_gloves;
+
     //シーン切り替えの有効無効
     private bool m_isChangeScene;
 
@@ -79,7 +80,7 @@ public class ResultSceneManager : MonoBehaviour
     /// <summary>
     /// 更新処理
     /// </summary>
-     void Update()
+    void Update()
     {
         //シーン切り替え
         ChangeScene();
@@ -109,15 +110,32 @@ public class ResultSceneManager : MonoBehaviour
     /// </summary>
     public void AnimationEnd()
     {
-        
+
         m_isChangeScene = true;
     }
 
+
+    /*--------------------------------------------------------------------------------
+　　|| PlaySceneからのデータ受け取り処理
+　　--------------------------------------------------------------------------------*/
+    public void SetWinnerData(WinnerData data)
+    {
+        m_winnerCharacterId = (int)data.CharacterType;
+        m_winnerPlayerId = data.PlayerId;
+        m_stageId = data.StageId;
+        m_gloves = data.GloveSet;
+
+        Debug.Log("Load完了");
+    }
+
+
+
+
     //勝利プレイヤーのゲットセット　１Pか２Pか
-    public int WinerPlayerID { get {  return m_winnerPlayerId; } set { m_winnerPlayerId = value; } }
+    public int WinerPlayerID { get { return m_winnerPlayerId; } set { m_winnerPlayerId = value; } }
     //ステージIDのゲットセット
     public int StageID { get { return m_stageId; } set { m_stageId = value; } }
     //勝利キャラクターのゲットセット
-    public int WinnerCharacterID { get { return m_winnerCharacterId; } set { m_winnerCharacterId= value; } }  
+    public int WinnerCharacterID { get { return m_winnerCharacterId; } set { m_winnerCharacterId = value; } }
 
 }

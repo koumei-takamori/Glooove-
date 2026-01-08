@@ -31,7 +31,7 @@ public class PlayerHP : MonoBehaviour
     [SerializeField] private GameObject hpGaugeCanvas3D;
     [SerializeField] private HPGaugeSystem[] hpGaugeSystems = new HPGaugeSystem[2]; // 0=2D / 1=3D
 
-    private int playerNumber; // 1 or 2
+    private int playerNumber; // 0 or 1
 
     // ================= Unity =================
     private void Start()
@@ -85,14 +85,14 @@ public class PlayerHP : MonoBehaviour
         }
 
         // ---- Player番号 ----
-        playerNumber = armPlayerController.PlayerId + 1;
+        playerNumber = armPlayerController.PlayerId;
 
         // ---- 3D HP Canvas ----
         if (!TryGetChildObject(transform, HpGaugeCanvas3DName, out hpGaugeCanvas3D))
             return false;
 
         // ---- 2D HP Gauge ----
-        string hp2DPath = $"HPGaugeGroup-{playerNumber}P";
+        string hp2DPath = $"HPGaugeGroup-{playerNumber + 1}P";
 
         if (!TryGetHPGauge2D(hp2DPath, out hpGaugeSystems[0]))
             return false;
@@ -144,6 +144,8 @@ public class PlayerHP : MonoBehaviour
         {
             Debug.Log("HP が 0 になりました");
             uiController.ChangeState(PlayUIType.KO);
+
+            PlaySceneWinnerDataSender.Instance.SaveWinnerPlayerData(playerNumber);
         }
 
 
@@ -151,8 +153,8 @@ public class PlayerHP : MonoBehaviour
 
     public void Update()
     {
-        // デバッグ用：Hキーで10ダメージ
-        if (Input.GetKeyDown(KeyCode.P))
+        // デバッグ用：Kキーで10ダメージ
+        if (Input.GetKeyDown(KeyCode.K))
         {
             Damaged(10);
         }
@@ -161,7 +163,7 @@ public class PlayerHP : MonoBehaviour
     // ================= レイヤー =================
     private void ApplyPlayer3DHPGaugeLayer()
     {
-        string layerName = (playerNumber == 1) ? Player2UILayer : Player1UILayer;
+        string layerName = (playerNumber == 0) ? Player2UILayer : Player1UILayer;
         int layer = LayerMask.NameToLayer(layerName);
 
         if (layer < 0)

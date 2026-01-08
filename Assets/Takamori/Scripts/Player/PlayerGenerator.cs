@@ -8,12 +8,8 @@
  *
  *********************************************************/
 using Nakashi.Player;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Burst.Intrinsics;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.TextCore.Text;
 
 /// <summary>
 /// プレイヤーの生成
@@ -47,7 +43,7 @@ public class PlayerGenerator : MonoBehaviour
     /// <summary>
     /// プレイヤーの生成
     /// </summary>
-    private void CreateCharacter() 
+    private void CreateCharacter()
     {
         for (int i = 0; i < m_playerGenertionInfos.Length; i++)
         {
@@ -83,7 +79,10 @@ public class PlayerGenerator : MonoBehaviour
 
             armPlayer.PlayerId = m_playerGenertionInfos[i].PlayerId;
 
-            Debug.Log("プレイヤー" + player.playerIndex + ": デバイス"　 + player.devices[0]);
+            Debug.Log("プレイヤー" + player.playerIndex + ": デバイス" + player.devices[0]);
         }
+
+        // 追加：生成情報を送信
+        PlaySceneWinnerDataSender.Instance.PlayerGenerationInfos = m_playerGenertionInfos;
     }
 }
