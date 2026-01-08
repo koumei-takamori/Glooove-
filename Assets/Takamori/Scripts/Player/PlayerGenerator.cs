@@ -82,6 +82,7 @@ public class PlayerGenerator : MonoBehaviour
             Debug.Log("プレイヤー" + player.playerIndex + ": デバイス" + player.devices[0]);
         }
 
+        PlaySceneManager.Instance.SetTarget();
         // 追加：生成情報を送信
         PlaySceneWinnerDataSender.Instance.PlayerGenerationInfos = m_playerGenertionInfos;
     }

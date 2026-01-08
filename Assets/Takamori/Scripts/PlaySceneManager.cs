@@ -37,12 +37,12 @@ public class PlaySceneManager : SingletonMonoBehaviour<PlaySceneManager>
     }
 
     /*--------------------------------------------------------------------------------
-　　|| 初期化処理
+　　|| ターゲット設定
 　　--------------------------------------------------------------------------------*/
     /// <summary>
-    /// 初期化処理
+    /// ターゲット設定
     /// </summary>
-    private void Start()
+    public void SetTarget()
     {
         // プレイヤーを取得
         m_1pPlayer = PlayerRegistry.Instance.GetPlayer(0).GetComponent<ArmPlayerController>();

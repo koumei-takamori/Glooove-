@@ -26,9 +26,13 @@ public class UIElement : MonoBehaviour
     [SerializeField]
     private CanvasGroup m_canvasGroup;
 
+    [SerializeField]
+    private Animator m_animator;
+
     // プロパティ
     public RectTransform Rect { get { return m_rect; } }
     public CanvasGroup CanvasGroup { get { return m_canvasGroup; } }
+    public Animator Animator { get { return m_animator; } }
 
     /*--------------------------------------------------------------------------------
 　　|| 実行前初期化処理
