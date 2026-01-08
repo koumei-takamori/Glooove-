@@ -22,6 +22,9 @@ public class PlayerGenerator : MonoBehaviour
     [SerializeField] private GameObject m_tank = default;
     // 追加：グローブリストデータ
     [SerializeField] private GloveListData m_gloveListData = default;
+    // 追加：プレイヤーの生成地点
+    [SerializeField] private Transform[] m_playerSpawnPoints = default;
+
     // 生成情報
     private PlayerGenerationInfo[] m_playerGenertionInfos = default;
 
@@ -72,6 +75,8 @@ public class PlayerGenerator : MonoBehaviour
             playerIndex: i,
             pairWithDevice: m_playerGenertionInfos[i].PairWithDevice
             );
+            // 追加：生成地点に移動
+            player.transform.position = m_playerSpawnPoints[i].position;
 
             var armPlayer = player.GetComponent<ArmPlayerController>();
             // グローブの設定
