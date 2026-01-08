@@ -64,7 +64,7 @@ public class PlaySceneWinnerDataSender : SingletonMonoBehaviour<PlaySceneWinnerD
 
     public async void SendPlaySecneWinnerData()
     {
-        var resultSceneManager = await SceneLoader.Load<ResultSceneManager>("ResultScene");
+        var resultSceneManager = await SceneLoader.Load<ResultSceneManager>("3DResultScene");
 
         if (resultSceneManager == null)
         {
