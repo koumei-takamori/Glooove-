@@ -142,6 +142,7 @@ public class PlayerHP : MonoBehaviour
 
         if (currentHP <= 0)
         {
+            armPlayerController.GetAnimator().SetTrigger("Down");
             Debug.Log("HP ‚ª 0 ‚É‚È‚è‚Ü‚µ‚½");
             uiController.ChangeState(PlayUIType.KO);
 
