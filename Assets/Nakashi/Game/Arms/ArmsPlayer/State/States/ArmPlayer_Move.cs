@@ -22,6 +22,19 @@ namespace Nakashi
 
             // ターゲットの位置格納用
             Transform m_target;
+
+            // 閾値
+            float m_threshold = 35f;
+            // ポーズの基準点
+            private Vector3 rightPoseR = new Vector3(320, 75, 15);
+            private Vector3 rightPoseL = new Vector3(320, 65, 180);
+            private Vector3 leftPoseR = new Vector3(315, 278, 166);
+            private Vector3 leftPoseL = new Vector3(319, 265, 350);
+            private Vector3 frontPoseR = new Vector3(320, 0, 80);
+            private Vector3 frontPoseL = new Vector3(320, 330, 290);
+            private Vector3 backPoseR = new Vector3(310, 190, 260);
+            private Vector3 backPoseL = new Vector3(315, 135, 100);
+
             /// <summary>
             /// コンストラクタ
             /// </summary>
@@ -36,7 +49,87 @@ namespace Nakashi
             /// </summary>
             /// <param name="rightEuler">右オイラー角</param>
             /// <param name="leftEuler">左オイラー角</param>
-            public void FixedUpdate()
+            public void FixedUpdate(Vector3 rightEuler, Vector3 leftEuler)
+            {
+
+                if (m_controller.GetPlayerStatus().GetSetControll == true) { return; }
+
+                // 所属コントローラーの速度を0にする
+                m_controller.GetSetVelocity = Vector3.zero;
+
+                // プレイヤーの向き
+                Transform trans = m_controller.GetTransform();
+
+                // ターゲットの基準ベクトル
+                Vector3 forward = trans.forward;
+                Vector3 right = trans.right;
+                Vector3 back = -forward;
+                Vector3 left = -right;
+
+                // 右方向への傾き
+                if (IsPoseMatch(rightEuler, rightPoseR) && IsPoseMatch(leftEuler, rightPoseL))
+                {
+                    m_controller.GetSetVelocity += right;
+                }
+                // 左方向への傾き
+                if (IsPoseMatch(rightEuler, leftPoseR) && IsPoseMatch(leftEuler, leftPoseL))
+                {
+                    m_controller.GetSetVelocity += left;
+                }
+                // 前方向への傾き
+                if (IsPoseMatch(rightEuler, frontPoseR) && IsPoseMatch(leftEuler, frontPoseL))
+                {
+                    m_controller.GetSetVelocity += forward;
+                }
+                // 後ろ方向への傾き
+                if (IsPoseMatch(rightEuler, backPoseR) && IsPoseMatch(leftEuler, backPoseL))
+                {
+                    m_controller.GetSetVelocity += back;
+
+                }
+
+                Rigidbody rb = m_controller.GetRigidbody();
+                Vector3 moveDir = m_controller.GetSetVelocity.normalized;
+                float speed = m_controller.GetPlayerData().GetWalkSpeed();
+                if (!m_controller.IsGround()) { speed *= 0.5f; }
+
+                // XZ方向だけ AddForce
+                Vector3 force = moveDir * speed * Time.deltaTime;
+                force.y = 0;
+                rb.AddForce(force, ForceMode.VelocityChange);
+
+                WalkingAnimation();
+            }
+
+            /// <summary>
+            /// 現在のポーズがマッチしているかどうかの判定用
+            /// </summary>
+            /// <param name="current"></param>
+            /// <param name="target"></param>
+            /// <returns></returns>
+            private bool IsPoseMatch(Vector3 current, Vector3 target)
+            {
+                return
+                    AngleDiff(current.x, target.x) < m_threshold &&
+                    AngleDiff(current.z, target.z) < m_threshold;
+
+            }
+
+
+            /// <summary>
+            /// Unityのオイラー角は360度のラップされるので、それを越した場合の変化時も対応するための関数
+            /// </summary>
+            /// <returns></returns>
+            private float AngleDiff(float a, float b)
+            {
+                float diff = Mathf.Abs(a - b) % 360;
+                return diff > 180 ? 360 - diff : diff;
+            }
+
+            /// <summary>
+            /// デバッグ用の移動更新
+            /// </summary>
+            public void DebugUpdate()
             {
                 if (m_controller.GetPlayerStatus().GetSetControll == true) { return; }
 
@@ -99,25 +192,13 @@ namespace Nakashi
                 WalkingAnimation();
             }
 
-
             /// <summary>
             /// 移動アニメーション
             /// </summary>
             private void WalkingAnimation()
             {
-                Vector3 vel;
-
-                if (m_controller.IsGround())
-                {
-                    // 地上：入力ベースの速度を使う
-                    vel = m_controller.GetSetVelocity;
-                }
-                else
-                {
-                    // 空中：物理ベース
-                    vel = m_controller.GetRigidbody().velocity;
-                }
-
+                Rigidbody rb = m_controller.GetRigidbody();
+                Vector3 vel = rb.velocity;
                 vel.y = 0.0f;
 
                 // 止まっているなら0
@@ -129,14 +210,14 @@ namespace Nakashi
                 }
 
                 Vector3 dir = vel.normalized;
-                Transform trans = m_controller.GetTransform();
+                Transform trans = m_controller.transform;
 
                 float moveX = Vector3.Dot(dir, trans.right);
                 float moveZ = Vector3.Dot(dir, trans.forward);
 
-                //地上だけスナップ
                 if (m_controller.IsGround())
                 {
+                    // どっちの成分が強いかでスナップ
                     if (Mathf.Abs(moveX) > Mathf.Abs(moveZ))
                     {
                         moveX = Mathf.Sign(moveX);

@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e240e43f221d554fb4c5e287a1fc721, type: 3}
-  m_Name: ArmPlayerData
+  m_Name: DemoBalanceCharacterParam
   m_EditorClassIdentifier: 
-  m_walkSpeed: 80
-  m_dashSpeed: 300
-  m_jumpForce: 400
-  m_rayDistance: 0.2
+  m_walkSpeed: 30
+  m_dashSpeed: 20
+  m_jumpForce: 20
+  m_rayDistance: 0.458
   m_dashCoolTime: 1
-  m_jumpCoolTime: 0
-  m_maxHp: 0
-  m_attackPower: 0
-  m_defensePower: 0
-  m_maxSpecialGauge: 0
-  m_blowOffTime: 0
-  m_blowOffPower: 0
-  m_gravityScale: {x: 0, y: -30, z: 0}
+  m_jumpCoolTime: 1
+  m_maxHp: 100
+  m_attackPower: 20
+  m_defensePower: 10
+  m_maxSpecialGauge: 100
+  m_blowOffTime: 1
+  m_blowOffPower: 10
+  m_gravityScale: {x: 0, y: -25, z: 0}
