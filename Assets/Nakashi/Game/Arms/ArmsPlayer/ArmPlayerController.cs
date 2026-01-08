@@ -207,6 +207,9 @@ namespace Nakashi
                 //// 確認：仮で生成
                 //Instantiate(m_RGlove);
                 //Instantiate(m_LGlove);
+
+                // このスクリプトを持つオブジェクトの座標をデバッグ表示
+                Debug.Log($"Start:Player {m_playerId} Position: {m_transform.position}");
             }
 
 
@@ -220,6 +223,8 @@ namespace Nakashi
                 //m_leftEuler = Nakashi.Framework.AxisSystem.Instance.GetLeftQuaternion().eulerAngles;
                 // ジャンプ判定の測定
                 CheckJumpNow();
+                Vector3 gravity = m_playerData.GetGravityScale();
+
 
                 // ステートマシンの更新
                 m_stateMachine.Update();
@@ -234,7 +239,8 @@ namespace Nakashi
                 // グローブの位置を腕の先端に合わせる
                 m_leftglove.transform.position = m_leftglovePosition.position;
                 m_rightglove.transform.position = m_rightglovePosition.position;
-
+                // このスクリプトを持つオブジェクトの座標をデバッグ表示
+                //Debug.Log($"Update:Player {m_playerId} Position: {m_transform.position}");
                 //Debug.Log("ジャンプ" + m_status.GetSetJump);
             }
 
