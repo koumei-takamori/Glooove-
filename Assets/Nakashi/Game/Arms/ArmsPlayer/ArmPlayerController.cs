@@ -459,6 +459,27 @@ namespace Nakashi
                 Traverse(root, 0);
                 return deepest;
             }
+
+            private void CheckLanding()
+            {
+                bool isGroundNow = IsGround();
+
+                if (!m_prevIsGround && isGroundNow)
+                {
+                    OnLanding();
+                }
+                m_prevIsGround = isGroundNow;
+            }
+
+            private void OnLanding()
+            {
+                Debug.Log("着地");
+
+                if (landingVFX == null) { Debug.Log("接地VFXが入ってません"); return; }
+
+                landingVFX.Stop();
+                landingVFX.Play();
+            }
             public Rigidbody GetRigidbody() => m_rb;
             public Transform GetTransform() => m_transform;
             public Collider GetCollider() => m_collider;
