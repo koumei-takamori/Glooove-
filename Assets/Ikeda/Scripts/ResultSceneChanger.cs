@@ -1,10 +1,8 @@
 using UnityEngine;
 
-public class SceneChanger : MonoBehaviour
+public class ResultSceneChanger : MonoBehaviour
 {
     UIFade fadeSystem;
-
-    [SerializeField] string nextSceneName = "SelectScene";
 
     void Start()
     {
@@ -20,7 +18,8 @@ public class SceneChanger : MonoBehaviour
     {
         fadeSystem.FadeOutWithCallback(() =>
         {
-            SceneLoader.Load(nextSceneName);
+            // 結果シーンへ移動 データも渡す
+            PlaySceneWinnerDataSender.Instance.SendPlaySecneWinnerData();
         });
     }
 

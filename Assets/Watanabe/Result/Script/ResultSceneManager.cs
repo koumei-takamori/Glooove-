@@ -32,6 +32,8 @@ public class ResultSceneManager : MonoBehaviour
     private int m_stageId;
     // 追加：グローブ
     private GloveSet m_gloves;
+    // 勝利データ
+    private WinnerData winnerData;
 
     //シーン切り替えの有効無効
     private bool m_isChangeScene;
@@ -58,10 +60,11 @@ public class ResultSceneManager : MonoBehaviour
     /// </summary>
     void Start()
     {
+        // PlaySceneからデータを受け取れているか
+        if (winnerData == null)
 
-
-        //表示キャラクターの設定・変更
-        m_character.winnerId = m_winnerCharacterId;
+            //表示キャラクターの設定・変更
+            m_character.winnerId = m_winnerCharacterId;
         m_character.ChangeCharacter();
 
         //ステージの変更
@@ -120,10 +123,12 @@ public class ResultSceneManager : MonoBehaviour
 　　--------------------------------------------------------------------------------*/
     public void SetWinnerData(WinnerData data)
     {
-        m_winnerCharacterId = (int)data.CharacterType;
-        m_winnerPlayerId = data.PlayerId;
-        m_stageId = data.StageId;
-        m_gloves = data.GloveSet;
+        winnerData = data;
+
+        m_winnerCharacterId = (int)winnerData.CharacterType;
+        m_winnerPlayerId = winnerData.PlayerId;
+        m_stageId = winnerData.StageId;
+        m_gloves = winnerData.GloveSet;
 
         Debug.Log("Load完了");
     }
