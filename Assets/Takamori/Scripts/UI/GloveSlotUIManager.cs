@@ -21,6 +21,10 @@ public class GloveSlotUIManager : MonoBehaviour
     [SerializeField]
     private SelectPlayer m_player;
 
+    // カーソル
+    [SerializeField]
+    private UIElement m_coursol;
+
     // 左右のグローブ選択のUI
     [SerializeField] private GloveSlotUI m_leftSlot;
     [SerializeField] private GloveSlotUI m_rightSlot;
@@ -31,6 +35,17 @@ public class GloveSlotUIManager : MonoBehaviour
     // プロパティ
     public SelectPlayer Player { get { return m_player; } }
     public bool CanControll { get { return m_canControll; } set { m_canControll = value; } }
+
+    /*--------------------------------------------------------------------------------
+　　|| 初期化処理
+　　--------------------------------------------------------------------------------*/
+    /// <summary>
+    /// 初期化処理
+    /// </summary>
+    private void Start() 
+    {
+        m_coursol = GetComponent<UIElement>();
+    }
 
     /*--------------------------------------------------------------------------------
 　　|| 更新処理
@@ -48,6 +63,8 @@ public class GloveSlotUIManager : MonoBehaviour
 
         // UI更新処理
         UpdateSlot();
+
+        m_coursol.Animator.SetInteger("Side", (int)m_player.CurrentGloveSide);
     }
 
     /*--------------------------------------------------------------------------------
@@ -65,6 +82,7 @@ public class GloveSlotUIManager : MonoBehaviour
 
         m_leftSlot.SetActive(activeSide == GloveSide.Left);
         m_rightSlot.SetActive(activeSide == GloveSide.Right);
+
     }
 
     /*--------------------------------------------------------------------------------
