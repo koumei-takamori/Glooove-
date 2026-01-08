@@ -16,7 +16,7 @@ using static UnityEngine.UI.GridLayoutGroup;
 /// <summary>
 /// セレクトシーンを管理
 /// </summary>
-public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager> 
+public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
 {
     // インゲームのプレイヤーの生成情報
     private PlayerGenerationInfo[] m_playerGenerationInfos = default;
