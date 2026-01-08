@@ -248,9 +248,10 @@ namespace Nakashi
                 // プレイヤーの移動更新を行う
                 //m_playerMove.FixedUpdate(m_rightEuler, m_leftEuler);
                 // UnityのEditor上のみのデバッグ処理
-#if UNITY_EDITOR
                 m_playerMove.DebugUpdate();
-#endif
+                //#if UNITY_EDITOR
+                //                m_playerMove.DebugUpdate();
+                //#endif
 
                 // ターゲットの方向を向く
                 LookAtTarget();

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e240e43f221d554fb4c5e287a1fc721, type: 3}
   m_Name: SpeedCharacterParam
   m_EditorClassIdentifier: 
-  m_walkSpeed: 30
+  m_walkSpeed: 60
   m_dashSpeed: 20
   m_jumpForce: 20
   m_rayDistance: 0.3
