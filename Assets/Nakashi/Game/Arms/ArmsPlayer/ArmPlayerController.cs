@@ -74,6 +74,17 @@ namespace Nakashi
             private GloveBase m_rightglove;
 
 
+
+
+            // 追加：通常時の腕に着けるグローブオブジェクト
+            private GameObject m_LGlove;
+            private GameObject m_RGlove;
+
+            // 追加：ArmChangerから通常時の腕についているグローブオブジェクトを参照するための関数
+            public GameObject GetLGlove() => m_LGlove;
+            public GameObject GetRGlove() => m_RGlove;
+
+
             public StretchArm[] GetStretchArms() => new StretchArm[2]
             {
                 m_leftglove.GetComponent<StretchArm>(), m_rightglove.GetComponent<StretchArm>()
@@ -83,6 +94,9 @@ namespace Nakashi
             // グローブの固定位置
             [SerializeField] private Transform m_leftglovePosition;
             [SerializeField] private Transform m_rightglovePosition;
+            // 追加：通常時の腕にもグローブをつけるための位置（腕の先端のTransform）
+            [SerializeField] private Transform m_leftArmPosition;
+            [SerializeField] private Transform m_rightArmPosition;
 
             [SerializeField] Animator m_barrier;
 
@@ -160,7 +174,34 @@ namespace Nakashi
 
             private void Start()
             {
+                // 追加:通常時の腕にもグローブをつける
+                // StretchArmからグローブオブジェクトを受け取る
+                // 右腕
+                m_RGlove = m_gloveData.RightGlove.GetComponent<StretchArm>().GetGloveObject;
 
+                // 右腕の一番深い子オブジェクトを取得
+                Transform deepestRightArm = GetDeepestChild(m_rightglovePosition);
+                // その子オブジェクトにグローブをセット
+                GameObject rGlove = Instantiate(m_RGlove);
+                rGlove.GetComponent<GloveObject>().Initialize(m_rightArmPosition.gameObject);
+                rGlove.transform.SetParent(m_rightArmPosition, false);
+                // オブジェクトを保存
+                m_RGlove = rGlove;
+
+                // 左腕
+                m_LGlove = m_gloveData.LeftGlove.GetComponent<StretchArm>().GetGloveObject;
+
+                // 左腕の一番深い子オブジェクトを取得
+                Transform deepestLeftArm = GetDeepestChild(m_leftglovePosition);
+                // その子オブジェクトにグローブをセット
+                GameObject lGlove = Instantiate(m_LGlove);
+                lGlove.GetComponent<GloveObject>().Initialize(m_leftArmPosition.gameObject);
+                lGlove.transform.SetParent(m_leftArmPosition, false);
+                // オブジェクトを保存
+                m_LGlove = lGlove;
+                //// 確認：仮で生成
+                //Instantiate(m_RGlove);
+                //Instantiate(m_LGlove);
             }
 
 
@@ -184,6 +225,10 @@ namespace Nakashi
                 m_coolTime.Update();
                 // ステータスの更新
                 m_status.Update();
+
+                // グローブの位置を腕の先端に合わせる
+                m_leftglove.transform.position = m_leftglovePosition.position;
+                m_rightglove.transform.position = m_rightglovePosition.position;
 
                 //Debug.Log("ジャンプ" + m_status.GetSetJump);
             }
@@ -382,7 +427,31 @@ namespace Nakashi
                 if (IsGround()) { m_status.GetSetJump = false; m_animator.SetBool("Is_JumpEnd", true); }
                 else { m_status.GetSetJump = true; m_animator.SetBool("Is_JumpEnd", false); }
             }
+            /// <summary>
+            /// 指定した Transform 配下で、一番深い（最奥）の Transform を取得する
+            /// </summary>
+            private Transform GetDeepestChild(Transform root)
+            {
+                Transform deepest = root;
+                int maxDepth = 0;
 
+                void Traverse(Transform current, int depth)
+                {
+                    if (depth > maxDepth)
+                    {
+                        maxDepth = depth;
+                        deepest = current;
+                    }
+
+                    for (int i = 0; i < current.childCount; i++)
+                    {
+                        Traverse(current.GetChild(i), depth + 1);
+                    }
+                }
+
+                Traverse(root, 0);
+                return deepest;
+            }
             public Rigidbody GetRigidbody() => m_rb;
             public Transform GetTransform() => m_transform;
             public Collider GetCollider() => m_collider;

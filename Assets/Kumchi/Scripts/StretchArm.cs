@@ -118,6 +118,9 @@ public class StretchArm : GloveBase
     }
     private List<BoneState> initialBoneStates = new List<BoneState>();
 
+    // グローブオブジェクトをArmPlayerControllerに渡す
+    public GameObject GetGloveObject { get { return gloveListData.GetGlove(gloveType); } }
+
 
 
     protected override void Awake()
@@ -202,6 +205,7 @@ public class StretchArm : GloveBase
 
         // このオブジェクトの子にする
         gloveGameObject.transform.SetParent(this.transform, false);
+
 
         // グローブデータを取得する
         GloveParamData = gloveGameObject.GetComponent<GloveObject>().ParameterData;

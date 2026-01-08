@@ -403,8 +403,12 @@ MonoBehaviour:
     m_rightGlove: {fileID: 8053524986387638989, guid: 9e807510b8f0fca4ca833127656ccd3b, type: 3}
   m_leftglove: {fileID: 0}
   m_rightglove: {fileID: 0}
+  m_leftNormalArm: {fileID: 8437434297480056466}
+  m_rightNormalArm: {fileID: 7439867050557432535}
   m_leftglovePosition: {fileID: 6150064070107380615}
   m_rightglovePosition: {fileID: 8665895358232917709}
+  m_leftArmPosition: {fileID: 2798911905579345352}
+  m_rightArmPosition: {fileID: 4685423459890298612}
   m_barrier: {fileID: 1543518840404892474}
   m_playerInputReceiver: {fileID: 715840645947637045}
 --- !u!95 &6758732689864369052
@@ -499,6 +503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
+  uiController: {fileID: 0}
   armPlayerController: {fileID: 0}
   armPlayerData: {fileID: 0}
   hpGaugeCanvas3D: {fileID: 0}
