@@ -7,6 +7,7 @@
 // 日付：2025/12/12
 // ------------------------------------------------
 
+using Nakashi.Player;
 using UnityEngine;
 
 public class GloveObject : MonoBehaviour
@@ -24,9 +25,14 @@ public class GloveObject : MonoBehaviour
 
     // 攻撃中かのフラグ
     [SerializeField] private bool isAttacking = false;
+    // どの攻撃を行っているのか
+    [SerializeField] private GloveActionType currentAttackType;
 
     // 所有者プレイヤー
     [SerializeField] private GameObject owner;
+
+    // 所有者プレイヤーデータ
+    [SerializeField] private ArmPlayerData armPlayerData;
 
     // ------------------------------
     // アクセサ
@@ -43,10 +49,34 @@ public class GloveObject : MonoBehaviour
         set { isAttacking = value; }
     }
 
+    public void OnPlayerAttack(GloveActionType type = GloveActionType.NORMAL_ATTACK)
+    {
+        isAttacking = true;
+        currentAttackType = type;
+    }
+
+    public void OnPlayerAttackEnd()
+    {
+        isAttacking = false;
+        currentAttackType = GloveActionType.NONE;
+    }
+
+
     public Quaternion GloveRotation
     { get { return Quaternion.Euler(m_gloveRotation); } }
 
+    public void RegisterArmPlayerData(ArmPlayerData data)
+    {
+        // null が渡されてきた場合はエラーを出して処理を中断
+        if (data == null)
+        {
+            Debug.LogError("Gloveに登録されようとしたArmPlayerDataがnullです。");
+            return;
+        }
 
+        // 正常なデータなので保持する
+        armPlayerData = data;
+    }
 
     // ------------------------------
     // Mono関数
@@ -64,14 +94,26 @@ public class GloveObject : MonoBehaviour
         // 相手プレイヤーかを判別
         if (collider.gameObject.CompareTag("Player") && collider.gameObject != owner)
         {
+            // プレイヤーのデータ初回取得
+            if (armPlayerData == null)
+            {
+                Debug.LogError("GloveObject: ArmPlayerDataが登録されていません。" + gameObject);
+                return;
+            }
 
-            // オーナーからダメージ量を実数で受け取る
+            // ダメージ量を実数で受け取る
+            int damage = (int)armPlayerData.GetAttackPower();
+
+
+            // グローブが持つダメージ倍率を取得
+            float multiplier = parameterData.GetAttackMultiplierByType(currentAttackType);
 
             // グローブのダメージ倍率を計算
+            damage = (int)(damage * multiplier);
 
 
             // ダメージを与える
-            collider.gameObject.GetComponent<PlayerHP>().Damaged(10);
+            collider.gameObject.GetComponent<PlayerHP>().Damaged(damage);
 
             // フラグをリセット
             isAttacking = false;

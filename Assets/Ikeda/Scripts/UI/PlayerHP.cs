@@ -134,6 +134,7 @@ public class PlayerHP : MonoBehaviour
     // ---------------ƒ_ƒ[ƒWˆ—---------------
     public void Damaged(int damage)
     {
+        armPlayerController.GetAnimator().SetTrigger("IsHit");
         currentHP -= damage;
 
         hpGaugeSystems[0].Damage(damage);
@@ -144,6 +145,8 @@ public class PlayerHP : MonoBehaviour
             Debug.Log("HP ‚ª 0 ‚É‚È‚è‚Ü‚µ‚½");
             uiController.ChangeState(PlayUIType.KO);
         }
+
+
     }
 
     public void Update()

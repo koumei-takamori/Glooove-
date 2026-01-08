@@ -38,7 +38,8 @@ public enum GloveActionType
 {
     NORMAL_ATTACK,　 // 通常攻撃
     SPECIAL_ATTACK,  // 強化攻撃
-    GRAP             // つかみ
+    GRAP,            // つかみ
+    NONE             // 無し
 }
 
 public enum GloveWeight
@@ -284,6 +285,23 @@ public class GloveData : ScriptableObject
             default:
                 Debug.LogWarning($"{nameof(GloveData)}.GetStretchArmParamsByType: 未知の GloveActionType {type} が指定されました。");
                 return null;
+        }
+    }
+
+    // タイプごとの攻撃倍率を取得
+    public float GetAttackMultiplierByType(GloveActionType type)
+    {
+        switch (type)
+        {
+            case GloveActionType.NORMAL_ATTACK:
+                return m_normalAttackParam.AttackMultiplier;
+            case GloveActionType.SPECIAL_ATTACK:
+                return m_specialAttackParam.AttackMultiplier;
+            case GloveActionType.GRAP:
+                return m_grabParam.AttackMultiplier;
+            default:
+                Debug.LogWarning($"{nameof(GloveData)}.GetAttackMultiplierByType: 未知の GloveActionType {type} が指定されました。");
+                return 1f;
         }
     }
 }

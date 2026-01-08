@@ -417,6 +417,10 @@ namespace Nakashi
                 // Script取得
                 m_rightglove = rightglove.GetComponent<GloveBase>();
                 m_rightglove.GlovePosition = m_rightglovePosition.localPosition;
+
+                // StretchArmにArmPlayerControllerをセット
+                m_leftglove.GetComponent<StretchArm>().OwnerArmPlayerController = this;
+                m_rightglove.GetComponent<StretchArm>().OwnerArmPlayerController = this;
             }
 
 
