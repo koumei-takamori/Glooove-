@@ -599,6 +599,18 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
+  - m_Name: DashVelocityX
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: DashVelocityZ
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -934,7 +946,7 @@ AnimatorStateMachine:
     m_Position: {x: 350, y: 280, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5205090675018259271}
-    m_Position: {x: 290, y: 380, z: 0}
+    m_Position: {x: 340, y: 380, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6749761676320961318}
     m_Position: {x: 370, y: 190, z: 0}
@@ -1450,8 +1462,8 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: WalkSpeedX
     m_Mirror: 0
-  m_BlendParameter: WalkSpeedX
-  m_BlendParameterY: WalkSpeedZ
+  m_BlendParameter: DashVelocityX
+  m_BlendParameterY: DashVelocityZ
   m_MinThreshold: 0
   m_MaxThreshold: 0
   m_UseAutomaticThresholds: 1

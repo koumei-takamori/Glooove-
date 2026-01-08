@@ -399,7 +399,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: BT_JumpDash
-  m_Speed: 0.7
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 3630935856289455040}
@@ -674,6 +674,18 @@ AnimatorController:
     m_Controller: {fileID: 9100000}
   - m_Name: Parry
     m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: DashVelocityX
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: DashVelocityZ
+    m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -1353,8 +1365,8 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: WalkSpeedX
     m_Mirror: 0
-  m_BlendParameter: WalkSpeedX
-  m_BlendParameterY: WalkSpeedZ
+  m_BlendParameter: DashVelocityX
+  m_BlendParameterY: DashVelocityZ
   m_MinThreshold: 0
   m_MaxThreshold: 0
   m_UseAutomaticThresholds: 1
@@ -1435,7 +1447,7 @@ BlendTree:
     m_DirectBlendParameter: WalkSpeedZ
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -1964354587456989603, guid: be6d5081229e51c48898e0eaff5c1218, type: 3}
+    m_Motion: {fileID: 7400000, guid: 9f53b2ed474663c4299fea069ceaa29f, type: 2}
     m_Threshold: 0
     m_Position: {x: -1, y: 0}
     m_TimeScale: 1
@@ -1450,8 +1462,8 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: WalkSpeedX
     m_Mirror: 0
-  m_BlendParameter: WalkSpeedX
-  m_BlendParameterY: WalkSpeedZ
+  m_BlendParameter: DashVelocityX
+  m_BlendParameterY: DashVelocityZ
   m_MinThreshold: 0
   m_MaxThreshold: 0
   m_UseAutomaticThresholds: 1
