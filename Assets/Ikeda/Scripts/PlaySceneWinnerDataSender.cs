@@ -20,12 +20,6 @@ public class PlaySceneWinnerDataSender : SingletonMonoBehaviour<PlaySceneWinnerD
 
     [SerializeField] private PlayerGenerationInfo[] playerGenerationInfos = null;
 
-    public PlayerGenerationInfo[] PlayerGenerationInfos
-    {
-        get { return playerGenerationInfos; }
-        set { playerGenerationInfos = value; }
-    }
-
     override protected void Awake()
     {
         base.Awake();
@@ -68,11 +62,11 @@ public class PlaySceneWinnerDataSender : SingletonMonoBehaviour<PlaySceneWinnerD
         }
     }
 
-    private async void SendPlaySecneWinnerData()
+    public async void SendPlaySecneWinnerData()
     {
         var resultSceneManager = await SceneLoader.Load<ResultSceneManager>("ResultScene");
 
-        if (resultSceneManager != null)
+        if (resultSceneManager == null)
         {
             Debug.LogError("ResultSceneManagerがシーン内に見つかりませんでした。");
             return;
@@ -80,6 +74,15 @@ public class PlaySceneWinnerDataSender : SingletonMonoBehaviour<PlaySceneWinnerD
 
         // データを送信
         resultSceneManager.SetWinnerData(winnerData);
+    }
+
+    // -------------------------------
+    // プロパティ
+    // -------------------------------
+    public PlayerGenerationInfo[] PlayerGenerationInfos
+    {
+        get { return playerGenerationInfos; }
+        set { playerGenerationInfos = value; }
     }
 }
 
