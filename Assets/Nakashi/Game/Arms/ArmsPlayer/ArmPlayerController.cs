@@ -246,9 +246,9 @@ namespace Nakashi
                 // ステートマシンの、FixedUpdateを行う
                 m_stateMachine.FixedUpdate();
                 // プレイヤーの移動更新を行う
-                //m_playerMove.FixedUpdate(m_rightEuler, m_leftEuler);
+                m_playerMove.FixedUpdate();
                 // UnityのEditor上のみのデバッグ処理
-                m_playerMove.DebugUpdate();
+                //m_playerMove.DebugUpdate();
                 //#if UNITY_EDITOR
                 //                m_playerMove.DebugUpdate();
                 //#endif
