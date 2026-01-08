@@ -12,10 +12,10 @@ EditorBuildSettings:
     path: Assets/Scenes/SelectScene.unity
     guid: 2ea5ecc73afa5d643a40c35469676832
   - enabled: 1
-    path: Assets/Scenes/ResultScene.unity
-    guid: 8d5b5db5e1f845c4d9386b66f7d0e618
-  - enabled: 1
     path: Assets/Scenes/PlaySceneLive.unity
     guid: e992f176ca0632c4e861512251dc3fa6
+  - enabled: 1
+    path: Assets/Scenes/ResultScene.unity
+    guid: 8d5b5db5e1f845c4d9386b66f7d0e618
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: ce428db0c156de84899cd69e7716c12a, type: 3}
