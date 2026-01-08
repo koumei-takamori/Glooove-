@@ -42,6 +42,28 @@ namespace Nakashi
                 }
                 Vector3 dashDir = inputDir.normalized;
 
+                Transform trans = m_controller.GetTransform();
+
+                // ローカル方向へ変換
+                float dashX = Vector3.Dot(dashDir, trans.right);
+                float dashZ = Vector3.Dot(dashDir, trans.forward);
+
+                // スナップ（前後左右どれか）
+                if (Mathf.Abs(dashX) > Mathf.Abs(dashZ))
+                {
+                    dashX = Mathf.Sign(dashX);
+                    dashZ = 0.0f;
+                }
+                else
+                {
+                    dashZ = Mathf.Sign(dashZ);
+                    dashX = 0.0f;
+                }
+
+                Animator anim = m_controller.GetAnimator();
+                anim.SetFloat("DashVelocityX", dashX);
+                anim.SetFloat("DashVelocityZ", dashZ);
+
                 m_controller.GetRigidbody().AddForce(dashDir * m_controller.GetPlayerData().GetDashSpeed(),
                     ForceMode.Impulse);
             }

@@ -105,8 +105,19 @@ namespace Nakashi
             /// </summary>
             private void WalkingAnimation()
             {
-                Rigidbody rb = m_controller.GetRigidbody();
-                Vector3 vel = rb.velocity;
+                Vector3 vel;
+
+                if (m_controller.IsGround())
+                {
+                    // 地上：入力ベースの速度を使う
+                    vel = m_controller.GetSetVelocity;
+                }
+                else
+                {
+                    // 空中：物理ベース
+                    vel = m_controller.GetRigidbody().velocity;
+                }
+
                 vel.y = 0.0f;
 
                 // 止まっているなら0
@@ -118,13 +129,14 @@ namespace Nakashi
                 }
 
                 Vector3 dir = vel.normalized;
-                Transform trans = m_controller.transform;
+                Transform trans = m_controller.GetTransform();
 
                 float moveX = Vector3.Dot(dir, trans.right);
                 float moveZ = Vector3.Dot(dir, trans.forward);
+
+                //地上だけスナップ
                 if (m_controller.IsGround())
                 {
-                    // どっちの成分が強いかでスナップ
                     if (Mathf.Abs(moveX) > Mathf.Abs(moveZ))
                     {
                         moveX = Mathf.Sign(moveX);
