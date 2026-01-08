@@ -92,10 +92,10 @@ public class ResultSceneManager : MonoBehaviour
     //ƒV[ƒ“Ø‚è‘Ö‚¦
     private void ChangeScene()
     {
-        if (!m_isChangeScene)
-        {
-            return;
-        }
+        //if (!m_isChangeScene)
+        //{
+        //    return;
+        //}
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
