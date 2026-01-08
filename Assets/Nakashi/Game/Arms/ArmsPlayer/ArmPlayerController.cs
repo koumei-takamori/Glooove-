@@ -85,9 +85,8 @@ namespace Nakashi
             private GameObject m_LGlove;
             private GameObject m_RGlove;
 
-            // 追加：ArmChangerから通常時の腕についているグローブオブジェクトを参照するための関数
-            public GameObject GetLGlove() => m_LGlove;
-            public GameObject GetRGlove() => m_RGlove;
+
+
 
 
             public StretchArm[] GetStretchArms() => new StretchArm[2]
@@ -182,10 +181,8 @@ namespace Nakashi
                 // 追加:通常時の腕にもグローブをつける
                 // StretchArmからグローブオブジェクトを受け取る
                 // 右腕
-                m_RGlove = m_gloveData.RightGlove.GetComponent<StretchArm>().GetGloveObject;
 
-                // 右腕の一番深い子オブジェクトを取得
-                Transform deepestRightArm = GetDeepestChild(m_rightglovePosition);
+
                 // その子オブジェクトにグローブをセット
                 GameObject rGlove = Instantiate(m_RGlove);
                 rGlove.GetComponent<GloveObject>().Initialize(m_rightArmPosition.gameObject);
@@ -194,10 +191,8 @@ namespace Nakashi
                 m_RGlove = rGlove;
 
                 // 左腕
-                m_LGlove = m_gloveData.LeftGlove.GetComponent<StretchArm>().GetGloveObject;
 
-                // 左腕の一番深い子オブジェクトを取得
-                Transform deepestLeftArm = GetDeepestChild(m_leftglovePosition);
+
                 // その子オブジェクトにグローブをセット
                 GameObject lGlove = Instantiate(m_LGlove);
                 lGlove.GetComponent<GloveObject>().Initialize(m_leftArmPosition.gameObject);
@@ -522,9 +517,11 @@ namespace Nakashi
 
             // 追加：プレイヤーの入力を取得するクラス
             public PlayerInputReceiver InputReceiver { get { return m_playerInputReceiver; } }
+            //// 追加：ArmChangerから通常時の腕についているグローブオブジェクトを参照するための関数
+            public GameObject SelectedLGlove { get { return m_LGlove; } set { m_LGlove = value; } }
+            public GameObject SelectedRGlove { get { return m_RGlove; } set { m_RGlove = value; } }
         }
+
     }
 
 }
-
-

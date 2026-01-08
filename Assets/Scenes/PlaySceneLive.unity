@@ -1345,6 +1345,10 @@ PrefabInstance:
       propertyPath: m_tank
       value: 
       objectReference: {fileID: 3585432954368449380, guid: 140fe63e2e16ac44bb8eb0e4d8812880, type: 3}
+    - target: {fileID: 4875675379712929618, guid: 6e4ee12ced7528e4298923977391b2c2, type: 3}
+      propertyPath: m_gloveListData
+      value: 
+      objectReference: {fileID: 11400000, guid: 71e3a24a31e7f474c94fff98db432377, type: 2}
     - target: {fileID: 7663207414643896240, guid: 6e4ee12ced7528e4298923977391b2c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

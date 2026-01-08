@@ -20,7 +20,8 @@ public class PlayerGenerator : MonoBehaviour
     [SerializeField] private GameObject m_balance = default;
     [SerializeField] private GameObject m_speed = default;
     [SerializeField] private GameObject m_tank = default;
-
+    // 追加：グローブリストデータ
+    [SerializeField] private GloveListData m_gloveListData = default;
     // 生成情報
     private PlayerGenerationInfo[] m_playerGenertionInfos = default;
 
@@ -73,7 +74,12 @@ public class PlayerGenerator : MonoBehaviour
             );
 
             var armPlayer = player.GetComponent<ArmPlayerController>();
+            // グローブの設定
+            // 通常時の腕に着けるグローブを設定
+            armPlayer.SelectedLGlove = m_gloveListData.GetGlove(m_playerGenertionInfos[i].GloveSet.Left);
+            armPlayer.SelectedRGlove = m_gloveListData.GetGlove(m_playerGenertionInfos[i].GloveSet.Right);
 
+            // のびる腕のグローブタイプを設定
             armPlayer.GetStretchArms()[(int)GloveSide.Left].ArmGloveType = m_playerGenertionInfos[i].GloveSet.Left;
             armPlayer.GetStretchArms()[(int)GloveSide.Right].ArmGloveType = m_playerGenertionInfos[i].GloveSet.Right;
 

@@ -45,14 +45,14 @@ public class ArmChanger : MonoBehaviour
         {
             m_attackLArmParent.SetActive(true);
             m_normalLArm.SetActive(false);
-            m_armPlayerController.GetLGlove().gameObject.SetActive(false);
+            m_armPlayerController.SelectedLGlove.SetActive(false);
             Debug.Log("ç∂òrçUåÇíÜ");
         }
         else
         {
             m_attackLArmParent.SetActive(false);
             m_normalLArm.SetActive(true);
-            m_armPlayerController.GetLGlove().gameObject.SetActive(true);
+            m_armPlayerController.SelectedLGlove.SetActive(true);
         }
 
 
@@ -61,14 +61,14 @@ public class ArmChanger : MonoBehaviour
         {
             m_attackRArmParent.SetActive(true);
             m_normalRArm.SetActive(false);
-            m_armPlayerController.GetRGlove().gameObject.SetActive(false);
+            m_armPlayerController.SelectedRGlove.SetActive(false);
             Debug.Log("âEòrçUåÇíÜ");
         }
         else
         {
             m_attackRArmParent.SetActive(false);
             m_normalRArm.SetActive(true);
-            m_armPlayerController.GetRGlove().gameObject.SetActive(true);
+            m_armPlayerController.SelectedRGlove.SetActive(true);
         }
 
         //Debug.Log($"âE{m_isRArmExtend}ÅFç∂{m_isLArmExtend}");
