@@ -18,9 +18,9 @@ MonoBehaviour:
   m_rayDistance: 0.3
   m_dashCoolTime: 1
   m_jumpCoolTime: 1
-  m_maxHp: 100
-  m_attackPower: 20
-  m_defensePower: 10
+  m_maxHp: 150
+  m_attackPower: 40
+  m_defensePower: 15
   m_maxSpecialGauge: 100
   m_blowOffTime: 1
   m_blowOffPower: 10

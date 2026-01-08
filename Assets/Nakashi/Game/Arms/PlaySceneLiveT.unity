@@ -586,6 +586,75 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf44aac13f53c6f49aeea00069495e18, type: 3}
+--- !u!1001 &702804766
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1929466767796806779, guid: 140fe63e2e16ac44bb8eb0e4d8812880, type: 3}
+      propertyPath: m_playerId
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3585432954368449380, guid: 140fe63e2e16ac44bb8eb0e4d8812880, type: 3}
+      propertyPath: m_Name
+      value: Tank_character
+      objectReference: {fileID: 0}
+    - target: {fileID: 3585432954368449380, guid: 140fe63e2e16ac44bb8eb0e4d8812880, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218136627793101278, guid: 140fe63e2e16ac44bb8eb0e4d8812880, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218136627793101278, guid: 140fe63e2e16ac44bb8eb0e4d8812880, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218136627793101278, guid: 140fe63e2e16ac44bb8eb0e4d8812880, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218136627793101278, guid: 140fe63e2e16ac44bb8eb0e4d8812880, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218136627793101278, guid: 140fe63e2e16ac44bb8eb0e4d8812880, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218136627793101278, guid: 140fe63e2e16ac44bb8eb0e4d8812880, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218136627793101278, guid: 140fe63e2e16ac44bb8eb0e4d8812880, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218136627793101278, guid: 140fe63e2e16ac44bb8eb0e4d8812880, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218136627793101278, guid: 140fe63e2e16ac44bb8eb0e4d8812880, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218136627793101278, guid: 140fe63e2e16ac44bb8eb0e4d8812880, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6132425603877290779, guid: 140fe63e2e16ac44bb8eb0e4d8812880, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 140fe63e2e16ac44bb8eb0e4d8812880, type: 3}
 --- !u!1 &705248343
 GameObject:
   m_ObjectHideFlags: 0
@@ -1134,6 +1203,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Speed_character
       objectReference: {fileID: 0}
+    - target: {fileID: 1097316108917939466, guid: 46c811cc9eaf624449980eefc27fdd02, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677770052838490585, guid: 46c811cc9eaf624449980eefc27fdd02, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6762165048753891087, guid: 46c811cc9eaf624449980eefc27fdd02, type: 3}
       propertyPath: landingVFX
       value: 
@@ -1485,6 +1562,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 156739283}
     m_Modifications:
+    - target: {fileID: 272548606517004944, guid: fd6da735ab257e64cae90896e27ef21d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2407685441535699494, guid: fd6da735ab257e64cae90896e27ef21d, type: 3}
       propertyPath: m_Name
       value: LandingDust
@@ -1617,3 +1698,4 @@ SceneRoots:
   - {fileID: 627920909}
   - {fileID: 1816482889}
   - {fileID: 1036733437}
+  - {fileID: 702804766}
