@@ -201,20 +201,34 @@ namespace Nakashi
                 Vector3 vel = rb.velocity;
                 vel.y = 0.0f;
 
-                // 歩き状態のEnable
-                //if(vel.sqrMagnitude < 0.001f)
-                //{
-                //    m_controller.GetAnimator().SetFloat("WalkSpeedX", 0.0f , 0.1f, Time.deltaTime);
-                //    m_controller.GetAnimator().SetFloat("WalkSpeedZ", 0.0f, 0.1f, Time.deltaTime);
-                //    return;
-                //}
+                // 止まっているなら0
+                if (vel.sqrMagnitude < 0.001f)
+                {
+                    m_controller.GetAnimator().SetFloat("WalkSpeedX", 0.0f, 0.1f, Time.deltaTime);
+                    m_controller.GetAnimator().SetFloat("WalkSpeedZ", 0.0f, 0.1f, Time.deltaTime);
+                    return;
+                }
 
                 Vector3 dir = vel.normalized;
-
                 Transform trans = m_controller.transform;
 
                 float moveX = Vector3.Dot(dir, trans.right);
                 float moveZ = Vector3.Dot(dir, trans.forward);
+
+                if (m_controller.IsGround())
+                {
+                    // どっちの成分が強いかでスナップ
+                    if (Mathf.Abs(moveX) > Mathf.Abs(moveZ))
+                    {
+                        moveX = Mathf.Sign(moveX);
+                        moveZ = 0.0f;
+                    }
+                    else
+                    {
+                        moveZ = Mathf.Sign(moveZ);
+                        moveX = 0.0f;
+                    }
+                }
 
                 m_controller.GetAnimator().SetFloat("WalkSpeedX", moveX, 0.1f, Time.deltaTime);
                 m_controller.GetAnimator().SetFloat("WalkSpeedZ", moveZ, 0.1f, Time.deltaTime);

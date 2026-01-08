@@ -1138,6 +1138,10 @@ PrefabInstance:
       propertyPath: landingVFX
       value: 
       objectReference: {fileID: 530545698}
+    - target: {fileID: 6762165048753891087, guid: 46c811cc9eaf624449980eefc27fdd02, type: 3}
+      propertyPath: m_playerId
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -1461,6 +1465,10 @@ PrefabInstance:
       propertyPath: landingVFX
       value: 
       objectReference: {fileID: 498190000}
+    - target: {fileID: 6933980886012709488, guid: 2d10cfc1a0e577b4ebd34df2ce09d234, type: 3}
+      propertyPath: m_playerId
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -1540,7 +1548,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4754099641790134905, guid: 6e4ee12ced7528e4298923977391b2c2, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4875675379712929618, guid: 6e4ee12ced7528e4298923977391b2c2, type: 3}
       propertyPath: m_tank
