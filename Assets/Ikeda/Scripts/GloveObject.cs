@@ -108,9 +108,20 @@ public class GloveObject : MonoBehaviour
             // グローブが持つダメージ倍率を取得
             float multiplier = parameterData.GetAttackMultiplierByType(currentAttackType);
 
+
+            // ヒット相手がパリィを行っているかを確認する必要がある
+            ArmPlayerController enemyController = collider.GetComponent<ArmPlayerController>();
+            bool isParry = enemyController.GetPlayerStatus().GetSetParry;
+
             // グローブのダメージ倍率を計算
             damage = (int)(damage * multiplier);
 
+            if (isParry)
+            {
+                damage = (int)(damage * 0.1f);
+                // ガード成功時の効果音再生
+
+            }
 
             // ダメージを与える
             collider.gameObject.GetComponent<PlayerHP>().Damaged(damage);
@@ -118,10 +129,9 @@ public class GloveObject : MonoBehaviour
             // フラグをリセット
             isAttacking = false;
 
-            // 効果音を再生
+            // ダメージを食らったときの効果音を再生
         }
     }
-
 
     // ------------------------------
     // 関数
