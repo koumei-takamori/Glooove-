@@ -187,6 +187,17 @@
                 },
                 {
                     "name": "",
+                    "id": "4666c37b-0a9c-4c65-815b-95fdc572105d",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "2ddb4a04-35d8-4aa4-b80b-0f119bdf1aee",
                     "path": "<Gamepad>/leftStick/y",
                     "interactions": "",
