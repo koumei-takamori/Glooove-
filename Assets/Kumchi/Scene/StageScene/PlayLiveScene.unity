@@ -200,7 +200,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5825748541202052951, guid: 0245a648f4e962e499c0e062edd9605c, type: 3}
       propertyPath: CameraDistance
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5825748541202052951, guid: 0245a648f4e962e499c0e062edd9605c, type: 3}
       propertyPath: ShoulderOffset.y

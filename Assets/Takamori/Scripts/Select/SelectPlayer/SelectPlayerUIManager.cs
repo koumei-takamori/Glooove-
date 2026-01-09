@@ -25,6 +25,9 @@ public class SelectPlayerUIManager : MonoBehaviour
     [SerializeField]
     SelectCharaManager m_selectChara;
 
+    [SerializeField]
+    private UIElement m_ready;
+
     /*--------------------------------------------------------------------------------
 　　|| 実行前初期化処理
 　　--------------------------------------------------------------------------------*/
@@ -33,8 +36,17 @@ public class SelectPlayerUIManager : MonoBehaviour
     /// </summary>
     private void Awake()
     {
+        m_ready.Rect.localScale = Vector3.zero;
         // 最初はUIを停止
         CanControllUI(false);
+    }
+
+    private void Update()
+    {
+        if (m_player == null) return;
+
+        if (m_player.IsReady) { m_ready.Rect.localScale = Vector3.one; }
+        else if(!m_player.IsReady) { m_ready.Rect.localScale = Vector3.zero; }
     }
 
     /*--------------------------------------------------------------------------------

@@ -80,6 +80,13 @@ public class GloveSelectState : StateBase
                 (int)SelectPlayer.SelectPlayerState.Ready
             );
         }
+
+        // 戻る → グローブ選択
+        if (Owner.InputReceiver.GetInputButton(SelectPlayerActions.Cancel, InputType.PRESSED))
+        {
+            m_stateMashine.ChangeState((int)SelectPlayer.SelectPlayerState.CharaSelect);
+        }
+
     }
 
     public override void OnExit()
