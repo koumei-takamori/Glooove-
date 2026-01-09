@@ -1341,9 +1341,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -504749831314263889, guid: 5297483b9fcb88742b4a54c0090f64dd, type: 3}
+      propertyPath: seVolume
+      value: 0.84
+      objectReference: {fileID: 0}
+    - target: {fileID: -504749831314263889, guid: 5297483b9fcb88742b4a54c0090f64dd, type: 3}
+      propertyPath: bgmVolume
+      value: 0.52
+      objectReference: {fileID: 0}
+    - target: {fileID: -504749831314263889, guid: 5297483b9fcb88742b4a54c0090f64dd, type: 3}
       propertyPath: soundDatas
       value: 
       objectReference: {fileID: 11400000, guid: 041a70370dce5334f802ca2d449bb7c4, type: 2}
+    - target: {fileID: -504749831314263889, guid: 5297483b9fcb88742b4a54c0090f64dd, type: 3}
+      propertyPath: masterVolume
+      value: 0.24
+      objectReference: {fileID: 0}
     - target: {fileID: 5728294752063412560, guid: 5297483b9fcb88742b4a54c0090f64dd, type: 3}
       propertyPath: m_Name
       value: SoundManager
