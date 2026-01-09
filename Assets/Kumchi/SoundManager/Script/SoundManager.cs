@@ -209,6 +209,18 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
         bgmSource.volume = masterVolume;
         bgmSource.Play();
     }
+
+    /// <summary>
+    /// ‘S‰¹º‚ÌÄ¶‚ğI—¹
+    /// </summary>
+    public void StopAllSound()
+    {
+        bgmSource.Stop();
+        foreach (var source in seSources)
+        {
+            source.Stop();
+        }
+    }
 }
 
 
