@@ -67,14 +67,14 @@ public class ResultSceneManager : MonoBehaviour
         if (winnerData == null)
 
             //表示キャラクターの設定・変更
-            m_character.winnerId = m_winnerCharacterId;
+            m_character.winnerId = (int)winnerData.CharacterType;
         m_character.ChangeCharacter();
 
         //ステージの変更
-        m_resultStage.ChangeStage(m_stageId);
+        m_resultStage.ChangeStage(winnerData.StageId);
 
         //UI変更
-        m_winnerPlayer.winnerPlayer = m_winnerPlayerId;
+        m_winnerPlayer.winnerPlayer = winnerData.PlayerId;
         m_winnerPlayer.ChangeTextUI();
 
         m_isChangeScene = false;
