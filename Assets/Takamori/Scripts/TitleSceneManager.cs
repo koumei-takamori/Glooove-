@@ -61,7 +61,7 @@ public class TitleSceneManager : MonoBehaviour
             m_fade.FadeInWithCallback(() =>
             {
                 SoundManager.Instance.PlaySE("First");
-                SoundManager.Instance.PlayBGM("TitleBGM");
+                SoundManager.Instance.PlayBGM("TitleBGM", true);
                 m_fadeInFlag = true;
             });
         }

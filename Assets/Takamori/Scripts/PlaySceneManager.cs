@@ -36,6 +36,13 @@ public class PlaySceneManager : SingletonMonoBehaviour<PlaySceneManager>
         base.Awake();
     }
 
+    // 追加：スタート処理
+    private void Start()
+    {
+
+        SoundManager.Instance.PlayBGM("PlayBGM", true);
+    }
+
     /*--------------------------------------------------------------------------------
 　　|| ターゲット設定
 　　--------------------------------------------------------------------------------*/

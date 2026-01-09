@@ -138,6 +138,7 @@ public class PlayerHP : MonoBehaviour
     public void Damaged(int damage)
     {
         armPlayerController.GetAnimator().SetTrigger("IsHit");
+        SoundManager.Instance.PlaySE("Damage");
         currentHP -= damage;
 
         hpGaugeSystems[0].Damage(damage);
@@ -146,6 +147,8 @@ public class PlayerHP : MonoBehaviour
         if (currentHP <= 0)
         {
             armPlayerController.GetAnimator().SetTrigger("Down");
+            SoundManager.Instance.PlaySE("KO");
+
             Debug.Log("HP ‚ª 0 ‚É‚È‚è‚Ü‚µ‚½");
             uiController.ChangeState(PlayUIType.KO);
 
