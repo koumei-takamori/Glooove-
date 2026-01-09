@@ -7,11 +7,10 @@
  *  制作日 : 2025/10/16
  *
  *********************************************************/
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEngine.UI.GridLayoutGroup;
-
+using UnityEngine.UI;
+using DG.Tweening;
 
 /// <summary>
 /// セレクトシーンを管理
@@ -25,84 +24,137 @@ public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
     [SerializeField]
     private UIFade m_fade;
 
+    // READY UI
+    [SerializeField]
+    private Image m_ready;
+
+    // 未接続時のUI
+    [SerializeField]
+    private Image m_UI;
+
+    // Ready演出用
+    private RectTransform m_readyRect;
+    private bool m_isReadyShown = false;
+
+    // Ready Tween 管理
+    private Tween m_readyTween;
+
+    [Header("Ready Slide Settings")]
+    [SerializeField]
+    private float m_readySlideOffset = 1920f;
+    [SerializeField]
+    private float m_readySlideTime = 0.2f;
+
     /*--------------------------------------------------------------------------------
-　　|| 実行前初期化処理
-　　--------------------------------------------------------------------------------*/
-    /// <summary>
-    /// 実行前初期化処理
-    /// </summary>
-    override protected void Awake()
+     || 実行前初期化処理
+     --------------------------------------------------------------------------------*/
+    protected override void Awake()
     {
         base.Awake();
     }
 
     /*--------------------------------------------------------------------------------
-　　|| 初期化処理
-　　--------------------------------------------------------------------------------*/
-    /// <summary>
-    /// 初期化処理
-    /// </summary>
+     || 初期化処理
+     --------------------------------------------------------------------------------*/
     private void Start()
     {
+        m_readyRect = m_ready.rectTransform;
     }
 
     /*--------------------------------------------------------------------------------
-　　|| 更新処理
-　　--------------------------------------------------------------------------------*/
-    /// <summary>
-    /// 更新処理
-    /// </summary>
+     || 更新処理
+     --------------------------------------------------------------------------------*/
     private void Update()
     {
-        // 全プレイヤーが準備完了出ないなら処理しない
-        if (!IsAllPlayerReady()) return;
+        bool allReady = IsAllPlayerReady();
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        // -------- Ready 表示 --------
+        if (allReady && !m_isReadyShown)
+        {
+            ShowReadyUI();
+            m_isReadyShown = true;
+        }
+        // -------- Ready 解除（キャンセル）--------
+        else if (!allReady && m_isReadyShown)
+        {
+            HideReadyUI();
+            m_isReadyShown = false;
+        }
+
+        // 全員準備完了時のみ次へ進める
+        if (!allReady) return;
+
+
+
+        if (SelectPlayerManager.Instance.Players[0].InputReceiver.GetInputButton(
+            SelectPlayerInputReceiver.SelectPlayerActions.Decide, SelectPlayerInputReceiver.InputType.PRESSED) ||
+            SelectPlayerManager.Instance.Players[1].InputReceiver.GetInputButton(
+            SelectPlayerInputReceiver.SelectPlayerActions.Decide, SelectPlayerInputReceiver.InputType.PRESSED) ||
+            Input.GetKeyDown(KeyCode.Space))
         {
             m_fade.FadeOutWithCallback(() =>
             {
-                // 生成情報を生成
                 CreateGenerationInfos();
-                // ゲームスタート処理
                 GameStart();
             });
         }
     }
 
     /*--------------------------------------------------------------------------------
-　　|| ゲームスタート処理
-　　--------------------------------------------------------------------------------*/
-    /// <summary>
-    /// ゲームスタート処理
-    /// </summary>
+     || Ready UI 表示
+     --------------------------------------------------------------------------------*/
+    private void ShowReadyUI()
+    {
+        m_ready.gameObject.SetActive(true);
+
+        m_readyTween?.Kill();
+
+        Vector2 targetPos = new Vector2(0, 0);
+
+        m_readyTween = m_readyRect
+            .DOAnchorPos(targetPos, m_readySlideTime)
+            .SetEase(Ease.InCirc);
+    }
+
+    /*--------------------------------------------------------------------------------
+     || Ready UI 非表示（キャンセル時）
+     --------------------------------------------------------------------------------*/
+    private void HideReadyUI()
+    {
+        m_readyTween?.Kill();
+
+        Vector2 hidePos =
+            m_readyRect.anchoredPosition + Vector2.right * m_readySlideOffset;
+
+        m_readyTween = m_readyRect
+            .DOAnchorPos(hidePos, m_readySlideTime * 0.8f)
+            .SetEase(Ease.InCirc);
+    }
+
+    /*--------------------------------------------------------------------------------
+     || ゲームスタート処理
+     --------------------------------------------------------------------------------*/
     private async void GameStart()
     {
-        // awaitしてシーンロード処理とPlayerManagerを取得
-        var target = await SceneLoader.Load<PlayerGenerator>("PlayLiveScene");
+        var target = await SceneLoader.Load<PlayerGenerator>("PlaySceneLive");
 
-        // ターゲットを取得
         if (target == null)
         {
-            Debug.LogError("TStreetPlayScene がシーン内に見つかりませんでした。");
+            Debug.LogError("PlaySceneLive に PlayerGenerator が見つかりませんでした。");
             return;
         }
 
-        // 生成情報を格納
         target.SetGenerationInfo(m_playerGenerationInfos);
     }
 
     /*--------------------------------------------------------------------------------
-　　|| 全プレイヤーが準備完了か
-　　--------------------------------------------------------------------------------*/
-    /// <summary>
-    /// 全プレイヤーが準備完了か
-    /// </summary>
+     || 全プレイヤーが準備完了か
+     --------------------------------------------------------------------------------*/
     private bool IsAllPlayerReady()
     {
         var players = SelectPlayerManager.Instance.Players;
 
-        // まだ誰もいない
-        if (players.Count == 0) return false;
+        if (players.Count < 2) return false;
 
         foreach (var player in players)
         {
@@ -115,11 +167,8 @@ public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
     }
 
     /*--------------------------------------------------------------------------------
-  　|| 生成情報を作成する
-    --------------------------------------------------------------------------------*/
-    /// <summary>
-    /// 生成情報を作成する
-    /// </summary>
+     || 生成情報を作成する
+     --------------------------------------------------------------------------------*/
     private void CreateGenerationInfos()
     {
         var players = SelectPlayerManager.Instance.Players;
@@ -128,7 +177,6 @@ public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
 
         foreach (var player in players)
         {
-            // 選択したグローブを生成用に構造体に格納
             GloveSet gloves = new GloveSet(
                 player.GetGloveType(GloveSide.Left),
                 player.GetGloveType(GloveSide.Right));
