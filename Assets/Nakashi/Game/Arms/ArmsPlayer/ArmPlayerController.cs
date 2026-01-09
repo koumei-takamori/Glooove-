@@ -85,6 +85,8 @@ namespace Nakashi
             private GameObject m_LGlove;
             private GameObject m_RGlove;
 
+            // 追加：パリィ開始のキャッシュ
+            private bool m_isParryStart = false;
 
 
 
@@ -281,12 +283,15 @@ namespace Nakashi
                 {
                     m_stateMachine.ChangeState(m_stateMachine.GetJump());
                     m_coolTime.StartJump();
+                    SoundManager.Instance.PlaySE("JumpStart");
+
                     return;
                 }
                 if (dashInput && m_coolTime.CanDash())
                 {
                     // 相手のグローブに回避行動を行ったことを通知
                     dodgeChecker.IsDodgeCheckerAction(this, m_transform.position);
+                    SoundManager.Instance.PlaySE("Dash");
 
                     m_stateMachine.ChangeState(m_stateMachine.GetDash());
                     m_coolTime.StartDash();
@@ -321,10 +326,13 @@ namespace Nakashi
                 // パリィ入力を取得
                 bool parryInput = InputReceiver.GetInputButton(PlayerInputReceiver.Actions.PARRY, PlayerInputReceiver.InputType.PRESSED);
 
+
                 // パリィ状態        ↓↓この、Pかえるだけだと無理です。ごめ。ArmPlayer_ParryのほうのRelaseButtonも変えてね。
                 if (parryInput)
                 {
+
                     m_stateMachine.ChangeState(m_stateMachine.GetParry());
+                    return;
                 }
             }
 
@@ -346,6 +354,8 @@ namespace Nakashi
                 Vector3 rayPosition = this.m_transform.position;
                 Ray ray = new Ray(rayPosition, Vector3.down);
                 Debug.DrawRay(ray.origin, ray.direction * GetPlayerData().GetRayDistance(), Color.red);
+
+
                 return Physics.Raycast(ray, GetPlayerData().GetRayDistance());
             }
 
@@ -442,7 +452,12 @@ namespace Nakashi
             /// </summary>
             private void CheckJumpNow()
             {
-                if (IsGround()) { m_status.GetSetJump = false; m_animator.SetBool("Is_JumpEnd", true); }
+                if (IsGround())
+                {
+                    if (m_status.GetSetJump == true) SoundManager.Instance.PlaySE("JumpEnd");
+                    m_status.GetSetJump = false;
+                    m_animator.SetBool("Is_JumpEnd", true);
+                }
                 else { m_status.GetSetJump = true; m_animator.SetBool("Is_JumpEnd", false); }
             }
             /// <summary>

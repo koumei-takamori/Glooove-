@@ -22,3 +22,13 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 400c9aab83bd4be4c9d5bb6fcbbcc1ac, type: 3}
   - name: KO
     clip: {fileID: 8300000, guid: 7cf7a010a56b2764897e7cb76d100b8d, type: 3}
+  - name: JumpStart
+    clip: {fileID: 8300000, guid: 2688592b61ee701449255432d6c8a048, type: 3}
+  - name: JumpEnd
+    clip: {fileID: 8300000, guid: 654e5a7a16892e149be47cf8279f6af2, type: 3}
+  - name: Dash
+    clip: {fileID: 8300000, guid: 5fdc8ecbc1c71be4785a856b20f4894f, type: 3}
+  - name: ParryStart
+    clip: {fileID: 8300000, guid: 9694286d173f4c54f8a36c43fca771bb, type: 3}
+  - name: ParryEnd
+    clip: {fileID: 8300000, guid: bcf79b1281e87b44cadd348f19573282, type: 3}

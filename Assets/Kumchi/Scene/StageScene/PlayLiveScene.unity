@@ -283,6 +283,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -504749831314263889, guid: 5297483b9fcb88742b4a54c0090f64dd, type: 3}
+      propertyPath: seVolume
+      value: 0.66
+      objectReference: {fileID: 0}
+    - target: {fileID: -504749831314263889, guid: 5297483b9fcb88742b4a54c0090f64dd, type: 3}
       propertyPath: bgmSource
       value: 
       objectReference: {fileID: 0}
@@ -296,7 +300,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 2a300b5f2805a054691176c932e0fd60, type: 2}
     - target: {fileID: -504749831314263889, guid: 5297483b9fcb88742b4a54c0090f64dd, type: 3}
       propertyPath: masterVolume
-      value: 0.42
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -504749831314263889, guid: 5297483b9fcb88742b4a54c0090f64dd, type: 3}
       propertyPath: seSources.Array.data[0]

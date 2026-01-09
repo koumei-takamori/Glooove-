@@ -124,7 +124,7 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
         }
 
         // SE—pAudioSource‚ğƒv[ƒ‹¶¬
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < 16; i++)
         {
             var seObj = new GameObject($"SE_{i}");
             seObj.transform.SetParent(sePoolRoot);

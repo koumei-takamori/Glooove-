@@ -16,6 +16,9 @@ namespace Nakashi
         public class ArmPlayer_Parry : INakashiPlayerState
         {
             private ArmPlayerController m_controller;
+            // パリィ音声再生フラグ
+            private bool m_parrySEFlag = false;
+
 
             /// <summary>
             /// コンストラクタ
@@ -31,6 +34,7 @@ namespace Nakashi
             /// </summary>
             public void Enter()
             {
+
                 // アニメーション変更
                 m_controller.GetAnimator().SetBool("Parry", true);
                 // パリィ判定をオンにする
@@ -61,6 +65,12 @@ namespace Nakashi
             /// </summary>
             public void Update()
             {
+                if (m_parrySEFlag == false)
+                {
+                    // 追加：パリィ開始音
+                    SoundManager.Instance.PlaySE("ParryStart");
+                    m_parrySEFlag = true;
+                }
                 ReleaseButton();
                 Debug.Log(m_controller.GetPlayerStatus().GetSetParry);
             }
@@ -80,7 +90,17 @@ namespace Nakashi
             {
                 bool parryInput = m_controller.InputReceiver.GetInputButton(PlayerInputReceiver.Actions.PARRY, PlayerInputReceiver.InputType.RELEASED);
                 // キーが離れたら、アイドリング状態に戻す。
-                if (parryInput) { m_controller.GetStateMachine().ChangeState(m_controller.GetStateMachine().GetIdle()); }
+                if (parryInput)
+                {
+                    m_controller.GetStateMachine().ChangeState(m_controller.GetStateMachine().GetIdle());
+                    // 追加：パリィ解除音
+                    SoundManager.Instance.PlaySE("ParryEnd");
+                    // 追加：パリィ音声再生フラグリセット
+                    m_parrySEFlag = false;
+                }
+
+
+
             }
         }
     }
