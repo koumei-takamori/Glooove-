@@ -8,18 +8,12 @@
  *
  *********************************************************/
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.UI;
-using DG.Tweening;
 
 /// <summary>
 /// セレクトシーンを管理
 /// </summary>
 public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
 {
-    // インゲームのプレイヤーの生成情報
-    private PlayerGenerationInfo[] m_playerGenerationInfos = default;
-
     // フェード管理
     [SerializeField]
     private UIFade m_fade;
@@ -27,6 +21,14 @@ public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
     // GameReady
     [SerializeField]
     private UIElement m_ready;
+
+    // ステージ名
+    [SerializeField]
+    private string[] m_stages;
+    private int m_stageNum;
+    // インゲームのプレイヤーの生成情報
+    private PlayerGenerationInfo[] m_playerGenerationInfos = default;
+
 
     bool m_isSceneLoad = false;
 
@@ -43,6 +45,7 @@ public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
      --------------------------------------------------------------------------------*/
     private void Start()
     {
+        m_stageNum = 0;
     }
 
     /*--------------------------------------------------------------------------------
@@ -70,6 +73,15 @@ public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
                 GameStart();
             });
         }
+
+        if (Input.GetKeyUp(KeyCode.Alpha1))
+        {
+            m_stageNum = 0;
+        }
+        else
+        {
+            m_stageNum = 1;
+        }
     }
 
     /*--------------------------------------------------------------------------------
@@ -77,11 +89,11 @@ public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
      --------------------------------------------------------------------------------*/
     private async void GameStart()
     {
-        var target = await SceneLoader.Load<PlayerGenerator>("PlaySceneLive");
+        var target = await SceneLoader.Load<PlayerGenerator>("PlayScene" + m_stages[m_stageNum]);
 
         if (target == null)
         {
-            Debug.LogError("PlaySceneLive に PlayerGenerator が見つかりませんでした。");
+            Debug.LogError("PlayScene に PlayerGenerator が見つかりませんでした。");
             return;
         }
 
@@ -95,7 +107,7 @@ public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
     {
         var players = SelectPlayerManager.Instance.Players;
 
-        if (players.Count < 2) return false;
+        if (players.Count < 2 || players == null) return false;
 
         foreach (var player in players)
         {

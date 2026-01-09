@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SelectScene.unity
     guid: 2ea5ecc73afa5d643a40c35469676832
   - enabled: 1
+    path: Assets/Scenes/PlaySceneJunk.unity
+    guid: cf40ed9954ac7f0489936d05026b5719
+  - enabled: 1
     path: Assets/Scenes/PlaySceneLive.unity
     guid: e992f176ca0632c4e861512251dc3fa6
   - enabled: 1

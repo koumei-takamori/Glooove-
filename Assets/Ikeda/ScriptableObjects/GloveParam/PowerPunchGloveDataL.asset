@@ -31,7 +31,7 @@ MonoBehaviour:
       m_useWorldForwardAsReference: 1
     gloveWeight: 1
     m_coolTime: 0.5
-    m_attackMultiplier: 1.7
+    m_attackMultiplier: 1.5
   m_specialAttackParam:
     m_type: 1
     m_stretchArmParams:

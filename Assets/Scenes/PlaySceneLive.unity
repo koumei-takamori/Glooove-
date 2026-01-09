@@ -463,7 +463,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &778527167
+--- !u!1001 &791670713
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -476,12 +476,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: -504749831314263889, guid: 5297483b9fcb88742b4a54c0090f64dd, type: 3}
+      propertyPath: bgmVolume
+      value: 0.11
+      objectReference: {fileID: 0}
+    - target: {fileID: -504749831314263889, guid: 5297483b9fcb88742b4a54c0090f64dd, type: 3}
       propertyPath: soundDatas
       value: 
       objectReference: {fileID: 11400000, guid: 2a300b5f2805a054691176c932e0fd60, type: 2}
     - target: {fileID: -504749831314263889, guid: 5297483b9fcb88742b4a54c0090f64dd, type: 3}
       propertyPath: masterVolume
-      value: 0.06
+      value: 0.42
       objectReference: {fileID: 0}
     - target: {fileID: -504749831314263889, guid: 5297483b9fcb88742b4a54c0090f64dd, type: 3}
       propertyPath: seSources.Array.data[0]
@@ -489,7 +493,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5728294752063412560, guid: 5297483b9fcb88742b4a54c0090f64dd, type: 3}
       propertyPath: m_Name
-      value: SoundManager
+      value: SoundManager (1)
       objectReference: {fileID: 0}
     - target: {fileID: 7590281521742104945, guid: 5297483b9fcb88742b4a54c0090f64dd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1410,6 +1414,6 @@ SceneRoots:
   - {fileID: 1885902521}
   - {fileID: 1729132722}
   - {fileID: 1162247941}
-  - {fileID: 778527167}
   - {fileID: 839167332}
   - {fileID: 178841879}
+  - {fileID: 791670713}
