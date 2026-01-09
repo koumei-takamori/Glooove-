@@ -10,6 +10,8 @@
 using Nakashi.Player;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 
 public class PlayerHP : MonoBehaviour
 {
@@ -148,7 +150,8 @@ public class PlayerHP : MonoBehaviour
         {
             armPlayerController.GetAnimator().SetTrigger("Down");
             SoundManager.Instance.PlaySE("KO");
-
+            // 確認：もし操作デバイスがコントローラーなら、振動
+            VibrateGamepad();
             Debug.Log("HP が 0 になりました");
             uiController.ChangeState(PlayUIType.KO);
 
@@ -253,6 +256,24 @@ public class PlayerHP : MonoBehaviour
         }
 
         return true;
+    }
+
+    // 振動させるメソッド
+    private void VibrateGamepad(float duration = 0.4f)
+    {
+        if (armPlayerController.PlayerInputDevice is Gamepad gamepad)
+        {
+            // 振動開始
+            gamepad.SetMotorSpeeds(0.5f, 0.5f);
+
+            // 一定時間後に停止
+            StartCoroutine(StopVibration(gamepad, duration));
+        }
+    }
+    private IEnumerator StopVibration(Gamepad gamepad, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        gamepad.SetMotorSpeeds(0f, 0f);
     }
 }
 

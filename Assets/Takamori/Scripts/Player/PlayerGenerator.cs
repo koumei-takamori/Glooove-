@@ -75,6 +75,9 @@ public class PlayerGenerator : MonoBehaviour
             playerIndex: i,
             pairWithDevice: m_playerGenertionInfos[i].PairWithDevice
             );
+
+
+
             // 追加：生成地点に移動
             player.transform.position = m_playerSpawnPoints[i].position;
 
@@ -89,12 +92,15 @@ public class PlayerGenerator : MonoBehaviour
             armPlayer.GetStretchArms()[(int)GloveSide.Right].ArmGloveType = m_playerGenertionInfos[i].GloveSet.Right;
 
             armPlayer.PlayerId = m_playerGenertionInfos[i].PlayerId;
-
+            // 追加：プレイヤーの操作デバイスをArmPlayerControllerに設定
+            armPlayer.PlayerInputDevice = m_playerGenertionInfos[i].PairWithDevice;
             Debug.Log("プレイヤー" + player.playerIndex + ": デバイス" + player.devices[0]);
         }
 
         PlaySceneManager.Instance.SetTarget();
         // 追加：生成情報を送信
         PlaySceneWinnerDataSender.Instance.PlayerGenerationInfos = m_playerGenertionInfos;
+
+
     }
 }

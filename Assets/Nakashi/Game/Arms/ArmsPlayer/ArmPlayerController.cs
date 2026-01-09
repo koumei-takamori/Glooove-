@@ -6,6 +6,8 @@
 // <著作権>         Copyright (c) 2025 NakashimaYuto. All rights reserved.
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 using UnityEngine;
+using UnityEngine.InputSystem;
+
 using UnityEngine.VFX;
 
 namespace Nakashi
@@ -112,6 +114,9 @@ namespace Nakashi
             // 追加 : プレイヤーの入力を取得するクラス
             [SerializeField] private PlayerInputReceiver m_playerInputReceiver;
 
+            // 追加：プレイヤーの操作デバイス
+            private InputDevice m_playerInputDevice;
+
 
 
             private void Awake()
@@ -201,12 +206,9 @@ namespace Nakashi
                 lGlove.transform.SetParent(m_leftArmPosition, false);
                 // オブジェクトを保存
                 m_LGlove = lGlove;
-                //// 確認：仮で生成
-                //Instantiate(m_RGlove);
-                //Instantiate(m_LGlove);
 
-                // このスクリプトを持つオブジェクトの座標をデバッグ表示
-                Debug.Log($"Start:Player {m_playerId} Position: {m_transform.position}");
+
+
             }
 
 
@@ -540,8 +542,11 @@ namespace Nakashi
             //// 追加：ArmChangerから通常時の腕についているグローブオブジェクトを参照するための関数
             public GameObject SelectedLGlove { get { return m_LGlove; } set { m_LGlove = value; } }
             public GameObject SelectedRGlove { get { return m_RGlove; } set { m_RGlove = value; } }
+
+            // 追加：プレイヤーの操作デバイス
+            public InputDevice PlayerInputDevice { get { return m_playerInputDevice; } set { m_playerInputDevice = value; } }
+
         }
 
     }
-
 }
