@@ -56,6 +56,11 @@ public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
         bool allReady = IsAllPlayerReady();
         m_ready.Animator.SetBool("GameReady", IsAllPlayerReady());
 
+        if (Input.GetKeyUp(KeyCode.Alpha1))
+        {
+            m_stageNum = 1;
+        }
+
         if (!allReady || m_isSceneLoad) return;
 
         if (SelectPlayerManager.Instance.Players[0].InputReceiver.GetInputButton(
@@ -74,14 +79,8 @@ public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
             });
         }
 
-        if (Input.GetKeyUp(KeyCode.Alpha1))
-        {
-            m_stageNum = 0;
-        }
-        else
-        {
-            m_stageNum = 1;
-        }
+
+        
     }
 
     /*--------------------------------------------------------------------------------
