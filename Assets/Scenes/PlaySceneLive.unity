@@ -493,7 +493,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5728294752063412560, guid: 5297483b9fcb88742b4a54c0090f64dd, type: 3}
       propertyPath: m_Name
-      value: SoundManager (1)
+      value: SoundManager
       objectReference: {fileID: 0}
     - target: {fileID: 7590281521742104945, guid: 5297483b9fcb88742b4a54c0090f64dd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1415,5 +1415,5 @@ SceneRoots:
   - {fileID: 1729132722}
   - {fileID: 1162247941}
   - {fileID: 839167332}
-  - {fileID: 178841879}
   - {fileID: 791670713}
+  - {fileID: 178841879}

@@ -4596,6 +4596,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_fade: {fileID: 1228290202}
   m_ready: {fileID: 1084339991}
+  m_stages:
+  - Live
+  - Junk
 --- !u!4 &1038039905
 Transform:
   m_ObjectHideFlags: 0
@@ -9390,7 +9393,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1570547834
 MonoBehaviour:
   m_ObjectHideFlags: 0
