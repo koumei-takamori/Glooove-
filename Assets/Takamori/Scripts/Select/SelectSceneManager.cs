@@ -78,7 +78,7 @@ public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
     private async void GameStart()
     {
         // awaitしてシーンロード処理とPlayerManagerを取得
-        var target = await SceneLoader.Load<PlayerGenerator>("PlaySceneLive");
+        var target = await SceneLoader.Load<PlayerGenerator>("PlayLiveScene");
 
         // ターゲットを取得
         if (target == null)
