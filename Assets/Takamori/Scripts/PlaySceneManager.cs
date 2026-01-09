@@ -9,6 +9,7 @@
  *********************************************************/
 using Nakashi.Player;
 using UnityEngine;
+using System.Collections;
 
 /// <summary>
 /// プレイシーンを管理するクラス
@@ -34,11 +35,20 @@ public class PlaySceneManager : SingletonMonoBehaviour<PlaySceneManager>
     override protected void Awake()
     {
         base.Awake();
+
     }
 
     // 追加：スタート処理
-    private void Start()
+    // PlaySceneManager内
+    void Start()
     {
+        StartCoroutine(PlayBGMDelayed());
+    }
+
+    IEnumerator PlayBGMDelayed()
+    {
+        // 1フレーム待つ
+        yield return null;
 
         SoundManager.Instance.PlayBGM("PlayBGM", true);
     }
