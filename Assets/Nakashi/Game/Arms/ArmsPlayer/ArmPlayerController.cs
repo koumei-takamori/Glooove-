@@ -298,14 +298,19 @@ namespace Nakashi
                 // 右攻撃入力を取得
                 bool rightAttackInput = InputReceiver.GetInputButton(PlayerInputReceiver.Actions.R_ATTACK, PlayerInputReceiver.InputType.PRESSED);
 
+                // 追加：グローブデータ（腕）からStretchArmを取得
+                StretchArm rightStretchArm = m_rightglove.GetComponent<StretchArm>();
+                StretchArm leftStretchArm = m_leftglove.GetComponent<StretchArm>();
+
+
                 // 追加: 攻撃状態に変更
-                if (rightAttackInput)
+                if (rightAttackInput && !rightStretchArm.IsStretching)
                 {
 
                     m_stateMachine.ChangeState(m_stateMachine.GetRightAttack());
                     Debug.Log("Hおされた");
                 }
-                if (leftAttackInput)
+                if (leftAttackInput && !leftStretchArm.IsStretching)
                 {
 
                     m_stateMachine.ChangeState(m_stateMachine.GetLeftAttack());
