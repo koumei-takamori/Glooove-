@@ -20,5 +20,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Watanabe/Result/3DResultScene.unity
     guid: d9c44505671b7bf4bb02c4991ac4cc5b
+  - enabled: 1
+    path: Assets/Kumchi/Scene/StageScene/PlayLiveScene.unity
+    guid: 65abaf48cbab5ce4886244b5bace99c8
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: ce428db0c156de84899cd69e7716c12a, type: 3}
