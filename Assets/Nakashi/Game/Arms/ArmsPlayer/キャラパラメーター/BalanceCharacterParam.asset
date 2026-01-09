@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e240e43f221d554fb4c5e287a1fc721, type: 3}
   m_Name: BalanceCharacterParam
   m_EditorClassIdentifier: 
-  m_walkSpeed: 50
+  m_walkSpeed: 100
   m_dashSpeed: 30
-  m_jumpForce: 20
+  m_jumpForce: 30
   m_rayDistance: 0.3
   m_dashCoolTime: 1
   m_jumpCoolTime: 1
-  m_maxHp: 150
+  m_maxHp: 1000
   m_attackPower: 40
-  m_defensePower: 15
+  m_defensePower: 10
   m_maxSpecialGauge: 100
   m_blowOffTime: 1
   m_blowOffPower: 10

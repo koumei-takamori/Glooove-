@@ -41,7 +41,9 @@ public class PlaySceneWinnerDataSender : SingletonMonoBehaviour<PlaySceneWinnerD
     /// <param name="loserId">「idは 0 か 1」</param>
     public void SaveWinnerPlayerData(int loserId)
     {
-        int winnerId = 1 - loserId;
+        if (winnerData != null) return;
+
+         int winnerId = 1 - loserId;
 
         // 勝利したプレイヤーの生成情報を取得
         var winnerGenerationInfo = playerGenerationInfos[winnerId];
@@ -60,11 +62,13 @@ public class PlaySceneWinnerDataSender : SingletonMonoBehaviour<PlaySceneWinnerD
             Debug.LogError("WinnerDataの作成に失敗しました。 PlaySceneWinnerDataSender.cs");
             return;
         }
+
+        Debug.Log("winner" + winnerData);
     }
 
     public async void SendPlaySecneWinnerData()
     {
-        var resultSceneManager = await SceneLoader.Load<ResultSceneManager>("3DResultScene");
+        var resultSceneManager = await SceneLoader.Load<ResultSceneManager>("ResultScene");
 
         if (resultSceneManager == null)
         {
