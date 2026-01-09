@@ -49,10 +49,6 @@ public class ResultSceneManager : MonoBehaviour
     /// </summary>
     void Awake()
     {
-        //デバック
-        m_winnerCharacterId = 2;
-        m_stageId = 2;
-        m_winnerPlayerId = 1;
     }
 
     /*--------------------------------------------------------------------------------
@@ -66,15 +62,16 @@ public class ResultSceneManager : MonoBehaviour
         // PlaySceneからデータを受け取れているか
         if (winnerData == null)
 
-            //表示キャラクターの設定・変更
-            m_character.winnerId = (int)winnerData.CharacterType;
+        Debug.Log("winner" + winnerData);
+        //表示キャラクターの設定・変更
+        m_character.winnerId = (int)winnerData.CharacterType;
         m_character.ChangeCharacter();
 
         //ステージの変更
         m_resultStage.ChangeStage(winnerData.StageId);
 
         //UI変更
-        m_winnerPlayer.winnerPlayer = winnerData.PlayerId;
+        m_winnerPlayer.winnerPlayer = winnerData.PlayerId + 1;
         m_winnerPlayer.ChangeTextUI();
 
         m_isChangeScene = false;

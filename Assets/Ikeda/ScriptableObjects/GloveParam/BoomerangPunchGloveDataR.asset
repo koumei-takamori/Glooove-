@@ -18,8 +18,8 @@ MonoBehaviour:
   m_normalAttackParam:
     m_type: 0
     m_stretchArmParams:
-      m_extendSpeed: 6
-      m_retractSpeed: 3
+      m_extendSpeed: 1.5
+      m_retractSpeed: 5
       m_coilFrequency: 0
       m_coilAmplitude: 0
       m_hitWaitTime: 0.5
@@ -31,7 +31,7 @@ MonoBehaviour:
       m_useWorldForwardAsReference: 1
     gloveWeight: 1
     m_coolTime: 0.5
-    m_attackMultiplier: 1.2
+    m_attackMultiplier: 1
   m_specialAttackParam:
     m_type: 1
     m_stretchArmParams:
