@@ -1,9 +1,8 @@
 /*
-*       TitleInputReceiver.cs
-*       タイトル画面での入力を取得する
+*       ResultInputReceiver.cs
+*       リザルト画面での入力を取得する
 *       制作者：熊澤圭祐
 *       制作日：2026/01/09
-* 
 */
 using System.Collections;
 using System.Collections.Generic;
@@ -11,11 +10,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PlayerInput))]
-public class TitleInputReceiver : MonoBehaviour
+
+public class ResultInputReceiver : MonoBehaviour
 {
     // アクションマップ名
-    private static readonly string ACTION_MAP_NAME = "Title";
-
+    private static readonly string ACTION_MAP_NAME = "Result";
     // アクション
     public enum Actions : uint
     {
@@ -24,7 +23,6 @@ public class TitleInputReceiver : MonoBehaviour
 
         OVER_ID      //	最大数
     };
-
     // アクションの最大数
     public static readonly uint ACTION_COUNT = (int)Actions.OVER_ID;
 
@@ -34,7 +32,6 @@ public class TitleInputReceiver : MonoBehaviour
         "Exit",     // 終了
         "Enter",			// 決定
     };
-
     // 入力タイプ
     public enum InputType
     {
@@ -67,7 +64,6 @@ public class TitleInputReceiver : MonoBehaviour
             m_actions[i] = m_gameActionMap.FindAction(ACTION_NAME[i], true);
         }
     }
-
     // 入力の取得
     public bool GetInputButton(Actions action, InputType inputType)
     {

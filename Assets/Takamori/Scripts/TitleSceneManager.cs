@@ -44,11 +44,7 @@ public class TitleSceneManager : MonoBehaviour
         m_fadeInFlag = false;
         // 追加：インプットレシーバーの取得
         m_inputReceiver = GetComponent<TitleInputReceiver>();
-        if (m_inputReceiver == null)
-        {
-            Debug.Log("TitleInputReceiverがアタッチされていません。");
-            Debug.LogError("TitleInputReceiverがアタッチされていません。");
-        }
+
 
     }
 
