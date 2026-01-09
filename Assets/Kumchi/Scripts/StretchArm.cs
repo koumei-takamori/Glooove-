@@ -535,6 +535,9 @@ public class StretchArm : GloveBase
     /// <returns>フェーズ完了でtrue</returns>
     private bool PhaseStart()
     {
+        // 攻撃開始SEを再生
+        SoundManager.Instance.PlaySE("AttackStart");
+
         // 伸ばし中フラグを立てる
         // この時点から完全に戻るまで次の伸ばし動作は不可
         isStretching = true;
