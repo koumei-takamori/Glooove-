@@ -66,6 +66,16 @@ public class TimeUpState : IUIState
             Debug.Log("KOState: プレイヤーの操作を無効化 " + player.name);
         }
 
+
+        // HPの残量で勝者を判定
+        PlayerHP p1HP = players[0].GetComponent<PlayerHP>();
+        PlayerHP p2HP = players[1].GetComponent<PlayerHP>();
+
+        // 敗北者を取得（データ登録先でIndexを修正しているため）
+        int loserIndex = -1;
+        loserIndex = (p1HP.GetCurrentHP() <= p2HP.GetCurrentHP()) ? 0 : 1;
+
+        PlaySceneWinnerDataSender.Instance.SaveWinnerPlayerData(loserIndex);
     }
 
 

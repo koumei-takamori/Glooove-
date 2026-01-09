@@ -33,6 +33,9 @@ public class PlayerHP : MonoBehaviour
 
     private int playerNumber; // 0 or 1
 
+
+    public int GetCurrentHP() { return currentHP; }
+
     // ================= Unity =================
     private void Start()
     {
