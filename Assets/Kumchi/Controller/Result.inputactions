@@ -1,0 +1,77 @@
+{
+    "version": 1,
+    "name": "Result",
+    "maps": [
+        {
+            "name": "Result",
+            "id": "3cfa5a79-4508-4554-ac33-44c49b5b4e68",
+            "actions": [
+                {
+                    "name": "Exit",
+                    "type": "Button",
+                    "id": "4280e753-8b3c-4b79-b56e-350d16eae391",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Enter",
+                    "type": "Button",
+                    "id": "002017f1-f39b-4445-bbdb-d3731339e7e9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6399e25f-3c2d-48c8-b229-ca6294356cc5",
+                    "path": "<Keyboard>/anyKey",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Enter",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9bd87798-e6cc-4889-ab25-1469db396c14",
+                    "path": "<Gamepad>/<Button>",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Enter",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "19af3a1c-ab9a-472b-a01f-2c12f6f52315",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Exit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2c29e1d6-a654-4b54-ba08-45e059185fac",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Exit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

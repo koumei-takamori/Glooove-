@@ -38,6 +38,9 @@ public class ResultSceneManager : MonoBehaviour
     //シーン切り替えの有効無効
     private bool m_isChangeScene;
 
+    // 追加：インプットレシーバー
+    private ResultInputReceiver m_inputReceiver;
+
     /*--------------------------------------------------------------------------------
 　　|| 実行前処理
 　　--------------------------------------------------------------------------------*/
@@ -75,6 +78,10 @@ public class ResultSceneManager : MonoBehaviour
         m_winnerPlayer.ChangeTextUI();
 
         m_isChangeScene = false;
+
+        // 追加：インプットレシーバーの取得
+        m_inputReceiver = GetComponent<ResultInputReceiver>();
+
     }
 
     /*--------------------------------------------------------------------------------
@@ -97,15 +104,28 @@ public class ResultSceneManager : MonoBehaviour
         //    return;
         //}
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        // Enterが呼ばれたらセレクトシーンに移行
+        if (m_inputReceiver.GetInputButton(ResultInputReceiver.Actions.ENTER, ResultInputReceiver.InputType.PRESSED))
         {
-
             m_fade.FadeOutWithCallback(() =>
                 {
                     // セレクトシーンに移行
                     SceneLoader.Load("TitleScene");
                 });
 
+        }
+        // Exitが呼ばれたらアプリケーション終了
+        if (m_inputReceiver.GetInputButton(ResultInputReceiver.Actions.EXIT, ResultInputReceiver.InputType.PRESSED))
+        {
+            m_fade.FadeOutWithCallback(() =>
+            {
+                // アプリケーション終了
+#if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+#else
+                Application.Quit();
+#endif
+            });
         }
     }
 
