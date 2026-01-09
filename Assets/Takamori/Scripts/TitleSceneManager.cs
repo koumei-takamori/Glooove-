@@ -20,6 +20,9 @@ public class TitleSceneManager : MonoBehaviour
 
     private bool m_fadeInFlag;
 
+    // 追加：タイトルインプットレシーバー
+    private TitleInputReceiver m_inputReceiver;
+
     /*--------------------------------------------------------------------------------
 　　|| 実行前処理
 　　--------------------------------------------------------------------------------*/
@@ -39,6 +42,14 @@ public class TitleSceneManager : MonoBehaviour
     private void Start()
     {
         m_fadeInFlag = false;
+        // 追加：インプットレシーバーの取得
+        m_inputReceiver = GetComponent<TitleInputReceiver>();
+        if (m_inputReceiver == null)
+        {
+            Debug.Log("TitleInputReceiverがアタッチされていません。");
+            Debug.LogError("TitleInputReceiverがアタッチされていません。");
+        }
+
     }
 
     /*--------------------------------------------------------------------------------
@@ -49,17 +60,18 @@ public class TitleSceneManager : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        if(!m_fadeInFlag) {
+        if (!m_fadeInFlag)
+        {
             m_fade.FadeInWithCallback(() =>
             {
                 SoundManager.Instance.PlaySE("First");
                 SoundManager.Instance.PlayBGM("TitleBGM");
-                m_fadeInFlag=true;
+                m_fadeInFlag = true;
             });
         }
 
-
-        if (Input.GetKeyDown(KeyCode.Space))
+        // Enterが呼ばれたらセレクトシーンに移行
+        if (m_inputReceiver.GetInputButton(TitleInputReceiver.Actions.ENTER, TitleInputReceiver.InputType.PRESSED))
         {
             SoundManager.Instance.PlaySE("PushButton");
             m_fade.FadeOutWithCallback(() =>
@@ -68,6 +80,20 @@ public class TitleSceneManager : MonoBehaviour
                 SceneLoader.Load("SelectScene");
             });
 
+        }
+        // Exitが呼ばれたらアプリケーション終了
+        if (m_inputReceiver.GetInputButton(TitleInputReceiver.Actions.EXIT, TitleInputReceiver.InputType.PRESSED))
+        {
+            SoundManager.Instance.PlaySE("PushButton");
+            m_fade.FadeOutWithCallback(() =>
+            {
+                // アプリケーション終了
+#if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+#else
+                Application.Quit();
+#endif
+            });
         }
     }
 
