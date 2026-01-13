@@ -140,9 +140,6 @@ public class PlayerHP : MonoBehaviour
     public void Damaged(int damage)
     {
 
-        //デバック　ワンパンに
-        damage = 10000;
-
         armPlayerController.GetAnimator().SetTrigger("IsHit");
         SoundManager.Instance.PlaySE("Damage");
         currentHP -= damage;
