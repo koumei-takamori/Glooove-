@@ -8,6 +8,7 @@
  *
  *********************************************************/
 using UnityEngine;
+using System.Collections;
 
 public class ResultSceneManager : MonoBehaviour
 {
@@ -41,6 +42,9 @@ public class ResultSceneManager : MonoBehaviour
     // 追加：インプットレシーバー
     private ResultInputReceiver m_inputReceiver;
 
+    // 追加：Exitが呼ばれたかどうか
+    private bool m_isExitCalled = false;
+
     /*--------------------------------------------------------------------------------
 　　|| 実行前処理
 　　--------------------------------------------------------------------------------*/
@@ -62,7 +66,7 @@ public class ResultSceneManager : MonoBehaviour
         // PlaySceneからデータを受け取れているか
         if (winnerData == null)
 
-        Debug.Log("winner" + winnerData);
+            Debug.Log("winner" + winnerData);
         //表示キャラクターの設定・変更
         m_character.winnerId = (int)winnerData.CharacterType;
         m_character.ChangeCharacter();
@@ -79,8 +83,17 @@ public class ResultSceneManager : MonoBehaviour
         // 追加：インプットレシーバーの取得
         m_inputReceiver = GetComponent<ResultInputReceiver>();
 
+        // 追加：リザルトBGM再生
+        StartCoroutine(PlayBGMDelayed());
     }
+    // 追加：BGM再生
+    IEnumerator PlayBGMDelayed()
+    {
+        // 1フレーム待つ
+        yield return null;
 
+        SoundManager.Instance.PlayBGM("ResultBGM", true);
+    }
     /*--------------------------------------------------------------------------------
 　　|| 更新処理
 　　--------------------------------------------------------------------------------*/
@@ -100,30 +113,28 @@ public class ResultSceneManager : MonoBehaviour
         //{
         //    return;
         //}
-
-        // Enterが呼ばれたらセレクトシーンに移行
-        if (m_inputReceiver.GetInputButton(ResultInputReceiver.Actions.ENTER, ResultInputReceiver.InputType.PRESSED))
-        {
-            m_fade.FadeOutWithCallback(() =>
-                {
-                    // セレクトシーンに移行
-                    SceneLoader.Load("TitleScene");
-                });
-
-        }
         // Exitが呼ばれたらアプリケーション終了
         if (m_inputReceiver.GetInputButton(ResultInputReceiver.Actions.EXIT, ResultInputReceiver.InputType.PRESSED))
         {
-            m_fade.FadeOutWithCallback(() =>
-            {
-                // アプリケーション終了
-#if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-#else
-                Application.Quit();
-#endif
-            });
+            // Exitフラグを立てる
+            m_isExitCalled = true;
+            // キャンセル音再生
+            SoundManager.Instance.PlaySE("Cancel");
+            // ゲーム終了
+            StartCoroutine(ExitGame(0.5f));
         }
+        // Enterが呼ばれたらセレクトシーンに移行
+        if (m_inputReceiver.GetInputButton(ResultInputReceiver.Actions.ENTER, ResultInputReceiver.InputType.PRESSED))
+        {
+            // Exitが呼ばれていなければタイトルに戻る
+            if (m_isExitCalled) return;
+            // 決定音再生
+            SoundManager.Instance.PlaySE("Decide");
+            // タイトルに戻る
+            StartCoroutine(BackToTitle(0.5f));
+
+        }
+
     }
 
     /// <summary>
@@ -151,8 +162,31 @@ public class ResultSceneManager : MonoBehaviour
         Debug.Log("Load完了");
     }
 
+    // タイトルに戻る（遅延実行）
+    private IEnumerator BackToTitle(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        m_fade.FadeOutWithCallback(() =>
+        {
+            // セレクトシーンに移行
+            SceneLoader.Load("TitleScene");
+        });
+    }
 
-
+    // 追加：ゲームそのものを終了する（遅延実行）
+    private IEnumerator ExitGame(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        m_fade.FadeOutWithCallback(() =>
+        {
+            // アプリケーション終了
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+                Application.Quit();
+#endif
+        });
+    }
 
     //勝利プレイヤーのゲットセット　１Pか２Pか
     public int WinerPlayerID { get { return m_winnerPlayerId; } set { m_winnerPlayerId = value; } }
