@@ -145,18 +145,20 @@ public class PlayerHP : MonoBehaviour
 
         hpGaugeSystems[0].Damage(damage);
         hpGaugeSystems[1].Damage(damage);
+        // 確認：もし操作デバイスがコントローラーなら、振動
 
         if (currentHP <= 0)
         {
             armPlayerController.GetAnimator().SetTrigger("Down");
             SoundManager.Instance.PlaySE("KO");
             // 確認：もし操作デバイスがコントローラーなら、振動
-            VibrateGamepad();
+            VibrateGamepad(0.75f, 1.0f);
             Debug.Log("HP が 0 になりました");
             uiController.ChangeState(PlayUIType.KO);
 
             PlaySceneWinnerDataSender.Instance.SaveWinnerPlayerData(playerNumber);
         }
+        else VibrateGamepad(0.25f, 0.5f);
 
 
     }
@@ -259,12 +261,12 @@ public class PlayerHP : MonoBehaviour
     }
 
     // 振動させるメソッド
-    private void VibrateGamepad(float duration = 0.4f)
+    private void VibrateGamepad(float duration = 0.4f, float power = 1.0f)
     {
         if (armPlayerController.PlayerInputDevice is Gamepad gamepad)
         {
             // 振動開始
-            gamepad.SetMotorSpeeds(0.5f, 0.5f);
+            gamepad.SetMotorSpeeds(power, power);
 
             // 一定時間後に停止
             StartCoroutine(StopVibration(gamepad, duration));
