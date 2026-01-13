@@ -2370,7 +2370,7 @@ MonoBehaviour:
   m_gloveData:
     m_leftGlove: {fileID: 1227623267937651256, guid: f1cee2616f5f30643a93076d44aea504, type: 3}
     m_rightGlove: {fileID: 691803366053499799, guid: 4ea2a6e6c1a395447bba053ad79d5382, type: 3}
-  landingVFX: {fileID: 0}
+  landingVFX: {fileID: 2864669411556577640}
   m_leftglove: {fileID: 0}
   m_rightglove: {fileID: 0}
   m_leftglovePosition: {fileID: 458566254030188455}
@@ -7126,6 +7126,11 @@ PrefabInstance:
 --- !u!4 &997816605058024235 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6560194283920214688, guid: fd6da735ab257e64cae90896e27ef21d, type: 3}
+  m_PrefabInstance: {fileID: 6256213585620666763}
+  m_PrefabAsset: {fileID: 0}
+--- !u!2083052967 &2864669411556577640 stripped
+VisualEffect:
+  m_CorrespondingSourceObject: {fileID: 8148085661197752547, guid: fd6da735ab257e64cae90896e27ef21d, type: 3}
   m_PrefabInstance: {fileID: 6256213585620666763}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7622751914494406397
