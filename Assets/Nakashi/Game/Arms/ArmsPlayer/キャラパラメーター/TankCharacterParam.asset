@@ -26,3 +26,4 @@ MonoBehaviour:
   m_blowOffPower: 10
   m_gravityScale: {x: 0, y: -25, z: 0}
   m_attackDelay: {x: 1, y: 1}
+  m_vfx: {fileID: 6902200768277673436, guid: 5a2e80b9edd966b4cb11600b42fc7add, type: 3}

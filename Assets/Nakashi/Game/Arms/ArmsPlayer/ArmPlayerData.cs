@@ -6,12 +6,13 @@
 // <著作権>         Copyright (c) 2025 NakashimaYuto. All rights reserved.
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 using UnityEngine;
+using UnityEngine.VFX;
 
 namespace Nakashi
 {
     namespace Player
     {
-        [CreateAssetMenu(menuName = "CreateArmPlayerData/PlayerData" , fileName = "ArmPlayerData")]
+        [CreateAssetMenu(menuName = "CreateArmPlayerData/PlayerData", fileName = "ArmPlayerData")]
         public class ArmPlayerData : ScriptableObject
         {
             [Header("移動速度"), SerializeField] private float m_walkSpeed;
@@ -27,8 +28,9 @@ namespace Nakashi
             [Header("吹っ飛ぶ時間"), SerializeField] private float m_blowOffTime;
             [Header("吹っ飛び力"), SerializeField] private float m_blowOffPower;
             [Header("かかる重力"), SerializeField] private Vector3 m_gravityScale;
-            [Header("攻撃ディレイX=右Y=左"), SerializeField] private Vector2 m_attackDelay; 
-         
+            [Header("攻撃ディレイX=右Y=左"), SerializeField] private Vector2 m_attackDelay;
+            [Header("固有エフェクト"), SerializeField] private VisualEffect m_vfx;
+
 
             public float GetWalkSpeed() => m_walkSpeed;
             public float GetDashSpeed() => m_dashSpeed;
@@ -44,6 +46,7 @@ namespace Nakashi
             public float GetBlowOffPower() => m_blowOffPower;
             public Vector3 GetGravityScale() => m_gravityScale;
             public Vector2 GetAttackDelay() => m_attackDelay;
+            public VisualEffect GetHitEffect() => m_vfx;
         }
     }
 }

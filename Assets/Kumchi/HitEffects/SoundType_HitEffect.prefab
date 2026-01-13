@@ -72,7 +72,7 @@ VisualEffect:
       - m_Value: {x: 0, y: 8.099335, z: 128, w: 0}
         m_Name: Color1
         m_Overridden: 1
-      - m_Value: {x: 6.1344104, y: 0, z: 0.123972215, w: 1}
+      - m_Value: {x: 0, y: 6.1344104, z: 1.6145829, w: 1}
         m_Name: Color MusicNote1 1
         m_Overridden: 1
       - m_Value: {x: 0.8619131, y: 3.0486186, z: 2.3622804, w: 1}
