@@ -100,6 +100,14 @@ public class PlaySceneManager : SingletonMonoBehaviour<PlaySceneManager>
 
         m_cameraContorller.InitCameraTargets();
     }
+
+    /// <summary>
+    /// 追加　カメラに負けたプレイヤ番号を送る
+    /// </summary>
+    public void SendCameraContorllerLosePlayerNumber(int playerNumber)
+    {
+        m_cameraContorller.SetLosePlayerNumber(playerNumber);
+    }
 }
 
 
