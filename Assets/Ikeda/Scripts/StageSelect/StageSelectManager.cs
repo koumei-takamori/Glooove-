@@ -14,7 +14,8 @@ public enum StageID
     None = -1,
     Live = 0,
     Junk = 1,
-    Street = 2
+    Street = 2,
+    Random = 3
 }
 
 public class StageSelectManager : SingletonMonoBehaviour<StageSelectManager>
@@ -51,7 +52,7 @@ public class StageSelectManager : SingletonMonoBehaviour<StageSelectManager>
 
     private void Start()
     {
-        if(m_fade == null)
+        if (m_fade == null)
         {
             Debug.LogError("StageSelectManager : UIFade がInspectorに設定される");
         }
@@ -68,7 +69,7 @@ public class StageSelectManager : SingletonMonoBehaviour<StageSelectManager>
         if (m_isSceneLoad) return;
 
         // space か 右ボタンでステージ決定
-        if(Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space))
         {
             m_isSceneLoad = true;
             LoadInGameScene();
@@ -120,6 +121,14 @@ public class StageSelectManager : SingletonMonoBehaviour<StageSelectManager>
     /// </summary>
     private async void GameStart()
     {
+        // ランダムステージ選択時の処理
+        if (m_selectStageId == StageID.Random)
+        {
+            // ランダム以外のステージをランダムで選択
+            m_selectStageId = (StageID)Random.Range(0, m_sceneName.Length - 2);
+        }
+
+
         var target = await SceneLoader.Load<PlayerGenerator>(m_sceneName[(int)m_selectStageId]);
 
         if (target == null)
