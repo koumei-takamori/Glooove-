@@ -124,7 +124,8 @@ namespace Nakashi
             float m_attackRightDelay = 0;
             float m_attackLeftDelay = 0;
 
-
+            // 追加：着地した場所
+            private Vector3 m_landingPosition;
 
             private void Awake()
             {
@@ -324,14 +325,14 @@ namespace Nakashi
                 {
                     m_isAttackRight = true;
                     //m_stateMachine.ChangeState(m_stateMachine.GetRightAttack());
-                    
+
                     Debug.Log("Hおされた");
                 }
                 if (leftAttackInput && !leftStretchArm.IsStretching)
                 {
                     m_isAttackLeft = true;
                     //m_stateMachine.ChangeState(m_stateMachine.GetLeftAttack());
-                    
+
                     Debug.Log("Gおされた");
                 }
 
@@ -505,6 +506,8 @@ namespace Nakashi
 
                 if (!m_prevIsGround && isGroundNow)
                 {
+                    m_landingPosition = m_transform.position;
+                    Debug.Log("着地位置" + m_landingPosition);
                     OnLanding();
                 }
                 m_prevIsGround = isGroundNow;
@@ -517,6 +520,8 @@ namespace Nakashi
                 if (landingVFX == null) { Debug.Log("接地VFXが入ってません"); return; }
 
                 landingVFX.Stop();
+                landingVFX.transform.position = m_landingPosition;
+                landingVFX.transform.SetParent(null);
                 landingVFX.Play();
             }
 
@@ -525,7 +530,7 @@ namespace Nakashi
             /// </summary>
             private void UpdateAttackDelay()
             {
-                if(m_isAttackRight)
+                if (m_isAttackRight)
                 {
                     GetAnimator().SetBool("Is_AttackR", true);
                     m_attackRightDelay += Time.deltaTime;

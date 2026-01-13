@@ -617,7 +617,7 @@ MonoBehaviour:
   m_gloveData:
     m_leftGlove: {fileID: 8642429196564862009, guid: 63d786ed11aae6d489bbe326d47abbe3, type: 3}
     m_rightGlove: {fileID: 7029374996118867784, guid: 6dfa2e118aa39be4889e585976ba08e4, type: 3}
-  landingVFX: {fileID: 0}
+  landingVFX: {fileID: 7319259546338595754}
   m_leftglove: {fileID: 0}
   m_rightglove: {fileID: 0}
   m_leftglovePosition: {fileID: 9033269114257146034}
@@ -6264,6 +6264,11 @@ PrefabInstance:
 --- !u!4 &5731559002410549737 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6560194283920214688, guid: fd6da735ab257e64cae90896e27ef21d, type: 3}
+  m_PrefabInstance: {fileID: 1477439587889662793}
+  m_PrefabAsset: {fileID: 0}
+--- !u!2083052967 &7319259546338595754 stripped
+VisualEffect:
+  m_CorrespondingSourceObject: {fileID: 8148085661197752547, guid: fd6da735ab257e64cae90896e27ef21d, type: 3}
   m_PrefabInstance: {fileID: 1477439587889662793}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4624241250464641769
