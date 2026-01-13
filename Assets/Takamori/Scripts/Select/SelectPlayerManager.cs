@@ -64,6 +64,8 @@ public class SelectPlayerManager : SingletonMonoBehaviour<SelectPlayerManager>
         // プレイヤーを追加
         m_players.Add(selectPlayer);
         // UIと紐づけ
+        selectPlayer.BindUI(m_playerUIs[playerInput.playerIndex]);
+        // プレイヤーのUIと紐づけ
         m_playerUIs[playerInput.playerIndex].Bind(selectPlayer);
     }
 }

@@ -7,8 +7,6 @@
  *  制作日 : 2025/12/21
  *
  *********************************************************/
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using static SelectPlayerInputReceiver;
 using static StateMachine<SelectPlayer>;
@@ -53,18 +51,19 @@ public class CharaSelectState : StateBase
         // 値に応じた処理
         if (value > 0.8f)
         {
-            Owner.AddCharaIndex(1);
+            Owner.ChangeCharaIndex(1);
             m_inputTimer = m_inputCooldown;
         }
         else if (value < -0.8f)
         {
-            Owner.AddCharaIndex(-1);
+            Owner.ChangeCharaIndex(-1);
             m_inputTimer = m_inputCooldown;
         }
 
         // 決定 → グローブ選択へ
         if (Owner.InputReceiver.GetInputButton(SelectPlayerActions.Decide,InputType.PRESSED))
         {
+            Owner.UI.DecideCharaIndex();
             m_stateMashine.ChangeState(
                 (int)SelectPlayer.SelectPlayerState.GloveSelect
             );

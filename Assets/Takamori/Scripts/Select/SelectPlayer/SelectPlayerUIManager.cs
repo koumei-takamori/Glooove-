@@ -7,6 +7,7 @@
  *  制作日 : 2025/01/04
  *
  *********************************************************/
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,17 +17,24 @@ public class SelectPlayerUIManager : MonoBehaviour
     // プレイヤー
     private SelectPlayer m_player;
 
+    // キャラ選択のカーソル
     [SerializeField]
     private CharacterCursorUI m_selectCursor;
+
+    // キャラ選択のモデル管理クラス
+    [SerializeField]
+    SelectCharaManager m_selectChara;
 
     [SerializeField]
     private GloveSlotUIManager m_selectGlove;
 
     [SerializeField]
-    SelectCharaManager m_selectChara;
-
-    [SerializeField]
     private UIElement m_ready;
+
+    private bool m_canControll;
+
+    public bool CanControll { get { return m_canControll; } set { m_canControll = value; } }
+
 
     /*--------------------------------------------------------------------------------
 　　|| 実行前初期化処理
@@ -37,16 +45,20 @@ public class SelectPlayerUIManager : MonoBehaviour
     private void Awake()
     {
         m_ready.Rect.localScale = Vector3.zero;
-        // 最初はUIを停止
-        CanControllUI(false);
     }
 
+    /*--------------------------------------------------------------------------------
+　　|| 更新処理
+　　--------------------------------------------------------------------------------*/
+    /// <summary>
+    /// 更新処理
+    /// </summary>
     private void Update()
     {
         if (m_player == null) return;
 
         if (m_player.IsReady) { m_ready.Rect.localScale = Vector3.one; }
-        else if(!m_player.IsReady) { m_ready.Rect.localScale = Vector3.zero; }
+        else if (!m_player.IsReady) { m_ready.Rect.localScale = Vector3.zero; }
     }
 
     /*--------------------------------------------------------------------------------
@@ -58,22 +70,58 @@ public class SelectPlayerUIManager : MonoBehaviour
     public void Bind(SelectPlayer player)
     {
         m_player = player;
-        m_selectCursor.Bind(player);
         m_selectGlove.Bind(player);
-        m_selectChara.Bind(player);
     }
 
     /*--------------------------------------------------------------------------------
-　　|| UIの操作可否
+　　|| プレイヤーUIを有効化する
 　　--------------------------------------------------------------------------------*/
     /// <summary>
-    /// UIの操作可否
+    /// プレイヤーUIを有効化する
     /// </summary>
-    /// <param name="canControll">UIの操作可能フラグ</param>
-    private void CanControllUI(bool canControll)
+    /// <param name="index">最初のキャラのIndex</param>
+    public void Active(int index)
     {
-        m_selectCursor.CanControll = canControll;
-        m_selectGlove.CanControll = canControll;
-        m_selectChara.CanControll = canControll;
+        m_selectCursor.Active();
+        m_selectChara.ChangeChara(index);
+    }
+
+    /*--------------------------------------------------------------------------------
+　　|| プレイヤーの変更
+　　--------------------------------------------------------------------------------*/
+    /// <summary>
+    /// プレイヤーの変更
+    /// </summary>
+    /// <param name="index">キャラのindex</param>
+    public void ChangeCharaIndex(int index)
+    {
+        m_selectCursor.MoveCharaCursor(index);
+        m_selectChara.ChangeChara(index);
+    }
+
+    /*--------------------------------------------------------------------------------
+　　|| プレイヤーの決定
+　　--------------------------------------------------------------------------------*/
+    /// <summary>
+    /// プレイヤーの変更
+    /// </summary>
+    /// <param name="index">キャラのindex</param>
+    public void DecideCharaIndex()
+    {
+        m_selectCursor.DecideCharaCursor();
+        m_selectChara.DecideChara();
+    }
+
+    /*--------------------------------------------------------------------------------
+　　|| プレイヤーのキャンセル
+　　--------------------------------------------------------------------------------*/
+    /// <summary>
+    /// プレイヤーの変更
+    /// </summary>
+    /// <param name="index">キャラのindex</param>
+    public void CancelCharaIndex()
+    {
+        m_selectCursor.CancelCharaCursor();
+        m_selectChara.CancelChara();
     }
 }

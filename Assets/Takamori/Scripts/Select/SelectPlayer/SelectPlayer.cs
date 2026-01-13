@@ -7,7 +7,6 @@
  *  制作日 : 2025/12/21
  *
  *********************************************************/
-using Nakashi.Player;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -25,15 +24,13 @@ public class SelectPlayer : MonoBehaviour
     {
         CharaSelect = 0,      // キャラ選択状態
         GloveSelect = 1,      // グローブ選択状態
-        Ready = 2       // 準備確認状態
+        Ready = 2       　　　// 準備確認状態
     }
 
     // プレイヤーID
-    [SerializeField]
     private int m_playerId;
 
-    // プレイヤーID
-    [SerializeField]
+    // デバイス
     private InputDevice m_inputDevice;
 
     // ステートマシン
@@ -41,7 +38,10 @@ public class SelectPlayer : MonoBehaviour
 
     // 入力を取得するクラス
     [SerializeField]
-    private　SelectPlayerInputReceiver m_inputReceiver;
+    private SelectPlayerInputReceiver m_inputReceiver;
+
+    // プレイヤーが操作するUI
+    private SelectPlayerUIManager m_uiManager;
 
     // 選択中キャラIndex
     private int m_charaIndex;
@@ -58,13 +58,14 @@ public class SelectPlayer : MonoBehaviour
     private bool m_isReady;
 
     // プロパティ
+    public int PlayerId { get { return m_playerId; } set { m_playerId = value; } }
+    public InputDevice InputDevice { get { return m_inputDevice; } set { m_inputDevice = value; } }
     public SelectPlayerInputReceiver InputReceiver {  get { return m_inputReceiver; } }
-    public int PlayerId {  get { return m_playerId; } set { m_playerId = value; } }
+    public SelectPlayerUIManager UI { get { return m_uiManager; } }
     public int CharaIndex {  get { return m_charaIndex; } }
     public GloveSide CurrentGloveSide { get { return m_currentGloveSide; } set { m_currentGloveSide = value; } }
     public int GetGloveIndex(GloveSide side) {  return m_gloveIndex[side]; }
-    public bool IsReady { get { return m_isReady; } }
-    public InputDevice InputDevice { get { return m_inputDevice; } set { m_inputDevice = value; } }
+    public bool IsReady { get { return m_isReady; } set { m_isReady = value; } }
 
 
     /*--------------------------------------------------------------------------------
@@ -117,33 +118,47 @@ public class SelectPlayer : MonoBehaviour
         m_stateMachine.OnUpdate();
     }
 
+    /*--------------------------------------------------------------------------------
+　　|| UIと紐づけ
+　　--------------------------------------------------------------------------------*/
+    /// <summary>
+    /// UIと紐づけ
+    /// </summary>
+    public void BindUI(SelectPlayerUIManager uiManager)
+    {
+        // UIの設定
+        m_uiManager = uiManager;
+        uiManager.Active(m_charaIndex);
+    }
 
+    /*--------------------------------------------------------------------------------
+　　|| キャラIndexを変更
+　　--------------------------------------------------------------------------------*/
     /// <summary>
     /// キャラIndexを変更
     /// </summary>
-    public void AddCharaIndex(int value)
+    public void ChangeCharaIndex(int index)
     {
-        m_charaIndex += value;
+        m_charaIndex += index;
         m_charaIndex = Mathf.Clamp(m_charaIndex, 0, CHARA_MAX - 1);
+        UI.ChangeCharaIndex(m_charaIndex);
     }
 
+    /*--------------------------------------------------------------------------------
+　　|| グローブIndexを変更
+　　--------------------------------------------------------------------------------*/
     /// <summary>
     /// グローブIndexを変更
     /// </summary>
-    public void AddGloveIndex(GloveSide gloveSide, int value)
+    public void ChangeGloveIndex(GloveSide gloveSide, int value)
     {
         m_gloveIndex[gloveSide] =
             (m_gloveIndex[gloveSide] + value + GLOVE_MAX) % GLOVE_MAX;
-    }  
-
-    /// <summary>
-    /// 準備完了設定
-    /// </summary>
-    public void SetReady(bool ready)
-    {
-        m_isReady = ready;
     }
 
+    /*--------------------------------------------------------------------------------
+　　|| グローブの種類を取得
+　　--------------------------------------------------------------------------------*/
     /// <summary>
     /// グローブの種類を取得
     /// </summary>
@@ -154,5 +169,4 @@ public class SelectPlayer : MonoBehaviour
         int index = GetGloveIndex(side);
         return (GloveType)(index * 2 + (int)side);
     }
-
 }
