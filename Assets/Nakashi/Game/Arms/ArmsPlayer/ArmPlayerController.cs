@@ -527,6 +527,7 @@ namespace Nakashi
             {
                 if(m_isAttackRight)
                 {
+                    GetAnimator().SetBool("Is_AttackR", true);
                     m_attackRightDelay += Time.deltaTime;
                     if (m_attackRightDelay >= m_playerData.GetAttackDelay().x)
                     {
@@ -540,6 +541,7 @@ namespace Nakashi
                 }
                 if (m_isAttackLeft)
                 {
+                    GetAnimator().SetBool("Is_AttackL", true);
                     m_attackLeftDelay += Time.deltaTime;
 
                     if (m_attackLeftDelay >= m_playerData.GetAttackDelay().y)

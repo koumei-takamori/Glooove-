@@ -34,7 +34,7 @@ namespace Player
         /// </summary>
         public void Enter()
         {
-            m_controller.GetAnimator().SetBool("Is_AttackR", true);
+            //m_controller.GetAnimator().SetBool("Is_AttackR", true);
             m_controller.RigthGlove.Use(m_controller, GloveActionType.NORMAL_ATTACK);
             m_isExtend = true;
         }
