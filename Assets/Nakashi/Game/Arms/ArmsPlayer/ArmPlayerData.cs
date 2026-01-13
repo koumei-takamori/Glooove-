@@ -27,6 +27,7 @@ namespace Nakashi
             [Header("吹っ飛ぶ時間"), SerializeField] private float m_blowOffTime;
             [Header("吹っ飛び力"), SerializeField] private float m_blowOffPower;
             [Header("かかる重力"), SerializeField] private Vector3 m_gravityScale;
+            [Header("攻撃ディレイX=右Y=左"), SerializeField] private Vector2 m_attackDelay; 
          
 
             public float GetWalkSpeed() => m_walkSpeed;
@@ -42,6 +43,7 @@ namespace Nakashi
             public float GetBlowOffTime() => m_blowOffTime;
             public float GetBlowOffPower() => m_blowOffPower;
             public Vector3 GetGravityScale() => m_gravityScale;
+            public Vector2 GetAttackDelay() => m_attackDelay;
         }
     }
 }
