@@ -139,6 +139,10 @@ public class PlayerHP : MonoBehaviour
     // ---------------ダメージ処理---------------
     public void Damaged(int damage)
     {
+
+        //デバック　ワンパンに
+        damage = 10000;
+
         armPlayerController.GetAnimator().SetTrigger("IsHit");
         SoundManager.Instance.PlaySE("Damage");
         currentHP -= damage;
@@ -155,6 +159,10 @@ public class PlayerHP : MonoBehaviour
             VibrateGamepad(0.75f, 1.0f);
             Debug.Log("HP が 0 になりました");
             uiController.ChangeState(PlayUIType.KO);
+
+            //追加　マネージャーにプレイヤ番号を送る
+            PlaySceneManager.Instance.SendCameraContorllerLosePlayerNumber(playerNumber);
+
 
             PlaySceneWinnerDataSender.Instance.SaveWinnerPlayerData(playerNumber);
         }

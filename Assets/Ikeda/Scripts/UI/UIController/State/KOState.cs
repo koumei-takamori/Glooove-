@@ -15,6 +15,9 @@ public class KOState : IUIState
     // アニメーター
     private Animator animator;
 
+    //追加
+    private float m_time;
+
 
     /// <summary>
     /// コンストラクタ
@@ -65,11 +68,21 @@ public class KOState : IUIState
 
             Debug.Log("KOState: プレイヤーの操作を無効化 " + player.name);
         }
+
+        m_time = 0.0f;
+
     }
 
 
     public void Update()
     {
+        if (m_time > 0.7f)
+        {
+            Time.timeScale = 1.0f;
+        }
+
+        m_time += Time.deltaTime;
+
     }
 
 
