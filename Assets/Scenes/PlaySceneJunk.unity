@@ -1491,7 +1491,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -504749831314263889, guid: 5297483b9fcb88742b4a54c0090f64dd, type: 3}
       propertyPath: bgmVolume
-      value: 0.508
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: -504749831314263889, guid: 5297483b9fcb88742b4a54c0090f64dd, type: 3}
       propertyPath: soundDatas
@@ -1499,7 +1499,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 2a300b5f2805a054691176c932e0fd60, type: 2}
     - target: {fileID: -504749831314263889, guid: 5297483b9fcb88742b4a54c0090f64dd, type: 3}
       propertyPath: masterVolume
-      value: 0.24
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: -504749831314263889, guid: 5297483b9fcb88742b4a54c0090f64dd, type: 3}
       propertyPath: seSources.Array.data[0]
