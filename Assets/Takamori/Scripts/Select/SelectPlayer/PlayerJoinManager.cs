@@ -97,6 +97,9 @@ public class PlayerJoinManager : MonoBehaviour
         // コントローラーの場合、振動させる
         VibrateGamepad();
 
+        // 追加：Join効果音再生
+        SoundManager.Instance.PlaySE("Join");
+
         // プレイヤー数を加算
         m_currentPlayerCount++;
     }

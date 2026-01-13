@@ -49,12 +49,16 @@ public class GloveSelectState : StateBase
             currentSide = GloveSide.Right;
             Owner.CurrentGloveSide = currentSide;
             m_inputTimer = m_inputCooldown;
+            SoundManager.Instance.PlaySE("Slide");
+
         }
         else if (side < -0.8f && currentSide != GloveSide.Left)
         {
             currentSide = GloveSide.Left;
             Owner.CurrentGloveSide = currentSide;
             m_inputTimer = m_inputCooldown;
+            SoundManager.Instance.PlaySE("Slide");
+
         }
 
 
@@ -66,11 +70,13 @@ public class GloveSelectState : StateBase
         {
             Owner.ChangeGloveIndex(currentSide, 1);
             m_inputTimer = m_inputCooldown;
+            SoundManager.Instance.PlaySE("Slide");
         }
         else if (glove < -0.8f)
         {
             Owner.ChangeGloveIndex(currentSide, -1);
             m_inputTimer = m_inputCooldown;
+            SoundManager.Instance.PlaySE("Slide");
         }
 
         // -------- 決定 --------
@@ -79,6 +85,8 @@ public class GloveSelectState : StateBase
             m_stateMashine.ChangeState(
                 (int)SelectPlayer.SelectPlayerState.Ready
             );
+            SoundManager.Instance.PlaySE("Decide");
+
         }
 
         // 戻る → グローブ選択
@@ -86,6 +94,8 @@ public class GloveSelectState : StateBase
         {
             Owner.UI.CancelCharaIndex();
             m_stateMashine.ChangeState((int)SelectPlayer.SelectPlayerState.CharaSelect);
+            SoundManager.Instance.PlaySE("Cancel");
+
         }
 
     }

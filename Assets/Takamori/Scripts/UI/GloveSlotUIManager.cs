@@ -42,7 +42,7 @@ public class GloveSlotUIManager : MonoBehaviour
     /// <summary>
     /// ‰Šú‰»ˆ—
     /// </summary>
-    private void Start() 
+    private void Start()
     {
         m_coursol = GetComponent<UIElement>();
     }
