@@ -25,3 +25,4 @@ MonoBehaviour:
   m_blowOffTime: 1
   m_blowOffPower: 10
   m_gravityScale: {x: 0, y: -25, z: 0}
+  m_attackDelay: {x: 1, y: 1}
