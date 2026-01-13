@@ -15,55 +15,61 @@ using UnityEngine;
 /// </summary>
 public class CharacterCursorUI : MonoBehaviour
 {
-    // セレクトのプレイヤー
-    [SerializeField] 
-    private SelectPlayer m_player;
-
     // カーソル
     [SerializeField] 
-    private RectTransform m_cursor;
+    private UIElement m_cursor;
 
     // キャラアイコンの位置
     [SerializeField] 
     private RectTransform[] m_charaIcons;
 
-    // 選択中のキャラモデルの制御
-    SelectCharaController m_charaController;　
-
-    // 操作可能フラグ
-    private bool m_canControll = false;
-
-    // プロパティ
-    public　SelectPlayer　Player { get { return m_player; } }
-    public　bool　CanControll { get { return m_canControll; } set { m_canControll = value; } }　
-
     /*--------------------------------------------------------------------------------
-　　|| 更新処理
+　　|| 有効化処理
 　　--------------------------------------------------------------------------------*/
     /// <summary>
-    /// 更新処理
+    /// アクティブ化処理
     /// </summary>
-    private void Update()
+    /// <param name="index"></param>
+    public void Active()
     {
-        // 操作不能なら処理しない
-        if(!m_canControll) return;
-
-        // キャラのindexを取得
-        int index = m_player.CharaIndex;
-
         // カーソルを対象アイコンの位置へ
-        m_cursor.position = m_charaIcons[index].position;
+        m_cursor.gameObject.SetActive(true);
     }
 
     /*--------------------------------------------------------------------------------
-　　|| UIとPlayerを結び付ける
+　　|| 移動処理
 　　--------------------------------------------------------------------------------*/
     /// <summary>
-    /// UIとPlayerを結び付ける
+    /// 移動処理
     /// </summary>
-    public void Bind(SelectPlayer player)
+    /// <param name="index"></param>
+    public void MoveCharaCursor(int index) 
     {
-        m_player = player;
-        m_canControll = true;
+        // カーソルを対象アイコンの位置へ
+        m_cursor.Rect.position = m_charaIcons[index].position;
+    }
+
+    /*--------------------------------------------------------------------------------
+　　|| 決定処理
+　　--------------------------------------------------------------------------------*/
+    /// <summary>
+    /// 決定処理
+    /// </summary>
+    /// <param name="index"></param>
+    public void DecideCharaCursor()
+    {
+        m_cursor.Animator.SetBool("Decide", true);
+    }
+
+    /*--------------------------------------------------------------------------------
+　　|| キャンセル処理
+　　--------------------------------------------------------------------------------*/
+    /// <summary>
+    /// 決定処理
+    /// </summary>
+    /// <param name="index"></param>
+    public void CancelCharaCursor()
+    {
+        m_cursor.Animator.SetBool("Decide", false);
     }
 }

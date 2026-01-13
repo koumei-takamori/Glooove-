@@ -64,12 +64,12 @@ public class GloveSelectState : StateBase
 
         if (glove > 0.8f)
         {
-            Owner.AddGloveIndex(currentSide, 1);
+            Owner.ChangeGloveIndex(currentSide, 1);
             m_inputTimer = m_inputCooldown;
         }
         else if (glove < -0.8f)
         {
-            Owner.AddGloveIndex(currentSide, -1);
+            Owner.ChangeGloveIndex(currentSide, -1);
             m_inputTimer = m_inputCooldown;
         }
 
@@ -84,6 +84,7 @@ public class GloveSelectState : StateBase
         // 戻る → グローブ選択
         if (Owner.InputReceiver.GetInputButton(SelectPlayerActions.Cancel, InputType.PRESSED))
         {
+            Owner.UI.CancelCharaIndex();
             m_stateMashine.ChangeState((int)SelectPlayer.SelectPlayerState.CharaSelect);
         }
 

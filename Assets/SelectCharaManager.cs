@@ -15,85 +15,52 @@ using UnityEngine;
 /// </summary>
 public class SelectCharaManager : MonoBehaviour
 {
-    // プレイヤー
-    private SelectPlayer m_player;
-
-    // 各キャラのオブジェクト
+    // オブジェクト
     [SerializeField]
-    private List<GameObject> m_charaObjects = new List<GameObject>();
+    private List<GameObject> m_charaObjects;
 
-    // 操作可能フラグ
-    private bool m_canControll = false;
-
-    // プロパティ
-    public bool CanControll { get { return m_canControll; } set { m_canControll = value; } }
+    // 現在のキャラ
+    private GameObject m_current;
 
     /*--------------------------------------------------------------------------------
-    || 初期化処理
-    --------------------------------------------------------------------------------*/
+     || キャラ変更処理
+     --------------------------------------------------------------------------------*/
     /// <summary>
-    /// 初期化処理
+    /// キャラ変更処理
     /// </summary>
-    private void Start()
+    /// <param name="index">キャラのIndex</param>
+    public void ChangeChara(int index)
     {
-        // Join前（Player未Bind）の場合は全非表示
-        SetAllCharaInactive();
-    }
-
-    /*--------------------------------------------------------------------------------
-    || 更新処理
-    --------------------------------------------------------------------------------*/
-    /// <summary>
-    /// 更新処理
-    /// </summary>
-    private void Update()
-    {
-        UpdateCharaView();
-    }
-
-    /*--------------------------------------------------------------------------------
-    || UIとPlayerを結び付ける
-    --------------------------------------------------------------------------------*/
-    /// <summary>
-    /// UIとPlayerを結び付ける
-    /// </summary>
-    public void Bind(SelectPlayer player)
-    {
-        m_player = player;
-        m_canControll = true;
-
-        UpdateCharaView();
-    }
-
-    /*--------------------------------------------------------------------------------
-    || キャラ表示更新
-    --------------------------------------------------------------------------------*/
-    /// <summary>
-    /// 選択中キャラのみを表示
-    /// </summary>
-    public void UpdateCharaView()
-    {
-        if (m_player == null) return;
-
-        int index = (int)m_player.CharaIndex;
-
-        for (int i = 0; i < m_charaObjects.Count; i++)
+        // 前のキャラを解除
+        if (m_current != null)
         {
-            m_charaObjects[i].SetActive(i == index);
+            m_current.gameObject.SetActive(false);
         }
+
+        // 新しいキャラ
+        m_current = m_charaObjects[index];
+        m_current.gameObject.SetActive(true);
     }
 
     /*--------------------------------------------------------------------------------
-    || 全キャラ非表示
-    --------------------------------------------------------------------------------*/
+     || キャラ決定処理
+     --------------------------------------------------------------------------------*/
     /// <summary>
-    /// 全キャラ非表示 
+    /// キャラ決定処理
     /// </summary>
-    private void SetAllCharaInactive()
+    public void DecideChara()
     {
-        for (int i = 0; i < m_charaObjects.Count; i++)
-        {
-            m_charaObjects[i].SetActive(false);
-        }
+        m_current.GetComponent<SelectCharaController>().Decide();
+    }
+
+    /*--------------------------------------------------------------------------------
+     || キャラキャンセル処理
+     --------------------------------------------------------------------------------*/
+    /// <summary>
+    /// キャラキャンセル処理
+    /// </summary>
+    public void CancelChara()
+    {
+        m_current.GetComponent<SelectCharaController>().Cancel();
     }
 }

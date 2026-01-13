@@ -26,7 +26,7 @@ public class ReadySelectState : StateBase
     /// </summary>
     public override void OnEnter()
     {
-        Owner.SetReady(true);
+        Owner.IsReady = true;
         Debug.Log("準備完了");
     }
 
@@ -41,7 +41,7 @@ public class ReadySelectState : StateBase
         // 戻る → グローブ選択
         if (Owner.InputReceiver.GetInputButton(SelectPlayerActions.Cancel, InputType.PRESSED))
         {
-            Owner.SetReady(false);
+            Owner.IsReady = false;
             m_stateMashine.ChangeState((int)SelectPlayer.SelectPlayerState.GloveSelect);
         }
     }
