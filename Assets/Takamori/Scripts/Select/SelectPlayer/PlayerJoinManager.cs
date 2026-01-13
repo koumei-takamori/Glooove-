@@ -7,6 +7,8 @@
  *  制作日 : 2025/01/04
  *
  *********************************************************/
+using Nakashi.Player;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -38,7 +40,7 @@ public class PlayerJoinManager : MonoBehaviour
     private int m_currentPlayerCount = 0;
 
     // プロパティ
-    public InputDevice[] JoinedDevices {  get { return m_joinedDevices; } }
+    public InputDevice[] JoinedDevices { get { return m_joinedDevices; } }
 
     /*--------------------------------------------------------------------------------
 　　|| 実行前初期化処理
@@ -92,7 +94,27 @@ public class PlayerJoinManager : MonoBehaviour
         // プレイヤー管理クラスにプレイヤーを追加
         SelectPlayerManager.Instance.OnPlayerJoined(playerInput);
 
+        // コントローラーの場合、振動させる
+        VibrateGamepad();
+
         // プレイヤー数を加算
         m_currentPlayerCount++;
+    }
+    // 振動させるメソッド
+    private void VibrateGamepad(float duration = 0.4f, float power = 1.0f)
+    {
+        if (m_joinedDevices[m_currentPlayerCount] is Gamepad gamepad)
+        {
+            // 振動開始
+            gamepad.SetMotorSpeeds(power, power);
+
+            // 一定時間後に停止
+            StartCoroutine(StopVibration(gamepad, duration));
+        }
+    }
+    private IEnumerator StopVibration(Gamepad gamepad, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        gamepad.SetMotorSpeeds(0f, 0f);
     }
 }
