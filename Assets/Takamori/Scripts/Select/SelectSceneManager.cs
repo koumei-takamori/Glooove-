@@ -7,8 +7,9 @@
  *  制作日 : 2025/10/16
  *
  *********************************************************/
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// セレクトシーンを管理
@@ -83,17 +84,28 @@ public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
         {
             // シーンをロードし始める
             m_isSceneLoad = true;
-            // フェード処理
-            m_fade.FadeOutWithCallback(() =>
-            {
-                SoundManager.Instance.PlaySE("GameStart");
-                CreateGenerationInfos();
-                GameStart();
-            });
+
+            SoundManager.Instance.PlaySE("GameStart");
+            VibrateGamepad(0.05f, 1.0f);
+
+            StartCoroutine(EnterToPlayScene(1.0f));
+
+
         }
 
 
 
+    }
+    // 追加：PlaySceneへ移動する処理
+    private IEnumerator EnterToPlayScene(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        // フェード処理
+        m_fade.FadeOutWithCallback(() =>
+        {
+            CreateGenerationInfos();
+            GameStart();
+        });
     }
 
     /*--------------------------------------------------------------------------------
@@ -154,5 +166,25 @@ public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
                     gloves
                 );
         }
+    }
+    // 振動させるメソッド
+    private void VibrateGamepad(float duration = 0.4f, float power = 1.0f)
+    {
+        foreach (var player in SelectPlayerManager.Instance.Players)
+        {
+            if (player.InputDevice is Gamepad gamepad)
+            {
+                // 振動開始
+                gamepad.SetMotorSpeeds(power, power);
+                // 一定時間後に停止
+                StartCoroutine(StopVibration(gamepad, duration));
+            }
+        }
+
+    }
+    private IEnumerator StopVibration(Gamepad gamepad, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        gamepad.SetMotorSpeeds(0f, 0f);
     }
 }
