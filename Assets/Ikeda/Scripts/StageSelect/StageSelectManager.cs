@@ -18,6 +18,12 @@ public enum StageID
     Random = 3
 }
 
+public enum MoveStageDirection
+{
+    Left = -1,
+    Right = 1
+}
+
 public class StageSelectManager : SingletonMonoBehaviour<StageSelectManager>
 {
     // *------------------:
@@ -79,29 +85,33 @@ public class StageSelectManager : SingletonMonoBehaviour<StageSelectManager>
         // スティック左右でステージ選択
         if (Input.GetKeyUp(KeyCode.RightArrow))
         {
-            MoveStageSelect(1);
+            MoveStageSelect(MoveStageDirection.Right);
         }
         else if (Input.GetKeyUp(KeyCode.LeftArrow))
         {
-            MoveStageSelect(-1);
+            MoveStageSelect(MoveStageDirection.Left);
         }
-
-
     }
 
+
+    //---------------------------------------------
+    // ** スティックを倒したときのステージ移動処理
+    //---------------------------------------------
 
     /// <summary>
     /// ステージ移動処理
     /// </summary>
     /// <param name="direction">移動方向</param>
-    private void MoveStageSelect(int direction)
+    public void MoveStageSelect(MoveStageDirection direction)
     {
         int stageCount = m_sceneName.Length;
 
-        int nextIndex = ((int)m_selectStageId + direction + stageCount) % stageCount;
+        int nextIndex = ((int)m_selectStageId + (int)direction + stageCount) % stageCount;
         m_selectStageId = (StageID)nextIndex;
     }
 
+
+    // シーン遷移 + 変更を行う処理
 
     /// <summary>
     /// シーン変更
@@ -115,6 +125,10 @@ public class StageSelectManager : SingletonMonoBehaviour<StageSelectManager>
         });
     }
 
+    // -----------------------------
+    // ** Todo : PlayerGenerationInfo を受け取る処理が必要
+    // 現状だとCharacterのSelectSceneから受け取る想定だったため書いていない
+    // -----------------------------
 
     /// <summary>
     /// PlaySceneにデータをわたす処理
