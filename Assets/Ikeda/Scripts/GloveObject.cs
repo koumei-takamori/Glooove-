@@ -7,8 +7,11 @@
 // 日付：2025/12/12
 // ------------------------------------------------
 
+using Nakashi.EnemyAI;
 using Nakashi.Player;
 using UnityEngine;
+using UnityEngine.VFX;
+using static UnityEngine.UI.GridLayoutGroup;
 
 public class GloveObject : MonoBehaviour
 {
@@ -109,10 +112,13 @@ public class GloveObject : MonoBehaviour
             float multiplier = parameterData.GetAttackMultiplierByType(currentAttackType);
 
 
+
             // ヒット相手がパリィを行っているかを確認する必要がある
             ArmPlayerController enemyController = collider.GetComponent<ArmPlayerController>();
             bool isParry = enemyController.GetPlayerStatus().GetSetParry;
 
+            // 追加：ヒットエフェクトを再生
+            PlayHitEffect(enemyController.AttackPoint.position);
             // グローブのダメージ倍率を計算
             damage = (int)(damage * multiplier);
 
@@ -122,6 +128,7 @@ public class GloveObject : MonoBehaviour
                 // ガード成功時の効果音再生
 
             }
+
 
             // ダメージを与える
             collider.gameObject.GetComponent<PlayerHP>().Damaged(damage);
@@ -158,6 +165,22 @@ public class GloveObject : MonoBehaviour
         if (owner == null)
         {
             Debug.LogError("GloveObjectData: 所有者(Owner)が存在しません" + gameObject);
+        }
+    }
+
+    void PlayHitEffect(Vector3 enemyAttackPosition)
+    {
+        // ヒットエフェクトをターゲットの座標で再生
+        VisualEffect hitVFX = armPlayerData.GetHitEffect();
+        // nullチェック
+        if (hitVFX != null)
+        {
+            // エフェクトの生成と再生
+            VisualEffect vfxInstance = Instantiate(hitVFX, enemyAttackPosition, Quaternion.identity);
+            // エフェクトの再生
+            vfxInstance.Play();
+            // エフェクトの破棄
+            Destroy(vfxInstance.gameObject, 3.0f);
         }
     }
 }
