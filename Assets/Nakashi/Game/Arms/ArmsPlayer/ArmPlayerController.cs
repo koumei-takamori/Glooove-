@@ -117,6 +117,13 @@ namespace Nakashi
             // 追加：プレイヤーの操作デバイス
             private InputDevice m_playerInputDevice;
 
+            // 右手左手攻撃判定
+            bool m_isAttackRight = false;
+            bool m_isAttackLeft = false;
+            // 攻撃ディレイ計算
+            float m_attackRightDelay = 0;
+            float m_attackLeftDelay = 0;
+
 
 
             private void Awake()
@@ -241,6 +248,8 @@ namespace Nakashi
                 // このスクリプトを持つオブジェクトの座標をデバッグ表示
                 //Debug.Log($"Update:Player {m_playerId} Position: {m_transform.position}");
                 //Debug.Log("ジャンプ" + m_status.GetSetJump);
+                // 攻撃ディレイ計算
+                UpdateAttackDelay();
             }
 
             /// <summary>
@@ -313,14 +322,16 @@ namespace Nakashi
                 // 追加: 攻撃状態に変更
                 if (rightAttackInput && !rightStretchArm.IsStretching)
                 {
-
-                    m_stateMachine.ChangeState(m_stateMachine.GetRightAttack());
+                    m_isAttackRight = true;
+                    //m_stateMachine.ChangeState(m_stateMachine.GetRightAttack());
+                    
                     Debug.Log("Hおされた");
                 }
                 if (leftAttackInput && !leftStretchArm.IsStretching)
                 {
-
-                    m_stateMachine.ChangeState(m_stateMachine.GetLeftAttack());
+                    m_isAttackLeft = true;
+                    //m_stateMachine.ChangeState(m_stateMachine.GetLeftAttack());
+                    
                     Debug.Log("Gおされた");
                 }
 
@@ -507,6 +518,40 @@ namespace Nakashi
 
                 landingVFX.Stop();
                 landingVFX.Play();
+            }
+
+            /// <summary>
+            /// 攻撃のディレイ計算用
+            /// </summary>
+            private void UpdateAttackDelay()
+            {
+                if(m_isAttackRight)
+                {
+                    m_attackRightDelay += Time.deltaTime;
+                    if (m_attackRightDelay >= m_playerData.GetAttackDelay().x)
+                    {
+                        m_isAttackRight = false;
+                        m_attackRightDelay = 0f;
+
+                        m_stateMachine.ChangeState(
+                            m_stateMachine.GetRightAttack()
+                        );
+                    }
+                }
+                if (m_isAttackLeft)
+                {
+                    m_attackLeftDelay += Time.deltaTime;
+
+                    if (m_attackLeftDelay >= m_playerData.GetAttackDelay().y)
+                    {
+                        m_isAttackLeft = false;
+                        m_attackLeftDelay = 0f;
+
+                        m_stateMachine.ChangeState(
+                            m_stateMachine.GetLeftAttack()
+                        );
+                    }
+                }
             }
             public Rigidbody GetRigidbody() => m_rb;
             public Transform GetTransform() => m_transform;
