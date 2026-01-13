@@ -27,9 +27,9 @@ Transform:
   m_GameObject: {fileID: 8379023434783099998}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 4.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -54,23 +54,32 @@ VisualEffect:
     m_Vector2f:
       m_Array: []
     m_Vector3f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: 0, y: 0.25, z: 0}
+        m_Name: StarCollisionPos
+        m_Overridden: 1
     m_Vector4f:
       m_Array:
-      - m_Value: {x: 0, y: 0, z: 1024, w: 0}
+      - m_Value: {x: 2.794682, y: 0.8089869, z: 0, w: 1}
         m_Name: Color4
         m_Overridden: 1
-      - m_Value: {x: 1024, y: 0, z: 0, w: 0}
+      - m_Value: {x: 3.8289046, y: 3.8289046, z: 3.8289046, w: 1}
         m_Name: Color3
         m_Overridden: 1
-      - m_Value: {x: 376.6028, y: 54.309525, z: 0, w: 0}
+      - m_Value: {x: 1.4711047, y: 0.21214658, z: 0, w: 0}
         m_Name: Color2
         m_Overridden: 1
       - m_Value: {x: 38.075043, y: 36.03154, z: 0.5980362, w: 1}
         m_Name: Color1
         m_Overridden: 1
-      - m_Value: {x: 38.075043, y: 36.03154, z: 0.5980362, w: 1}
+      - m_Value: {x: 38.075043, y: 9.151273, z: 0.5980362, w: 1}
         m_Name: Flash
+        m_Overridden: 1
+      - m_Value: {x: 5.9921565, y: 5.9921565, z: 5.9921565, w: 0}
+        m_Name: Star1
+        m_Overridden: 1
+      - m_Value: {x: 5.992157, y: 2.4385564, z: 0, w: 0}
+        m_Name: Star2
         m_Overridden: 1
     m_Uint:
       m_Array: []
