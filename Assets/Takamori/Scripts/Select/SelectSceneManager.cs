@@ -8,6 +8,7 @@
  *
  *********************************************************/
 using UnityEngine;
+using System.Collections;
 
 /// <summary>
 /// セレクトシーンを管理
@@ -46,6 +47,17 @@ public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
     private void Start()
     {
         m_stageNum = 0;
+        // 追加：BGM再生
+        StartCoroutine(PlayBGMDelayed());
+    }
+
+    // 追加：BGM再生
+    IEnumerator PlayBGMDelayed()
+    {
+        // 1フレーム待つ
+        yield return null;
+
+        SoundManager.Instance.PlayBGM("SelectBGM", true);
     }
 
     /*--------------------------------------------------------------------------------
@@ -74,13 +86,14 @@ public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
             // フェード処理
             m_fade.FadeOutWithCallback(() =>
             {
+                SoundManager.Instance.PlaySE("GameStart");
                 CreateGenerationInfos();
                 GameStart();
             });
         }
 
 
-        
+
     }
 
     /*--------------------------------------------------------------------------------

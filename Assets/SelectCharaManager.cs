@@ -40,6 +40,8 @@ public class SelectCharaManager : MonoBehaviour
         // 新しいキャラ
         m_current = m_charaObjects[index];
         m_current.gameObject.SetActive(true);
+        // キャラ変更SE
+        SoundManager.Instance.PlaySE("Slide");
     }
 
     /*--------------------------------------------------------------------------------
@@ -51,6 +53,7 @@ public class SelectCharaManager : MonoBehaviour
     public void DecideChara()
     {
         m_current.GetComponent<SelectCharaController>().Decide();
+        SoundManager.Instance.PlaySE("Decide");
     }
 
     /*--------------------------------------------------------------------------------
@@ -62,5 +65,6 @@ public class SelectCharaManager : MonoBehaviour
     public void CancelChara()
     {
         m_current.GetComponent<SelectCharaController>().Cancel();
+        SoundManager.Instance.PlaySE("Cancel");
     }
 }
