@@ -24,7 +24,9 @@ public class ResultSceneManager : MonoBehaviour
     [SerializeField, Header("勝ったプレイヤー　１Pか２Pか")]
     private WinnerPlayer m_winnerPlayer;
 
-
+    // 追加：スカイボックスチェンジャー
+    [SerializeField, Header("スカイボックスチェンジャー")]
+    private SkyChanger m_skyChanger;
     //勝利キャラクター
     private int m_winnerCharacterId;
     //勝利プレイヤー 1Pか2P
@@ -44,6 +46,8 @@ public class ResultSceneManager : MonoBehaviour
 
     // 追加：Exitが呼ばれたかどうか
     private bool m_isExitCalled = false;
+
+
 
     /*--------------------------------------------------------------------------------
 　　|| 実行前処理
@@ -73,6 +77,9 @@ public class ResultSceneManager : MonoBehaviour
 
         //ステージの変更
         m_resultStage.ChangeStage(winnerData.StageId);
+
+        // 追加：スカイボックス変更
+        m_skyChanger.ChangeSkyBox(winnerData.StageId);
 
         //UI変更
         m_winnerPlayer.winnerPlayer = winnerData.PlayerId + 1;
