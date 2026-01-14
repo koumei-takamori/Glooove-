@@ -157,6 +157,7 @@ MonoBehaviour:
   m_character: {fileID: 451512568}
   m_resultStage: {fileID: 903114231}
   m_winnerPlayer: {fileID: 520352799}
+  m_skyChanger: {fileID: 627917263}
 --- !u!114 &33443915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1105,6 +1106,53 @@ Transform:
   - {fileID: 1353970628}
   - {fileID: 42464924}
   m_Father: {fileID: 1356751074}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &627917262
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 627917264}
+  - component: {fileID: 627917263}
+  m_Layer: 0
+  m_Name: SkyChanger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &627917263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 627917262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3b0539034c015c44ada91cd7e9116e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_streetSkybox: {fileID: 2100000, guid: cdbb40e11399e4a17882ada20a1b896a, type: 2}
+  m_liveSkybox: {fileID: 2100000, guid: 9af23ba5fa5364ff598888460e0e2759, type: 2}
+  m_junkFoodSkybox: {fileID: 2100000, guid: de1d750fefeeac642bf9b11a3978ccf5, type: 2}
+--- !u!4 &627917264
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 627917262}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.83147, y: -1.5345118, z: 1.1211303}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &713545282
 GameObject:
@@ -4099,3 +4147,4 @@ SceneRoots:
   - {fileID: 623807483}
   - {fileID: 1207641775}
   - {fileID: 820066633}
+  - {fileID: 627917264}
