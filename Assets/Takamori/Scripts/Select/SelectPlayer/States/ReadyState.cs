@@ -1,6 +1,6 @@
 /**********************************************************
  *
- *  ReadySelectState.cs
+ *  PlayerReadySelectState.cs
  *  準備完了状態
  *
  *  制作者 : 髙森 煌明
@@ -16,7 +16,7 @@ using static StateMachine<SelectPlayer>;
 /// <summary>
 /// 準備完了状態
 /// </summary>
-public class ReadySelectState : StateBase
+public class PlayerReadySelectState : StateBase
 {
     /*--------------------------------------------------------------------------------
 　　|| ステートに入った時の処理
@@ -27,6 +27,7 @@ public class ReadySelectState : StateBase
     public override void OnEnter()
     {
         Owner.IsReady = true;
+        Owner.UI.IsReady(true);
         Debug.Log("準備完了");
     }
 
@@ -42,6 +43,7 @@ public class ReadySelectState : StateBase
         if (Owner.InputReceiver.GetInputButton(SelectPlayerActions.Cancel, InputType.PRESSED))
         {
             Owner.IsReady = false;
+            Owner.UI.IsReady(false);
             m_stateMashine.ChangeState((int)SelectPlayer.SelectPlayerState.GloveSelect);
         }
     }

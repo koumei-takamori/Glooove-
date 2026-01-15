@@ -100,7 +100,7 @@ public class SelectPlayer : MonoBehaviour
         // 各ステート追加
         m_stateMachine.Add<CharaSelectState>((int)SelectPlayerState.CharaSelect);
         m_stateMachine.Add<GloveSelectState>((int)SelectPlayerState.GloveSelect);
-        m_stateMachine.Add<ReadySelectState>((int)SelectPlayerState.Ready);
+        m_stateMachine.Add<PlayerReadySelectState>((int)SelectPlayerState.Ready);
 
         // ステートマシン開始
         m_stateMachine.OnStart((int)SelectPlayerState.CharaSelect);
@@ -128,7 +128,7 @@ public class SelectPlayer : MonoBehaviour
     {
         // UIの設定
         m_uiManager = uiManager;
-        uiManager.Active(m_charaIndex);
+        uiManager.Initialize(m_charaIndex);
     }
 
     /*--------------------------------------------------------------------------------
@@ -154,6 +154,22 @@ public class SelectPlayer : MonoBehaviour
     {
         m_gloveIndex[gloveSide] =
             (m_gloveIndex[gloveSide] + value + GLOVE_MAX) % GLOVE_MAX;
+        UI.ChangeGloveIndex(gloveSide, m_gloveIndex[gloveSide]);
+    }
+
+    /*--------------------------------------------------------------------------------
+ || キャラ決定処理（ランダム対応）
+ --------------------------------------------------------------------------------*/
+    public void DecideChara()
+    {
+        // ランダム（?）の場合
+        if (m_charaIndex == CHARA_MAX - 1) // = 3
+        {
+            m_charaIndex = Random.Range(0, CHARA_MAX - 1); // 0?2
+        }
+
+        // UIにも「確定キャラ」を通知（表示差し替え用）
+        UI.DecideCharaIndex(m_charaIndex);
     }
 
     /*--------------------------------------------------------------------------------

@@ -1,4 +1,5 @@
-// -------------------------------------------------------------
+// -----------------------------------------------------
+// --------
 //
 // StageSelectManager.cs
 // ステージセレクト画面の管理を行うクラス
@@ -29,12 +30,6 @@ public class StageSelectManager : SingletonMonoBehaviour<StageSelectManager>
     // *------------------:
     // ll 変数宣言 
     // *------------------:
-    [SerializeField]
-    private UIFade m_fade;
-
-    // インゲームプレイヤーの生成情報
-    private PlayerGenerationInfo[] m_playerGenerationInfos = default;
-
     // ステージ名
     [SerializeField]
     private string[] m_sceneName;
@@ -43,10 +38,21 @@ public class StageSelectManager : SingletonMonoBehaviour<StageSelectManager>
     [SerializeField]
     StageID m_selectStageId = StageID.None;
 
-    // シーンロードフラグ
-    bool m_isSceneLoad = false;
+    // ステージセレクトUI
+    [SerializeField]
+    private StageSelectUI m_stageSelectUI;
 
+    // アクティブフラグ
+    private bool m_isActive;
 
+    // 決定フラグ
+    private bool m_isDecide;
+
+    // プロパティ
+    public StageID StageID { get { return m_selectStageId; } }
+    public bool IsDecide {  get { return m_isDecide; } }
+
+    public string GetStageNameByID(StageID stageID) { return m_sceneName[(int)stageID]; }
     // *------------------:
     // ll 関数宣言
     // *------------------:
@@ -55,86 +61,34 @@ public class StageSelectManager : SingletonMonoBehaviour<StageSelectManager>
         base.Awake();
     }
 
-
-    private void Start()
-    {
-        if (m_fade == null)
-        {
-            Debug.LogError("StageSelectManager : UIFade がInspectorに設定される");
-        }
-    }
-
-
-    // ------------------------------------
-    // ※ Todo : コントローラー対応
-    // ------------------------------------
-
-    private void Update()
-    {
-        // シーンロード中は操作を受け付けない
-        if (m_isSceneLoad) return;
-
-        // space か 右ボタンでステージ決定
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            m_isSceneLoad = true;
-            LoadInGameScene();
-        }
-
-
-        // スティック左右でステージ選択
-        if (Input.GetKeyUp(KeyCode.RightArrow))
-        {
-            MoveStageSelect(MoveStageDirection.Right);
-        }
-        else if (Input.GetKeyUp(KeyCode.LeftArrow))
-        {
-            MoveStageSelect(MoveStageDirection.Left);
-        }
-    }
-
-
-    //---------------------------------------------
-    // ** スティックを倒したときのステージ移動処理
-    //---------------------------------------------
-
     /// <summary>
     /// ステージ移動処理
     /// </summary>
     /// <param name="direction">移動方向</param>
-    public void MoveStageSelect(MoveStageDirection direction)
+    public void MoveStageSelect(int direction)
     {
         int stageCount = m_sceneName.Length;
 
-        int nextIndex = ((int)m_selectStageId + (int)direction + stageCount) % stageCount;
+        int currentIndex =
+            m_selectStageId == StageID.None ? 0 : (int)m_selectStageId;
+
+        int nextIndex = (currentIndex + direction + stageCount) % stageCount;
         m_selectStageId = (StageID)nextIndex;
+
+        m_stageSelectUI.ChangeStage(direction);
+
+        Debug.Log("ステージ" + m_selectStageId);
     }
 
-
-    // シーン遷移 + 変更を行う処理
-
-    /// <summary>
-    /// シーン変更
-    /// </summary>
-    private void LoadInGameScene()
+    public void IsActive(bool isActive)
     {
-
-        m_fade.FadeOutWithCallback(() =>
-        {
-            GameStart();
-        });
+        m_isActive = isActive;
+        m_stageSelectUI.gameObject.SetActive(isActive);
     }
 
-    // -----------------------------
-    // ** Todo : PlayerGenerationInfo を受け取る処理が必要
-    // 現状だとCharacterのSelectSceneから受け取る想定だったため書いていない
-    // -----------------------------
-
-    /// <summary>
-    /// PlaySceneにデータをわたす処理
-    /// </summary>
-    private async void GameStart()
+    public void Decide()
     {
+        m_isDecide = true;
         // ランダムステージ選択時の処理
         if (m_selectStageId == StageID.Random)
         {
@@ -142,32 +96,11 @@ public class StageSelectManager : SingletonMonoBehaviour<StageSelectManager>
             m_selectStageId = (StageID)Random.Range(0, m_sceneName.Length - 2);
         }
 
-
-        var target = await SceneLoader.Load<PlayerGenerator>(m_sceneName[(int)m_selectStageId]);
-
-        if (target == null)
-        {
-            Debug.LogError("PlayScene に PlayerGenerator が見つかりませんでした。");
-            return;
-        }
-
-        target.SetGenerationInfo(m_playerGenerationInfos);
+        Debug.Log("ステージ決定" + m_selectStageId);
     }
 
-
-    /// <summary>
-    /// CharacterSelectManager から プレイヤー生成情報を受け取る
-    /// </summary>
-    /// <param name="playerData"></param>
-    public void SetDataForStageSelect(PlayerGenerationInfo[] playerData)
+    public void Cancel()
     {
-        m_playerGenerationInfos = playerData;
-
-        Debug.Log("SelectSceneからデータを受け取りました");
+        m_isDecide = false;
     }
-
-    // *------------------:
-    // ll アクセサ
-    // *------------------:
-    public StageID SelectStage { get { return m_selectStageId; } }
 }

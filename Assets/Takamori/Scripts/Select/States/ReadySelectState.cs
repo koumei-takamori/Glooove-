@@ -1,6 +1,6 @@
 /**********************************************************
  *
- *  CharaSelectState.cs
+ *  ReadySelectState.cs
  *  キャラの選択状態
  *
  *  制作者 : 髙森 煌明
@@ -9,16 +9,14 @@
  *********************************************************/
 using UnityEngine;
 using static SelectPlayerInputReceiver;
-using static StateMachine<SelectPlayer>;
+using static StateMachine<SelectSceneManager>;
 
 /// <summary>
 /// キャラ選択状態
 /// </summary>
-public class CharaSelectState : StateBase
+public class ReadySelectState : StateBase
 {
-    // 入力用クールタイム
-    private float m_inputCooldown = 0.2f;
-    private float m_inputTimer = 0f;
+    private bool m_isLoad; 
 
     /*--------------------------------------------------------------------------------
 　　|| ステートに入った時の処理
@@ -28,7 +26,8 @@ public class CharaSelectState : StateBase
     /// </summary>
     public override void OnEnter()
     {
-        Owner.UI.Initialize(Owner.CharaIndex);
+        m_isLoad = false;
+        Owner.ReadyUI.Animator.SetBool("GameReady", true);
     }
 
     /*--------------------------------------------------------------------------------
@@ -39,35 +38,25 @@ public class CharaSelectState : StateBase
     /// </summary>
     public override void OnUpdate()
     {
-        // クールタイム減算
-        m_inputTimer -= Time.deltaTime;
-
-        // 連続入力を受け付けない
-        if (m_inputTimer > 0f) return;
-
-        // 入力の値を取得
-        float value = Owner.InputReceiver.GetInputValue<float>(SelectPlayerActions.CharaSelect);
-
-        // 値に応じた処理
-        if (value > 0.8f)
+        for (int i = 0; i < 2; i++)
         {
-            Owner.ChangeCharaIndex(1);
-            m_inputTimer = m_inputCooldown;
-        }
-        else if (value < -0.8f)
-        {
-            Owner.ChangeCharaIndex(-1);
-            m_inputTimer = m_inputCooldown;
+            if (m_isLoad) return;
+
+            if (Owner.GetInput(i).GetInputButton(SelectPlayerActions.Decide, InputType.PRESSED))
+            {
+                m_isLoad = true;
+                Owner.StartCoroutine(Owner.EnterToPlayScene(1.0f));
+            }
+
+            if (Owner.GetInput(i).GetInputButton(SelectPlayerActions.Cancel, InputType.PRESSED))
+            {
+                Owner.ReadyUI.Animator.SetBool("GameReady", false);
+                m_stateMashine.ChangeState(
+                   (int)SelectSceneManager.SelectState.StageSelect
+               );
+            }
         }
 
-        // 決定 → グローブ選択へ
-        if (Owner.InputReceiver.GetInputButton(SelectPlayerActions.Decide,InputType.PRESSED))
-        {
-            Owner.DecideChara();
-            m_stateMashine.ChangeState(
-                (int)SelectPlayer.SelectPlayerState.GloveSelect
-            );
-        }
     }
 
     /*--------------------------------------------------------------------------------
@@ -78,6 +67,5 @@ public class CharaSelectState : StateBase
     /// </summary>
     public override void OnExit()
     {
-        Debug.Log(Owner.CharaIndex + "キャラ選択完了");
     }
 }

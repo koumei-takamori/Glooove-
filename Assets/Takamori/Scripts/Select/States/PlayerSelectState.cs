@@ -1,6 +1,6 @@
 /**********************************************************
  *
- *  CharaSelectState.cs
+ *  PlayerSelectState.cs
  *  キャラの選択状態
  *
  *  制作者 : 髙森 煌明
@@ -9,17 +9,13 @@
  *********************************************************/
 using UnityEngine;
 using static SelectPlayerInputReceiver;
-using static StateMachine<SelectPlayer>;
+using static StateMachine<SelectSceneManager>;
 
 /// <summary>
 /// キャラ選択状態
 /// </summary>
-public class CharaSelectState : StateBase
+public class PlayerSelectState : StateBase
 {
-    // 入力用クールタイム
-    private float m_inputCooldown = 0.2f;
-    private float m_inputTimer = 0f;
-
     /*--------------------------------------------------------------------------------
 　　|| ステートに入った時の処理
 　　--------------------------------------------------------------------------------*/
@@ -28,7 +24,6 @@ public class CharaSelectState : StateBase
     /// </summary>
     public override void OnEnter()
     {
-        Owner.UI.Initialize(Owner.CharaIndex);
     }
 
     /*--------------------------------------------------------------------------------
@@ -39,34 +34,11 @@ public class CharaSelectState : StateBase
     /// </summary>
     public override void OnUpdate()
     {
-        // クールタイム減算
-        m_inputTimer -= Time.deltaTime;
-
-        // 連続入力を受け付けない
-        if (m_inputTimer > 0f) return;
-
-        // 入力の値を取得
-        float value = Owner.InputReceiver.GetInputValue<float>(SelectPlayerActions.CharaSelect);
-
-        // 値に応じた処理
-        if (value > 0.8f)
+        if (IsAllPlayerReady())
         {
-            Owner.ChangeCharaIndex(1);
-            m_inputTimer = m_inputCooldown;
-        }
-        else if (value < -0.8f)
-        {
-            Owner.ChangeCharaIndex(-1);
-            m_inputTimer = m_inputCooldown;
-        }
-
-        // 決定 → グローブ選択へ
-        if (Owner.InputReceiver.GetInputButton(SelectPlayerActions.Decide,InputType.PRESSED))
-        {
-            Owner.DecideChara();
             m_stateMashine.ChangeState(
-                (int)SelectPlayer.SelectPlayerState.GloveSelect
-            );
+               (int)SelectSceneManager.SelectState.StageSelect
+           );
         }
     }
 
@@ -78,6 +50,24 @@ public class CharaSelectState : StateBase
     /// </summary>
     public override void OnExit()
     {
-        Debug.Log(Owner.CharaIndex + "キャラ選択完了");
+    }
+
+    /*--------------------------------------------------------------------------------
+    || 全プレイヤーが準備完了か
+    --------------------------------------------------------------------------------*/
+    public bool IsAllPlayerReady()
+    {
+        var players = SelectPlayerManager.Instance.Players;
+
+        if (players.Count < 2 || players == null) return false;
+
+        foreach (var player in players)
+        {
+            if (!player.IsReady)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

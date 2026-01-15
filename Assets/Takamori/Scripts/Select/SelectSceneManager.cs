@@ -10,33 +10,49 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static SelectPlayer;
 
 /// <summary>
 /// セレクトシーンを管理
 /// </summary>
 public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
 {
+    /// <summary>
+    /// セレクトシーンのプレイヤーステート
+    /// </summary>
+    public enum SelectState
+    {
+        PlayerSelect = 0,     
+        StageSelect = 1,     
+        Ready = 2       　　　
+    }
+
+    // ステートマシン
+    private StateMachine<SelectSceneManager> m_stateMachine;
+
     // フェード管理
     [SerializeField]
     private UIFade m_fade;
 
-    // GameReady
+    // GameReadyUI
     [SerializeField]
     private UIElement m_ready;
 
-    // ステージ名
+    // ステージセレクト管理クラス
     [SerializeField]
-    private string[] m_stages;
-    private int m_stageNum;
+    private StageSelectManager m_stageSelectManager;
+
     // インゲームのプレイヤーの生成情報
     private PlayerGenerationInfo[] m_playerGenerationInfos = default;
 
-
-    bool m_isSceneLoad = false;
+    // プロパティ
+    public UIElement ReadyUI { get { return m_ready; } }
+    public StageSelectManager StageSelectManager { get { return m_stageSelectManager; } }   
+    public SelectPlayerInputReceiver GetInput(int playerId) { return SelectPlayerManager.Instance.Players[playerId].InputReceiver; }
 
     /*--------------------------------------------------------------------------------
-     || 実行前初期化処理
-     --------------------------------------------------------------------------------*/
+    || 実行前初期化処理
+    --------------------------------------------------------------------------------*/
     protected override void Awake()
     {
         base.Awake();
@@ -47,7 +63,17 @@ public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
      --------------------------------------------------------------------------------*/
     private void Start()
     {
-        m_stageNum = 0;
+        // ステートマシン定義
+        m_stateMachine = new StateMachine<SelectSceneManager>(this);
+
+        // 各ステート追加
+        m_stateMachine.Add<PlayerSelectState>((int)SelectState.PlayerSelect);
+        m_stateMachine.Add<StageSelectState>((int)SelectState.StageSelect);
+        m_stateMachine.Add<ReadySelectState>((int)SelectState.Ready);
+
+        // ステートマシン開始
+        m_stateMachine.OnStart((int)SelectPlayerState.CharaSelect);
+
         // 追加：BGM再生
         StartCoroutine(PlayBGMDelayed());
     }
@@ -66,39 +92,16 @@ public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
      --------------------------------------------------------------------------------*/
     private void Update()
     {
-        bool allReady = IsAllPlayerReady();
-        m_ready.Animator.SetBool("GameReady", IsAllPlayerReady());
-
-        if (Input.GetKeyUp(KeyCode.Alpha1))
-        {
-            m_stageNum = 1;
-        }
-
-        if (!allReady || m_isSceneLoad) return;
-
-        if (SelectPlayerManager.Instance.Players[0].InputReceiver.GetInputButton(
-            SelectPlayerInputReceiver.SelectPlayerActions.Decide, SelectPlayerInputReceiver.InputType.PRESSED) ||
-            SelectPlayerManager.Instance.Players[1].InputReceiver.GetInputButton(
-            SelectPlayerInputReceiver.SelectPlayerActions.Decide, SelectPlayerInputReceiver.InputType.PRESSED) ||
-            Input.GetKeyDown(KeyCode.Space))
-        {
-            // シーンをロードし始める
-            m_isSceneLoad = true;
-
-            SoundManager.Instance.PlaySE("GameStart");
-            VibrateGamepad(0.05f, 1.0f);
-
-            StartCoroutine(EnterToPlayScene(1.0f));
-
-
-        }
-
-
-
+        // ステート更新
+        m_stateMachine.OnUpdate();
     }
+
     // 追加：PlaySceneへ移動する処理
-    private IEnumerator EnterToPlayScene(float duration)
+    public IEnumerator EnterToPlayScene(float duration)
     {
+        SoundManager.Instance.PlaySE("GameStart");
+        VibrateGamepad(0.05f, 1.0f);
+
         yield return new WaitForSeconds(duration);
         // フェード処理
         m_fade.FadeOutWithCallback(() =>
@@ -111,9 +114,9 @@ public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
     /*--------------------------------------------------------------------------------
      || ゲームスタート処理
      --------------------------------------------------------------------------------*/
-    private async void GameStart()
+    public async void GameStart()
     {
-        var target = await SceneLoader.Load<PlayerGenerator>("PlayScene" + m_stages[m_stageNum]);
+        var target = await SceneLoader.Load<PlayerGenerator>("PlayScene" + m_stageSelectManager.GetStageNameByID(m_stageSelectManager.StageID));
 
         if (target == null)
         {
@@ -124,24 +127,7 @@ public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
         target.SetGenerationInfo(m_playerGenerationInfos);
     }
 
-    /*--------------------------------------------------------------------------------
-     || 全プレイヤーが準備完了か
-     --------------------------------------------------------------------------------*/
-    private bool IsAllPlayerReady()
-    {
-        var players = SelectPlayerManager.Instance.Players;
 
-        if (players.Count < 2 || players == null) return false;
-
-        foreach (var player in players)
-        {
-            if (!player.IsReady)
-            {
-                return false;
-            }
-        }
-        return true;
-    }
 
     /*--------------------------------------------------------------------------------
      || 生成情報を作成する
