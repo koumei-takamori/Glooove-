@@ -16,6 +16,10 @@ using UnityEngine;
 /// </summary>
 public class SelectCharaManager : MonoBehaviour
 {
+    // カメラ
+    [SerializeField]
+    private SelectCharaCamera m_cameraController;
+
     // オブジェクト
     [SerializeField]
     private List<GameObject> m_charaObjects;
@@ -66,8 +70,11 @@ public class SelectCharaManager : MonoBehaviour
         m_current = m_charaObjects[m_currentIndex];
         m_current.gameObject.SetActive(true);
 
-        // 通常キャラ
+        // カメラをX軸だけ中央に寄せる
+        
+
         m_current.GetComponent<SelectCharaController>().Decide();
+        m_cameraController.MoveToTargetX(m_current.GetComponent<SelectCharaController>().TargetPos);
         SoundManager.Instance.PlaySE("Decide");
     }
 

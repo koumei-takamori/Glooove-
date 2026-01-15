@@ -18,6 +18,14 @@ public class SelectCharaController : MonoBehaviour
     // アニメーター
     private Animator m_animator;
 
+    [SerializeField]
+    private Transform m_targetPos;
+
+    public Transform TargetPos
+    {
+        get { return m_targetPos; }
+    }
+
     /*--------------------------------------------------------------------------------
 　　|| 実行前初期化処理
 　　--------------------------------------------------------------------------------*/
