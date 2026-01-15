@@ -19,11 +19,11 @@ public class SelectCharaController : MonoBehaviour
     private Animator m_animator;
 
     [SerializeField]
-    private Transform m_targetPos;
+    private Transform m_target;
 
-    public Transform TargetPos
+    public Transform Target
     {
-        get { return m_targetPos; }
+        get { return m_target; }
     }
 
     /*--------------------------------------------------------------------------------

@@ -11,11 +11,8 @@ public class SelectCharaCamera : MonoBehaviour
     /// <summary>
     /// X²‚¾‚¯ƒLƒƒƒ‰‚É‡‚í‚¹‚ÄƒJƒƒ‰‚ğˆÚ“®
     /// </summary>
-    public void MoveToTargetX(Transform target)
+    public void MoveToTargetX(Vector3 pos)
     {
-        Vector3 pos = transform.position;
-        pos.x = target.position.x;
-
         transform.DOMoveX(pos.x, m_moveDuration)
                  .SetEase(m_ease);
 

@@ -20,6 +20,7 @@ public class CharaSelectState : StateBase
     private float m_inputCooldown = 0.2f;
     private float m_inputTimer = 0f;
 
+    bool m_isDecide = false;
     /*--------------------------------------------------------------------------------
 　　|| ステートに入った時の処理
 　　--------------------------------------------------------------------------------*/
@@ -28,6 +29,7 @@ public class CharaSelectState : StateBase
     /// </summary>
     public override void OnEnter()
     {
+        m_isDecide = false;
         Owner.UI.Initialize(Owner.CharaIndex);
     }
 
@@ -39,6 +41,9 @@ public class CharaSelectState : StateBase
     /// </summary>
     public override void OnUpdate()
     {
+        // 決定してなかったら
+        if (m_isDecide) return;
+
         // クールタイム減算
         m_inputTimer -= Time.deltaTime;
 
@@ -64,6 +69,7 @@ public class CharaSelectState : StateBase
         if (Owner.InputReceiver.GetInputButton(SelectPlayerActions.Decide,InputType.PRESSED))
         {
             Owner.DecideChara();
+            m_isDecide = true;
             m_stateMashine.ChangeState(
                 (int)SelectPlayer.SelectPlayerState.GloveSelect
             );

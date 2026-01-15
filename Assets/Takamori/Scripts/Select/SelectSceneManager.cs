@@ -99,10 +99,11 @@ public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
     // 追加：PlaySceneへ移動する処理
     public IEnumerator EnterToPlayScene(float duration)
     {
+        yield return new WaitForSeconds(duration);
+
         SoundManager.Instance.PlaySE("GameStart");
         VibrateGamepad(0.05f, 1.0f);
 
-        yield return new WaitForSeconds(duration);
         // フェード処理
         m_fade.FadeOutWithCallback(() =>
         {
