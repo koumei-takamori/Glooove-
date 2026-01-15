@@ -26,6 +26,14 @@ public class GloveSlotUI : MonoBehaviour
     [SerializeField]
     private List<UIElement> m_icons = new List<UIElement>();
 
+    // 準備OK画像
+    [SerializeField]
+    private UIElement m_readyOK;
+
+    // 矢印画像
+    [SerializeField]
+    private List<UIElement> m_arrow;
+
     // 間隔
     [SerializeField]
     private float m_slotSpacing = 80.0f;
@@ -172,6 +180,10 @@ public class GloveSlotUI : MonoBehaviour
 
             m_icons[i].CanvasGroup.alpha = (diff == 0) ? m_centerAlpha : m_sideAlpha;
         }
+
+        m_readyOK.Animator.SetBool("isSelectOK", false);
+        m_arrow[0].CanvasGroup.alpha = 1.0f;
+        m_arrow[1].CanvasGroup.alpha = 1.0f;
     }
 
     /*--------------------------------------------------------------------------------
@@ -211,7 +223,29 @@ public class GloveSlotUI : MonoBehaviour
     }
 
 
-    public void SetActive(bool active)
+    public void Decide()
     {
+        // すべてのアイコンを順番に処理
+        for (int i = 0; i < m_icons.Count; i++)
+        {
+            // 各アイコンのRectTransformを取得
+            RectTransform icon = m_icons[i].Rect;
+
+            // 中央から見て何番目にあるかを計算する
+            int diff = GetLoopDiff(i, m_currentIndex);
+
+            // 中央のアイコン以外表示しない
+            bool isVisible = Mathf.Abs(diff) == 0;
+            icon.gameObject.SetActive(isVisible);
+        }
+
+        m_readyOK.Animator.SetBool("isSelectOK", true);
+        m_arrow[0].CanvasGroup.alpha = 0.0f;
+        m_arrow[1].CanvasGroup.alpha = 0.0f;
+    }
+
+    public void Cancel()
+    {
+        InitSlotIcon();
     }
 }

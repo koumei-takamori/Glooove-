@@ -25,53 +25,13 @@ public class SelectPlayerUIManager : MonoBehaviour
     [SerializeField]
     SelectCharaManager m_selectChara;
 
+    // グローブ選択のUI管理クラス
     [SerializeField]
     private GloveSlotUIManager m_selectGlove;
 
+    // 準備完了
     [SerializeField]
     private UIElement m_ready;
-
-    private bool m_canControll;
-
-    public bool CanControll { get { return m_canControll; } set { m_canControll = value; } }
-
-
-    /*--------------------------------------------------------------------------------
-　　|| 実行前初期化処理
-　　--------------------------------------------------------------------------------*/
-    /// <summary>
-    /// 実行前初期化処理
-    /// </summary>
-    private void Awake()
-    {
-        m_ready.Rect.localScale = Vector3.zero;
-    }
-
-    /*--------------------------------------------------------------------------------
-　　|| 更新処理
-　　--------------------------------------------------------------------------------*/
-    /// <summary>
-    /// 更新処理
-    /// </summary>
-    private void Update()
-    {
-        if (m_player == null) return;
-
-        if (m_player.IsReady) { m_ready.Rect.localScale = Vector3.one; }
-        else if (!m_player.IsReady) { m_ready.Rect.localScale = Vector3.zero; }
-    }
-
-    /*--------------------------------------------------------------------------------
-　　|| UIとPlayerを結び付ける
-　　--------------------------------------------------------------------------------*/
-    /// <summary>
-    /// UIとPlayerを結び付ける
-    /// </summary>
-    public void Bind(SelectPlayer player)
-    {
-        m_player = player;
-        m_selectGlove.Bind(player);
-    }
 
     /*--------------------------------------------------------------------------------
 　　|| プレイヤーUIを有効化する
@@ -80,7 +40,7 @@ public class SelectPlayerUIManager : MonoBehaviour
     /// プレイヤーUIを有効化する
     /// </summary>
     /// <param name="index">最初のキャラのIndex</param>
-    public void Active(int index)
+    public void Initialize(int index)
     {
         m_selectCursor.Active();
         m_selectChara.ChangeChara(index);
@@ -106,17 +66,17 @@ public class SelectPlayerUIManager : MonoBehaviour
     /// プレイヤーの変更
     /// </summary>
     /// <param name="index">キャラのindex</param>
-    public void DecideCharaIndex()
+    public void DecideCharaIndex(int index)
     {
         m_selectCursor.DecideCharaCursor();
-        m_selectChara.DecideChara();
+        m_selectChara.DecideChara(index);
     }
 
     /*--------------------------------------------------------------------------------
 　　|| プレイヤーのキャンセル
 　　--------------------------------------------------------------------------------*/
     /// <summary>
-    /// プレイヤーの変更
+    /// プレイヤーのキャンセル
     /// </summary>
     /// <param name="index">キャラのindex</param>
     public void CancelCharaIndex()
@@ -124,4 +84,48 @@ public class SelectPlayerUIManager : MonoBehaviour
         m_selectCursor.CancelCharaCursor();
         m_selectChara.CancelChara();
     }
+
+    /*--------------------------------------------------------------------------------
+　　|| グローブの変更
+　　--------------------------------------------------------------------------------*/
+    public void ChangeGloveIndex(GloveSide side, int index)
+    {
+        m_selectGlove.ChangeGloveIndex(side,index);
+    }
+    /*--------------------------------------------------------------------------------
+　　|| グローブの左右変更
+　　--------------------------------------------------------------------------------*/
+    public void ChangeGloveSide(GloveSide side)
+    {
+        m_selectGlove.ChangeGloveSide(side);
+    }
+    /*--------------------------------------------------------------------------------
+　　|| グローブの決定
+　　--------------------------------------------------------------------------------*/
+    public void GloveDecide(GloveSide side)
+    {
+        m_selectGlove.GloveDecide(side);
+    }
+    /*--------------------------------------------------------------------------------
+　　|| グローブのキャンセル
+　　--------------------------------------------------------------------------------*/
+    public void GloveCancel(GloveSide side)
+    {
+        m_selectGlove.GloveCancel(side);
+    }
+
+
+    /*--------------------------------------------------------------------------------
+　　|| 準備完了UIの変更
+　　--------------------------------------------------------------------------------*/
+    /// <summary>
+    /// 準備完了の変更
+    /// </summary>
+    /// <param name="isReady">準備完了かどうか</param>
+    public void IsReady(bool isReady)
+    {
+        // アニメーションを変更する
+        m_ready.Animator.SetBool("isSelectOK", isReady);
+    }
+
 }

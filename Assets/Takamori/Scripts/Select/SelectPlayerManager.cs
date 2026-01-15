@@ -65,7 +65,5 @@ public class SelectPlayerManager : SingletonMonoBehaviour<SelectPlayerManager>
         m_players.Add(selectPlayer);
         // UI‚Æ•R‚Ã‚¯
         selectPlayer.BindUI(m_playerUIs[playerInput.playerIndex]);
-        // ƒvƒŒƒCƒ„[‚ÌUI‚Æ•R‚Ã‚¯
-        m_playerUIs[playerInput.playerIndex].Bind(selectPlayer);
     }
 }

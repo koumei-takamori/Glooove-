@@ -7,6 +7,7 @@
  *  制作日 : 2025/01/03
  *
  *********************************************************/
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,35 +18,13 @@ using static SelectPlayer;
 /// </summary>
 public class GloveSlotUIManager : MonoBehaviour
 {
-    // プレイヤー
-    [SerializeField]
-    private SelectPlayer m_player;
-
     // カーソル
     [SerializeField]
-    private UIElement m_coursol;
+    private GloveSelectCursor m_coursol;
 
     // 左右のグローブ選択のUI
     [SerializeField] private GloveSlotUI m_leftSlot;
     [SerializeField] private GloveSlotUI m_rightSlot;
-
-    // 操作可能フラグ
-    private bool m_canControll = false;
-
-    // プロパティ
-    public SelectPlayer Player { get { return m_player; } }
-    public bool CanControll { get { return m_canControll; } set { m_canControll = value; } }
-
-    /*--------------------------------------------------------------------------------
-　　|| 初期化処理
-　　--------------------------------------------------------------------------------*/
-    /// <summary>
-    /// 初期化処理
-    /// </summary>
-    private void Start()
-    {
-        m_coursol = GetComponent<UIElement>();
-    }
 
     /*--------------------------------------------------------------------------------
 　　|| 更新処理
@@ -55,45 +34,60 @@ public class GloveSlotUIManager : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        // 操作不能なら処理しない
-        if (!m_canControll) return;
+       
+    }
 
-        m_leftSlot.SetIndex(m_player.GetGloveIndex(GloveSide.Left));
-        m_rightSlot.SetIndex(m_player.GetGloveIndex(GloveSide.Right));
 
-        // UI更新処理
-        UpdateSlot();
-
-        m_coursol.Animator.SetInteger("Side", (int)m_player.CurrentGloveSide);
+    /*--------------------------------------------------------------------------------
+　　|| グローブの変更
+　　--------------------------------------------------------------------------------*/
+    public void ChangeGloveIndex(GloveSide side, int index)
+    {
+        if (side == GloveSide.Left)
+        {
+            m_leftSlot.SetIndex(index);
+        }
+        else if (side == GloveSide.Right)
+        {
+            m_rightSlot.SetIndex(index);
+        }
     }
 
     /*--------------------------------------------------------------------------------
-　　|| UI更新処理
+　　|| グローブの左右変更
 　　--------------------------------------------------------------------------------*/
-    /// <summary>
-    /// UI更新処理
-    /// </summary>
-    private void UpdateSlot()
+    public void ChangeGloveSide(GloveSide side)
     {
-        // 操作不能なら処理しない
-        if (!m_canControll) return;
-
-        GloveSide activeSide = m_player.CurrentGloveSide;
-
-        m_leftSlot.SetActive(activeSide == GloveSide.Left);
-        m_rightSlot.SetActive(activeSide == GloveSide.Right);
-
+       m_coursol.MoveCursor((int)side);
     }
 
     /*--------------------------------------------------------------------------------
-　　|| UIとPlayerを結び付ける
+　　|| グローブの決定
 　　--------------------------------------------------------------------------------*/
-    /// <summary>
-    /// UIとPlayerを結び付ける
-    /// </summary>
-    public void Bind(SelectPlayer player)
+    public void GloveDecide(GloveSide side)
     {
-        m_player = player;
-        m_canControll = true;
+        if (side == GloveSide.Left)
+        {
+            m_leftSlot.Decide();
+        }
+        else if (side == GloveSide.Right)
+        {
+            m_rightSlot.Decide();
+        }
+    }
+
+    /*--------------------------------------------------------------------------------
+　　|| グローブのキャンセル
+　　--------------------------------------------------------------------------------*/
+    public void GloveCancel(GloveSide side)
+    {
+        if (side == GloveSide.Left)
+        {
+            m_leftSlot.Cancel();
+        }
+        else if (side == GloveSide.Right)
+        {
+            m_rightSlot.Cancel();
+        }
     }
 }

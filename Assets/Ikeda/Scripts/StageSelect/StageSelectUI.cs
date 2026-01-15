@@ -44,34 +44,11 @@ public class StageSelectUI : MonoBehaviour
         PlayInAnimation(m_currentIndex);
     }
 
-    private void Update()
-    {
-        UpdateSelectInput();
-    }
-
-    // ================================
-    // 入力処理
-    // ================================
-
-    private void UpdateSelectInput()
-    {
-        // 左移動
-        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
-        {
-            ChangeStage(-1);
-        }
-        // 右移動
-        else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
-        {
-            ChangeStage(1);
-        }
-    }
-
     // ================================
     // ステージ切り替え
     // ================================
 
-    private void ChangeStage(int direction)
+    public void ChangeStage(int direction)
     {
         int prevIndex = m_currentIndex;
         m_currentIndex = GetNextIndex(m_currentIndex, direction);
@@ -112,17 +89,5 @@ public class StageSelectUI : MonoBehaviour
         {
             anim.Play("StageSelect_out");
         }
-    }
-
-    // ================================
-    // 外部参照
-    // ================================
-
-    /// <summary>
-    /// 現在選択中のステージIDを返す
-    /// </summary>
-    public StageID GetCurrentStageID()
-    {
-        return (StageID)m_currentIndex;
     }
 }
