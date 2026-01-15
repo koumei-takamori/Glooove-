@@ -24,9 +24,24 @@ public class SelectCharaManager : MonoBehaviour
     [SerializeField]
     private List<GameObject> m_charaObjects;
 
+    // カメラの基準位置
+    private Vector3 m_cameraPos;
+
     // 現在のキャラ
     private GameObject m_current;
     private int m_currentIndex;
+
+    /*--------------------------------------------------------------------------------
+     || 実行前初期化処理
+     --------------------------------------------------------------------------------*/
+    /// <summary>
+    /// 実行前初期化処理
+    /// </summary>
+    private void Awake()
+    {
+        // カメラの初期位置を記憶
+        m_cameraPos = m_cameraController.transform.position;
+    }
 
     /*--------------------------------------------------------------------------------
      || キャラ変更処理
@@ -69,12 +84,9 @@ public class SelectCharaManager : MonoBehaviour
         m_currentIndex = index;
         m_current = m_charaObjects[m_currentIndex];
         m_current.gameObject.SetActive(true);
-
-        // カメラをX軸だけ中央に寄せる
-        
-
+    
         m_current.GetComponent<SelectCharaController>().Decide();
-        m_cameraController.MoveToTargetX(m_current.GetComponent<SelectCharaController>().TargetPos);
+        m_cameraController.MoveToTargetX(m_current.GetComponent<SelectCharaController>().Target.position);
         SoundManager.Instance.PlaySE("Decide");
     }
 
@@ -86,6 +98,7 @@ public class SelectCharaManager : MonoBehaviour
     /// </summary>
     public void CancelChara()
     {
+        m_cameraController.MoveToTargetX(m_cameraPos);
         m_current.GetComponent<SelectCharaController>().Cancel();
         SoundManager.Instance.PlaySE("Cancel");
     }

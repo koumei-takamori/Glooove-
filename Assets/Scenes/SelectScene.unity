@@ -1394,6 +1394,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 230956374}
   m_CullTransparentMesh: 1
+--- !u!4 &262120775 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8933958572390573087, guid: f4c0c996de389b848be035aa31c1f4cd, type: 3}
+  m_PrefabInstance: {fileID: 520637873}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &262878562
 GameObject:
   m_ObjectHideFlags: 0
@@ -1625,6 +1630,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 287530187}
   m_CullTransparentMesh: 1
+--- !u!4 &302901304 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4749466028662155427, guid: 539d594e08e4fc0499c77ca568e20f10, type: 3}
+  m_PrefabInstance: {fileID: 811788347}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &311776025
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1964,6 +1974,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Balance_character_Select
       objectReference: {fileID: 0}
+    - target: {fileID: 1843928614046022193, guid: 539d594e08e4fc0499c77ca568e20f10, type: 3}
+      propertyPath: m_target
+      value: 
+      objectReference: {fileID: 1127417840}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2347,6 +2361,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Speed_character_Select
       objectReference: {fileID: 0}
+    - target: {fileID: 5064082052634421013, guid: f4c0c996de389b848be035aa31c1f4cd, type: 3}
+      propertyPath: m_target
+      value: 
+      objectReference: {fileID: 262120775}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4013,6 +4031,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 785296077}
   m_CullTransparentMesh: 1
+--- !u!4 &807835322 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3193304720479733375, guid: 674d8449c07441a43a157f8f579e41c9, type: 3}
+  m_PrefabInstance: {fileID: 1072920193}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &811788347
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4065,6 +4088,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Balance_character_Select
       objectReference: {fileID: 0}
+    - target: {fileID: 1843928614046022193, guid: 539d594e08e4fc0499c77ca568e20f10, type: 3}
+      propertyPath: m_target
+      value: 
+      objectReference: {fileID: 302901304}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5011,6 +5038,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tank_character_Select
       objectReference: {fileID: 0}
+    - target: {fileID: 5661182533118455645, guid: 674d8449c07441a43a157f8f579e41c9, type: 3}
+      propertyPath: m_target
+      value: 
+      objectReference: {fileID: 2104415992}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5226,7 +5257,6 @@ MonoBehaviour:
   - Live
   - Junk
   - Street
-  - Random
   m_selectStageId: 3
   m_stageSelectUI: {fileID: 1138307836}
 --- !u!1 &1044816104
@@ -5461,6 +5491,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tank_character_Select
       objectReference: {fileID: 0}
+    - target: {fileID: 5661182533118455645, guid: 674d8449c07441a43a157f8f579e41c9, type: 3}
+      propertyPath: m_target
+      value: 
+      objectReference: {fileID: 807835322}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5714,6 +5748,11 @@ MonoBehaviour:
   m_sideScale: 0.6
   m_centerAlpha: 1
   m_sideAlpha: 0.4
+--- !u!4 &1127417840 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4749466028662155427, guid: 539d594e08e4fc0499c77ca568e20f10, type: 3}
+  m_PrefabInstance: {fileID: 375070431}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1133101006
 GameObject:
   m_ObjectHideFlags: 0
@@ -5838,7 +5877,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1137521225
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6749,6 +6788,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Speed_character_Select
       objectReference: {fileID: 0}
+    - target: {fileID: 5064082052634421013, guid: f4c0c996de389b848be035aa31c1f4cd, type: 3}
+      propertyPath: m_target
+      value: 
+      objectReference: {fileID: 1863842961}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7025,7 +7068,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1268231900
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9895,6 +9938,11 @@ Transform:
   - {fileID: 986290118}
   m_Father: {fileID: 18585211}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1863842961 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8933958572390573087, guid: f4c0c996de389b848be035aa31c1f4cd, type: 3}
+  m_PrefabInstance: {fileID: 1223228230}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1865946729
 GameObject:
   m_ObjectHideFlags: 0
@@ -11152,6 +11200,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2077551420}
   m_CullTransparentMesh: 1
+--- !u!4 &2104415992 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3193304720479733375, guid: 674d8449c07441a43a157f8f579e41c9, type: 3}
+  m_PrefabInstance: {fileID: 986290117}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2116928487
 PrefabInstance:
   m_ObjectHideFlags: 0

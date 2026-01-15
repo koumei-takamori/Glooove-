@@ -1585,9 +1585,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Press Any Key
-
-'
+  m_text: Press Any Button
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b37c3eb0784c3fa4aaf31e25189d9072, type: 2}
   m_sharedMaterial: {fileID: 1281365300537049275, guid: b37c3eb0784c3fa4aaf31e25189d9072, type: 2}
@@ -2211,7 +2209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3239537780566165835, guid: 0929e942ab50f7a469169d9a846ca538, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7549133754336079657, guid: 0929e942ab50f7a469169d9a846ca538, type: 3}
       propertyPath: m_Pivot.x
