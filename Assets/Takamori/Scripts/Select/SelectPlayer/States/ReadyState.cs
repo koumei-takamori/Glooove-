@@ -39,7 +39,7 @@ public class PlayerReadySelectState : StateBase
     /// </summary>
     public override void OnUpdate()
     {
-        // 戻る → グローブ選択
+        // グローブ選択
         if (Owner.InputReceiver.GetInputButton(SelectPlayerActions.Cancel, InputType.PRESSED))
         {
             Owner.IsReady = false;

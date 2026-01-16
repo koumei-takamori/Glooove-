@@ -34,12 +34,24 @@ public class PlayerSelectState : StateBase
     /// </summary>
     public override void OnUpdate()
     {
+        Debug.Log("プレイヤー選択中");
+
+        // 準備完了
         if (IsAllPlayerReady())
         {
+            // ステージのセレクトに移る
             m_stateMashine.ChangeState(
                (int)SelectSceneManager.SelectState.StageSelect
            );
+
+            // プレイヤーセレクトのUIの操作を禁止する
+            var players = SelectPlayerManager.Instance.Players;
+            foreach (var player in players)
+            {
+                player.CanControll = false;
+            }
         }
+
     }
 
     /*--------------------------------------------------------------------------------

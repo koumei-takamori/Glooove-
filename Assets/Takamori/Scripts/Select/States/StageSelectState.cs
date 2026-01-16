@@ -39,6 +39,8 @@ public class StageSelectState : StateBase
     /// </summary>
     public override void OnUpdate()
     {
+        Debug.Log("ステージ選択中");
+
         // クールタイム減算
         m_inputTimer -= Time.deltaTime;
 
@@ -80,7 +82,15 @@ public class StageSelectState : StateBase
                    (int)SelectSceneManager.SelectState.PlayerSelect
                );
                 SoundManager.Instance.PlaySE("Cancel");
+
+                // プレイヤーセレクトのUIの操作を許可する
+                var players = SelectPlayerManager.Instance.Players;
+                foreach (var player in players)
+                {
+                    player.CanControll = true;
+                }
             }
+
         }
     }
 
