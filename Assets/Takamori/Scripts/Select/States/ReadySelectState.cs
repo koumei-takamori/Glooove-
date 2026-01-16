@@ -38,6 +38,8 @@ public class ReadySelectState : StateBase
     /// </summary>
     public override void OnUpdate()
     {
+        Debug.Log("€”õŠ®—¹’†");
+
         for (int i = 0; i < 2; i++)
         {
             if (m_isLoad) return;

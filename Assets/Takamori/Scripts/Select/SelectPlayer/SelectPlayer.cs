@@ -55,7 +55,10 @@ public class SelectPlayer : MonoBehaviour
     private const int GLOVE_MAX = 3;
 
     // 決定フラグ
-    private bool m_isReady;
+    private bool m_isReady = false;
+    
+    // プレイヤーセレクトの操作可能フラグ
+    private bool m_canControll = true;
 
     // プロパティ
     public int PlayerId { get { return m_playerId; } set { m_playerId = value; } }
@@ -66,6 +69,7 @@ public class SelectPlayer : MonoBehaviour
     public GloveSide CurrentGloveSide { get { return m_currentGloveSide; } set { m_currentGloveSide = value; } }
     public int GetGloveIndex(GloveSide side) {  return m_gloveIndex[side]; }
     public bool IsReady { get { return m_isReady; } set { m_isReady = value; } }
+    public bool CanControll { get { return m_canControll; } set { m_canControll = value; } }
 
 
     /*--------------------------------------------------------------------------------
@@ -114,6 +118,7 @@ public class SelectPlayer : MonoBehaviour
     /// </summary>
     private void Update()
     {
+        if (!m_canControll) return;
         // ステート更新
         m_stateMachine.OnUpdate();
     }

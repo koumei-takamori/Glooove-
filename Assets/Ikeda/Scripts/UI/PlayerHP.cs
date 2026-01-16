@@ -160,7 +160,6 @@ public class PlayerHP : MonoBehaviour
             //追加　マネージャーにプレイヤ番号を送る
             PlaySceneManager.Instance.SendCameraContorllerLosePlayerNumber(playerNumber);
 
-
             PlaySceneWinnerDataSender.Instance.SaveWinnerPlayerData(playerNumber);
         }
         else VibrateGamepad(0.25f, 0.5f);
