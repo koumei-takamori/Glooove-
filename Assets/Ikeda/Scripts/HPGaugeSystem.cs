@@ -27,7 +27,7 @@ public class HPGaugeSystem : MonoBehaviour
     public int HP { get; set; }
 
     // キャラクターの名前
-    public string FighterName { private get; set; }
+    public string FighterName { get; set; }
 
     // UI要素
     private TextMeshProUGUI fighterNameText;
@@ -49,11 +49,13 @@ public class HPGaugeSystem : MonoBehaviour
         FindUIElements();
     }
 
-    public void InitializeHP(int maxHP)
+    public void InitializeHP(int maxHP,int player)
     {
         HP = maxHP;
         diffHPGauge.InitializeHP(maxHP);
         currentHPGauge.InitializeHP(maxHP);
+
+        fighterNameText.text = "Player" + player;
     }
 
     /// <summary>

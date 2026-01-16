@@ -44,6 +44,11 @@ public class PlayerGenerator : MonoBehaviour
         m_playerGenertionInfos = playerGenerationInfo;
     }
 
+    public void SetStageID(int id)
+    {
+        PlaySceneWinnerDataSender.Instance.StageID = id;
+    }
+
     /// <summary>
     /// ƒvƒŒƒCƒ„[‚Ì¶¬
     /// </summary>

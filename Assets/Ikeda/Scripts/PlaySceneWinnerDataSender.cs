@@ -15,10 +15,13 @@ using UnityEngine;
 public class PlaySceneWinnerDataSender : SingletonMonoBehaviour<PlaySceneWinnerDataSender>
 {
     [SerializeField] private PlayerGenerator playerGenerator;
-    [SerializeField] private int stageId = -1;
+    [SerializeField] private int stageId;
     [SerializeField] private WinnerData winnerData = null;
 
     [SerializeField] private PlayerGenerationInfo[] playerGenerationInfos = null;
+
+    private bool m_isWin = false;
+    public int StageID {  set { stageId = value; } }
 
     override protected void Awake()
     {
@@ -41,9 +44,11 @@ public class PlaySceneWinnerDataSender : SingletonMonoBehaviour<PlaySceneWinnerD
     /// <param name="loserId">「idは 0 か 1」</param>
     public void SaveWinnerPlayerData(int loserId)
     {
-        if (winnerData != null) return;
 
-         int winnerId = 1 - loserId;
+        if (winnerData != null || m_isWin) return;
+
+        m_isWin = true;
+        int winnerId = 1 - loserId;
 
         // 勝利したプレイヤーの生成情報を取得
         var winnerGenerationInfo = playerGenerationInfos[winnerId];
@@ -63,7 +68,7 @@ public class PlaySceneWinnerDataSender : SingletonMonoBehaviour<PlaySceneWinnerD
             return;
         }
 
-        Debug.Log("winner" + winnerData);
+        Debug.Log("winner" + winnerData.StageId);
     }
 
     public async void SendPlaySecneWinnerData()

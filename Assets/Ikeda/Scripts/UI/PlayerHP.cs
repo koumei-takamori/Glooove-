@@ -57,7 +57,7 @@ public class PlayerHP : MonoBehaviour
             yield break;
         }
 
-        InitializeHP();
+        InitializeHP(playerNumber);
         ApplyPlayer3DHPGaugeLayer();
 
         Debug.Log($"PlayerHP 初期化完了 : Player {playerNumber}");
@@ -128,12 +128,12 @@ public class PlayerHP : MonoBehaviour
     }
 
     // ================= HP =================
-    private void InitializeHP()
+    private void InitializeHP(int playerNumber)
     {
         currentHP = (int)armPlayerData.GetMaxHP();
 
-        hpGaugeSystems[0].InitializeHP(currentHP);
-        hpGaugeSystems[1].InitializeHP(currentHP);
+        hpGaugeSystems[0].InitializeHP(currentHP,playerNumber + 1);
+        hpGaugeSystems[1].InitializeHP(currentHP,playerNumber + 1);
     }
 
     // ---------------ダメージ処理---------------
@@ -170,11 +170,6 @@ public class PlayerHP : MonoBehaviour
 
     public void Update()
     {
-        // デバッグ用：Kキーで10ダメージ
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            Damaged(10);
-        }
     }
 
     // ================= レイヤー =================
