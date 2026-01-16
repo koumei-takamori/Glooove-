@@ -70,7 +70,7 @@ public class ResultSceneManager : MonoBehaviour
         // PlaySceneからデータを受け取れているか
         if (winnerData == null)
 
-            Debug.Log("winner" + winnerData);
+        Debug.Log("winner" + winnerData.StageId);
         //表示キャラクターの設定・変更
         m_character.winnerId = (int)winnerData.CharacterType;
         m_character.ChangeCharacter();

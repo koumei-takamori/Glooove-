@@ -5257,7 +5257,7 @@ MonoBehaviour:
   - Live
   - Junk
   - Street
-  m_selectStageId: 3
+  m_selectStageId: -1
   m_stageSelectUI: {fileID: 1138307836}
 --- !u!1 &1044816104
 GameObject:

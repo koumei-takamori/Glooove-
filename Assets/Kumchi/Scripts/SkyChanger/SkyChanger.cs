@@ -25,13 +25,13 @@ public class SkyChanger : MonoBehaviour
         switch (stageId)
         {
             case 0:// ストリートステージ
-                RenderSettings.skybox = m_streetSkybox;
-                break;
-            case 1:// ライブステージ
                 RenderSettings.skybox = m_liveSkybox;
                 break;
-            case 2:// ジャンクフードステージ
+            case 1:// ライブステージ
                 RenderSettings.skybox = m_junkFoodSkybox;
+                break;
+            case 2:// ジャンクフードステージ
+                RenderSettings.skybox = m_streetSkybox;
                 break;
             default: break;
         }

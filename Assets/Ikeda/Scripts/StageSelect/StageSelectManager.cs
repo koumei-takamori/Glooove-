@@ -92,8 +92,12 @@ public class StageSelectManager : SingletonMonoBehaviour<StageSelectManager>
         // ランダムステージ選択時の処理
         if (m_selectStageId == StageID.Random)
         {
-            // ランダム以外のステージをランダムで選択
-            m_selectStageId = (StageID)Random.Range(0, m_sceneName.Length - 2);
+            m_selectStageId = (StageID)Random.Range(
+       (int)StageID.Live,
+       (int)StageID.Random
+   );
+            //// ランダム以外のステージをランダムで選択
+            //m_selectStageId = (StageID)Random.Range(0, m_sceneName.Length - 2);
         }
 
         Debug.Log("ステージ決定" + m_selectStageId);

@@ -84,7 +84,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &6367002265917755596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,6 +193,10 @@ PrefabInstance:
     - target: {fileID: 2343855726382408585, guid: 8991acca81cfe924a923a592f3c81a14, type: 3}
       propertyPath: m_Name
       value: HPGaugeGroup
+      objectReference: {fileID: 0}
+    - target: {fileID: 8186982761080960469, guid: 8991acca81cfe924a923a592f3c81a14, type: 3}
+      propertyPath: m_text
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

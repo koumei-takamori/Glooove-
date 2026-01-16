@@ -53,13 +53,13 @@ public class ResultStage : MonoBehaviour
         switch (stageId)
         {
             case 0:
-                m_street.SetActive(true);
-                break;
-            case 1:
                 m_live.SetActive(true);
                 break;
-            case 2:
+            case 1:
                 m_junkFood.SetActive(true);
+                break;
+            case 2:
+                m_street.SetActive(true);
                 break;
             default: break;
         }

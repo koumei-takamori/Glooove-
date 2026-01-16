@@ -45,6 +45,7 @@ public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
     // インゲームのプレイヤーの生成情報
     private PlayerGenerationInfo[] m_playerGenerationInfos = default;
 
+    private int m_stageID;
     // プロパティ
     public UIElement ReadyUI { get { return m_ready; } }
     public StageSelectManager StageSelectManager { get { return m_stageSelectManager; } }   
@@ -107,6 +108,7 @@ public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
         // フェード処理
         m_fade.FadeOutWithCallback(() =>
         {
+            m_stageID = (int)StageSelectManager.Instance.StageID;
             CreateGenerationInfos();
             GameStart();
         });
@@ -126,6 +128,7 @@ public class SelectSceneManager : SingletonMonoBehaviour<SelectSceneManager>
         }
 
         target.SetGenerationInfo(m_playerGenerationInfos);
+        target.SetStageID(m_stageID);
     }
 
 
